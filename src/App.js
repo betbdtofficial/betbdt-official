@@ -4,6 +4,7 @@ import {
   Route, Switch
 } from "react-router-dom";
 import "./App.css";
+import Footer from "./Components/Footer/Footer";
 import Header from "./Components/Header/Header";
 import Home from "./Components/Pages/Home/Home";
 import Login from "./Components/Pages/Login/Login";
@@ -25,6 +26,7 @@ function App() {
         <SignUp />
       </Route>
     </Switch>
+    <Footer></Footer>
   </Router>
 
 }
