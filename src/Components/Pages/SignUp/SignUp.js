@@ -12,6 +12,8 @@ const SignUp = () => {
           <div className="col-md-7 m-auto">
             <div className="signUpF mt-5">
               <Form>
+                <h1>Register</h1>
+                <br />
                 <Form.Row>
                   <Form.Group as={Col}>
                     <Form.Label>
@@ -56,13 +58,9 @@ const SignUp = () => {
                 <Form.Row>
                   <Form.Group as={Col}>
                     <Form.Label>
-                      Sponsor's{" "}
-                      <span style={{ color: "red" }}> *</span>{" "}
+                      Sponsor's <span style={{ color: "red" }}> *</span>{" "}
                     </Form.Label>
-                    <Form.Control
-                      type="text"
-                      placeholder="Sponsor's name"
-                    />
+                    <Form.Control type="text" placeholder="Sponsor's name" />
                   </Form.Group>
 
                   <Form.Group as={Col}>
@@ -75,21 +73,23 @@ const SignUp = () => {
 
                 <Form.Row>
                   <Form.Group as={Col}>
-                  <Form.Label>
+                    <Form.Label>
                       Password <span style={{ color: "red" }}> *</span>{" "}
                     </Form.Label>
                     <Form.Control type="password" placeholder="Password" />
                   </Form.Group>
                   <Form.Group as={Col}>
                     <Form.Label>
-                    Confirm password <span style={{ color: "red" }}> *</span>{" "}
+                      Confirm password <span style={{ color: "red" }}> *</span>{" "}
                     </Form.Label>
-                    <Form.Control type="password" placeholder="Confirm password" />
+                    <Form.Control
+                      type="password"
+                      placeholder="Confirm password"
+                    />
                   </Form.Group>
                 </Form.Row>
-
                 <Button className="form-control signupBtn" type="submit">
-                  Submit
+                Register Now
                 </Button>
               </Form>
             </div>
