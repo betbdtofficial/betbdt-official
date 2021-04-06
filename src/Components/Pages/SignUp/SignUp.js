@@ -1,10 +1,11 @@
 import React from "react";
 import { Button, Col, Form } from "react-bootstrap";
 import Topnotice from "../../Topnotice/Topnotice";
+import "./SignUp.css";
 
 const SignUp = () => {
   return (
-    <div>
+    <div className="mainSignup">
       <Topnotice></Topnotice>
       <div className="container">
         <div className="row">
@@ -55,12 +56,12 @@ const SignUp = () => {
                 <Form.Row>
                   <Form.Group as={Col}>
                     <Form.Label>
-                      Sponsor's Username{" "}
+                      Sponsor's{" "}
                       <span style={{ color: "red" }}> *</span>{" "}
                     </Form.Label>
                     <Form.Control
                       type="text"
-                      placeholder="Sponsor's Username"
+                      placeholder="Sponsor's name"
                     />
                   </Form.Group>
 
@@ -87,7 +88,7 @@ const SignUp = () => {
                   </Form.Group>
                 </Form.Row>
 
-                <Button className="form-control" variant="primary" type="submit">
+                <Button className="form-control signupBtn" type="submit">
                   Submit
                 </Button>
               </Form>
