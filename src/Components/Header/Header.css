@@ -1,0 +1,18 @@
+nav.navbar-bg.navbar.navbar-expand-lg.navbar-light {
+  background: rgb(18 110 81) !important;
+}
+.navbar-nav .nav-link {
+  color: white !important;
+  font-size: 18px;
+  font-weight: 400;
+}
+.navbar-light .navbar-toggler-icon {
+  background-image: url(../image/humberger.png);
+}
+.navbar-light .navbar-toggler {
+  color: rgb(255 255 255 / 0%);
+  border-color: rgb(0 0 0 / 0%);
+}
+.navbar {
+  border-bottom: 4px solid #fadc1c;
+}
