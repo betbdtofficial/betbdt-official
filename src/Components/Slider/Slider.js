@@ -1,4 +1,5 @@
 import React from "react";
+import { AiOutlineReload } from "react-icons/ai";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
@@ -98,6 +99,9 @@ function Sliders() {
             </div>
           </div>
         </Slider>
+        <div className="liveMatch">
+        <span> <AiOutlineReload/> Live Match </span>
+        </div>
       </div>
     </div>
   );
