@@ -25,12 +25,65 @@
   border: 1px solid #b5b5b540;
 }
 .liveMatch {
-  background: #494949;
+  background: rgb(18 110 81);
   padding: 5px;
   color: white;
 }
 span svg {
   color: #ffdf1b;
-  font-size: 20px;
+  font-size: 25px;
   font-weight: 600;
+  animation: round 1.3s infinite;
+  -webkit-animation: round 1.3s linear infinite;
+}
+@keyframes round {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/***************Slider tabs************/
+
+.react-tabs__tab--selected {
+  background: none !important;
+  border-radius: inherit !important;
+}
+
+.react-tabs__tab {
+  display: contents !important;
+  border: 1px solid transparent;
+  color: black;
+  border-bottom: none;
+  bottom: -1px;
+  position: relative;
+  list-style: none;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+.card {
+  border-bottom: 1px solid gray !important;
+  border-top: 1px solid gray !important;
+}
+.card {
+  border: none;
+}
+.card-header {
+  padding: 11px 11px !important;
+  color: white;
+  font-size: 15px;
+  background-color: #494949 !important;
+  cursor: pointer;
+}
+.card-header img {
+  width: 20px;
+}
+.card-body {
+  flex: 1 1 auto;
+  min-height: 1px;
+  padding: 1.25rem;
+  background: #46555d !important;
+  color: #a9a5a5;
 }
