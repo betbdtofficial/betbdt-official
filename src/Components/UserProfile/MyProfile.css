@@ -1,0 +1,7 @@
+.myprofilewrap {
+  background: #f1f1f1;
+}
+.myprofileMenu ul {
+  display: flex;
+  list-style: none;
+}

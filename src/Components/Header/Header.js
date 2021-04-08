@@ -16,6 +16,7 @@ const Header = () => {
             <Nav.Link as={Link} to="/home">Home</Nav.Link>
             <Nav.Link as={Link} to="/signup">Sign Up</Nav.Link>
             <Nav.Link as={Link} to="/login">Login</Nav.Link>
+            <Nav.Link as={Link} to="/myprofile" title="My Profile">My Profile</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </div>

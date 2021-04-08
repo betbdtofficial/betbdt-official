@@ -9,6 +9,7 @@ import Header from "./Components/Header/Header";
 import Home from "./Components/Pages/Home/Home";
 import Login from "./Components/Pages/Login/Login";
 import SignUp from "./Components/Pages/SignUp/SignUp";
+import MyProfile from "./Components/UserProfile/MyProfile";
 function App() {
   return <Router>
     <Header></Header>
@@ -22,8 +23,11 @@ function App() {
       <Route path="/login">
         <Login />
       </Route>
-      <Route exact path="/signup">
+      <Route path="/signup">
         <SignUp />
+      </Route>
+      <Route path="/myprofile">
+        <MyProfile />
       </Route>
     </Switch>
     <Footer></Footer>
