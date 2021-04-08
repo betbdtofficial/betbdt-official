@@ -1,7 +1,7 @@
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import React from "react";
-import { AiOutlineSync } from "react-icons/ai";
+import { BiLoaderCircle } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
@@ -17,7 +17,6 @@ import tnis from "../image/SliderImg/tnis.png";
 import vball from "../image/SliderImg/vball.png";
 import virtual from "../image/SliderImg/virtual_game.png";
 import CriUpcoming from './Accordion/CriUpcoming';
-import FballLiveAccordion from "./Accordion/FballLiveAccordion";
 import FballUpcomingAccordion from "./Accordion/FballUpcomingAccordion";
 import "./Slider.css";
 
@@ -134,18 +133,16 @@ function Sliders() {
               </div>
             </div>
           </TabList>
-          <div className="liveMatch">
+          <div className="UpcomingMatch">
             <span>
               {" "}
-              <AiOutlineSync /> Live Match{" "}
+              <BiLoaderCircle /> Upcoming Match{" "}
             </span>
           </div>
           <TabPanel>
-            <FballLiveAccordion />
             <FballUpcomingAccordion />
           </TabPanel>
           <TabPanel>
-            <FballLiveAccordion />
             <FballUpcomingAccordion />
           </TabPanel>
           <TabPanel>
