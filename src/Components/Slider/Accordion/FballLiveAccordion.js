@@ -28,10 +28,14 @@ function FballLiveAccordion() {
       <Accordion defaultActiveKey="0">
         <Card>
           <Accordion.Toggle as={Card.Header} eventKey="0">
-            <img src={football} className="img-fluid" alt="" /> Victoria VS
-            South Australia, Marsh One Day Cup/Victoria V South Australia ||
-            2021-04-08 04:30:00{" "}
-            <span class="badge badge-danger">Live Score</span>
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <img src={football} className="img-fluid" alt="" /> Victoria VS
+                South Australia, Marsh One Day Cup/Victoria V South Australia ||
+                2021-04-08 04:30:00{" "}
+                <span class="badge badge-danger">Live Score</span>
+              </div>
+            </div>
           </Accordion.Toggle>
           <Accordion.Collapse eventKey="0">
             <Card.Body>
