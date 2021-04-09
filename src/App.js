@@ -10,6 +10,7 @@ import Error from "./Components/Pages/Error/Error";
 import Home from "./Components/Pages/Home/Home";
 import Login from "./Components/Pages/Login/Login";
 import SignUp from "./Components/Pages/SignUp/SignUp";
+import DepositRequest from "./Components/UserProfile/DepositRequest";
 import MyProfile from "./Components/UserProfile/MyProfile";
 function App() {
   return <Router>
@@ -26,6 +27,9 @@ function App() {
       </Route>
       <Route path="/myprofile">
         <MyProfile />
+      </Route>
+      <Route path="/Deposit">
+        <DepositRequest />
       </Route>
       <Route path="*">
         <Error />
