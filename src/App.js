@@ -6,6 +6,7 @@ import {
 import "./App.css";
 import Footer from "./Components/Footer/Footer";
 import Header from "./Components/Header/Header";
+import Error from "./Components/Pages/Error/Error";
 import Home from "./Components/Pages/Home/Home";
 import Login from "./Components/Pages/Login/Login";
 import SignUp from "./Components/Pages/SignUp/SignUp";
@@ -28,6 +29,9 @@ function App() {
       </Route>
       <Route path="/myprofile">
         <MyProfile />
+      </Route>
+      <Route path="*">
+        <Error />
       </Route>
     </Switch>
     <Footer></Footer>
