@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,500;1,400;1,500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400&display=swap");
 nav.navbar-bg.navbar.navbar-expand-lg.navbar-light {
   background: rgb(18 110 81) !important;
 }
@@ -7,7 +7,7 @@ nav.navbar-bg.navbar.navbar-expand-lg.navbar-light {
   font-size: 18px;
   font-weight: 500;
   padding-left: 19px;
-  font-family: "Roboto Mono", monospace;
+  font-family: "Roboto Condensed", sans-serif;
 }
 .navbar-nav .nav-link:hover {
   color: #fadc1c !important;
