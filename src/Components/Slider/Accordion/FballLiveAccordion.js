@@ -1,34 +1,35 @@
 import React from "react";
 import { Accordion, Card } from "react-bootstrap";
-import { BiLoaderCircle } from "react-icons/bi";
-import cricket from "../../image/SliderImg/cricket.png";
+import football from "../../image/SliderImg/f_ball.png";
 import "../Slider.css";
 
-function CriUpcoming() {
+function FballLiveAccordion() {
   return (
     <div>
-      <div className="liveMatch">
-        <span>
-          {" "}
-          <BiLoaderCircle /> Upcoming Match{" "}
-        </span>
-      </div>
       <Accordion defaultActiveKey="0">
         <Card>
           <Accordion.Toggle as={Card.Header} eventKey="0">
-            <img src={cricket} className="img-fluid" alt="" /> Granada VS Man
+            <img src={football} className="img-fluid" alt="" /> Granada VS Man
             Utd, UEfA Europa League / Granada v Man Utd || 2021-04-09 01:00:00{" "}
-            <span class="badge badge-danger">Upcoming</span>
+            <span class="badge badge-danger">Live</span>
           </Accordion.Toggle>
           <Accordion.Collapse eventKey="0">
-            <Card.Body>Hello! I'm the body</Card.Body>
+            <Card.Body>
+              <table>
+                <tr>
+                  <th>Granada</th>
+                  <th>VS</th>
+                  <th>Man Utd</th>
+                </tr>
+              </table>
+            </Card.Body>
           </Accordion.Collapse>
         </Card>
         <Card>
           <Accordion.Toggle as={Card.Header} eventKey="1">
-            <img src={cricket} className="img-fluid" alt="" /> Leeds VS
+            <img src={football} className="img-fluid" alt="" /> Leeds VS
             Liverpool, England Premier League / Leeds v Liverpool || 2021-04-20
-            01:00:00 <span class="badge badge-danger">Upcoming</span>
+            01:00:00 <span class="badge badge-danger">Live</span>
           </Accordion.Toggle>
           <Accordion.Collapse eventKey="1">
             <Card.Body>Hello! I'm another body</Card.Body>
@@ -39,4 +40,4 @@ function CriUpcoming() {
   );
 }
 
-export default CriUpcoming;
+export default FballLiveAccordion;

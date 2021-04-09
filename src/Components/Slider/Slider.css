@@ -25,7 +25,7 @@
   text-align: center;
   border: 1px solid #b5b5b540;
 }
-.UpcomingMatch {
+.liveMatch {
   background: rgb(18 110 81);
   padding: 5px;
   color: white;
@@ -89,4 +89,9 @@ span svg {
   padding: 1.25rem;
   background: #46555d !important;
   color: #a9a5a5;
+}
+table {
+  border-collapse: collapse;
+  width: 20%;
+  text-align: center;
 }

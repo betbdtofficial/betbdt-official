@@ -1,7 +1,7 @@
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import React from "react";
-import { BiLoaderCircle } from "react-icons/bi";
+import { AiOutlineReload } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
@@ -16,11 +16,14 @@ import star from "../image/SliderImg/Star.png";
 import tnis from "../image/SliderImg/tnis.png";
 import vball from "../image/SliderImg/vball.png";
 import virtual from "../image/SliderImg/virtual_game.png";
-import CriUpcoming from './Accordion/CriUpcoming';
+import CriLiveAccordion from './Accordion/CriLiveAccordion';
+import CriUpcoming from "./Accordion/CriUpcoming";
+import FballLiveAccordion from "./Accordion/FballLiveAccordion";
 import FballUpcomingAccordion from "./Accordion/FballUpcomingAccordion";
 import "./Slider.css";
 
 function Sliders() {
+  
   return (
     <div className="sliderWrapped">
       <div className="container">
@@ -133,20 +136,23 @@ function Sliders() {
               </div>
             </div>
           </TabList>
-          <div className="UpcomingMatch">
+          <div className="liveMatch">
             <span>
               {" "}
-              <BiLoaderCircle /> Upcoming Match{" "}
+              <AiOutlineReload /> Live Match{" "}
             </span>
           </div>
           <TabPanel>
+            <FballLiveAccordion />
             <FballUpcomingAccordion />
           </TabPanel>
           <TabPanel>
+            <FballLiveAccordion />
             <FballUpcomingAccordion />
           </TabPanel>
           <TabPanel>
-            <CriUpcoming/>
+            <CriLiveAccordion/>
+            <CriUpcoming />
           </TabPanel>
         </Tabs>
       </div>
