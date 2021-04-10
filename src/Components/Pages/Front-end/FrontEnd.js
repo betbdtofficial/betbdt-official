@@ -5,10 +5,9 @@ import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import Home from "../Home/Home";
 import Login from "../Login/Login";
+import MyProfile from "../MyProfile/MyProfile";
 import SignUp from "../SignUp/SignUp";
-import DepositRequest from "../UserProfile/DepositRequest";
-import MyProfile from "../UserProfile/MyProfile";
-
+import WithdrawRequest from "../WithdrawRequest/WithdrawRequest";
 const FrontEnd = () => {
   return (
     <div>
@@ -24,11 +23,11 @@ const FrontEnd = () => {
           <Route path="/signup">
             <SignUp />
           </Route>
+          <Route path="/WithdrawRequest">
+            <WithdrawRequest />
+          </Route>
           <Route path="/myprofile">
             <MyProfile />
-          </Route>
-          <Route path="/Deposit">
-            <DepositRequest />
           </Route>
           <Route path="*">
             <Error />

@@ -20,7 +20,8 @@ const Header = () => {
             <Nav.Link as={NavLink} exact activeStyle={activeMenu} to="/">Home</Nav.Link>
             <Nav.Link as={NavLink} activeStyle={activeMenu} to="/signup">Sign Up</Nav.Link>
             <Nav.Link as={NavLink} activeStyle={activeMenu} to="/login">Login</Nav.Link>
-            <Nav.Link as={NavLink} activeStyle={activeMenu} to="/myprofile" title="My Profile">My Profile</Nav.Link>
+            <Nav.Link as={NavLink} activeStyle={activeMenu} to="/myprofile">My Profile</Nav.Link>
+            <Nav.Link as={NavLink} activeStyle={activeMenu} to="/WithdrawRequest">withdrawRequest</Nav.Link>
             <Nav.Link title="My Profile">Balance  (695) <BiDollarCircle/></Nav.Link>
           </Nav>
         </Navbar.Collapse>
