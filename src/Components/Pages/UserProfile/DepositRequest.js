@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Col, Form } from "react-bootstrap";
-import payment from '../image/payment-method.png';
+import payment from '../../image/payment-method.png';
 import MyProfile from "./MyProfile";
 const DepositRequest = () => {
   return (
