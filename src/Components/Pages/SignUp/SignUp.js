@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Col, Form } from "react-bootstrap";
-import Topnotice from "../../Topnotice/Topnotice";
+import Topnotice from "../Topnotice/Topnotice";
 import "./SignUp.css";
 
 const SignUp = () => {

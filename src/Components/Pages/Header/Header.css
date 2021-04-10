@@ -13,7 +13,7 @@ nav.navbar-bg.navbar.navbar-expand-lg.navbar-light {
   color: #fadc1c !important;
 }
 .navbar-light .navbar-toggler-icon {
-  background-image: url(../image/humberger.png);
+  background-image: url(../../image/humberger.png);
 }
 .navbar-light .navbar-toggler {
   color: rgb(255 255 255 / 0%);

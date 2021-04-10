@@ -2,7 +2,7 @@ import React from "react";
 import { Nav, Navbar } from 'react-bootstrap';
 import { BiDollarCircle } from 'react-icons/bi';
 import { Link, NavLink } from "react-router-dom";
-import logo from "../image/Untitled-1.png";
+import logo from "../../image/Untitled-1.png";
 import "./Header.css";
 const Header = () => {
   const activeMenu = {

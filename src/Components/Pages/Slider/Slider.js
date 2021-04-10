@@ -7,15 +7,15 @@ import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
-import bmin from "../image/SliderImg/bmin.png";
-import cricket from "../image/SliderImg/cricket.png";
-import fball from "../image/SliderImg/f_ball.png";
-import hand_ball from "../image/SliderImg/hand_ball.png";
-import hockey from "../image/SliderImg/hockey.png";
-import star from "../image/SliderImg/Star.png";
-import tnis from "../image/SliderImg/tnis.png";
-import vball from "../image/SliderImg/vball.png";
-import virtual from "../image/SliderImg/virtual_game.png";
+import bmin from "../../image/SliderImg/bmin.png";
+import cricket from "../../image/SliderImg/cricket.png";
+import fball from "../../image/SliderImg/f_ball.png";
+import hand_ball from "../../image/SliderImg/hand_ball.png";
+import hockey from "../../image/SliderImg/hockey.png";
+import star from "../../image/SliderImg/Star.png";
+import tnis from "../../image/SliderImg/tnis.png";
+import vball from "../../image/SliderImg/vball.png";
+import virtual from "../../image/SliderImg/virtual_game.png";
 import CriLiveAccordion from './Accordion/CriLiveAccordion';
 import CriUpcoming from "./Accordion/CriUpcoming";
 import FballLiveAccordion from "./Accordion/FballLiveAccordion";
@@ -139,7 +139,7 @@ function Sliders() {
           <div className="liveMatch">
             <span>
               {" "}
-              <AiOutlineReload /> Live Match{" "}
+              <AiOutlineReload className="icon" /> Live Match{" "}
             </span>
           </div>
           <TabPanel>

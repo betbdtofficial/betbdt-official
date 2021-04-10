@@ -1,16 +1,11 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
-import Footer from "./Components/Footer/Footer";
-import Header from "./Components/Header/Header";
-import Error from "./Components/Pages/Error/Error";
-import Home from "./Components/Pages/Home/Home";
-import Login from "./Components/Pages/Login/Login";
-import SignUp from "./Components/Pages/SignUp/SignUp";
-import DepositRequest from "./Components/UserProfile/DepositRequest";
-import MyProfile from "./Components/UserProfile/MyProfile";
+import Dashboard from "./Components/Dashboard/Dashboard";
+import FrontEnd from './Components/Pages/Front-end/FrontEnd';
 function App() {
   return (
+<<<<<<< HEAD
     <Router>
       <Header></Header>
       <Switch>
@@ -35,6 +30,20 @@ function App() {
       </Switch>
       <Footer></Footer>
     </Router>
+=======
+    <>
+      <Router>
+        <Switch>
+          <Route path="/admin">
+            <Dashboard />
+          </Route>
+          <Route path="/">
+            <FrontEnd/>
+          </Route>
+        </Switch>
+      </Router>
+    </>
+>>>>>>> 814daf66d2176c4d5de96bd6a7ad351294107ec3
   );
 }
 
