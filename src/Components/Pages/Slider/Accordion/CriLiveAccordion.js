@@ -1,6 +1,6 @@
 import React from "react";
 import { Accordion, Card } from "react-bootstrap";
-import football from "../../image/SliderImg/f_ball.png";
+import football from "../../../image/SliderImg/f_ball.png";
 import "../Slider.css";
 
 function CriLiveAccordion() {

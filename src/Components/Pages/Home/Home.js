@@ -1,6 +1,6 @@
 import React from 'react';
-import Sliders from '../../Slider/Slider';
-import Topnotice from '../../Topnotice/Topnotice';
+import Sliders from '../Slider/Slider';
+import Topnotice from '../Topnotice/Topnotice';
 
 const Home = () => {
     return (

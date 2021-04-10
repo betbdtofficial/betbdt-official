@@ -1,7 +1,7 @@
 import React from "react";
 import { Accordion, Card } from "react-bootstrap";
 import { BiLoaderCircle } from "react-icons/bi";
-import cricket from "../../image/SliderImg/cricket.png";
+import cricket from "../../../image/SliderImg/cricket.png";
 import "../Slider.css";
 
 function CriUpcoming() {
