@@ -10,7 +10,7 @@ function CriUpcoming() {
       <div className="liveMatch">
         <span>
           {" "}
-          <BiLoaderCircle /> Upcoming Match{" "}
+          <BiLoaderCircle className="icon" /> Upcoming Match{" "}
         </span>
       </div>
       <Accordion defaultActiveKey="0">

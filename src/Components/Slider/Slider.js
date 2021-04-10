@@ -139,7 +139,7 @@ function Sliders() {
           <div className="liveMatch">
             <span>
               {" "}
-              <AiOutlineReload /> Live Match{" "}
+              <AiOutlineReload className="icon" /> Live Match{" "}
             </span>
           </div>
           <TabPanel>
