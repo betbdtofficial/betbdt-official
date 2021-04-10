@@ -17,15 +17,9 @@ body {
 .content {
   width: 75%;
   margin-left: auto;
-  padding: 10px;
   background: #f1f1f1;
   border-radius: 5px;
   box-shadow: 25px -1px 11px #b1a8a8;
-}
-.content h2 {
-  font-size: 40px;
-  font-weight: 600;
-  font-family: "Roboto Condensed", sans-serif;
 }
 /********Responsive css*********/
 @media only screen and (max-width: 992px) {
