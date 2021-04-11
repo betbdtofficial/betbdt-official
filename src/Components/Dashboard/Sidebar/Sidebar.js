@@ -1,4 +1,3 @@
-// import { Button } from "@material-ui/core";
 import {
   Divider,
   Drawer,
@@ -9,14 +8,14 @@ import {
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { PeopleAltOutlined } from "@material-ui/icons";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-// import { DashboardRounded, Edit, PeopleAltRounded } from "@material-ui/icons";
 import React from "react";
-// import { Link } from "react-router-dom";
+import { AiOutlineDashboard } from "react-icons/ai";
+import { FaLayerGroup, FaMoneyBillAlt, FaSteamSymbol } from "react-icons/fa";
+import { FiSettings } from "react-icons/fi";
+import { GiReceiveMoney } from "react-icons/gi";
 import { Link } from "react-router-dom";
 import logo from "../../image/logo.png";
 import "./Sidebar.css";
-
 const drawerWidth = "25%";
 const background = "#383838 !important";
 
@@ -72,29 +71,57 @@ function Sidebar() {
             <Link style={styles} to="/admin">
               <ListItem button>
                 <ListItemIcon>
-                  <InboxIcon />{" "}
+                  <AiOutlineDashboard />{" "}
                 </ListItemIcon>
                 <ListItemText primary="Dashboard" />
               </ListItem>
             </Link>
-          </List>
-          <List>
-            <Link style={styles} to="/admin/userList">
+            <Link style={styles} to="/admin/manageMatch">
+              <ListItem button>
+                <ListItemIcon>
+                  <FaSteamSymbol />{" "}
+                </ListItemIcon>
+                <ListItemText primary="Manage Match" />
+              </ListItem>
+            </Link>
+            <Link style={styles} to="/admin/manageWinner">
+              <ListItem button>
+                <ListItemIcon>
+                  <FaLayerGroup />{" "}
+                </ListItemIcon>
+                <ListItemText primary="Awaiting Winner" />
+              </ListItem>
+            </Link>
+            <Link style={styles} to="/admin/manageUser">
               <ListItem button>
                 <ListItemIcon>
                   <PeopleAltOutlined />{" "}
                 </ListItemIcon>
-                <ListItemText primary="User List" />
+                <ListItemText primary="Manage User" />
               </ListItem>
             </Link>
-          </List>
-          <List>
-            <Link style={styles} to="/admin/sponsorList">
+            <Link style={styles} to="/admin/manageDeposit">
               <ListItem button>
                 <ListItemIcon>
-                  <InboxIcon />{" "}
+                  <FaMoneyBillAlt />{" "}
                 </ListItemIcon>
-                <ListItemText primary="Sponsor List" />
+                <ListItemText primary="Manage Deposit" />
+              </ListItem>
+            </Link>
+            <Link style={styles} to="/admin/manageWithdraw">
+              <ListItem button>
+                <ListItemIcon>
+                  <GiReceiveMoney />{" "}
+                </ListItemIcon>
+                <ListItemText primary="Manage Withdraw" />
+              </ListItem>
+            </Link>
+            <Link style={styles} to="/admin/setting">
+              <ListItem button>
+                <ListItemIcon>
+                  <FiSettings />{" "}
+                </ListItemIcon>
+                <ListItemText primary="Setting" />
               </ListItem>
             </Link>
           </List>

@@ -2,11 +2,14 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./Dashboard.css";
+import Deposit from './Deposit/Deposit';
 import PrimarySearchAppBar from './Header/Header';
 import Home from "./Home/Home";
+import Match from "./Match/Match";
+import Setting from './Setting/Setting';
 import Sidebar from "./Sidebar/Sidebar";
-import SponsorList from './SponsorList/SponsorList';
-import UserList from "./UserList/UserList";
+import User from './User/User';
+import Winner from './Winner/Winner';
 
 const Dashboard = () => {
 
@@ -23,11 +26,20 @@ const Dashboard = () => {
               <Route exact path="/admin">
                 <Home/>
               </Route>
-              <Route path="/admin/userList">
-                <UserList />
+              <Route path="/admin/manageMatch">
+                <Match />
               </Route>
-              <Route path="/admin/sponsorList">
-                <SponsorList />
+              <Route path="/admin/manageWinner">
+                <Winner />
+              </Route>
+              <Route path="/admin/manageUser">
+                <User />
+              </Route>
+              <Route path="/admin/manageDeposit">
+                <Deposit />
+              </Route>
+              <Route path="/admin/setting">
+                <Setting />
               </Route>
             </Switch>
           </div>

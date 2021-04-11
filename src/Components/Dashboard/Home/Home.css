@@ -1,14 +1,20 @@
 .homeWrapped {
   padding: 10px;
 }
+.heading {
+  box-shadow: 0px 1px 2px grey;
+  padding: 5px;
+}
 .box {
-  background: red;
   padding: 20px;
   border-radius: 5px;
   transition: all 0.5s ease-in-out;
   color: white;
   cursor: pointer;
+  margin-top: 10px;
+  margin-bottom: 20px;
 }
+
 .box svg {
   color: white;
 }

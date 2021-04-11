@@ -21,9 +21,3 @@ body {
   border-radius: 5px;
   box-shadow: 25px -1px 11px #b1a8a8;
 }
-/********Responsive css*********/
-@media only screen and (max-width: 992px) {
-  .allWrapp {
-    margin-top: 56px;
-  }
-}
