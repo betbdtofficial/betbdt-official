@@ -1,6 +1,8 @@
 import React from "react";
 import { Table } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import Avater from "../../image/avater.png";
+import "./Myprofile.css";
 const MyProfile = () => {
   return (
     <div className="mainSignup">
@@ -9,7 +11,27 @@ const MyProfile = () => {
           <div className="col-md-2 m-auto">
             <br />
             <div className="profilePic">
-              <img src={Avater} className="img-fluid" alt="" />
+              <img src={Avater} width="150px" className="img-fluid" alt="" />
+            </div>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-md-8 m-auto d-flex justify-content-center">
+            <div className="myprofileMenu">
+              <ul>
+                <li>
+                  <Link to="/myprofile">My Profile</Link>
+                </li>
+                <li>
+                  <Link to="/WithdrawRequest">Withdraw Request</Link>
+                </li>
+                <li>
+                  <Link to="/DepositRequest">Deposit Request</Link>
+                </li>
+                <li>
+                  <Link to="/ChangePassword">Change Password</Link>
+                </li>
+              </ul>
             </div>
           </div>
         </div>

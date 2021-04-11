@@ -1,0 +1,11 @@
+.myprofileMenu ul li {
+  float: left;
+  padding: 9px 12px;
+  list-style: none;
+  background: #126e51;
+  margin: 11px 6px 0px 0px;
+}
+.myprofileMenu ul li a {
+  color: white;
+  text-decoration: none;
+}

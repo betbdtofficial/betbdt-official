@@ -1,12 +1,14 @@
 import React from 'react';
 import { Button, Col, Form } from 'react-bootstrap';
 import payment from '../../image/payment-method.png';
+import UserSidebar from '../../User/UserDeshboard/UserSidebar/UserSidebar';
 const withdrawRequest = () => {
     return (
         <div className="DepositRequestMain mt-5 mb-5">
+      <UserSidebar></UserSidebar>
       <div className="container">
         <div className="row">
-          <div className="col-md-6 m-auto">
+          <div className="col-md-5 m-auto">
             <div className="deposit-request-box">
               <br />
               <h1 className="text-center">Withdraw Request</h1>

@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import DepositRequest from "../../User/DepositRequest";
 import Error from "../Error/Error";
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
@@ -25,6 +26,9 @@ const FrontEnd = () => {
           </Route>
           <Route path="/WithdrawRequest">
             <WithdrawRequest />
+          </Route>
+          <Route path="/DepositRequest">
+            <DepositRequest />
           </Route>
           <Route path="/myprofile">
             <MyProfile />
