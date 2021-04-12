@@ -1,44 +1,12 @@
-import React from "react";
-import { Table } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import Avater from "../../image/avater.png";
-import "./Myprofile.css";
+import React from 'react';
+import { Table } from 'react-bootstrap';
+
 const MyProfile = () => {
-  return (
-    <div className="mainSignup">
-      <div className="container ">
+    return (
         <div className="row">
-          <div className="col-md-2 m-auto">
-            <br />
-            <div className="profilePic">
-              <img src={Avater} width="150px" className="img-fluid" alt="" />
-            </div>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-md-8 m-auto d-flex justify-content-center">
-            <div className="myprofileMenu">
-              <ul>
-                <li>
-                  <Link to="/myprofile">My Profile</Link>
-                </li>
-                <li>
-                  <Link to="/WithdrawRequest">Withdraw Request</Link>
-                </li>
-                <li>
-                  <Link to="/DepositRequest">Deposit Request</Link>
-                </li>
-                <li>
-                  <Link to="/ChangePassword">Change Password</Link>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <br />
-        <div className="row">
-          <div className="col-md-7 m-auto">
-            <Table striped bordered hover size="sm">
+          <div className="col-md-12">
+            <h2 className="heading text-center">My Profile</h2>
+            <Table striped bordered hover>
               <tbody>
                 <tr>
                   <td>Full Name</td>
@@ -68,10 +36,7 @@ const MyProfile = () => {
             </Table>
           </div>
         </div>
-        <br />
-      </div>
-    </div>
-  );
+    );
 };
 
 export default MyProfile;

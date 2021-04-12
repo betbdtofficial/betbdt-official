@@ -1,17 +1,15 @@
 import React from "react";
 import { Button, Col, Form } from "react-bootstrap";
-import payment from "../image/payment-method.png";
-import UserSidebar from "./UserDeshboard/UserSidebar/UserSidebar";
-const DepositRequest = () => {
+import payment from "../../image/payment-method.png";
+const withdrawReq = () => {
   return (
-    <div className="DepositRequestMain mt-5 mb-5">
-      <UserSidebar></UserSidebar>
+    <div className="DepositRequestMain">
       <div className="container">
         <div className="row">
-          <div className="col-md-5 m-auto">
+          <div className="col-md-12 m-auto">
+            <br />
+            <h2 className="text-center heading">Withdraw Request</h2>
             <div className="deposit-request-box">
-              <br />
-              <h1 className="text-center">Request a Deposit</h1>
               <img src={payment} className="img-fluid" alt="" />
               <br />
               <br />
@@ -19,30 +17,40 @@ const DepositRequest = () => {
                 <Form.Row>
                   <Form.Group as={Col}>
                     <Form.Label>
-                      Method To <span style={{ color: "red" }}>*</span>{" "}
+                      Method <span style={{ color: "red" }}>*</span>{" "}
                     </Form.Label>
                     <Form.Control as="select">
                       <option>Select Method</option>
-                      <option>Bkash +88017123456</option>
-                      <option>Nagad +8801982123456</option>
-                      <option>Rocket +8801740123456</option>
+                      <option>Bkash</option>
+                      <option>Nagad</option>
+                      <option>Rocket</option>
+                    </Form.Control>
+                  </Form.Group>
+
+                  <Form.Group as={Col}>
+                    <Form.Label>
+                      Type <span style={{ color: "red" }}>*</span>{" "}
+                    </Form.Label>
+                    <Form.Control as="select">
+                      <option>Account Type</option>
+                      <option>Personal</option>
+                      <option>Agent</option>
                     </Form.Control>
                   </Form.Group>
                 </Form.Row>
-
                 <Form.Row>
-                  <Form.Group as={Col} controlId="formGridCity">
+                  <Form.Group as={Col}>
                     <Form.Label>
                       Amount <span style={{ color: "red" }}>*</span>{" "}
                     </Form.Label>
                     <Form.Control type="number" placeholder="Amount" />
                   </Form.Group>
 
-                  <Form.Group as={Col} controlId="formGridCity">
+                  <Form.Group as={Col}>
                     <Form.Label>
-                      From <span style={{ color: "red" }}>*</span>{" "}
+                      To <span style={{ color: "red" }}>*</span>{" "}
                     </Form.Label>
-                    <Form.Control type="number" placeholder="From" />
+                    <Form.Control type="number" placeholder="To " />
                   </Form.Group>
                 </Form.Row>
                 <br />
@@ -62,4 +70,4 @@ const DepositRequest = () => {
   );
 };
 
-export default DepositRequest;
+export default withdrawReq;

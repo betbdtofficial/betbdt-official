@@ -1,17 +1,15 @@
-import React from 'react';
-import { Button, Col, Form } from 'react-bootstrap';
+import React from "react";
+import { Button, Col, Form } from "react-bootstrap";
 import payment from '../../image/payment-method.png';
-import UserSidebar from '../../User/UserDeshboard/UserSidebar/UserSidebar';
-const withdrawRequest = () => {
-    return (
-        <div className="DepositRequestMain mt-5 mb-5">
-      <UserSidebar></UserSidebar>
+const DepositReq = () => {
+  return (
+    <div className="DepositRequestMain">
       <div className="container">
         <div className="row">
-          <div className="col-md-5 m-auto">
+          <div className="col-md-12">
             <div className="deposit-request-box">
               <br />
-              <h1 className="text-center">Withdraw Request</h1>
+              <h2 className="text-center heading">Request a Deposit</h2>
               <img src={payment} className="img-fluid" alt="" />
               <br />
               <br />
@@ -19,40 +17,30 @@ const withdrawRequest = () => {
                 <Form.Row>
                   <Form.Group as={Col}>
                     <Form.Label>
-                      Method <span style={{ color: "red" }}>*</span>{" "}
+                      Method To <span style={{ color: "red" }}>*</span>{" "}
                     </Form.Label>
                     <Form.Control as="select">
                       <option>Select Method</option>
-                      <option>Bkash</option>
-                      <option>Nagad</option>
-                      <option>Rocket</option>
-                    </Form.Control>
-                  </Form.Group>
-
-                  <Form.Group as={Col}>
-                    <Form.Label>
-                     Type <span style={{ color: "red" }}>*</span>{" "}
-                    </Form.Label>
-                    <Form.Control as="select">
-                      <option>Account Type</option>
-                      <option>Personal</option>
-                      <option>Agent</option>
+                      <option>Bkash +88017123456</option>
+                      <option>Nagad +8801982123456</option>
+                      <option>Rocket +8801740123456</option>
                     </Form.Control>
                   </Form.Group>
                 </Form.Row>
+
                 <Form.Row>
-                  <Form.Group as={Col}>
+                  <Form.Group as={Col} controlId="formGridCity">
                     <Form.Label>
                       Amount <span style={{ color: "red" }}>*</span>{" "}
                     </Form.Label>
                     <Form.Control type="number" placeholder="Amount" />
                   </Form.Group>
 
-                  <Form.Group as={Col}>
+                  <Form.Group as={Col} controlId="formGridCity">
                     <Form.Label>
-                      To <span style={{ color: "red" }}>*</span>{" "}
+                      From <span style={{ color: "red" }}>*</span>{" "}
                     </Form.Label>
-                    <Form.Control type="number" placeholder="To " />
+                    <Form.Control type="number" placeholder="From" />
                   </Form.Group>
                 </Form.Row>
                 <br />
@@ -69,7 +57,7 @@ const withdrawRequest = () => {
         </div>
       </div>
     </div>
-    );
+  );
 };
 
-export default withdrawRequest;
+export default DepositReq;

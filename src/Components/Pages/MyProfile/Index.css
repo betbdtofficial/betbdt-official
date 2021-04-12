@@ -1,3 +1,8 @@
+/**********React tabs*********/
+.react-tabs__tab-list {
+  border-bottom: none !important;
+}
+
 .myprofileMenu ul li {
   float: left;
   padding: 9px 12px;
