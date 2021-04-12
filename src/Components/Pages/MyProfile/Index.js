@@ -1,12 +1,13 @@
-import { Button } from "@material-ui/core";
+// import { Button } from "@material-ui/core";
 import React from "react";
+import { Button } from "react-bootstrap";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import Avater from "../../image/avater.png";
-import ChangePass from './ChangePass';
-import DepositReq from './DepositReq';
+import ChangePass from "./ChangePass";
+import DepositReq from "./DepositReq";
 import "./Index.css";
 import MyProfile from "./MyProfile";
-import WithdrawReq from './WithdrawReq';
+import WithdrawReq from "./WithdrawReq";
 const Profile = () => {
   return (
     <div className="mainSignup">
@@ -19,36 +20,38 @@ const Profile = () => {
             </div>
           </div>
         </div>
+        <br />
         <div className="row">
-          <div className="col-md-9 m-auto">
+          <div className="col-md-6 m-auto">
             <div className="myprofileMenu">
               <Tabs>
                 <TabList>
                   <Tab>
-                      <Button variant="contained">My Profile</Button>
+                    <Button id="mypBtn">My Profile</Button>
                   </Tab>
                   <Tab>
-                    <Button variant="contained">Withdraw Request</Button>
+                    <Button id="mypBtn">Withdraw Request</Button>
                   </Tab>
                   <Tab>
-                    <Button variant="contained">Deposit Request</Button>
+                    <Button id="mypBtn">Deposit Request</Button>
                   </Tab>
                   <Tab>
-                    <Button variant="contained">Change Password</Button>
+                    <Button id="mypBtn">Change Password</Button>
                   </Tab>
                 </TabList>
+                <br />
 
                 <TabPanel>
-                  <MyProfile/>
+                  <MyProfile />
                 </TabPanel>
                 <TabPanel>
-                  <WithdrawReq/>
+                  <WithdrawReq />
                 </TabPanel>
                 <TabPanel>
-                  <DepositReq/>
+                  <DepositReq />
                 </TabPanel>
                 <TabPanel>
-                  <ChangePass/>
+                  <ChangePass />
                 </TabPanel>
               </Tabs>
             </div>

@@ -5,10 +5,7 @@
 
 .myprofileMenu ul li {
   float: left;
-  padding: 9px 12px;
   list-style: none;
-  background: #126e51;
-  margin: 11px 6px 0px 0px;
 }
 .myprofileMenu ul li a {
   color: white;
@@ -25,4 +22,64 @@
   font-size: 15px !important;
   color: white !important;
   font-weight: 600 !important;
+}
+.react-tabs__tab {
+  width: 150px;
+}
+#mypBtn {
+  margin: auto;
+  border: none;
+  background-color: #383838;
+}
+
+.table-striped tbody tr:nth-of-type(2n + 1) {
+  background-color: rgb(255, 195, 0);
+  color: #001a31;
+}
+#mypBtn {
+  margin: 5px;
+}
+.profilePic {
+  text-align: center;
+}
+/*Responsive*/
+
+@media only screen and (max-width: 320px) {
+  #mypBtn {
+    margin: 5px;
+    font-size: 10px;
+  }
+  .react-tabs__tab-list {
+    display: block;
+    text-align: center;
+  }
+  .sliderItem {
+    width: 100%;
+  }
+}
+@media only screen and (max-width: 375px) {
+  #mypBtn {
+    margin: 5px;
+    font-size: 8px;
+  }
+  .react-tabs__tab-list {
+    display: block;
+    text-align: center;
+  }
+  .sliderItem {
+    width: 100%;
+  }
+}
+@media only screen and (max-width: 425px) {
+  #mypBtn {
+    margin: 5px;
+    font-size: 8px;
+  }
+  .react-tabs__tab-list {
+    display: block;
+    text-align: center;
+  }
+  .sliderItem {
+    width: 100%;
+  }
 }
