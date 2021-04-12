@@ -1,9 +1,17 @@
 import React from "react";
 import { Button, Col, Form } from "react-bootstrap";
+import { useForm } from "react-hook-form";
 import Topnotice from "../Topnotice/Topnotice";
 import "./SignUp.css";
 
 const SignUp = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const onSubmit = (data) => console.log(data);
+  console.log(errors);
   return (
     <div className="mainSignup">
       <Topnotice></Topnotice>
@@ -11,7 +19,7 @@ const SignUp = () => {
         <div className="row">
           <div className="col-md-7 m-auto">
             <div className="signUpF mt-5">
-              <Form>
+              <Form onSubmit={handleSubmit(onSubmit)}>
                 <h1>Register</h1>
                 <br />
                 <Form.Row>
@@ -19,14 +27,21 @@ const SignUp = () => {
                     <Form.Label>
                       Full Name <span style={{ color: "red" }}>*</span>{" "}
                     </Form.Label>
-                    <Form.Control type="text" placeholder="Name" />
+                    <Form.Control
+                      input
+                      type="text"
+                      placeholder="Full Name"
+                      {...register("Full Name", { required: true })}
+                    />
                   </Form.Group>
-
                   <Form.Group as={Col}>
                     <Form.Label>
                       Country <span style={{ color: "red" }}>*</span>
                     </Form.Label>
-                    <Form.Control as="select" defaultValue="Choose...">
+                    <select
+                      className="form-control"
+                      {...register("Country", { required: true })}
+                    >
                       <option value="Afghanistan(+93)">Afghanistan(+93)</option>
                       <option value="Albania(+355)">Albania(+355)</option>
                       <option value="Algeria(+213)">Algeria(+213)</option>
@@ -414,7 +429,7 @@ const SignUp = () => {
                       <option value="Yemen(+967)">Yemen(+967)</option>
                       <option value="Zambia(+260)">Zambia(+260)</option>
                       <option value="Zimbabwe(+263)">Zimbabwe(+263)</option>
-                    </Form.Control>
+                    </select>
                   </Form.Group>
                 </Form.Row>
                 <Form.Row>
@@ -422,35 +437,52 @@ const SignUp = () => {
                     <Form.Label>
                       Select Club <span style={{ color: "red" }}>*</span>
                     </Form.Label>
-                    <Form.Control as="select" defaultValue="Choose...">
+                    <select
+                      className="form-control"
+                      {...register("Select Club", { required: true })}
+                    >
                       <option>Choose Club</option>
                       <option>Don Club</option>
                       <option>The Boss</option>
                       <option>Natore</option>
-                    </Form.Control>
+                    </select>
                   </Form.Group>
 
                   <Form.Group as={Col}>
                     <Form.Label>
                       Mobile Number <span style={{ color: "red" }}> *</span>{" "}
                     </Form.Label>
-                    <Form.Control type="number" placeholder="Mobile Number" />
+                    <input
+                      className="form-control"
+                      type="number"
+                      placeholder="Mobile Number"
+                      {...register("Mobile Number", { required: true })}
+                    />
                   </Form.Group>
                 </Form.Row>
-
                 <Form.Row>
                   <Form.Group as={Col}>
                     <Form.Label>
                       Sponsor's <span style={{ color: "red" }}> *</span>{" "}
                     </Form.Label>
-                    <Form.Control type="text" placeholder="Sponsor's name" />
+                    <input
+                      className="form-control"
+                      type="text"
+                      placeholder="Sponsor"
+                      {...register("Sponsor", { required: true })}
+                    />
                   </Form.Group>
 
                   <Form.Group as={Col}>
                     <Form.Label>
                       Username <span style={{ color: "red" }}> *</span>{" "}
                     </Form.Label>
-                    <Form.Control type="text" placeholder="Username" />
+                    <input
+                      className="form-control"
+                      type="text"
+                      placeholder="Username"
+                      {...register("Username", { required: true })}
+                    />
                   </Form.Group>
                 </Form.Row>
 
@@ -459,16 +491,42 @@ const SignUp = () => {
                     <Form.Label>
                       Password <span style={{ color: "red" }}> *</span>{" "}
                     </Form.Label>
-                    <Form.Control type="password" placeholder="Password" />
+                    <input
+                      className="form-control"
+                      id="password"
+                      {...register("password", {
+                        required: "required",
+                        minLength: {
+                          value: 8,
+                          message: "min length is 8",
+                        },
+                      })}
+                      type="password"
+                      placeholder="Password"
+                    />
+                    {errors.password && (
+                      <span role="alert">{errors.password.message}</span>
+                    )}
                   </Form.Group>
                   <Form.Group as={Col}>
                     <Form.Label>
                       Confirm password <span style={{ color: "red" }}> *</span>{" "}
                     </Form.Label>
-                    <Form.Control
+                    <input className="form-control"
+                      id="conpassword"
+                      {...register("conpassword", {
+                        required: "required",
+                        minLength: {
+                          value: 5,
+                          message: "min length is 8",
+                        },
+                      })}
                       type="password"
-                      placeholder="Confirm password"
+                      placeholder="Confirm Password"
                     />
+                    {errors.password && (
+                      <span role="alert">{errors.password.message}</span>
+                    )}
                   </Form.Group>
                 </Form.Row>
                 <Button className="form-control signupBtn" type="submit">
