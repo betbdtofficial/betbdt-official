@@ -14,7 +14,7 @@ import { FaLayerGroup, FaMoneyBillAlt, FaSteamSymbol } from "react-icons/fa";
 import { FiSettings } from "react-icons/fi";
 import { GiReceiveMoney } from "react-icons/gi";
 import { Link } from "react-router-dom";
-import logo from "../../image/logo.png";
+import logo from "../../image/Untitled-1.png";
 import "./Sidebar.css";
 const drawerWidth = "25%";
 const background = "#383838 !important";
@@ -121,7 +121,7 @@ function Sidebar() {
                 <ListItemIcon>
                   <FiSettings />{" "}
                 </ListItemIcon>
-                <ListItemText primary="Setting" />
+                <ListItemText primary="Website Setting" />
               </ListItem>
             </Link>
           </List>

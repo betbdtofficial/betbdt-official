@@ -33,7 +33,7 @@ const UserList = () => {
                     color="primary"
                   >
                     {" "}
-                    <IoIosAdd /> Add Match
+                    <IoIosAdd className="viewIcon" /> Add Match
                   </Button>{" "}
                 </span>
               </h2>

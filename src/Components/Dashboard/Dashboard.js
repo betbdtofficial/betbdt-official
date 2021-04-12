@@ -1,18 +1,24 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Redirect,
+  Route,
+  Switch
+} from "react-router-dom";
+import FrontEnd from '../Pages/Front-end/FrontEnd';
 import "./Dashboard.css";
-import Deposit from './Deposit/Deposit';
-import PrimarySearchAppBar from './Header/Header';
+import Deposit from "./Deposit/Deposit";
+import PrimarySearchAppBar from "./Header/Header";
 import Home from "./Home/Home";
 import Match from "./Match/Match";
-import Setting from './Setting/Setting';
+import Setting from "./Setting/Setting";
 import Sidebar from "./Sidebar/Sidebar";
-import User from './User/User';
-import Winner from './Winner/Winner';
+import User from "./User/User";
+import Winner from "./Winner/Winner";
+import Withdraw from "./Withdraw/Withdraw";
 
 const Dashboard = () => {
-
   return (
     <section>
       <Router>
@@ -21,10 +27,10 @@ const Dashboard = () => {
             <Sidebar />
           </div>
           <div className="content">
-          <PrimarySearchAppBar/>
+            <PrimarySearchAppBar />
             <Switch>
               <Route exact path="/admin">
-                <Home/>
+                <Home />
               </Route>
               <Route path="/admin/manageMatch">
                 <Match />
@@ -38,9 +44,15 @@ const Dashboard = () => {
               <Route path="/admin/manageDeposit">
                 <Deposit />
               </Route>
+              <Route path="/admin/manageWithdraw">
+                <Withdraw />
+              </Route>
               <Route path="/admin/setting">
                 <Setting />
               </Route>
+              <Redirect to="http://localhost:3000/">
+                <FrontEnd />
+              </Redirect>
             </Switch>
           </div>
         </div>

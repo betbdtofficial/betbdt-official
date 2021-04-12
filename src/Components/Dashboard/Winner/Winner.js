@@ -16,8 +16,8 @@ const Winner = () => {
           </div>
           <div className="row">
             <div className="col-md-12">
-              <div className="matchData">
-                <div className="matchHeading d-flex align-items-center justify-content-between">
+              <div className="winnerData">
+                <div className="winnerHeading d-flex align-items-center justify-content-between">
                   <span className="head">Winner Match Check {" "} 
                   <span class="badge badge-danger">After Finished</span>
                    </span>

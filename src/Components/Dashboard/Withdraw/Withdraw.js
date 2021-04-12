@@ -2,12 +2,13 @@ import { Button } from "@material-ui/core";
 import React, { useState } from "react";
 import { IoIosAdd } from "react-icons/io";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
-import DepoLog from "./DepoLog";
-import DepoMethod from "./DepoMethod";
-import "./Deposit.css";
 import Modals from "./Modals";
+import "./Withdraw.css";
+import WithdrawLog from "./WithdrawLog";
+import WithdrawMethod from "./WithdrawMethod";
+import WithdrawReq from "./WithdrawReq";
 
-const Deposit = () => {
+const Withdraw = () => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -19,7 +20,7 @@ const Deposit = () => {
       {/* modal */}
       <Modals show={show} handleClose={handleClose} />
       {/* modal */}
-      <div className="depositWrapped">
+      <div className="userWrapped">
         <div className="container">
           <div className="row">
             <div className="col-md-12">
@@ -27,7 +28,7 @@ const Deposit = () => {
                 className="heading d-flex align-items-center justify-content-between"
                 id="twin-heading"
               >
-                <span>Manage Deposit</span>
+                <span>Manage Withdraw</span>
                 {
                     modal ?
                   <span>
@@ -57,7 +58,7 @@ const Deposit = () => {
                         variant="contained"
                         onClick={!modal ? hideModal : showModal}
                       >
-                        Deposit Log
+                        Withdraw Request
                       </Button>
                     </Tab>
                     <Tab>
@@ -65,17 +66,30 @@ const Deposit = () => {
                         className="button"
                         color="secondary"
                         variant="contained"
+                        onClick={!modal ? hideModal : showModal}
+                      >
+                        Withdraw Log
+                      </Button>
+                    </Tab>
+                    <Tab>
+                      <Button
+                        className="button"
+                        color="primary"
+                        variant="contained"
                         onClick={modal ? hideModal : showModal}
                       >
-                        Deposit Method
+                        Withdraw Method
                       </Button>
                     </Tab>
                   </TabList>
                   <TabPanel>
-                    <DepoLog />
+                    <WithdrawReq/>
                   </TabPanel>
                   <TabPanel>
-                    <DepoMethod />
+                    <WithdrawLog/>
+                  </TabPanel>
+                  <TabPanel>
+                    <WithdrawMethod/>
                   </TabPanel>
                 </Tabs>
               </div>
@@ -87,4 +101,4 @@ const Deposit = () => {
   );
 };
 
-export default Deposit;
+export default Withdraw;

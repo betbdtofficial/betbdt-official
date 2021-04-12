@@ -1,0 +1,13 @@
+.viewIcon {
+  margin-right: 10px;
+  font-size: 20px;
+}
+.button {
+  width: 100%;
+  padding: 10px;
+  border-radius: 0px !important;
+}
+.button .MuiButton-label {
+  justify-content: center !important;
+  font-size: 20px;
+}

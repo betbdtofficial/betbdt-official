@@ -2,13 +2,13 @@
 body {
   font-family: "Roboto Condensed", sans-serif;
 }
-.matchData {
+.winnerData {
   margin: 15px 0;
-  padding: 40px 10px;
+  padding: 22px 10px;
   border-radius: 2px;
   border: 1px solid #80808066;
 }
-.matchHeading {
+.winnerHeading {
   margin-top: 0px;
   margin-bottom: 15px;
   padding-bottom: 14px;
