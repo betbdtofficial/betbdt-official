@@ -1,17 +1,19 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Nav, Navbar } from "react-bootstrap";
 import { BiDollarCircle } from "react-icons/bi";
 import { Link, NavLink } from "react-router-dom";
-import { Context } from "../../../App";
 import logo from "../../image/Untitled-1.png";
 import "./Header.css";
 const Header = () => {
-  const [loginUser, setLoginUser] = useContext(Context);
-  const storage = sessionStorage.getItem('user')
-  const getUser = JSON.parse(storage)
+  const storage = sessionStorage.getItem("user");
+  const getUser = JSON.parse(storage);
   const activeMenu = {
     borderBottom: "2px solid #ffdf1b",
   };
+  const handleLogout = () =>{
+    sessionStorage.removeItem('user')
+    window.location.reload(true)
+  }
   return (
     <Navbar className="navbar-bg" expand="lg">
       <div className="container">
@@ -27,9 +29,15 @@ const Header = () => {
             <Nav.Link as={NavLink} activeStyle={activeMenu} to="/signup">
               Sign Up
             </Nav.Link>
-            <Nav.Link as={NavLink} activeStyle={activeMenu} to="/login">
-              Login
-            </Nav.Link>
+            {getUser?.user ? (
+              <Nav.Link  as={NavLink} to="/" onClick={handleLogout}>
+                Logout
+              </Nav.Link>
+            ) : (
+              <Nav.Link as={NavLink} activeStyle={activeMenu} to="/login">
+                Login
+              </Nav.Link>
+            )}
             {getUser?.user && (
               <Nav.Link as={NavLink} activeStyle={activeMenu} to="/myprofile">
                 My Profile
@@ -39,6 +47,9 @@ const Header = () => {
               <Nav.Link title="My Profile">
                 Balance (695) <BiDollarCircle />
               </Nav.Link>
+            )}
+            {getUser?.user && (
+              <Nav.Link title="My Name">{getUser.user}</Nav.Link>
             )}
           </Nav>
         </Navbar.Collapse>
