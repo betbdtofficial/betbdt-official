@@ -1,8 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Error from "../Error/Error";
-import Footer from '../Footer/Footer';
-import Header from '../Header/Header';
+import Footer from "../Footer/Footer";
+import Header from "../Header/Header";
 import Home from "../Home/Home";
 import Login from "../Login/Login";
 import Profile from "../MyProfile/Index";
@@ -11,7 +11,7 @@ const FrontEnd = () => {
   return (
     <div>
       <Router>
-      <Header />
+        <Header />
         <Switch>
           <Route exact path="/">
             <Home />
@@ -23,7 +23,7 @@ const FrontEnd = () => {
             <SignUp />
           </Route>
           <Route path="/myprofile">
-            <Profile/>
+            <Profile />
           </Route>
           <Route path="*">
             <Error />

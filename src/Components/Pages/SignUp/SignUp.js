@@ -1,17 +1,76 @@
-import React from "react";
-import { Button, Col, Form } from "react-bootstrap";
-import { useForm } from "react-hook-form";
+import React, { useEffect, useState } from "react";
+import { Button, Col, Row } from "react-bootstrap";
 import Topnotice from "../Topnotice/Topnotice";
 import "./SignUp.css";
+import Validation from "./Validation";
 
 const SignUp = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
-  const onSubmit = (data) => console.log(data);
-  console.log(errors);
+  const [dbData, setDbData] = useState([]);
+  useEffect(() => {
+    fetch(`http://localhost:5050/user`)
+      .then((res) => res.json())
+      .then((data) => setDbData(data));
+  }, [dbData._id]);
+  const [value, setValue] = useState({
+    isReg: false,
+    name: "",
+    country: "",
+    club: "",
+    number: "",
+    sponsor: "",
+    username: "",
+    password: "",
+    password2: "",
+    notMatch: "",
+    success: "",
+    wrong: "",
+    numExist: "",
+  });
+  const num = dbData.find((num) => num.number === value.number); // Number already exist check
+  const username = dbData.find((username) => username.username === value.username); // Username already exist check
+  const [errors, setErrors] = useState({});
+  const handleChange = (event) => {
+    const copyValue = { ...value };
+    copyValue[event.target.name] = event.target.value;
+    setValue(copyValue);
+    setErrors("");
+  };
+  // send data from regi form
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setErrors(Validation(value, num?.number, username?.username));
+    if(username?.username){ // Username hard validation
+      return;
+    }else if (value.password !== value.password2) { // Password hard validation
+      return;
+    } else if (num?.number) { // Number hard validation
+      return;
+    } else if (
+      value.name &&
+      value.country &&
+      value.username &&
+      value.number &&
+      value.club &&
+      value.sponsor &&
+      value.password
+    ) {
+      fetch(`http://localhost:5050/user`, {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(value),
+      })
+        .then(() => {
+          fetch(`http://localhost:5050/user`)
+            .then((res) => res.json())
+            .then((data) => setDbData(data));
+        })
+        .catch((err) => {
+          console.log(err.message);
+        });
+    }
+  };
   return (
     <div className="mainSignup">
       <Topnotice></Topnotice>
@@ -19,28 +78,41 @@ const SignUp = () => {
         <div className="row">
           <div className="col-md-7 m-auto">
             <div className="signUpF mt-5">
-              <Form onSubmit={handleSubmit(onSubmit)}>
+              {errors.success && (
+                <p className="text-success text-center" role="alert">
+                  {errors.success}
+                </p>
+              )}
+              <form onSubmit={handleSubmit}>
                 <h1>Register</h1>
                 <br />
-                <Form.Row>
-                  <Form.Group as={Col}>
-                    <Form.Label>
-                      Full Name <span style={{ color: "red" }}>*</span>{" "}
-                    </Form.Label>
-                    <Form.Control
+                <Row>
+                  <Col>
+                    <label htmlFor="name">
+                      Full Name <span style={{ color: "red" }}>*</span>
+                    </label>
+                    <input
                       input
                       type="text"
-                      placeholder="Full Name"
-                      {...register("Full Name", { required: true })}
-                    />
-                  </Form.Group>
-                  <Form.Group as={Col}>
-                    <Form.Label>
-                      Country <span style={{ color: "red" }}>*</span>
-                    </Form.Label>
-                    <select
+                      name="name"
+                      autoComplete="off"
+                      onChange={handleChange}
                       className="form-control"
-                      {...register("Country", { required: true })}
+                      placeholder="Full Name"
+                    />
+                    {errors.name && (
+                      <p className="text-danger">{errors.name}</p>
+                    )}
+                  </Col>
+                  <Col>
+                    <label htmlFor="country">
+                      Country <span style={{ color: "red" }}>*</span>
+                    </label>
+                    <select
+                      name="country"
+                      autoComplete="off"
+                      onChange={handleChange}
+                      className="form-control"
                     >
                       <option value="Afghanistan(+93)">Afghanistan(+93)</option>
                       <option value="Albania(+355)">Albania(+355)</option>
@@ -430,109 +502,126 @@ const SignUp = () => {
                       <option value="Zambia(+260)">Zambia(+260)</option>
                       <option value="Zimbabwe(+263)">Zimbabwe(+263)</option>
                     </select>
-                  </Form.Group>
-                </Form.Row>
-                <Form.Row>
-                  <Form.Group as={Col}>
-                    <Form.Label>
+                    {errors.country && (
+                      <p className="text-danger">{errors.country}</p>
+                    )}
+                  </Col>
+                </Row>
+                <Row>
+                  <Col>
+                    <label htmlFor="club">
                       Select Club <span style={{ color: "red" }}>*</span>
-                    </Form.Label>
+                    </label>
                     <select
                       className="form-control"
-                      {...register("Select Club", { required: true })}
+                      name="club"
+                      autoComplete="off"
+                      onChange={handleChange}
                     >
                       <option>Choose Club</option>
                       <option>Don Club</option>
                       <option>The Boss</option>
                       <option>Natore</option>
                     </select>
-                  </Form.Group>
-
-                  <Form.Group as={Col}>
-                    <Form.Label>
+                    {errors.club && (
+                      <p className="text-danger">{errors.club}</p>
+                    )}
+                  </Col>
+                  <Col>
+                    <label htmlFor="number">
                       Mobile Number <span style={{ color: "red" }}> *</span>{" "}
-                    </Form.Label>
+                    </label>
                     <input
                       className="form-control"
+                      name="number"
+                      autoComplete="off"
                       type="number"
+                      onChange={handleChange}
                       placeholder="Mobile Number"
-                      {...register("Mobile Number", { required: true })}
                     />
-                  </Form.Group>
-                </Form.Row>
-                <Form.Row>
-                  <Form.Group as={Col}>
-                    <Form.Label>
+                    {errors.number && (
+                      <p className="text-danger">{errors.number}</p>
+                    )}
+                  </Col>
+                </Row>
+                <Row>
+                  <Col>
+                    <label htmlFor="sponsor">
                       Sponsor's <span style={{ color: "red" }}> *</span>{" "}
-                    </Form.Label>
+                    </label>
                     <input
                       className="form-control"
+                      name="sponsor"
+                      autoComplete="off"
                       type="text"
+                      onChange={handleChange}
                       placeholder="Sponsor"
-                      {...register("Sponsor", { required: true })}
                     />
-                  </Form.Group>
+                    {errors.sponsor && (
+                      <p className="text-danger">{errors.sponsor}</p>
+                    )}
+                  </Col>
 
-                  <Form.Group as={Col}>
-                    <Form.Label>
+                  <Col>
+                    <label htmlFor="username">
                       Username <span style={{ color: "red" }}> *</span>{" "}
-                    </Form.Label>
+                    </label>
                     <input
                       className="form-control"
+                      name="username"
+                      autoComplete="off"
                       type="text"
+                      onChange={handleChange}
                       placeholder="Username"
-                      {...register("Username", { required: true })}
                     />
-                  </Form.Group>
-                </Form.Row>
+                    {errors.username && (
+                      <p className="text-danger">{errors.username}</p>
+                    )}
+                  </Col>
+                </Row>
 
-                <Form.Row>
-                  <Form.Group as={Col}>
-                    <Form.Label>
+                <Row>
+                  <Col>
+                    <label htmlFor="password">
                       Password <span style={{ color: "red" }}> *</span>{" "}
-                    </Form.Label>
+                    </label>
                     <input
                       className="form-control"
+                      name="password"
+                      autoComplete="off"
                       id="password"
-                      {...register("password", {
-                        required: "required",
-                        minLength: {
-                          value: 8,
-                          message: "min length is 8",
-                        },
-                      })}
+                      onChange={handleChange}
                       type="password"
                       placeholder="Password"
                     />
                     {errors.password && (
-                      <span role="alert">{errors.password.message}</span>
+                      <p className="text-danger">{errors.password}</p>
                     )}
-                  </Form.Group>
-                  <Form.Group as={Col}>
-                    <Form.Label>
+                  </Col>
+                  <Col>
+                    <label htmlFor="password2">
                       Confirm password <span style={{ color: "red" }}> *</span>{" "}
-                    </Form.Label>
-                    <input className="form-control"
+                    </label>
+                    <input
+                      className="form-control"
+                      name="password2"
+                      autoComplete="off"
                       id="conpassword"
-                      {...register("conpassword", {
-                        required: "required",
-                        minLength: {
-                          value: 5,
-                          message: "min length is 8",
-                        },
-                      })}
+                      onChange={handleChange}
                       type="password"
                       placeholder="Confirm Password"
                     />
-                    {errors.password && (
-                      <span role="alert">{errors.password.message}</span>
-                    )}
-                  </Form.Group>
-                </Form.Row>
+                    {errors.password2 &&
+                      (<p className="text-danger">{errors.password2}</p> || (
+                        <p className="text-danger">{value.notMatch}</p>
+                      ))}
+                  </Col>
+                </Row>
+                <br />
                 <Button className="form-control signupBtn" type="submit">
                   Register Now
                 </Button>
-              </Form>
+              </form>
             </div>
           </div>
         </div>

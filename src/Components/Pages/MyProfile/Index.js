@@ -1,5 +1,5 @@
-import { Button } from "@material-ui/core";
 import React from "react";
+import { Button } from "react-bootstrap";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import Avater from "../../image/avater.png";
 import ChangePass from './ChangePass';
@@ -25,16 +25,16 @@ const Profile = () => {
               <Tabs>
                 <TabList>
                   <Tab>
-                      <Button variant="contained">My Profile</Button>
+                      <Button>My Profile</Button>
                   </Tab>
                   <Tab>
-                    <Button variant="contained">Withdraw Request</Button>
+                    <Button>Withdraw Request</Button>
                   </Tab>
                   <Tab>
-                    <Button variant="contained">Deposit Request</Button>
+                    <Button>Deposit Request</Button>
                   </Tab>
                   <Tab>
-                    <Button variant="contained">Change Password</Button>
+                    <Button>Change Password</Button>
                   </Tab>
                 </TabList>
 
