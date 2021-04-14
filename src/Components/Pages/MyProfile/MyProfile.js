@@ -6,6 +6,7 @@ const MyProfile = () => {
         <div className="row">
           <div className="col-md-12">
             <h2 className="heading text-center">My Profile</h2>
+            <br/>
             <Table striped bordered hover>
               <tbody>
                 <tr>
