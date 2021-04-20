@@ -7,7 +7,7 @@ const Login = () => {
   const [loginUser, setLoginUser] = useContext(Context);
   const [dbData, setDbData] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5050/user`)
+    fetch(`http://localhost:5000/user`)
       .then((res) => res.json())
       .then((data) => setDbData(data));
   }, [dbData._id]);

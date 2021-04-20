@@ -9,6 +9,7 @@ const Header = () => {
   const getUser = JSON.parse(storage);
   const activeMenu = {
     borderBottom: "2px solid #ffdf1b",
+    color: '#ffdf1b !important'
   };
   const handleLogout = () =>{
     sessionStorage.removeItem('user')

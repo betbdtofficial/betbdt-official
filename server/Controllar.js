@@ -10,6 +10,16 @@ exports.getUser = (req, res) => {
       res.send(err.message);
     });
 };
+exports.specificUser = (req, res) => {
+  UserInfo.find({ username: req.query.u })
+    .sort({ _id: -1 })
+    .then((result) => {
+      res.send(result);
+    })
+    .catch((err) => {
+      res.send(err.message);
+    });
+};
 exports.registraionUser = (req, res) => {
   const {
     name,
@@ -34,7 +44,14 @@ exports.registraionUser = (req, res) => {
   createUser
     .save()
     .then(() => {
-      getUser();
+      UserInfo.find()
+        .sort({ _id: -1 })
+        .then((result) => {
+          res.send(result);
+        })
+        .catch((err) => {
+          res.send(err.message);
+        });
     })
     .catch((err) => {
       res.send(err.message);

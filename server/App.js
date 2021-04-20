@@ -13,7 +13,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use('/user', router)
 
 const uri = `mongodb+srv://${username}:${password}@cluster0.lrtdf.mongodb.net/${dbName}?retryWrites=true&w=majority`;
-const PORT = process.env.PORT || 5050;
+const PORT = process.env.PORT || 5000;
 mongoose
   .connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
