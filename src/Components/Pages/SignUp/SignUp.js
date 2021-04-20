@@ -7,7 +7,7 @@ import Validation from "./Validation";
 const SignUp = () => {
   const [dbData, setDbData] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5050/user`)
+    fetch(`http://localhost:5000/user`)
       .then((res) => res.json())
       .then((data) => setDbData(data));
   }, [dbData._id]);
@@ -54,7 +54,7 @@ const SignUp = () => {
       value.sponsor &&
       value.password
     ) {
-      fetch(`http://localhost:5050/user`, {
+      fetch(`http://localhost:5000/user`, {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -62,7 +62,7 @@ const SignUp = () => {
         body: JSON.stringify(value),
       })
         .then(() => {
-          fetch(`http://localhost:5050/user`)
+          fetch(`http://localhost:5000/user`)
             .then((res) => res.json())
             .then((data) => setDbData(data));
         })
