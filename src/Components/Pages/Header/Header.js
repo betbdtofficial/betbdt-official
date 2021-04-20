@@ -30,15 +30,6 @@ const Header = () => {
             <Nav.Link as={NavLink} activeStyle={activeMenu} to="/signup">
               Sign Up
             </Nav.Link>
-            {getUser?.user ? (
-              <Nav.Link  as={NavLink} to="/" onClick={handleLogout}>
-                Logout
-              </Nav.Link>
-            ) : (
-              <Nav.Link as={NavLink} activeStyle={activeMenu} to="/login">
-                Login
-              </Nav.Link>
-            )}
             {getUser?.user && (
               <Nav.Link as={NavLink} activeStyle={activeMenu} to="/myprofile">
                 My Profile
@@ -51,6 +42,15 @@ const Header = () => {
             )}
             {getUser?.user && (
               <Nav.Link title="My Name">{getUser.user}</Nav.Link>
+            )}
+                        {getUser?.user ? (
+              <Nav.Link  as={NavLink} to="/" onClick={handleLogout}>
+                Logout
+              </Nav.Link>
+            ) : (
+              <Nav.Link as={NavLink} activeStyle={activeMenu} to="/login">
+                Login
+              </Nav.Link>
             )}
           </Nav>
         </Navbar.Collapse>
