@@ -1,7 +1,13 @@
 import { Button } from "@material-ui/core";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const WithdrawReq = () => {
+  const [withdraw, setWithdraw] = useState([]);
+  useEffect(() => {
+    fetch(`http://localhost:5000/user/withdrawGet`)
+      .then((res) => res.json())
+      .then((data) => setWithdraw(data));
+  }, []);
   return (
     <>
       <div className="winnerHeading d-flex align-items-center justify-content-between">
@@ -20,50 +26,28 @@ const WithdrawReq = () => {
       <table>
         <tr>
           <th>Username</th>
-          <th>Transaction</th>
+          <th>Recived Num</th>
+          <th>Account Type</th>
           <th>Gateway</th>
           <th>Request Amount</th>
           <th>Status</th>
         </tr>
-        <tr>
-          <td>Hasan</td>
-          <td>458rjyyerUYzeX7</td>
-          <td>Paypal</td>
-          <td>5697 BDT</td>
-          <td>
-            <span>
-              <Button color="secondary" variant="contained">
-                Processing
-              </Button>
-            </span>
-          </td>
-        </tr>
-        <tr>
-          <td>Monowar</td>
-          <td>254878252488</td>
-          <td>Sonali Bank</td>
-          <td>112547 BDT</td>
-          <td>
-            <span>
-              <Button color="primary" variant="contained">
-                Completed
-              </Button>
-            </span>
-          </td>
-        </tr>
-        <tr>
-          <td>Bashar</td>
-          <td>HyeTXyZ0Ip8dAta</td>
-          <td>Payneer</td>
-          <td>23654 BDT</td>
-          <td>
-            <span>
-              <Button color="secondary" variant="contained">
-                Processing
-              </Button>
-            </span>
-          </td>
-        </tr>
+        {withdraw.map((data) => (
+          <tr>
+            <td>{data.user}</td>
+            <td>{data.to}</td>
+            <td>{data.type}</td>
+            <td>{data.method}</td>
+            <td>{data.amount} BDT</td>
+            <td>
+              <span>
+                <Button color="primary" variant="contained">
+                  Completed
+                </Button>
+              </span>
+            </td>
+          </tr>
+        ))}
       </table>
     </>
   );

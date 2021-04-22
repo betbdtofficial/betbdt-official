@@ -1,8 +1,11 @@
-const { getUser, registraionUser, specificUser } = require('./Controllar');
-const router = require("express").Router()
+const { getUser, registraionUser, specificUser, withdrawReq, withdrawGet } = require("./Controllar");
+const router = require("express").Router();
 
+router.get("/", getUser); //Get User Info
+router.get("/specificUser", specificUser); // Get Specific User
+router.post("/", registraionUser); //User Registration
 
-router.get('/', getUser);
-router.get('/specificUser', specificUser);
-router.post('/', registraionUser);
+// withdraw request
+router.post("/withdrawReq", withdrawReq);
+router.get("/withdrawGet", withdrawGet);
 module.exports = router;

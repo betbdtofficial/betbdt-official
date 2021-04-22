@@ -1,9 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Button, Col, Row } from "react-bootstrap";
+import { Redirect } from "react-router";
 import { Context } from "../../../App";
 import Topnotice from "../Topnotice/Topnotice";
 import Validation from "./Validation";
 const Login = () => {
+  const storage = sessionStorage.getItem("user");
+  const getUser = JSON.parse(storage);
   const [loginUser, setLoginUser] = useContext(Context);
   const [dbData, setDbData] = useState([]);
   useEffect(() => {
@@ -28,6 +31,7 @@ const Login = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+    
     setErrors(Validation(value, username, pass));
     if (
       value.username !== username?.username &&
@@ -39,7 +43,7 @@ const Login = () => {
       value.password === pass?.password
     ) {
       const user = { user: username?.username };
-      sessionStorage.setItem('user', JSON.stringify(user))
+      sessionStorage.setItem("user", JSON.stringify(user));
       setLoginUser(user);
       return;
     }
@@ -102,8 +106,8 @@ const Login = () => {
                   </Col>
                 </Row>
                 <br />
-                <Button className="form-control signupBtn" type="submit">
-                  Log In
+                <Button className="form-control signupBtn"  type="submit">
+                  Log In   {getUser?.user && <Redirect to="/" />}
                 </Button>
               </form>
             </div>

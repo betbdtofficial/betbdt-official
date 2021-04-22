@@ -5,10 +5,16 @@ import LocalAtmIcon from '@material-ui/icons/LocalAtm';
 import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import "bootstrap/dist/css/bootstrap.min.css";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Chart } from './Chart/Chart';
 import "./Home.css";
 const Home = () => {
+  const [user, getUser] = useState([]);
+  useEffect(()=>{ //get Withdraw Info
+    fetch(`http://localhost:5000/user`)
+      .then(res=>res.json())
+      .then(data=>getUser(data))
+  },[])
   return (
     <div className="homeWrapped">
       <div className="container">
@@ -20,7 +26,7 @@ const Home = () => {
         <div className="row">
           <div className="col-md-4">
             <div className="box bg-warning">
-              <h4>150</h4>
+              <h4>{user.length}</h4>
               <h5>User Registration</h5>
               <div className="userIcon">
                 <PersonAddIcon />

@@ -1,20 +1,21 @@
 import React from "react";
 import { Nav, Navbar } from "react-bootstrap";
 import { BiDollarCircle } from "react-icons/bi";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, Redirect } from "react-router-dom";
 import logo from "../../image/Untitled-1.png";
 import "./Header.css";
+
 const Header = () => {
   const storage = sessionStorage.getItem("user");
   const getUser = JSON.parse(storage);
   const activeMenu = {
     borderBottom: "2px solid #ffdf1b",
-    color: '#ffdf1b !important'
+    color: "#ffdf1b !important",
   };
-  const handleLogout = () =>{
-    sessionStorage.removeItem('user')
-    window.location.reload(true)
-  }
+  const handleLogout = () => {
+    sessionStorage.removeItem("user");
+    window.location.href="/login"
+  };
   return (
     <Navbar className="navbar-bg" expand="lg">
       <div className="container">
@@ -27,19 +28,13 @@ const Header = () => {
             <Nav.Link as={NavLink} exact activeStyle={activeMenu} to="/">
               Home
             </Nav.Link>
-            <Nav.Link as={NavLink} activeStyle={activeMenu} to="/signup">
-              Sign Up
-            </Nav.Link>
-            {getUser?.user ? (
-              <Nav.Link  as={NavLink} to="/" onClick={handleLogout}>
-                Logout
-              </Nav.Link>
-            ) : (
-              <Nav.Link as={NavLink} activeStyle={activeMenu} to="/login">
-                Login
+            {getUser?.user  === undefined && (
+              <Nav.Link as={NavLink} activeStyle={activeMenu} to="/signup">
+                Sign Up
               </Nav.Link>
             )}
-            {getUser?.user && (
+
+            {getUser?.user  && (
               <Nav.Link as={NavLink} activeStyle={activeMenu} to="/myprofile">
                 My Profile
               </Nav.Link>
@@ -51,6 +46,15 @@ const Header = () => {
             )}
             {getUser?.user && (
               <Nav.Link title="My Name">{getUser.user}</Nav.Link>
+            )}
+            {getUser?.user ? (
+              <Nav.Link as={NavLink} to="/" onClick={handleLogout}>
+                Logout <Redirect to="/login" />
+              </Nav.Link>
+            ) : (
+              <Nav.Link as={NavLink} activeStyle={activeMenu} to="/login">
+                Login
+              </Nav.Link>
             )}
           </Nav>
         </Navbar.Collapse>

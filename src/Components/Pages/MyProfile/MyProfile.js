@@ -23,7 +23,7 @@ const MyProfile = () => {
         <br />
         <Table striped bordered hover>
           {dbData.map((data) => (
-            <tbody>
+            <tbody key={data._id}>
               <tr>
                 <td>Full Name</td>
                 <td>{data.name}</td>
@@ -37,7 +37,7 @@ const MyProfile = () => {
                 <td>{data.number}</td>
               </tr>
               <tr>
-                <td>Referred By</td>
+                <td>Sponsored By</td>
                 <td>{data.sponsor}</td>
               </tr>
               <tr>

@@ -68,7 +68,7 @@ const Withdraw = () => {
                         variant="contained"
                         onClick={!modal ? hideModal : showModal}
                       >
-                        Withdraw Log
+                        Withdraw History
                       </Button>
                     </Tab>
                     <Tab>
