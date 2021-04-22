@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Button, Col, Form } from "react-bootstrap";
 import payment from "../../image/payment-method.png";
-import Validation from "./Validation";
 const WithdrawReq = () => {
   const storage = sessionStorage.getItem("user");
   const getUser = JSON.parse(storage);
@@ -12,16 +11,6 @@ const WithdrawReq = () => {
     to: "",
     user: "",
   });
-  const handleChange = (e) => {
-    const copyValue = { ...values };
-    copyValue[e.target.name] = e.target.value;
-    setValues(copyValue);
-    if (e.target.name === "amount") {
-      let { value, min } = e.target;
-      value = Math.min(Number(min), Number(value));
-      copyValue.amount = value;
-    }
-  };
   const formClear = () => {
     setValues({
       method: "",
@@ -30,11 +19,23 @@ const WithdrawReq = () => {
       to: "",
     });
   };
-  const [errors, setErrors] = useState({})
+  const handleChange = (e) => {
+    const copyValue = { ...values };
+    copyValue[e.target.name] = e.target.value;
+    setValues(copyValue);
+    // setErrors("")
+    // if (e.target.name === "amount") {
+    //   let { value, min } = e.target;
+    //   value = Math.max(Number(min), Number(value));
+    //   copyValue.amount = value;
+    // }
+  };
+
+  // const [errors, setErrors] = useState({})
   const handleSubmit = (e) => {
     e.preventDefault();
     formClear();
-    setErrors(Validation(values))
+    // setErrors(Validation(values))
     const withdraw = { ...values };
     withdraw.user = getUser.user;
     fetch(`http://localhost:5000/user/withdrawReq`, {
@@ -73,14 +74,13 @@ const WithdrawReq = () => {
                       value={values.method}
                       onChange={handleChange}
                       as="select"
-                      required
                     >
                       <option>Select Method</option>
                       <option>Bkash</option>
                       <option>Nagad</option>
                       <option>Rocket</option>
                     </Form.Control>
-                    {errors.method && <p>{errors.method}</p> }
+                    {/* {errors.method && <p style={{ color: "red" }}>{errors.method}</p> } */}
                   </Form.Group>
 
                   <Form.Group as={Col}>
@@ -92,12 +92,12 @@ const WithdrawReq = () => {
                       value={values.type}
                       onChange={handleChange}
                       as="select"
-                      required
                     >
                       <option>Account Type</option>
                       <option>Personal</option>
                       <option>Agent</option>
                     </Form.Control>
+                    {/* {errors.type && <p style={{ color: "red" }}>{errors.type}</p> } */}
                   </Form.Group>
                 </Form.Row>
                 <Form.Row>
@@ -112,7 +112,6 @@ const WithdrawReq = () => {
                       type="number"
                       min="50"
                       placeholder="Amount"
-                      required
                     />
                   </Form.Group>
 
@@ -126,7 +125,6 @@ const WithdrawReq = () => {
                       onChange={handleChange}
                       type="number"
                       placeholder="To "
-                      required
                     />
                   </Form.Group>
                 </Form.Row>

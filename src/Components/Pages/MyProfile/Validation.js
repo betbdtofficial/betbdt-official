@@ -8,7 +8,7 @@ const Validation = (values) => {
   } else if (!values.amount) {
     errors.amount = "Amount is Required";
   } else if (values.amount.Math.min(values.amount)) {
-    errors.password = "Amount more than 50 BDT";
+    errors.amount = "Amount more than 50 BDT";
   } else if (!values.to) {
     errors.to = "Phone Number is Required";
   } else if (values.to.length < 11) {
@@ -18,5 +18,4 @@ const Validation = (values) => {
   }
   return errors;
 };
-
 export default Validation;
