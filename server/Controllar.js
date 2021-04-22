@@ -57,3 +57,24 @@ exports.registraionUser = (req, res) => {
       res.send(err.message);
     });
 };
+// Withdraw Post request
+const Widthraw = require("./WithdrawSchema");
+exports.withdrawReq = (req, res) => {
+  const { method, type, amount, to, user } = req.body;
+  const WidthrawRequest = new Widthraw({
+    method: method,
+    type: type,
+    amount: amount,
+    to: to,
+    user: user
+  });
+  WidthrawRequest.save().then((result) => {
+    res.send(result);
+  });
+};
+// Withdraw Get request
+exports.withdrawGet = (req, res) => {
+  Widthraw.find()
+    .sort({ _id: -1 })
+    .then((result) => res.json(result));
+};

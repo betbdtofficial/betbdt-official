@@ -6,7 +6,7 @@ const WithdrawLog = () => {
     <>
       {" "}
       <div className="winnerHeading d-flex align-items-center justify-content-between">
-        <span className="head">Withdraw Log</span>
+        <span className="head">Withdraw History</span>
         <span>
           <input
             type="text"

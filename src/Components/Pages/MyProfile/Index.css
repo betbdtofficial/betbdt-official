@@ -14,15 +14,6 @@
 .MuiButton-label {
   justify-content: center;
 }
-.MuiButton-contained {
-  box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%),
-    0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
-  background-color: #126e51 !important;
-  width: 100% !important;
-  font-size: 15px !important;
-  color: white !important;
-  font-weight: 600 !important;
-}
 .react-tabs__tab {
   width: 150px;
 }

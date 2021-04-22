@@ -1,7 +1,57 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Col, Form } from "react-bootstrap";
 import payment from "../../image/payment-method.png";
-const withdrawReq = () => {
+const WithdrawReq = () => {
+  const storage = sessionStorage.getItem("user");
+  const getUser = JSON.parse(storage);
+  const [values, setValues] = useState({
+    method: "",
+    type: "",
+    amount: "",
+    to: "",
+    user: "",
+  });
+  const formClear = () => {
+    setValues({
+      method: "",
+      type: "",
+      amount: "",
+      to: "",
+    });
+  };
+  const handleChange = (e) => {
+    const copyValue = { ...values };
+    copyValue[e.target.name] = e.target.value;
+    setValues(copyValue);
+    // setErrors("")
+    // if (e.target.name === "amount") {
+    //   let { value, min } = e.target;
+    //   value = Math.max(Number(min), Number(value));
+    //   copyValue.amount = value;
+    // }
+  };
+
+  // const [errors, setErrors] = useState({})
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    formClear();
+    // setErrors(Validation(values))
+    const withdraw = { ...values };
+    withdraw.user = getUser.user;
+    fetch(`http://localhost:5000/user/withdrawReq`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(withdraw),
+    })
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
   return (
     <div className="DepositRequestMain">
       <div className="container">
@@ -13,29 +63,41 @@ const withdrawReq = () => {
               <img src={payment} className="img-fluid" alt="" />
               <br />
               <br />
-              <Form>
+              <Form onSubmit={handleSubmit}>
                 <Form.Row>
                   <Form.Group as={Col}>
                     <Form.Label>
                       Method <span style={{ color: "red" }}>*</span>{" "}
                     </Form.Label>
-                    <Form.Control as="select">
+                    <Form.Control
+                      name="method"
+                      value={values.method}
+                      onChange={handleChange}
+                      as="select"
+                    >
                       <option>Select Method</option>
                       <option>Bkash</option>
                       <option>Nagad</option>
                       <option>Rocket</option>
                     </Form.Control>
+                    {/* {errors.method && <p style={{ color: "red" }}>{errors.method}</p> } */}
                   </Form.Group>
 
                   <Form.Group as={Col}>
                     <Form.Label>
                       Type <span style={{ color: "red" }}>*</span>{" "}
                     </Form.Label>
-                    <Form.Control as="select">
+                    <Form.Control
+                      name="type"
+                      value={values.type}
+                      onChange={handleChange}
+                      as="select"
+                    >
                       <option>Account Type</option>
                       <option>Personal</option>
                       <option>Agent</option>
                     </Form.Control>
+                    {/* {errors.type && <p style={{ color: "red" }}>{errors.type}</p> } */}
                   </Form.Group>
                 </Form.Row>
                 <Form.Row>
@@ -43,14 +105,27 @@ const withdrawReq = () => {
                     <Form.Label>
                       Amount <span style={{ color: "red" }}>*</span>{" "}
                     </Form.Label>
-                    <Form.Control type="number" placeholder="Amount" />
+                    <Form.Control
+                      name="amount"
+                      value={values.amount}
+                      onChange={handleChange}
+                      type="number"
+                      min="50"
+                      placeholder="Amount"
+                    />
                   </Form.Group>
 
                   <Form.Group as={Col}>
                     <Form.Label>
                       To <span style={{ color: "red" }}>*</span>{" "}
                     </Form.Label>
-                    <Form.Control type="number" placeholder="To " />
+                    <Form.Control
+                      name="to"
+                      value={values.to}
+                      onChange={handleChange}
+                      type="number"
+                      placeholder="To "
+                    />
                   </Form.Group>
                 </Form.Row>
                 <br />
@@ -70,4 +145,4 @@ const withdrawReq = () => {
   );
 };
 
-export default withdrawReq;
+export default WithdrawReq;

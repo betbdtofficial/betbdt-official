@@ -4,17 +4,18 @@ import { BiDollarCircle } from "react-icons/bi";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../image/Untitled-1.png";
 import "./Header.css";
+
 const Header = () => {
   const storage = sessionStorage.getItem("user");
   const getUser = JSON.parse(storage);
   const activeMenu = {
     borderBottom: "2px solid #ffdf1b",
-    color: '#ffdf1b !important'
+    color: "#ffdf1b !important",
   };
-  const handleLogout = () =>{
-    sessionStorage.removeItem('user')
-    window.location.reload(true)
-  }
+  const handleLogout = () => {
+    sessionStorage.removeItem("user");
+    window.location.href = "/login";
+  };
   return (
     <Navbar className="navbar-bg" expand="lg">
       <div className="container">
@@ -43,8 +44,8 @@ const Header = () => {
             {getUser?.user && (
               <Nav.Link title="My Name">{getUser.user}</Nav.Link>
             )}
-                        {getUser?.user ? (
-              <Nav.Link  as={NavLink} to="/" onClick={handleLogout}>
+            {getUser?.user ? (
+              <Nav.Link as={NavLink} to="/" onClick={handleLogout}>
                 Logout
               </Nav.Link>
             ) : (
