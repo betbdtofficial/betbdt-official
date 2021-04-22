@@ -1,7 +1,7 @@
 import React from "react";
 import { Nav, Navbar } from "react-bootstrap";
 import { BiDollarCircle } from "react-icons/bi";
-import { Link, NavLink, Redirect } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import logo from "../../image/Untitled-1.png";
 import "./Header.css";
 
@@ -14,7 +14,7 @@ const Header = () => {
   };
   const handleLogout = () => {
     sessionStorage.removeItem("user");
-    window.location.href="/login"
+    window.location.href = "/login";
   };
   return (
     <Navbar className="navbar-bg" expand="lg">
@@ -28,13 +28,10 @@ const Header = () => {
             <Nav.Link as={NavLink} exact activeStyle={activeMenu} to="/">
               Home
             </Nav.Link>
-            {getUser?.user  === undefined && (
-              <Nav.Link as={NavLink} activeStyle={activeMenu} to="/signup">
-                Sign Up
-              </Nav.Link>
-            )}
-
-            {getUser?.user  && (
+            <Nav.Link as={NavLink} activeStyle={activeMenu} to="/signup">
+              Sign Up
+            </Nav.Link>
+            {getUser?.user && (
               <Nav.Link as={NavLink} activeStyle={activeMenu} to="/myprofile">
                 My Profile
               </Nav.Link>
@@ -49,7 +46,7 @@ const Header = () => {
             )}
             {getUser?.user ? (
               <Nav.Link as={NavLink} to="/" onClick={handleLogout}>
-                Logout <Redirect to="/login" />
+                Logout
               </Nav.Link>
             ) : (
               <Nav.Link as={NavLink} activeStyle={activeMenu} to="/login">
