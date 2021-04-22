@@ -7,7 +7,7 @@ const Validation = (values) => {
     errors.type = "Type is Required";
   } else if (!values.amount) {
     errors.amount = "Amount is Required";
-  } else if (values.amount.Math.min(values.amount)) {
+  } else if (values.amount < 50) {
     errors.amount = "Amount more than 50 BDT";
   } else if (!values.to) {
     errors.to = "Phone Number is Required";
