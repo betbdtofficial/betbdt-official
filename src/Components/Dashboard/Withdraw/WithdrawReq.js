@@ -41,8 +41,8 @@ const WithdrawReq = () => {
             <td>{data.amount} BDT</td>
             <td>
               <span>
-                <Button color="primary" variant="contained">
-                  Completed
+                <Button color="secondary" variant="contained">
+                  Pending
                 </Button>
               </span>
             </td>
