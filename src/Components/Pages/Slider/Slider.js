@@ -147,10 +147,6 @@ function Sliders() {
             <FballUpcomingAccordion />
           </TabPanel>
           <TabPanel>
-            <FballLiveAccordion />
-            <FballUpcomingAccordion />
-          </TabPanel>
-          <TabPanel>
             <CriLiveAccordion/>
             <CriUpcoming />
           </TabPanel>
