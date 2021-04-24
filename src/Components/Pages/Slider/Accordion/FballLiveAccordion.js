@@ -14,22 +14,26 @@ function FballLiveAccordion() {
   }, []);
   return (
     <div>
-      {/* {
-        console.log(upcomingMatch)
-      } */}
         <Accordion defaultActiveKey="0">
           <Card>
-            <Accordion.Toggle as={Card.Header} eventKey="0">
+            <Accordion.Toggle as={Card.Header} eventKey="0" className="d-flex">
               <img src={football} className="img-fluid" alt="" />
-             <span class="badge badge-danger">Live</span>
+              Sri Lanka v Bangladesh at Pallekele, 1st Test - day 4 <span className="d-flex ml-2 align-items-center badge badge-danger"> Live</span>
             </Accordion.Toggle>
             <Accordion.Collapse eventKey="0">
-              <Card.Body></Card.Body>
+              <Card.Body className="d-flex text-center">
+                <div className="team1">
+                  <strong>Bangladesh</strong>
+                </div>
+                vs
+                <div className="team2">
+                  <strong>Bangladesh</strong>
+                </div>
+                <button>Place bet</button>
+              </Card.Body>
             </Accordion.Collapse>
           </Card>
         </Accordion>
-        
-
     </div>
   );
 }
