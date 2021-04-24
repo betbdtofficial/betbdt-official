@@ -14,9 +14,6 @@ function FballLiveAccordion() {
   }, []);
   return (
     <div>
-      {/* {
-        console.log(upcomingMatch)
-      } */}
         <Accordion defaultActiveKey="0">
           <Card>
             <Accordion.Toggle as={Card.Header} eventKey="0">
@@ -24,12 +21,18 @@ function FballLiveAccordion() {
              <span class="badge badge-danger">Live</span>
             </Accordion.Toggle>
             <Accordion.Collapse eventKey="0">
-              <Card.Body></Card.Body>
+              <div className="my-3 text-center">
+                <div className="team1">
+                  <strong>Bangladesh <span>1.9</span></strong>
+                </div> <h4>VS</h4> <div className="team2">
+                  <strong>India <span>1.5</span></strong>
+                </div>
+                <button>Place bet</button>
+                <br/>
+              </div>
             </Accordion.Collapse>
           </Card>
         </Accordion>
-        
-
     </div>
   );
 }
