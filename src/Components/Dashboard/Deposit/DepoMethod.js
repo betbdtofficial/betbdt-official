@@ -2,7 +2,7 @@ import { Button } from "@material-ui/core";
 import { Edit } from "@material-ui/icons";
 import React from "react";
 
-const DepoMethod = () => {
+const DepositMethod = () => {
   return (
     <>
       <div className="winnerHeading d-flex align-items-center justify-content-between">
@@ -13,7 +13,7 @@ const DepoMethod = () => {
             className="form-control"
             name="search"
             autoComplete="off"
-            placeholder="Search Payment Gateway..."
+            placeholder="Search Deposit Method..."
             required
           />
         </span>
@@ -97,4 +97,4 @@ const DepoMethod = () => {
   );
 };
 
-export default DepoMethod;
+export default DepositMethod;

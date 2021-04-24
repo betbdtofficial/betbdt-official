@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Accordion, Card } from "react-bootstrap";
-import football from "../../../image/SliderImg/cricket.png";
+import football from "../../../image/SliderImg/f_ball.png";
 import "../Slider.css";
 
 function FballLiveAccordion() {
@@ -20,7 +20,7 @@ function FballLiveAccordion() {
         <Accordion defaultActiveKey="0">
           <Card>
             <Accordion.Toggle as={Card.Header} eventKey="0">
-              <img src={football} className="img-fluid" alt="" />
+              <img src={football} className="img-fluid" alt="" />Football
              <span class="badge badge-danger">Live</span>
             </Accordion.Toggle>
             <Accordion.Collapse eventKey="0">

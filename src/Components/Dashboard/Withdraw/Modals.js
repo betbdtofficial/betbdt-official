@@ -1,8 +1,44 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import React from "react";
+import React, { useState } from "react";
 import { Col, Modal, Row } from "react-bootstrap";
+import Validation from "./Validation";
 
 const Modals = (props) => {
+  const [value, setValue] = useState({
+    gatewayName: "",
+    number: "",
+  });
+  const [errors, setErrors] = useState({});
+  const handleChange = (e) => {
+    const data = { ...value };
+    data[e.target.name] = e.target.value;
+    setValue(data);
+    setErrors("")
+  };
+  // const formClear = () => {
+  //   setValue({
+  //     gatewayName: "",
+  //     number: "",
+  //   });
+  // };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // formClear();
+    setErrors(Validation(value));
+    if (value.number.length < 11) {
+      return;
+    }
+    fetch(`http://localhost:5000/user/createMethod`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(value),
+    }).then((result) => {
+      console.log(result);
+    });
+  };
+
   return (
     <>
       <Modal
@@ -11,12 +47,15 @@ const Modals = (props) => {
         backdrop="static"
         keyboard={false}
       >
-        <form>
+        <form onSubmit={handleSubmit}>
           <Modal.Header closeButton>
             <Modal.Title className="text-center">ADD METHOD</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <div>
+              {
+                errors.success && <p className="alert alert-success">{errors.success}</p>
+              }
               <Row>
                 <Col>
                   <label htmlFor="gatewayName">Payment Gateway Name</label>
@@ -24,33 +63,29 @@ const Modals = (props) => {
                     type="text"
                     className="form-control"
                     name="gatewayName"
+                    onChange={handleChange}
                     autoComplete="off"
                     placeholder="Payment Gateway Name"
-                    required
                   />
+                  {errors.gatewayName && (
+                    <p className="text-danger">{errors.gatewayName}</p>
+                  )}
                 </Col>
               </Row>
               <Row>
                 <Col>
-                  <label htmlFor="walletAddress">Wallet Address</label>
+                  <label htmlFor="number">Number</label>
                   <input
-                    type="text"
+                    type="number"
                     className="form-control"
-                    name="walletAddress"
+                    name="number"
+                    onChange={handleChange}
                     autoComplete="off"
-                    placeholder="Wallet Address"
-                    required
+                    placeholder="Number"
                   />
-                </Col>
-              </Row>
-              <Row>
-                <Col>
-                  <label htmlFor="status">Status</label>
-                  <select className="form-control" name="status" id="status">
-                    <option value="Choose Status">Choose Status</option>
-                    <option value="Active">Active</option>
-                    <option value="Deactive">Deactive</option>
-                  </select>
+                  {errors.number && (
+                    <p className="text-danger">{errors.number}</p>
+                  )}
                 </Col>
               </Row>
               <Row>
@@ -72,12 +107,6 @@ const Modals = (props) => {
               </Row>
             </div>
           </Modal.Body>
-          {/* <Modal.Footer>
-          <Button variant="secondary" onClick={props.handleClose}>
-            Close
-          </Button>
-          <Button type="submit" variant="primary">Save</Button>
-        </Modal.Footer> */}
         </form>
       </Modal>
     </>

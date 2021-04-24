@@ -12,8 +12,6 @@ const WithdrawReq = () => {
       .then((data) => setWithdraw(data));
   }, []);
   const handleClick = (id, data) => {
-    console.log(id);
-    console.log(data.user);
     // Withdraw Request Delete
     fetch(`http://localhost:5000/user/delete/${id}`, {
       method: "DELETE",

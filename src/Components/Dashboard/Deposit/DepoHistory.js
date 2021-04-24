@@ -1,19 +1,19 @@
 import { Button } from "@material-ui/core";
 import React from "react";
 
-const DepoLog = () => {
+const DepoHistory = () => {
   return (
     <>
       {" "}
       <div className="winnerHeading d-flex align-items-center justify-content-between">
-        <span className="head">Deposit Log</span>
+        <span className="head">Deposit History</span>
         <span>
           <input
             type="text"
             className="form-control"
             name="search"
             autoComplete="off"
-            placeholder="Search Log User..."
+            placeholder="Search Deposit User..."
             required
           />
         </span>
@@ -74,4 +74,4 @@ const DepoLog = () => {
   );
 };
 
-export default DepoLog;
+export default DepoHistory;

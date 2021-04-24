@@ -12,18 +12,16 @@ import cricket from "../../image/SliderImg/cricket.png";
 import fball from "../../image/SliderImg/f_ball.png";
 import hand_ball from "../../image/SliderImg/hand_ball.png";
 import hockey from "../../image/SliderImg/hockey.png";
-import star from "../../image/SliderImg/Star.png";
 import tnis from "../../image/SliderImg/tnis.png";
 import vball from "../../image/SliderImg/vball.png";
 import virtual from "../../image/SliderImg/virtual_game.png";
-import CriLiveAccordion from './Accordion/CriLiveAccordion';
+import CriLiveAccordion from "./Accordion/CriLiveAccordion";
 import CriUpcoming from "./Accordion/CriUpcoming";
 import FballLiveAccordion from "./Accordion/FballLiveAccordion";
 import FballUpcomingAccordion from "./Accordion/FballUpcomingAccordion";
 import "./Slider.css";
 
 function Sliders() {
-  
   return (
     <div className="sliderWrapped">
       <div className="container">
@@ -34,10 +32,11 @@ function Sliders() {
                 <div className="sliderImg">
                   <Link data-toggle="tabs">
                     <div>
-                      <img src={star} className="img-fluid" alt="star" />
+                      <img src={cricket} className="img-fluid" alt="cricket" />
                     </div>
                     <span>
-                      All Game <span class="badge badge-warning">65</span>{" "}
+                      Cricket
+                       {/* <span class="badge badge-warning">40</span>{" "} */}
                     </span>
                   </Link>
                 </div>
@@ -51,21 +50,8 @@ function Sliders() {
                       <img src={fball} className="img-fluid" alt="football" />
                     </div>
                     <span>
-                      Football <span class="badge badge-warning">25</span>{" "}
-                    </span>
-                  </Link>
-                </div>
-              </div>
-            </Tab>
-            <Tab>
-              <div className="sliderItem">
-                <div className="sliderImg">
-                  <Link data-toggle="tabs">
-                    <div>
-                      <img src={cricket} className="img-fluid" alt="cricket" />
-                    </div>
-                    <span>
-                      Cricket <span class="badge badge-warning">40</span>{" "}
+                      Football 
+                      {/* <span class="badge badge-warning">25</span>{" "} */}
                     </span>
                   </Link>
                 </div>
@@ -143,12 +129,12 @@ function Sliders() {
             </span>
           </div>
           <TabPanel>
-            <FballLiveAccordion />
-            <FballUpcomingAccordion />
+            <CriLiveAccordion />
+            <CriUpcoming />
           </TabPanel>
           <TabPanel>
-            <CriLiveAccordion/>
-            <CriUpcoming />
+            <FballLiveAccordion />
+            <FballUpcomingAccordion />
           </TabPanel>
         </Tabs>
       </div>

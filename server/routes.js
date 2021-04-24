@@ -3,6 +3,11 @@ const {
   getWithdrawHistory,
 } = require("./Back-end-code/WithdrawHistoryController");
 const {
+  getMethod,
+  createMethod,
+  deleteMethod,
+} = require("./Back-end-code/WithdrawMethodControllar");
+const {
   getUser,
   registraionUser,
   specificUser,
@@ -24,5 +29,10 @@ router.delete("/delete/:id", withdrawDelete);
 // withdraw history
 router.get("/getWithdrawHistory", getWithdrawHistory);
 router.post("/createWithdrawHistory", createWithdrawHistory);
+
+// withdraw method
+router.get("/getMethod", getMethod);
+router.post("/createMethod", createMethod);
+router.delete("/delete/:id", deleteMethod);
 
 module.exports = router;

@@ -2,9 +2,10 @@ import { Button } from "@material-ui/core";
 import React, { useState } from "react";
 import { IoIosAdd } from "react-icons/io";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
-import DepoLog from "./DepoLog";
-import DepoMethod from "./DepoMethod";
+import DepoHistory from "./DepoHistory";
+import DepositMethod from "./DepoMethod";
 import "./Deposit.css";
+import DepositReq from "./DepositeReq";
 import Modals from "./Modals";
 
 const Deposit = () => {
@@ -13,13 +14,13 @@ const Deposit = () => {
   const handleShow = () => setShow(true);
   const [modal, setModal] = useState(false);
   const showModal = () => setModal(!modal);
-  const hideModal = () => setModal(modal)
+  const hideModal = () => setModal(modal);
   return (
     <>
       {/* modal */}
       <Modals show={show} handleClose={handleClose} />
       {/* modal */}
-      <div className="depositWrapped">
+      <div className="userWrapped">
         <div className="container">
           <div className="row">
             <div className="col-md-12">
@@ -28,8 +29,7 @@ const Deposit = () => {
                 id="twin-heading"
               >
                 <span>Manage Deposit</span>
-                {
-                    modal ?
+                {modal ? (
                   <span>
                     {" "}
                     <Button
@@ -40,8 +40,10 @@ const Deposit = () => {
                       {" "}
                       <IoIosAdd className="viewIcon" /> Add Method
                     </Button>{" "}
-                  </span> : ""
-                }
+                  </span>
+                ) : (
+                  ""
+                )}
               </h2>
             </div>
           </div>
@@ -57,13 +59,23 @@ const Deposit = () => {
                         variant="contained"
                         onClick={!modal ? hideModal : showModal}
                       >
-                        Deposit Log
+                        Deposit Request
                       </Button>
                     </Tab>
                     <Tab>
                       <Button
                         className="button"
                         color="secondary"
+                        variant="contained"
+                        onClick={!modal ? hideModal : showModal}
+                      >
+                        Deposit History
+                      </Button>
+                    </Tab>
+                    <Tab>
+                      <Button
+                        className="button"
+                        color="primary"
                         variant="contained"
                         onClick={modal ? hideModal : showModal}
                       >
@@ -72,10 +84,16 @@ const Deposit = () => {
                     </Tab>
                   </TabList>
                   <TabPanel>
-                    <DepoLog />
+                    <DepositReq/>
+                    {/* <DepositReq/> */}
                   </TabPanel>
                   <TabPanel>
-                    <DepoMethod />
+                    <DepoHistory/>
+                    {/* <DepoHistory/> */}
+                  </TabPanel>
+                  <TabPanel>
+                    <DepositMethod/>
+                    {/* <WithdrawMethod /> */}
                   </TabPanel>
                 </Tabs>
               </div>
