@@ -25,16 +25,16 @@ const MyProfile = () => {
           {dbData.map((data) => (
             <tbody key={data._id}>
               <tr>
-                <td>Total Balance</td>
-                <td>254 BDT</td>
-              </tr>
-              <tr>
                 <td>Full Name</td>
                 <td>{data.name}</td>
               </tr>
               <tr>
                 <td>Username</td>
                 <td>{data.username}</td>
+              </tr>
+              <tr>
+                <td>Total Balance</td>
+                <td>{data.balance} BDT</td>
               </tr>
               <tr>
                 <td>Mobile Number</td>

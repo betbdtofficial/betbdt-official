@@ -9,7 +9,7 @@ const DepositReq = () => {
           <div className="col-md-12">
             <div className="deposit-request-box">
               <br />
-              <h2 className="text-center heading">Request a Deposit</h2>
+              <h2 className="text-center heading">Request Deposit</h2>
               <img src={payment} className="img-fluid" alt="" />
               <br />
               <br />

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Col, Form } from "react-bootstrap";
 import payment from "../../image/payment-method.png";
 import Validation from "./Validation";
@@ -19,28 +19,39 @@ const WithdrawReq = () => {
     setErrors("");
   };
 
+  // get user data
+  const [balance, setBalance] = useState([]);
+  useEffect(()=>{
+    fetch(`http://localhost:5000/user/balanceGet`)
+    .then(res=>res.json())
+    .then((data)=>setBalance(data))
+  },[])
+  const findUser = balance.find((u) => u.user === getUser.user);
   const [errors, setErrors] = useState({});
   const handleSubmit = (e) => {
     e.preventDefault();
-    setErrors(Validation(values));
+    setErrors(Validation(values, findUser?.balance));
     if (values.to.length < 11) {
       return;
-    } 
-      const withdraw = { ...values };
-      withdraw.user = getUser.user;
-      fetch(`http://localhost:5000/user/withdrawReq`, {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(withdraw),
+    } else if (values.amount > findUser?.balance) {
+      return;
+    }
+    const withdraw = { ...values };
+    withdraw.user = getUser.user;
+    // send withdraw request
+    fetch(`http://localhost:5000/user/withdrawReq`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(withdraw),
+    })
+      .then((result) => {
+        console.log(result);
       })
-        .then((result) => {
-          console.log(result);
-        })
-        .catch((err) => {
-          console.log(err.message);
-        });
+      .catch((err) => {
+        console.log(err.message);
+      });
   };
   return (
     <div className="DepositRequestMain">
@@ -53,6 +64,9 @@ const WithdrawReq = () => {
               <img src={payment} className="img-fluid" alt="" />
               <br />
               <br />
+              {errors.success && (
+                <p className="alert alert-success">{errors.success}</p>
+              )}
               <Form onSubmit={handleSubmit}>
                 <Form.Row>
                   <Form.Group as={Col}>
@@ -97,7 +111,8 @@ const WithdrawReq = () => {
                 <Form.Row>
                   <Form.Group as={Col}>
                     <Form.Label>
-                      Amount <span style={{ color: "red" }}>*</span>{" "}
+                      Amount <span style={{ color: "red" }}>*</span> (min: 50
+                      BDT)
                     </Form.Label>
                     <Form.Control
                       name="amount"

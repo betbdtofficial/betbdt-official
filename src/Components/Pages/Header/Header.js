@@ -1,17 +1,30 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Nav, Navbar } from "react-bootstrap";
-import { BiDollarCircle } from "react-icons/bi";
+// import { BiDollarCircle } from "react-icons/bi";
 import { Link, NavLink } from "react-router-dom";
+import { Context } from '../../../App';
 import logo from "../../image/Untitled-1.png";
 import "./Header.css";
 
 const Header = () => {
+  const [loginUser, setLoginUser] = useContext(Context);
   const storage = sessionStorage.getItem("user");
   const getUser = JSON.parse(storage);
+  
   const activeMenu = {
     borderBottom: "2px solid #ffdf1b",
     color: "#ffdf1b !important",
   };
+
+  const [balance, setBalance] = useState([]);
+  useEffect(() => {
+    fetch(`http://localhost:5000/user`)
+      .then((res) => res.json())
+      .then((data) => setBalance(data));
+  }, []);
+
+  const findUser = balance.find((u) => u.username === getUser?.user || loginUser.user);
+
   const handleLogout = () => {
     sessionStorage.removeItem("user");
     window.location.href = "/login";
@@ -38,7 +51,7 @@ const Header = () => {
             )}
             {getUser?.user && (
               <Nav.Link title="My Profile">
-                Balance (695) <BiDollarCircle />
+                Balance ({findUser?.balance}) BDT
               </Nav.Link>
             )}
             {getUser?.user && (

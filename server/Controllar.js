@@ -30,6 +30,7 @@ exports.registraionUser = (req, res) => {
     username,
     password,
     password2,
+    balance
   } = req.body;
   const createUser = new UserInfo({
     name: name,
@@ -40,6 +41,7 @@ exports.registraionUser = (req, res) => {
     username: username,
     password: password,
     password2: password2,
+    balance: balance
   });
   createUser
     .save()
@@ -66,7 +68,7 @@ exports.withdrawReq = (req, res) => {
     type: type,
     amount: amount,
     to: to,
-    user: user
+    user: user,
   });
   WidthrawRequest.save().then((result) => {
     res.send(result);
@@ -77,4 +79,13 @@ exports.withdrawGet = (req, res) => {
   Widthraw.find()
     .sort({ _id: -1 })
     .then((result) => res.json(result));
+};
+// Withdraw delete
+exports.withdrawDelete = (req, res) => {
+  const { id } = req.params;
+  Widthraw.findByIdAndDelete({ _id: id }).then(() => {
+    Widthraw.find()
+      .sort({ _id: -1 })
+      .then((result) => res.json(result));
+  });
 };

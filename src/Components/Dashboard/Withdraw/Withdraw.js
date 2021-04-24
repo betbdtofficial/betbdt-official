@@ -4,7 +4,7 @@ import { IoIosAdd } from "react-icons/io";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import Modals from "./Modals";
 import "./Withdraw.css";
-import WithdrawLog from "./WithdrawLog";
+import WithdrawHistory from "./WithdrawHistory";
 import WithdrawMethod from "./WithdrawMethod";
 import WithdrawReq from "./WithdrawReq";
 
@@ -86,7 +86,7 @@ const Withdraw = () => {
                     <WithdrawReq/>
                   </TabPanel>
                   <TabPanel>
-                    <WithdrawLog/>
+                    <WithdrawHistory/>
                   </TabPanel>
                   <TabPanel>
                     <WithdrawMethod/>

@@ -1,10 +1,28 @@
 import { Button } from "@material-ui/core";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FaRegEye } from "react-icons/fa";
+import Modals from "./Modals";
 
 const Index = () => {
+  const [dbUser, setDbUser] = useState([]);
+  useEffect(() => {
+    fetch(`http://localhost:5000/user`)
+      .then((res) => res.json())
+      .then((data) => setDbUser(data));
+  }, []);
+  const [uniqueUser, setUniqueUser] = useState([])
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = (id) => {
+    setShow(true)
+    const findEl = dbUser.find(data=>data._id === id)
+    setUniqueUser(findEl)
+  };
   return (
     <>
+     {/* modal */}
+     <Modals show={show} user={uniqueUser} handleClose={handleClose} />
+      {/* modal */}
       <div className="winnerHeading d-flex align-items-center justify-content-between">
         <span className="head">Active User</span>
         <span>
@@ -21,63 +39,29 @@ const Index = () => {
       <table>
         <tr>
           <th>Name</th>
-          <th>Email</th>
           <th>Username</th>
           <th>Mobile</th>
           <th>Balance</th>
           <th>Details</th>
         </tr>
-        <tr>
-          <td>MD Hasan Mia</td>
-          <td>juihasan@gmail.com</td>
-          <td>jui_hasan</td>
-          <td>01711122233</td>
-          <td>4890 BDT</td>
-          <td>
-            <span>
-              <Button color="secondary" variant="contained">
-                <span>
-                  <FaRegEye className="viewIcon" />
-                </span>{" "}
-                View
-              </Button>
-            </span>
-          </td>
-        </tr>
-        <tr>
-          <td>MD Abul Bashar</td>
-          <td>abulbashar@gmail.com</td>
-          <td>abul_bashar</td>
-          <td>01789562365</td>
-          <td>4587 BDT</td>
-          <td>
-            <span>
-              <Button color="secondary" variant="contained">
-                <span>
-                  <FaRegEye className="viewIcon" />
-                </span>{" "}
-                View
-              </Button>
-            </span>
-          </td>
-        </tr>
-        <tr>
-          <td>MD Monowar Hossain</td>
-          <td>monowarhossain@gmail.com</td>
-          <td>monowarhossain</td>
-          <td>01778985647</td>
-          <td>5879 BDT</td>
-          <td>
-            <span>
-              <Button color="secondary" variant="contained">
-                <span>
-                  <FaRegEye className="viewIcon" />
-                </span>{" "}
-                View
-              </Button>
-            </span>
-          </td>
-        </tr>
+        {dbUser.map((data) => (
+          <tr key={data._id}>
+            <td>{data.name}</td>
+            <td>{data.username}</td>
+            <td>{data.number}</td>
+            <td>{data.balance} BDT</td>
+            <td>
+              <span>
+                <Button onClick={()=>handleShow(data._id)} color="primary" variant="contained">
+                  <span>
+                    <FaRegEye className="viewIcon" />
+                  </span>{" "}
+                  View
+                </Button>
+              </span>
+            </td>
+          </tr>
+        ))}
       </table>
     </>
   );

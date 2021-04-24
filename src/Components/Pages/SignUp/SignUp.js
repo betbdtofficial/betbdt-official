@@ -21,6 +21,7 @@ const SignUp = () => {
     username: "",
     password: "",
     password2: "",
+    balance: "",
     notMatch: "",
     success: "",
     wrong: "",
@@ -54,12 +55,14 @@ const SignUp = () => {
       value.sponsor &&
       value.password
     ) {
+      const values = {...value};
+      values.balance = "00.00"
       fetch(`http://localhost:5000/user`, {
         method: "POST",
         headers: {
           "content-type": "application/json",
         },
-        body: JSON.stringify(value),
+        body: JSON.stringify(values),
       })
         .then(() => {
           fetch(`http://localhost:5000/user`)
