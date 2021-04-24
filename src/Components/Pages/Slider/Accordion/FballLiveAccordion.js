@@ -21,16 +21,15 @@ function FballLiveAccordion() {
               Sri Lanka v Bangladesh at Pallekele, 1st Test - day 4 <span className="d-flex ml-2 align-items-center badge badge-danger"> Live</span>
             </Accordion.Toggle>
             <Accordion.Collapse eventKey="0">
-              <Card.Body className="d-flex text-center">
+              <div className="my-3 text-center">
                 <div className="team1">
-                  <strong>Bangladesh</strong>
-                </div>
-                vs
-                <div className="team2">
-                  <strong>Bangladesh</strong>
+                  <strong>Bangladesh <span>1.9</span></strong>
+                </div> <h4>VS</h4> <div className="team2">
+                  <strong>India <span>1.5</span></strong>
                 </div>
                 <button>Place bet</button>
-              </Card.Body>
+                <br/>
+              </div>
             </Accordion.Collapse>
           </Card>
         </Accordion>
