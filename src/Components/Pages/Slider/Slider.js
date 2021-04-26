@@ -19,7 +19,6 @@ import CriLiveAccordion from "./Accordion/CriLiveAccordion";
 import CriUpcoming from "./Accordion/CriUpcoming";
 import FballLiveAccordion from "./Accordion/FballLiveAccordion";
 import FballUpcomingAccordion from "./Accordion/FballUpcomingAccordion";
-import LiveClock from "./Accordion/LiveClock";
 import "./Slider.css";
 
 function Sliders() {
@@ -125,7 +124,7 @@ function Sliders() {
           </TabList>
           <div className="liveMatch">
             <span className="d-flex align-items-center">
-              <AiOutlineReload className="icon" /> Live Match <span className=" ml-2 badge badge-danger"><LiveClock></LiveClock></span>
+              <AiOutlineReload className="icon" /> Live Match <span className=" ml-2 badge badge-danger"></span>
             </span>
           </div>
           <TabPanel>
