@@ -19,7 +19,6 @@ import CriLiveAccordion from "./Accordion/CriLiveAccordion";
 import CriUpcoming from "./Accordion/CriUpcoming";
 import FballLiveAccordion from "./Accordion/FballLiveAccordion";
 import FballUpcomingAccordion from "./Accordion/FballUpcomingAccordion";
-// import LiveClock from "./Accordion/LiveClock";
 import "./Slider.css";
 
 function Sliders() {
