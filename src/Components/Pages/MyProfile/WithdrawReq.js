@@ -28,11 +28,11 @@ const WithdrawReq = () => {
 
   // get user data
   const [balance, setBalance] = useState([]);
-  useEffect(()=>{
+  useEffect(() => {
     fetch(`http://localhost:5000/user`)
-    .then(res=>res.json())
-    .then((data)=>setBalance(data))
-  },[])
+      .then((res) => res.json())
+      .then((data) => setBalance(data));
+  }, []);
   const findUser = balance.find((u) => u.username === getUser.user);
   const [errors, setErrors] = useState({});
   const handleSubmit = (e) => {
@@ -42,7 +42,7 @@ const WithdrawReq = () => {
       return;
     } else if (values.amount > findUser?.balance) {
       return;
-    }else if(values.amount < 50){
+    } else if (values.amount < 50) {
       return;
     }
     const withdraw = { ...values };
@@ -61,6 +61,19 @@ const WithdrawReq = () => {
       .catch((err) => {
         console.log(err.message);
       });
+    // Withdraw balance update
+    const user = getUser.user;
+    const withdrawUser = { ...values };
+    withdrawUser.balance = findUser?.balance;
+    fetch(`http://localhost:5000/user/${user}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(withdrawUser),
+    }).then((result) => {
+      console.log(result);
+    });
   };
   return (
     <div className="DepositRequestMain">
@@ -89,11 +102,9 @@ const WithdrawReq = () => {
                       as="select"
                     >
                       <option>Select Method</option>
-                      {
-                        method.map(m=>(
-                          <option>{m.gatewayName}</option>
-                        ))
-                      }
+                      {method.map((m) => (
+                        <option>{m.gatewayName}</option>
+                      ))}
                     </Form.Control>
                     {errors.method && (
                       <p style={{ color: "red" }}>{errors.method}</p>

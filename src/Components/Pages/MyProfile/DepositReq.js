@@ -75,11 +75,11 @@ const DepositReq = () => {
                       as="select"
                     >
                       <option>Select Method</option>
-                      {
-                        depoMethod.map(data=>(
-                          <option>{data.gatewayName}{" "}{data.number}</option>
-                        ))
-                      }
+                      {depoMethod.map((data) => (
+                        <option>
+                          {data.gatewayName} {data.number}
+                        </option>
+                      ))}
                     </Form.Control>
                     {errors.method && (
                       <p className="text-danger">{errors.method}</p>

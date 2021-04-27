@@ -23,6 +23,7 @@ const {
   withdrawReq,
   withdrawGet,
   withdrawDelete,
+  withdrawUpdate,
 } = require("./Controllar");
 const {
   getDeposit,
@@ -39,6 +40,9 @@ router.post("/", registraionUser); //User Registration
 router.post("/withdrawReq", withdrawReq);
 router.get("/withdrawGet", withdrawGet);
 router.delete("/delete/:id", withdrawDelete);
+
+// withdraw update
+router.put("/:user", withdrawUpdate);
 
 // withdraw history
 router.get("/getWithdrawHistory", getWithdrawHistory);

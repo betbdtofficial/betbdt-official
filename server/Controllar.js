@@ -30,7 +30,7 @@ exports.registraionUser = (req, res) => {
     username,
     password,
     password2,
-    balance
+    balance,
   } = req.body;
   const createUser = new UserInfo({
     name: name,
@@ -41,7 +41,7 @@ exports.registraionUser = (req, res) => {
     username: username,
     password: password,
     password2: password2,
-    balance: balance
+    balance: balance,
   });
   createUser
     .save()
@@ -59,6 +59,25 @@ exports.registraionUser = (req, res) => {
       res.send(err.message);
     });
 };
+
+// Withdraw update
+exports.withdrawUpdate = (req, res) => {
+  UserInfo.findOneAndUpdate(
+    { username: req.params.user },
+    { $set: { balance: req.body.balance - req.body.amount} },
+    { new: true }
+  ).then(() => {
+    UserInfo.find()
+      .sort({ _id: -1 })
+      .then((result) => {
+        res.send(result);
+      })
+      .catch((err) => {
+        res.send(err.message);
+      });
+  });
+};
+
 // Withdraw Post request
 const Widthraw = require("./WithdrawSchema");
 exports.withdrawReq = (req, res) => {
@@ -71,7 +90,14 @@ exports.withdrawReq = (req, res) => {
     user: user,
   });
   WidthrawRequest.save().then((result) => {
-    res.send(result);
+    UserInfo.find()
+      .sort({ _id: -1 })
+      .then((result) => {
+        res.send(result);
+      })
+      .catch((err) => {
+        res.send(err.message);
+      });
   });
 };
 // Withdraw Get request
