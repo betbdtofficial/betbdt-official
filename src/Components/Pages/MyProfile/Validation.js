@@ -1,4 +1,4 @@
-const Validation = (values, balance) => {
+export const Validation = (values, balance) => {
   // const re = /\S+@\S+\.\S+/;
   let errors = {};
   if (!values.method) {
@@ -20,4 +20,21 @@ const Validation = (values, balance) => {
   }
   return errors;
 };
-export default Validation;
+
+export const DepoValidation = (value) =>{
+  let errors = {};
+  if (!value.method) {
+    errors.method = "Method is Required";
+  }else if (!value.amount) {
+    errors.amount = "Amount is Required";
+  } else if (value.amount < 200) {
+    errors.amount = "Minimum deposit 200 BDT";
+  } else if (!value.from) {
+    errors.from = "Phone Number is Required";
+  } else if (value.from.length < 11) {
+    errors.from = "Phone Number would be 11 Digits";
+  } else {
+    errors.success = "Deposit Request Sumitted !";
+  }
+  return errors;
+}

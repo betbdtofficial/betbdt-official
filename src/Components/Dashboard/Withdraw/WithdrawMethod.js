@@ -1,5 +1,5 @@
 import { Button } from "@material-ui/core";
-import { Delete, Edit } from "@material-ui/icons";
+import { Delete } from "@material-ui/icons";
 import React, { useEffect, useState } from "react";
 
 const WithdrawMethod = () => {
@@ -9,12 +9,9 @@ const WithdrawMethod = () => {
       .then((res) => res.json())
       .then((data) => setDbData(data));
   }, []);
-  const handleEdit = (id) => {
-    console.log(id);
-  };
   const handleDelete = (id) => {
     console.log(id)
-    fetch(`http://localhost:5000/user/delete/${id}`, {
+    fetch(`http://localhost:5000/user/${id}`, {
       method: "DELETE",
     }).then(() => {
       fetch(`http://localhost:5000/user/getMethod`)
@@ -50,17 +47,6 @@ const WithdrawMethod = () => {
             <td>{data.gatewayName}</td>
             <td>{data.number}</td>
             <td>
-              <span>
-                {" "}
-                <Button
-                  onClick={() => handleEdit(data._id)}
-                  color="primary"
-                  variant="contained"
-                >
-                  {" "}
-                  <Edit />{" "}
-                </Button>{" "}
-              </span>
               <span>
                 {" "}
                 <Button

@@ -1,4 +1,13 @@
 const {
+  getDepoHistory,
+  createDepoHistory,
+} = require("./Back-end-code/DepositControllar");
+const {
+  getDepoMethod,
+  createDepoMethod,
+  deleteDepoMethod,
+} = require("./Back-end-code/DepositMethodController");
+const {
   createWithdrawHistory,
   getWithdrawHistory,
 } = require("./Back-end-code/WithdrawHistoryController");
@@ -15,6 +24,11 @@ const {
   withdrawGet,
   withdrawDelete,
 } = require("./Controllar");
+const {
+  getDeposit,
+  createDeposit,
+  depoDelete,
+} = require("./Front-end-code/DepositReqControllar");
 const router = require("express").Router();
 
 router.get("/", getUser); //Get User Info
@@ -33,6 +47,20 @@ router.post("/createWithdrawHistory", createWithdrawHistory);
 // withdraw method
 router.get("/getMethod", getMethod);
 router.post("/createMethod", createMethod);
-router.delete("/delete/:id", deleteMethod);
+router.delete("/:id", deleteMethod);
+
+//deposit request
+router.get("/getDeposit", getDeposit);
+router.post("/createDeposit", createDeposit);
+router.delete("/deposit/delete/:id", depoDelete);
+
+//deposit history
+router.get("/getDepositHistory", getDepoHistory);
+router.post("/createDepositHistory", createDepoHistory);
+
+// withdraw method
+router.get("/getDepoMethod", getDepoMethod);
+router.post("/createDepoMethod", createDepoMethod);
+router.delete("/deposit/delete/:id", deleteDepoMethod);
 
 module.exports = router;

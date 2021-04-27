@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Button, Col, Form } from "react-bootstrap";
 import payment from "../../image/payment-method.png";
-import Validation from "./Validation";
+import { Validation } from "./Validation";
 const WithdrawReq = () => {
   const storage = sessionStorage.getItem("user");
   const getUser = JSON.parse(storage);
@@ -19,14 +19,21 @@ const WithdrawReq = () => {
     setErrors("");
   };
 
+  const [method, setMethod] = useState([]);
+  useEffect(() => {
+    fetch(`http://localhost:5000/user/getMethod`)
+      .then((res) => res.json())
+      .then((data) => setMethod(data));
+  }, []);
+
   // get user data
   const [balance, setBalance] = useState([]);
   useEffect(()=>{
-    fetch(`http://localhost:5000/user/balanceGet`)
+    fetch(`http://localhost:5000/user`)
     .then(res=>res.json())
     .then((data)=>setBalance(data))
   },[])
-  const findUser = balance.find((u) => u.user === getUser.user);
+  const findUser = balance.find((u) => u.username === getUser.user);
   const [errors, setErrors] = useState({});
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -34,6 +41,8 @@ const WithdrawReq = () => {
     if (values.to.length < 11) {
       return;
     } else if (values.amount > findUser?.balance) {
+      return;
+    }else if(values.amount < 50){
       return;
     }
     const withdraw = { ...values };
@@ -80,9 +89,11 @@ const WithdrawReq = () => {
                       as="select"
                     >
                       <option>Select Method</option>
-                      <option>Bkash</option>
-                      <option>Nagad</option>
-                      <option>Rocket</option>
+                      {
+                        method.map(m=>(
+                          <option>{m.gatewayName}</option>
+                        ))
+                      }
                     </Form.Control>
                     {errors.method && (
                       <p style={{ color: "red" }}>{errors.method}</p>

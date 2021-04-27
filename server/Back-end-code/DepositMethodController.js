@@ -1,20 +1,20 @@
-const withdrawMethod = require("./WithdrawMethodSchema");
-exports.getMethod = (req, res) => {
-  withdrawMethod
+const depositMethod = require("./DepositeMethodSchema");
+exports.getDepoMethod = (req, res) => {
+    depositMethod
     .find()
     .sort({ _id: -1 })
     .then((result) => {
       res.json(result);
     });
 };
-exports.createMethod = (req, res) => {
+exports.createDepoMethod = (req, res) => {
   const { gatewayName, number } = req.body;
-  const methodSave = new withdrawMethod({
+  const methodSave = new depositMethod({
     gatewayName: gatewayName,
     number: number,
   });
   methodSave.save().then(() => {
-    withdrawMethod
+    depositMethod
       .find()
       .sort({ _id: -1 })
       .then((result) => {
@@ -22,10 +22,10 @@ exports.createMethod = (req, res) => {
       });
   });
 };
-exports.deleteMethod = (req, res) => {
+exports.deleteDepoMethod = (req, res) => {
   const { id } = req.params;
-  withdrawMethod.findByIdAndDelete({ _id: id }).then(() => {
-    withdrawMethod
+  depositMethod.findByIdAndDelete({ _id: id }).then(() => {
+    depositMethod
       .find()
       .sort({ _id: -1 })
       .then((result) => {

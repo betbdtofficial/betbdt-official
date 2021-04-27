@@ -15,12 +15,6 @@ const Modals = (props) => {
     setValue(data);
     setErrors("")
   };
-  // const formClear = () => {
-  //   setValue({
-  //     gatewayName: "",
-  //     number: "",
-  //   });
-  // };
   const handleSubmit = (e) => {
     e.preventDefault();
     // formClear();

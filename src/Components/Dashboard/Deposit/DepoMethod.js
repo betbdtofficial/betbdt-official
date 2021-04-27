@@ -1,8 +1,14 @@
 import { Button } from "@material-ui/core";
-import { Edit } from "@material-ui/icons";
-import React from "react";
+import { Delete } from "@material-ui/icons";
+import React, { useEffect, useState } from "react";
 
 const DepositMethod = () => {
+  const [depoMethod, setDepoMethod] = useState([]);
+  useEffect(() => {
+    fetch(`http://localhost:5000/user/getDepoMethod`)
+      .then((res) => res.json())
+      .then((data) => setDepoMethod(data));
+  }, []);
   return (
     <>
       <div className="winnerHeading d-flex align-items-center justify-content-between">
@@ -22,76 +28,23 @@ const DepositMethod = () => {
         <tr>
           <th>#No</th>
           <th>Payment Gateway Name</th>
-          <th>Wallet Address</th>
-          <th>Status</th>
+          <th>Number</th>
           <th>Action</th>
         </tr>
-        <tr>
-          <td>01</td>
-          <td>PayPal</td>
-          <td>125775482585</td>
-          <td>
-            <span>
-              <Button color="primary" variant="contained">
-                Active
-              </Button>
-            </span>
-          </td>
-          <td>
-            <span>
-              <Button color="secondary" variant="contained">
-                <span>
-                <Edit className="viewIcon" />
-                </span>{" "}
-                Edit
-              </Button>
-            </span>
-          </td>
-        </tr>
-        <tr>
-          <td>02</td>
-          <td>Visa</td>
-          <td>12547rko3587</td>
-          <td>
-            <span>
-              <Button color="primary" variant="contained">
-                Active
-              </Button>
-            </span>
-          </td>
-          <td>
-            <span>
-              <Button color="secondary" variant="contained">
-                <span>
-                <Edit className="viewIcon" />
-                </span>{" "}
-                Edit
-              </Button>
-            </span>
-          </td>
-        </tr>
-        <tr>
-          <td>03</td>
-          <td>Payneer</td>
-          <td>3698741258re1</td>
-          <td>
-            <span>
-              <Button color="primary" variant="contained">
-                Active
-              </Button>
-            </span>
-          </td>
-          <td>
-            <span>
-              <Button color="secondary" variant="contained">
-                <span>
-                <Edit className="viewIcon" />
-                </span>{" "}
-                Edit
-              </Button>
-            </span>
-          </td>
-        </tr>
+        {depoMethod.map((data, index) => (
+          <tr>
+            <td>{index + 1}</td>
+            <td>{data.gatewayName}</td>
+            <td>{data.number}</td>
+            <td>
+              <span>
+                <Button color="secondary" variant="contained">
+                  <Delete className="viewIcon" />
+                </Button>
+              </span>
+            </td>
+          </tr>
+        ))}
       </table>
     </>
   );

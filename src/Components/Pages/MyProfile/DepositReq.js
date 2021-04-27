@@ -1,7 +1,54 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Col, Form } from "react-bootstrap";
-import payment from '../../image/payment-method.png';
+import payment from "../../image/payment-method.png";
+import { DepoValidation } from "./Validation";
 const DepositReq = () => {
+  const [depoMethod, setDepoMethod] = useState([]);
+  useEffect(() => {
+    fetch(`http://localhost:5000/user/getDepoMethod`)
+      .then((res) => res.json())
+      .then((data) => setDepoMethod(data));
+  }, []);
+  const storage = sessionStorage.getItem("user");
+  const getUser = JSON.parse(storage);
+  const [value, setValue] = useState({
+    method: "",
+    amount: "",
+    from: "",
+    user: "",
+  });
+  const handleChange = (e) => {
+    const values = { ...value };
+    values[e.target.name] = e.target.value;
+    setValue(values);
+  };
+  const [errors, setErrors] = useState({});
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setErrors(DepoValidation(value));
+    if (value.from.length < 11) {
+      return;
+    } else if (value.amount < 200) {
+      return;
+    }
+    const deposit = { ...value };
+    deposit.user = getUser.user;
+    // send deposit request
+    fetch(`http://localhost:5000/user/createDeposit`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(deposit),
+    })
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
+
   return (
     <div className="DepositRequestMain">
       <div className="container">
@@ -13,18 +60,30 @@ const DepositReq = () => {
               <img src={payment} className="img-fluid" alt="" />
               <br />
               <br />
-              <Form>
+              {errors.success && (
+                <p className="alert alert-success">{errors.success}</p>
+              )}
+              <Form onSubmit={handleSubmit}>
                 <Form.Row>
                   <Form.Group as={Col}>
                     <Form.Label>
-                      Method To <span style={{ color: "red" }}>*</span>{" "}
+                      Method <span style={{ color: "red" }}>*</span>{" "}
                     </Form.Label>
-                    <Form.Control as="select">
+                    <Form.Control
+                      name="method"
+                      onChange={handleChange}
+                      as="select"
+                    >
                       <option>Select Method</option>
-                      <option>Bkash +88017123456</option>
-                      <option>Nagad +8801982123456</option>
-                      <option>Rocket +8801740123456</option>
+                      {
+                        depoMethod.map(data=>(
+                          <option>{data.gatewayName}{" "}{data.number}</option>
+                        ))
+                      }
                     </Form.Control>
+                    {errors.method && (
+                      <p className="text-danger">{errors.method}</p>
+                    )}
                   </Form.Group>
                 </Form.Row>
 
@@ -33,14 +92,30 @@ const DepositReq = () => {
                     <Form.Label>
                       Amount <span style={{ color: "red" }}>*</span>{" "}
                     </Form.Label>
-                    <Form.Control type="number" placeholder="Amount" />
+                    <Form.Control
+                      name="amount"
+                      onChange={handleChange}
+                      type="number"
+                      placeholder="Amount"
+                    />
+                    {errors.amount && (
+                      <p className="text-danger">{errors.amount}</p>
+                    )}
                   </Form.Group>
 
                   <Form.Group as={Col} controlId="formGridCity">
                     <Form.Label>
                       From <span style={{ color: "red" }}>*</span>{" "}
                     </Form.Label>
-                    <Form.Control type="number" placeholder="From" />
+                    <Form.Control
+                      name="from"
+                      onChange={handleChange}
+                      type="number"
+                      placeholder="From"
+                    />
+                    {errors.from && (
+                      <p className="text-danger">{errors.from}</p>
+                    )}
                   </Form.Group>
                 </Form.Row>
                 <br />
