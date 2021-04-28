@@ -6,6 +6,7 @@ import {
   Route,
   Switch
 } from "react-router-dom";
+import ManageClubHolder from "../ManageClubHolder/ManageClubHolder";
 import FrontEnd from '../Pages/Front-end/FrontEnd';
 import AddClubHolder from "./AddClubHolder/AddClubHolder";
 import "./Dashboard.css";
@@ -48,11 +49,15 @@ const Dashboard = () => {
               <Route path="/admin/manageWithdraw">
                 <Withdraw />
               </Route>
-              <Route path="/admin/setting">
-                <Setting />
-              </Route>
+              
               <Route path="/admin/addClubholder">
                 <AddClubHolder />
+              </Route>
+              <Route path="/admin/manageClubHolder">
+                <ManageClubHolder />
+              </Route>
+              <Route path="/admin/setting">
+                <Setting />
               </Route>
               <Redirect to="http://localhost:3000/">
                 <FrontEnd />

@@ -8,12 +8,13 @@ import {
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { PeopleAltOutlined } from "@material-ui/icons";
+import QueueIcon from '@material-ui/icons/Queue';
+import SettingsInputSvideoIcon from '@material-ui/icons/SettingsInputSvideo';
 import React from "react";
 import { AiOutlineDashboard } from "react-icons/ai";
 import { FaLayerGroup, FaMoneyBillAlt, FaSteamSymbol } from "react-icons/fa";
 import { FiSettings } from "react-icons/fi";
 import { GiReceiveMoney } from "react-icons/gi";
-import { GrTableAdd } from "react-icons/gr";
 import { Link } from "react-router-dom";
 import logo from "../../image/Untitled-1.png";
 import "./Sidebar.css";
@@ -117,20 +118,29 @@ function Sidebar() {
                 <ListItemText primary="Manage Withdraw" />
               </ListItem>
             </Link>
+         
+            <Link style={styles} to="/admin/addClubholder">
+              <ListItem button>
+                <ListItemIcon>
+                  <QueueIcon />{" "}
+                </ListItemIcon>
+                <ListItemText primary="Add Club Holder" />
+              </ListItem>
+            </Link>
+            <Link style={styles} to="/admin/manageClubHolder">
+              <ListItem button>
+                <ListItemIcon>
+                  <SettingsInputSvideoIcon />{" "}
+                </ListItemIcon>
+                <ListItemText primary="Manage Club Colder" />
+              </ListItem>
+            </Link>
             <Link style={styles} to="/admin/setting">
               <ListItem button>
                 <ListItemIcon>
                   <FiSettings />{" "}
                 </ListItemIcon>
                 <ListItemText primary="Website Setting" />
-              </ListItem>
-            </Link>
-            <Link style={styles} to="/admin/addClubholder">
-              <ListItem button>
-                <ListItemIcon>
-                  <GrTableAdd />{" "}
-                </ListItemIcon>
-                <ListItemText primary="Add Club Holder" />
               </ListItem>
             </Link>
           </List>
