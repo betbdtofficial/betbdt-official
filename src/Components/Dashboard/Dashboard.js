@@ -6,13 +6,14 @@ import {
   Route,
   Switch
 } from "react-router-dom";
-import ManageClubHolder from "../ManageClubHolder/ManageClubHolder";
+// import ManageClubHolder from "./ManageClubHolder/ManageClubHolder";
 import FrontEnd from '../Pages/Front-end/FrontEnd';
 import AddClubHolder from "./AddClubHolder/AddClubHolder";
 import "./Dashboard.css";
 import Deposit from "./Deposit/Deposit";
 import PrimarySearchAppBar from "./Header/Header";
 import Home from "./Home/Home";
+import ManageClubHolder from "./ManageClubHolder/ManageClubHolder";
 import Match from "./Match/Match";
 import Setting from "./Setting/Setting";
 import Sidebar from "./Sidebar/Sidebar";

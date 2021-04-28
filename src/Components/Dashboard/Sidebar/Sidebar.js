@@ -132,7 +132,7 @@ function Sidebar() {
                 <ListItemIcon>
                   <SettingsInputSvideoIcon />{" "}
                 </ListItemIcon>
-                <ListItemText primary="Manage Club Colder" />
+                <ListItemText primary="Manage Club Holder" />
               </ListItem>
             </Link>
             <Link style={styles} to="/admin/setting">
