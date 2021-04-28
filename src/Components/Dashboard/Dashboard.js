@@ -7,6 +7,7 @@ import {
   Switch
 } from "react-router-dom";
 import FrontEnd from '../Pages/Front-end/FrontEnd';
+import AddClubHolder from "./AddClubHolder/AddClubHolder";
 import "./Dashboard.css";
 import Deposit from "./Deposit/Deposit";
 import PrimarySearchAppBar from "./Header/Header";
@@ -49,6 +50,9 @@ const Dashboard = () => {
               </Route>
               <Route path="/admin/setting">
                 <Setting />
+              </Route>
+              <Route path="/admin/addClubholder">
+                <AddClubHolder />
               </Route>
               <Redirect to="http://localhost:3000/">
                 <FrontEnd />

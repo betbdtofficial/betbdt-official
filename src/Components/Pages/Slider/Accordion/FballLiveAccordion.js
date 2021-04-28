@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Accordion, Card } from "react-bootstrap";
 import football from "../../../image/SliderImg/f_ball.png";
+import vs from '../../../image/vs.png';
 import "../Slider.css";
 import PlaceBetFrom from "./PlaceBetFrom";
 
 function FballLiveAccordion() {
   const liveMatch = [1255828,1260256,1254075]
-  
   const [upcomingMatch, setUpcomingMatch] = useState(0);
   useEffect(() => {
     fetch(`https://cricapi.com/api/cricketScore?apikey=DwEVqiCx7bN4oWeZK6xWkwiHLlz1&unique_id=1244235`)
@@ -22,19 +22,16 @@ function FballLiveAccordion() {
              <span class="badge badge-danger">Live</span>
             </Accordion.Toggle>
             <Accordion.Collapse eventKey="0">
-              <div className="my-3 text-center">
+              <div className="my-3 justify-content-center align-items-center d-flex">
                 <div className="team1">
-                <div className="team1Themb">
-                  <img src="https://i.ibb.co/3v4T51g/800px-Flag-of-Bangladesh-svg.png" width="150px" alt=""/>
-                </div>
                   <strong>Bangladesh <span>1.9</span></strong>
-                </div> <h4>VS</h4> <div className="team2">
-                <div className="team1Themb">
-                  <img src="https://i.ibb.co/QvJFdsj/1200px-Flag-of-India-svg.png" width="150px" alt=""/>
                 </div>
+                <div className="vs">
+                  <img src={vs} alt="" width="150px"/>
+                </div>
+                <div className="team2">
                   <strong>India <span>1.5</span></strong>
                 </div> <br/>
-                {/* <button>Place bet</button> */}
                 <PlaceBetFrom></PlaceBetFrom>
                 <br/>
               </div>

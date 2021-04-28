@@ -13,6 +13,7 @@ import { AiOutlineDashboard } from "react-icons/ai";
 import { FaLayerGroup, FaMoneyBillAlt, FaSteamSymbol } from "react-icons/fa";
 import { FiSettings } from "react-icons/fi";
 import { GiReceiveMoney } from "react-icons/gi";
+import { GrTableAdd } from "react-icons/gr";
 import { Link } from "react-router-dom";
 import logo from "../../image/Untitled-1.png";
 import "./Sidebar.css";
@@ -122,6 +123,14 @@ function Sidebar() {
                   <FiSettings />{" "}
                 </ListItemIcon>
                 <ListItemText primary="Website Setting" />
+              </ListItem>
+            </Link>
+            <Link style={styles} to="/admin/addClubholder">
+              <ListItem button>
+                <ListItemIcon>
+                  <GrTableAdd />{" "}
+                </ListItemIcon>
+                <ListItemText primary="Add Club Holder" />
               </ListItem>
             </Link>
           </List>

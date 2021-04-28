@@ -1,6 +1,7 @@
 import React from "react";
+import { Button, Form } from "react-bootstrap";
 import Modal from "react-modal";
-import './PlaceBetFrom.css';
+import "./PlaceBetFrom.css";
 const customStyles = {
   content: {
     top: "50%",
@@ -20,7 +21,6 @@ const PlaceBetFrom = () => {
   }
 
   function afterOpenModal() {
-    // references are now sync'd and can be accessed.
     subtitle.style.color = "#f00";
   }
 
@@ -37,16 +37,25 @@ const PlaceBetFrom = () => {
         style={customStyles}
         contentLabel="Example Modal"
       >
-        <h2 className="text-center" ref={(_subtitle) => (subtitle = _subtitle)}>Place Bet</h2>
-        <button onClick={closeModal}>close</button>
-        <div>I am a modal
-        <form>
-          <input />
-          <button>tab navigation</button>
-          <button>stays</button>
-          <button>inside</button>
-          <button>the modal</button>
-        </form>
+        <h2 className="text-center" ref={(_subtitle) => (subtitle = _subtitle)}>
+          Place Bet
+        </h2>
+        <div>
+          <Form>
+            <Form.Group>
+              <Form.Label>Amount</Form.Label>
+              <Form.Control type="text" placeholder="Enter Your Amount" />
+            </Form.Group>
+            <Form.Label>Select a Team</Form.Label>
+            <Form.Control as="select" defaultValue="Choose...">
+              <option>Choose a Team</option>
+              <option>Bangladesh</option>
+              <option>India</option>
+            </Form.Control> <br/>
+            <Button variant="primary" type="submit">
+              Submit
+            </Button>
+          </Form>
         </div>
       </Modal>
     </div>
