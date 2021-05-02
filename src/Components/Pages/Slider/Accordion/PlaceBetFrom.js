@@ -13,32 +13,17 @@ const customStyles = {
   },
 };
 Modal.setAppElement("#root");
-const PlaceBetFrom = () => {
-  var subtitle;
-  const [modalIsOpen, setIsOpen] = React.useState(false);
-  function openModal() {
-    setIsOpen(true);
-  }
-
-  function afterOpenModal() {
-    subtitle.style.color = "#f00";
-  }
-
-  function closeModal() {
-    setIsOpen(false);
-  }
+const PlaceBetFrom = ({modalIsOpen, closeModal}) => {
+ 
   return (
     <div>
-      <button onClick={openModal}></button>
+      
       <Modal
         isOpen={modalIsOpen}
-        onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
         style={customStyles}
         contentLabel="Example Modal"
       >
-        <h2 className="text-center" ref={(_subtitle) => (subtitle = _subtitle)}>
-        </h2>
         <div>
           <Form>
             <Form.Group>
