@@ -10,12 +10,22 @@ const UserList = () => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const [searchTerm, setSearchTerm] = useState("")
   const [dbData, setDbData] = useState([]);
   useEffect(() => {
     fetch(`http://localhost:5000/user/getMatch`)
       .then((res) => res.json())
       .then((data) => setDbData(data));
   });
+  const handleDelete = (id) => {
+    fetch(`http://localhost:5000/user/deleteMatch/${id}`, {
+      method: "DELETE",
+    }).then(() => {
+      fetch(`http://localhost:5000/user/getMatch`)
+        .then((res) => res.json())
+        .then((data) => setDbData(data));
+    });
+  };
   return (
     <>
       {/* modal */}
@@ -56,6 +66,7 @@ const UserList = () => {
                       type="text"
                       className="form-control"
                       name="search"
+                      onChange={(e)=>setSearchTerm(e.target.value)}
                       autoComplete="off"
                       placeholder="Search Match..."
                       required
@@ -70,30 +81,55 @@ const UserList = () => {
                     <th>Start Date</th>
                     <th>Action</th>
                   </tr>
-                  {dbData.map((data, index) => (
-                    <tr>
-                      <td>{index + 1}</td>
-                      <td>{data.match1} <span class="badge badge-danger">{data.m1Amount}</span> {" "}VS{" "}{data.match2}{" "}<span class="badge badge-danger">{data.m2Amount}</span></td>
-                      <td>{data.event}</td>
-                      <td>{data.startdate}, {data.starttime}</td>
-                      <td>
-                        <span>
-                          {" "}
-                          <Button color="primary" variant="contained">
+                  {dbData
+                    .filter((value) => {
+                      if (searchTerm == "") return value;
+                      else if (
+                        value.match1
+                          .toLowerCase()
+                          .includes(searchTerm.toLowerCase())
+                      )
+                        return value;
+                    })
+                    .map((data, index) => (
+                      <tr>
+                        <td>{index + 1}</td>
+                        <td>
+                          {data.match1}{" "}
+                          <span class="badge badge-danger">
+                            {data.m1Amount}
+                          </span>{" "}
+                          VS {data.match2}{" "}
+                          <span class="badge badge-danger">
+                            {data.m2Amount}
+                          </span>
+                        </td>
+                        <td>{data.event}</td>
+                        <td>
+                          {data.startdate}, {data.starttime}
+                        </td>
+                        <td>
+                          <span>
                             {" "}
-                            <Edit />{" "}
-                          </Button>{" "}
-                        </span>
-                        <span>
-                          {" "}
-                          <Button color="secondary" variant="contained">
+                            <Button color="primary" variant="contained">
+                              {" "}
+                              <Edit />{" "}
+                            </Button>{" "}
+                          </span>
+                          <span>
                             {" "}
-                            <Delete />{" "}
-                          </Button>{" "}
-                        </span>
-                      </td>
-                    </tr>
-                  ))}
+                            <Button
+                              onClick={() => handleDelete(data._id)}
+                              color="secondary"
+                              variant="contained"
+                            >
+                              {" "}
+                              <Delete />{" "}
+                            </Button>{" "}
+                          </span>
+                        </td>
+                      </tr>
+                    ))}
                 </table>
               </div>
             </div>

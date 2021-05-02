@@ -33,3 +33,13 @@ exports.createMatch = (req, res) => {
       });
   });
 };
+exports.deleteMatch = (req, res) => {
+  const { id } = req.params;
+  Match.findByIdAndDelete({ _id: id }).then(() => {
+    Match.find()
+      .sort({ _id: -1 })
+      .then((result) => {
+        res.send(result);
+      });
+  });
+};
