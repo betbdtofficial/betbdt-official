@@ -25,13 +25,17 @@ function CriLiveAccordion() {
   }
   return (
     <div>
+      <PlaceBetFrom
+        modalIsOpen={modalIsOpen}
+        closeModal={closeModal}
+      ></PlaceBetFrom>
       {dbData.map((data) => (
         <Accordion defaultActiveKey="0">
           <div>
             <Accordion.Toggle as={Card.Header} eventKey="0">
               <img src={cricket} className="img-fluid" alt="" />
-              {data.match1}{" "}VS{" "}{data.match2}, {data.event} || {data.startdate}, {data.starttime}
-              {" "}<span class="badge badge-danger">Live</span>
+              {data.match1} VS {data.match2}, {data.event} || {data.startdate},{" "}
+              {data.starttime} <span class="badge badge-danger">Live</span>
             </Accordion.Toggle>
             <Accordion.Collapse eventKey="0">
               <div className="container">
@@ -54,7 +58,6 @@ function CriLiveAccordion() {
                             className="teambtn"
                             onClick={openModal}
                           />
-                          <PlaceBetFrom modalIsOpen={modalIsOpen} closeModal={closeModal}></PlaceBetFrom>
                         </Form.Group>
                       </Form.Row>
                     </div>

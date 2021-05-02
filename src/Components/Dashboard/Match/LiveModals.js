@@ -2,7 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import React, { useState } from "react";
 import { Col, Modal, Row } from "react-bootstrap";
 
-const Modals = (props) => {
+const LiveModals = (props) => {
   const [value, setValue] = useState({
     match1: "",
     match2: "",
@@ -42,7 +42,7 @@ const Modals = (props) => {
       >
         <form onSubmit={handleSubmit}>
           <Modal.Header closeButton>
-            <Modal.Title className="text-center">ADD MATCH</Modal.Title>
+            <Modal.Title className="text-center">ADD LIVE MATCH</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <div>
@@ -166,4 +166,4 @@ const Modals = (props) => {
   );
 };
 
-export default Modals;
+export default LiveModals;

@@ -3,3 +3,7 @@
   padding: 20px !important;
   color: white;
 }
+.ReactModal__Overlay.ReactModal__Overlay--after-open {
+  background: none !important;
+  z-index: 999;
+}

@@ -1,35 +1,27 @@
 import { Button } from "@material-ui/core";
-import { Delete, Edit } from "@material-ui/icons";
 import "bootstrap/dist/css/bootstrap.min.css";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { IoIosAdd } from "react-icons/io";
+import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
+import LiveMatch from "./LiveMatch";
+import LiveModals from "./LiveModals";
 import "./Match.css";
-import Modals from "./Modals";
+import UpcommingMatch from "./UpcomingMatch";
+import UpcommingModals from './UpcommingModals';
 
 const UserList = () => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-  const [searchTerm, setSearchTerm] = useState("")
-  const [dbData, setDbData] = useState([]);
-  useEffect(() => {
-    fetch(`http://localhost:5000/user/getMatch`)
-      .then((res) => res.json())
-      .then((data) => setDbData(data));
-  });
-  const handleDelete = (id) => {
-    fetch(`http://localhost:5000/user/deleteMatch/${id}`, {
-      method: "DELETE",
-    }).then(() => {
-      fetch(`http://localhost:5000/user/getMatch`)
-        .then((res) => res.json())
-        .then((data) => setDbData(data));
-    });
-  };
+  const handleShowLive = () => setShow(true);
+  const handleShowUpcome = () => setShow(true);
+  const [modal, setModal] = useState(false);
+  const showModal = () => setModal(!modal);
+  const hideModal = () => setModal(modal);
   return (
     <>
       {/* modal */}
-      <Modals show={show} handleClose={handleClose} />
+      <LiveModals show={show} handleClose={handleClose} />
+      <UpcommingModals show={show} handleClose={handleClose} />
       {/* modal */}
       <div className="matchWrapped">
         <div className="container">
@@ -41,15 +33,23 @@ const UserList = () => {
               >
                 <span>Manage Match</span>
                 <span>
-                  {" "}
-                  <Button
-                    onClick={handleShow}
-                    variant="contained"
-                    color="primary"
-                  >
-                    {" "}
-                    <IoIosAdd className="viewIcon" /> Add Match
-                  </Button>{" "}
+                  {modal ? (
+                    <Button
+                      onClick={handleShowLive}
+                      variant="contained"
+                      color="primary"
+                    >
+                      <IoIosAdd className="viewIcon" /> Add Live Match
+                    </Button>
+                  ) : (
+                    <Button
+                      onClick={handleShowUpcome}
+                      variant="contained"
+                      color="primary"
+                    >
+                      <IoIosAdd className="viewIcon" /> Add Upcomming Match
+                    </Button>
+                  )}
                 </span>
               </h2>
             </div>
@@ -57,80 +57,36 @@ const UserList = () => {
           <div className="row">
             <div className="col-md-12">
               <div className="matchData">
-                <div className="matchHeading d-flex align-items-center justify-content-between">
-                  <span className="head">
-                    Match List <span class="badge badge-danger">Live</span>
-                  </span>
-                  <span>
-                    <input
-                      type="text"
-                      className="form-control"
-                      name="search"
-                      onChange={(e)=>setSearchTerm(e.target.value)}
-                      autoComplete="off"
-                      placeholder="Search Match..."
-                      required
-                    />
-                  </span>
-                </div>
-                <table>
-                  <tr>
-                    <th>#No</th>
-                    <th>Match Name</th>
-                    <th>Event</th>
-                    <th>Start Date</th>
-                    <th>Action</th>
-                  </tr>
-                  {dbData
-                    .filter((value) => {
-                      if (searchTerm == "") return value;
-                      else if (
-                        value.match1
-                          .toLowerCase()
-                          .includes(searchTerm.toLowerCase())
-                      )
-                        return value;
-                    })
-                    .map((data, index) => (
-                      <tr>
-                        <td>{index + 1}</td>
-                        <td>
-                          {data.match1}{" "}
-                          <span class="badge badge-danger">
-                            {data.m1Amount}
-                          </span>{" "}
-                          VS {data.match2}{" "}
-                          <span class="badge badge-danger">
-                            {data.m2Amount}
-                          </span>
-                        </td>
-                        <td>{data.event}</td>
-                        <td>
-                          {data.startdate}, {data.starttime}
-                        </td>
-                        <td>
-                          <span>
-                            {" "}
-                            <Button color="primary" variant="contained">
-                              {" "}
-                              <Edit />{" "}
-                            </Button>{" "}
-                          </span>
-                          <span>
-                            {" "}
-                            <Button
-                              onClick={() => handleDelete(data._id)}
-                              color="secondary"
-                              variant="contained"
-                            >
-                              {" "}
-                              <Delete />{" "}
-                            </Button>{" "}
-                          </span>
-                        </td>
-                      </tr>
-                    ))}
-                </table>
+                <Tabs>
+                  <TabList>
+                    <Tab>
+                      <Button
+                        className="button"
+                        color="primary"
+                        variant="contained"
+                        onClick={!modal ? showModal : hideModal}
+                      >
+                        Live Match
+                      </Button>
+                    </Tab>
+                    <Tab>
+                      <Button
+                        className="button"
+                        color="secondary"
+                        variant="contained"
+                        onClick={modal ? showModal : hideModal}
+                      >
+                        Upcomming Match
+                      </Button>
+                    </Tab>
+                  </TabList>
+                  <TabPanel>
+                    <LiveMatch />
+                  </TabPanel>
+                  <TabPanel>
+                    <UpcommingMatch />
+                  </TabPanel>
+                </Tabs>
               </div>
             </div>
           </div>
