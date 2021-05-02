@@ -3,7 +3,19 @@
 .sliderWrapped {
   background: #383838;
   font-family: "Roboto Condensed", sans-serif;
+  padding-top: 50px;
 }
+input.teambtn {
+  background: #ffaa00;
+  color: white;
+  font-size: 19px;
+  border: none;
+}
+.collapse.show {
+  background: #14192a;
+  padding-top: 13px;
+}
+
 .sliderItem {
   text-align: center;
   width: 25%;

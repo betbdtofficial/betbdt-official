@@ -29,7 +29,7 @@ const PlaceBetFrom = () => {
   }
   return (
     <div>
-      <button onClick={openModal}>Place bet</button>
+      <button onClick={openModal}></button>
       <Modal
         isOpen={modalIsOpen}
         onAfterOpen={afterOpenModal}
@@ -38,7 +38,6 @@ const PlaceBetFrom = () => {
         contentLabel="Example Modal"
       >
         <h2 className="text-center" ref={(_subtitle) => (subtitle = _subtitle)}>
-          Place Bet
         </h2>
         <div>
           <Form>

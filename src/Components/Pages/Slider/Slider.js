@@ -23,7 +23,7 @@ import "./Slider.css";
 
 function Sliders() {
   return (
-    <div className="sliderWrapped p-5">
+    <div className="sliderWrapped">
       <div className="container">
         <Tabs>
           <TabList>
