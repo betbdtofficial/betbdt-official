@@ -36,14 +36,18 @@ const Header = () => {
             <Nav.Link as={NavLink} exact activeStyle={activeMenu} to="/">
               Home
             </Nav.Link>
-            <Nav.Link
-              as={NavLink}
-              activeStyle={activeMenu}
-              className=""
-              to="/signup"
-            >
-              Sign Up
-            </Nav.Link>
+            {!getUser?.user ? (
+              <Nav.Link
+                as={NavLink}
+                activeStyle={activeMenu}
+                className=""
+                to="/signup"
+              >
+                Sign Up
+              </Nav.Link>
+            ) : (
+              ""
+            )}
             {getUser?.user && (
               <Nav.Link as={NavLink} activeStyle={activeMenu} to="/myprofile">
                 My Profile
