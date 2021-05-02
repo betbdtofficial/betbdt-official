@@ -22,7 +22,7 @@ function FballLiveAccordion() {
              <span class="badge badge-danger">Live</span>
             </Accordion.Toggle>
             <Accordion.Collapse eventKey="0">
-              <div className="my-3 justify-content-center align-items-center d-flex">
+              <div className="my-3 p-2 align-items-center d-flex">
                 <div className="team1">
                   <strong>Bangladesh <span>1.9</span></strong>
                 </div>

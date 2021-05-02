@@ -6,7 +6,7 @@ const DepositSchema = new Schema({
         required: true
     },
     amount: {
-        type: String,
+        type: Number,
         required: true
     },
     from:{
@@ -14,6 +14,10 @@ const DepositSchema = new Schema({
         required: true
     },
     user: {
+        type: String,
+        required: true
+    },
+    date: {
         type: String,
         required: true
     }

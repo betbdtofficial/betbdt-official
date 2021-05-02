@@ -11,6 +11,7 @@ const WithdrawReq = () => {
       .then((res) => res.json())
       .then((data) => setWithdraw(data));
   }, []);
+  const [searchTerm, setSearchTerm] = useState("")
   const handleClick = (id, data) => {
     // Withdraw Request Delete
     fetch(`http://localhost:5000/user/delete/${id}`, {
@@ -48,8 +49,9 @@ const WithdrawReq = () => {
             type="text"
             className="form-control"
             name="search"
+            onChange={(e)=>setSearchTerm(e.target.value)}
             autoComplete="off"
-            placeholder="Search Withdraw Request..."
+            placeholder="Type Username..."
             required
           />
         </span>
@@ -63,7 +65,10 @@ const WithdrawReq = () => {
           <th>Request Amount</th>
           <th>Status</th>
         </tr>
-        {withdraw.map((data) => (
+        {withdraw.filter((value)=>{
+          if(searchTerm == "") return value
+          else if(value.user.toLowerCase().includes(searchTerm.toLowerCase())) return value
+        }).map((data) => (
           <tr>
             <td>{data.user}</td>
             <td>{data.to}</td>

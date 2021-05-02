@@ -26,4 +26,16 @@ exports.createDepoHistory = (req, res) => {
   });
 };
 
-  
+// deposit amount add
+const UserInfo = require("../Schema");
+exports.addDeposit = (req, res) => {
+  UserInfo.findOne({ username: req.params.username }).then((result) => {
+    UserInfo.findOneAndUpdate(
+      { username: req.params.username },
+      { $set: { balance: result.balance + req.body.amount } },
+      { new: true }
+    ).then((result) => {
+      res.send(result);
+    });
+  });
+};

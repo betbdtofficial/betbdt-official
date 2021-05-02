@@ -1,12 +1,14 @@
 const {
   getDepoHistory,
   createDepoHistory,
+  addDeposit,
 } = require("./Back-end-code/DepositControllar");
 const {
   getDepoMethod,
   createDepoMethod,
   deleteDepoMethod,
 } = require("./Back-end-code/DepositMethodController");
+const { getMatch, createMatch } = require("./Back-end-code/MatchControllar");
 const {
   createWithdrawHistory,
   getWithdrawHistory,
@@ -58,6 +60,9 @@ router.get("/getDeposit", getDeposit);
 router.post("/createDeposit", createDeposit);
 router.delete("/deposit/delete/:id", depoDelete);
 
+// deposit amount add user balance
+router.patch("/:username", addDeposit);
+
 //deposit history
 router.get("/getDepositHistory", getDepoHistory);
 router.post("/createDepositHistory", createDepoHistory);
@@ -66,5 +71,9 @@ router.post("/createDepositHistory", createDepoHistory);
 router.get("/getDepoMethod", getDepoMethod);
 router.post("/createDepoMethod", createDepoMethod);
 router.delete("/deposit/delete/:id", deleteDepoMethod);
+
+// get match and create match
+router.get("/getMatch", getMatch);
+router.post("/createMatch", createMatch)
 
 module.exports = router;

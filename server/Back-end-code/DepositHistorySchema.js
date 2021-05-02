@@ -13,7 +13,7 @@ const depoHisSchema = new Schema({
     required: true,
   },
   amount: {
-    type: String,
+    type: Number,
     requird: true,
   },
   date: {

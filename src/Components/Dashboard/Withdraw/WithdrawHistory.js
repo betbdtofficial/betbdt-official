@@ -8,6 +8,7 @@ const WithdrawLog = () => {
       .then((res) => res.json())
       .then((data) => setHistory(data));
   }, []);
+  const [searchTerm, setSearchTerm] = useState("")
   return (
     <>
       {" "}
@@ -18,8 +19,9 @@ const WithdrawLog = () => {
             type="text"
             className="form-control"
             name="search"
+            onChange={(e)=>setSearchTerm(e.target.value)}
             autoComplete="off"
-            placeholder="Search Witdraw Log..."
+            placeholder="Type Username..."
             required
           />
         </span>
@@ -34,7 +36,10 @@ const WithdrawLog = () => {
           <th>Date</th>
           <th>Status</th>
         </tr>
-        {history.map((data) => (
+        {history.filter((value)=>{
+          if(searchTerm == "") return value
+          else if(value.username.toLowerCase().includes(searchTerm.toLowerCase())) return value
+        }).map((data) => (
           <tr>
             <td>{data.username}</td>
             <td>{data.number}</td>

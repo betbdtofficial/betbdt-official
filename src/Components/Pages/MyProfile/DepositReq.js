@@ -3,6 +3,8 @@ import { Button, Col, Form } from "react-bootstrap";
 import payment from "../../image/payment-method.png";
 import { DepoValidation } from "./Validation";
 const DepositReq = () => {
+  const today = Date.now();
+  const time = new Intl.DateTimeFormat('en-US', {year: 'numeric', month: '2-digit',day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}).format(today)
   const [depoMethod, setDepoMethod] = useState([]);
   useEffect(() => {
     fetch(`http://localhost:5000/user/getDepoMethod`)
@@ -16,6 +18,7 @@ const DepositReq = () => {
     amount: "",
     from: "",
     user: "",
+    date: ""
   });
   const handleChange = (e) => {
     const values = { ...value };
@@ -33,6 +36,7 @@ const DepositReq = () => {
     }
     const deposit = { ...value };
     deposit.user = getUser.user;
+    deposit.date = time;
     // send deposit request
     fetch(`http://localhost:5000/user/createDeposit`, {
       method: "POST",

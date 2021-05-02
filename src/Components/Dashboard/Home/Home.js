@@ -15,6 +15,50 @@ const Home = () => {
       .then(res=>res.json())
       .then(data=>getUser(data))
   },[])
+  const [withdrawHistory, setWithdrawHistory] = useState([]);
+  useEffect(() => {
+    fetch(`http://localhost:5000/user/getWithdrawHistory`)
+      .then((res) => res.json())
+      .then((data) => setWithdrawHistory(data));
+  }, []);
+  let amount=0;
+  for (let w = 0; w < withdrawHistory.length; w++) {
+    const element = withdrawHistory[w];
+    amount = amount + element.amount;
+  }
+  const [withdraw, setWithdraw] = useState([]);
+  useEffect(() => {
+    fetch(`http://localhost:5000/user/withdrawGet`)
+      .then((res) => res.json())
+      .then((data) => setWithdraw(data));
+  }, []);
+  let pendingAmount=0;
+  for (let w = 0; w < withdraw.length; w++) {
+    const element = withdraw[w];
+    pendingAmount = parseInt(pendingAmount) + parseInt(element.amount);
+  }
+  const [depoHis, setDepoHis] = useState([]);
+  useEffect(() => {
+    fetch(`http://localhost:5000/user/getDepositHistory`)
+      .then((res) => res.json())
+      .then((data) => setDepoHis(data));
+  }, []);
+  let depoAmount=0;
+  for (let w = 0; w < depoHis.length; w++) {
+    const element = depoHis[w];
+    depoAmount = parseInt(depoAmount) + parseInt(element.amount);
+  }
+  const [depo, setDepo] = useState([]);
+  useEffect(() => {
+    fetch(`http://localhost:5000/user/getDeposit`)
+      .then((res) => res.json())
+      .then((data) => setDepo(data));
+  }, []);
+  let depoPending=0;
+  for (let w = 0; w < depo.length; w++) {
+    const element = depo[w];
+    depoPending = parseInt(depoPending) + parseInt(element.amount);
+  }
   return (
     <div className="homeWrapped">
       <div className="container">
@@ -55,7 +99,7 @@ const Home = () => {
         <div className="row">
           <div className="col-md-4">
             <div className="box bg-danger">
-              <h4>$1550</h4>
+              <h4>${amount}</h4>
               <h5>Total Withdraw</h5>
               <div className="userIcon">
                 <MonetizationOnIcon />
@@ -63,8 +107,17 @@ const Home = () => {
             </div>
           </div>
           <div className="col-md-4">
-            <div className="box bg-info">
-              <h4>$986</h4>
+            <div className="box bg-dark">
+              <h4>${pendingAmount}</h4>
+              <h5>Pending Withdraw</h5>
+              <div className="userIcon">
+              <LocalAtmIcon />
+              </div>
+            </div>
+          </div>
+          <div className="col-md-4">
+            <div className="box bg-danger">
+              <h4>${depoAmount}</h4>
               <h5>Total Deposit</h5>
               <div className="userIcon">
                 <CreditCardIcon />
@@ -72,11 +125,11 @@ const Home = () => {
             </div>
           </div>
           <div className="col-md-4">
-            <div className="box bg-dark">
-              <h4>$560</h4>
-              <h5>Admin Profite</h5>
+            <div className="box bg-info">
+              <h4>${depoPending}</h4>
+              <h5>Pending Deposit</h5>
               <div className="userIcon">
-                <LocalAtmIcon />
+                <CreditCardIcon />
               </div>
             </div>
           </div>

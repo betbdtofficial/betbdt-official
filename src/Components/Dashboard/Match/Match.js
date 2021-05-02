@@ -1,8 +1,7 @@
 import { Button } from "@material-ui/core";
 import { Delete, Edit } from "@material-ui/icons";
 import "bootstrap/dist/css/bootstrap.min.css";
-import React, { useState } from "react";
-// import { Modal } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
 import { IoIosAdd } from "react-icons/io";
 import "./Match.css";
 import Modals from "./Modals";
@@ -11,6 +10,12 @@ const UserList = () => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const [dbData, setDbData] = useState([]);
+  useEffect(() => {
+    fetch(`http://localhost:5000/user/getMatch`)
+      .then((res) => res.json())
+      .then((data) => setDbData(data));
+  });
   return (
     <>
       {/* modal */}
@@ -43,9 +48,9 @@ const UserList = () => {
             <div className="col-md-12">
               <div className="matchData">
                 <div className="matchHeading d-flex align-items-center justify-content-between">
-                  <span className="head">Match List {" "} 
-                  <span class="badge badge-danger">Live</span>
-                   </span>
+                  <span className="head">
+                    Match List <span class="badge badge-danger">Live</span>
+                  </span>
                   <span>
                     <input
                       type="text"
@@ -62,97 +67,33 @@ const UserList = () => {
                     <th>#No</th>
                     <th>Match Name</th>
                     <th>Event</th>
-                    <th>Status</th>
+                    <th>Start Date</th>
                     <th>Action</th>
                   </tr>
-                  <tr>
-                    <td>01</td>
-                    <td>Australia VS Pakistan</td>
-                    <td>FIFA World Cub 2021</td>
-                    <td>Active</td>
-                    <td>
-                      <span>
-                        {" "}
-                        <Button color="primary" variant="contained">
+                  {dbData.map((data, index) => (
+                    <tr>
+                      <td>{index + 1}</td>
+                      <td>{data.match1} <span class="badge badge-danger">{data.m1Amount}</span> {" "}VS{" "}{data.match2}{" "}<span class="badge badge-danger">{data.m2Amount}</span></td>
+                      <td>{data.event}</td>
+                      <td>{data.startdate}, {data.starttime}</td>
+                      <td>
+                        <span>
                           {" "}
-                          <Edit />{" "}
-                        </Button>{" "}
-                      </span>
-                      <span>
-                        {" "}
-                        <Button color="secondary" variant="contained">
+                          <Button color="primary" variant="contained">
+                            {" "}
+                            <Edit />{" "}
+                          </Button>{" "}
+                        </span>
+                        <span>
                           {" "}
-                          <Delete />{" "}
-                        </Button>{" "}
-                      </span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>02</td>
-                    <td>Bangladesh VS Bhutan</td>
-                    <td>FIFA World Cub 2021</td>
-                    <td>Active</td>
-                    <td>
-                      <span>
-                        {" "}
-                        <Button color="primary" variant="contained">
-                          {" "}
-                          <Edit />{" "}
-                        </Button>{" "}
-                      </span>
-                      <span>
-                        {" "}
-                        <Button color="secondary" variant="contained">
-                          {" "}
-                          <Delete />{" "}
-                        </Button>{" "}
-                      </span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>03</td>
-                    <td>Bangladesh VS India</td>
-                    <td>FIFA World Cub 2021</td>
-                    <td>Active</td>
-                    <td>
-                      <span>
-                        {" "}
-                        <Button color="primary" variant="contained">
-                          {" "}
-                          <Edit />{" "}
-                        </Button>{" "}
-                      </span>
-                      <span>
-                        {" "}
-                        <Button color="secondary" variant="contained">
-                          {" "}
-                          <Delete />{" "}
-                        </Button>{" "}
-                      </span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>04</td>
-                    <td>South Africa VS India</td>
-                    <td>FIFA World Cub 2021</td>
-                    <td>Active</td>
-                    <td>
-                      <span>
-                        {" "}
-                        <Button color="primary" variant="contained">
-                          {" "}
-                          <Edit />{" "}
-                        </Button>{" "}
-                      </span>
-                      <span>
-                        {" "}
-                        <Button color="secondary" variant="contained">
-                          {" "}
-                          <Delete />{" "}
-                        </Button>{" "}
-                      </span>
-                    </td>
-                  </tr>
+                          <Button color="secondary" variant="contained">
+                            {" "}
+                            <Delete />{" "}
+                          </Button>{" "}
+                        </span>
+                      </td>
+                    </tr>
+                  ))}
                 </table>
               </div>
             </div>

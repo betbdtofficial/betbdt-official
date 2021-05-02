@@ -11,6 +11,7 @@ const DepositReq = () => {
       .then((res) => res.json())
       .then((data) => setDepo(data));
   }, []);
+  const [searchTerm, setSearchTerm] = useState("")
   const handleDeposit = (id, data) => {
     console.log(id);
     // Deposit Request Delete
@@ -38,6 +39,17 @@ const DepositReq = () => {
     }).then((result) => {
       console.log(result);
     });
+     // deposite amount add
+    const username = data.user;
+    fetch(`http://localhost:5000/user/${username}`, {
+      method: "PATCH",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(depoHistory),
+    }).then((result) => {
+      console.log(result);
+    });
   };
   return (
     <>
@@ -48,8 +60,9 @@ const DepositReq = () => {
             type="text"
             className="form-control"
             name="search"
+            onChange={(e)=>setSearchTerm(e.target.value)}
             autoComplete="off"
-            placeholder="Search Deposit Request..."
+            placeholder="Type Username..."
             required
           />
         </span>
@@ -60,14 +73,19 @@ const DepositReq = () => {
           <th>From</th>
           <th>Method And To</th>
           <th>Request Amount</th>
+          <th>Date</th>
           <th>Status</th>
         </tr>
-        {depo.map((data) => (
+        {depo.filter((value)=>{
+          if(searchTerm == "") return value
+          else if(value.user.toLowerCase().includes(searchTerm.toLowerCase())) return value
+        }).map((data) => (
           <tr>
             <td>{data.user}</td>
             <td>{data.from}</td>
             <td>{data.method}</td>
             <td>{data.amount} BDT</td>
+            <td>{data.date}</td>
             <td>
               <span>
                 <Button
