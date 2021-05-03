@@ -1,0 +1,31 @@
+.ClubHolderBlance {
+  background: #00d68f;
+  padding: 30px;
+  border-radius: 5px;
+  color: white;
+  box-shadow: 0px 0px 7px 1px #acacac;
+}
+
+.ClubName {
+  background: #ffaa00;
+  padding: 30px;
+  border-radius: 5px;
+  color: white;
+  box-shadow: 0px 0px 7px 1px #acacac;
+  margin-top: 5px;
+}
+
+.TotalClubMembers {
+  background: #192038;
+  padding: 30px;
+  border-radius: 5px;
+  color: white;
+  box-shadow: 0px 0px 7px 1px #acacac;
+}
+.TotalWithdraws {
+  background: #ff3d71;
+  padding: 30px;
+  border-radius: 5px;
+  color: white;
+  box-shadow: 0px 0px 7px 1px #acacac;
+}
