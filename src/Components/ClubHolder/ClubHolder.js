@@ -1,6 +1,7 @@
 import React from "react";
+import { FaUserFriends } from 'react-icons/fa';
+import { SiDolby, SiGoogletagmanager, SiSymantec } from 'react-icons/si';
 import "./ClubHolder.css";
-
 const ClubHolder = () => {
   return (
     <div>
@@ -9,6 +10,9 @@ const ClubHolder = () => {
         <div className="row">
           <div className="col-md-3">
             <div className="ClubHolderBlance">
+            <div className="clubholdertopicon">
+               <SiDolby></SiDolby>
+               </div>
               <strong>
                 Balance <br /> <b className="balanceText">580 TK</b>{" "}
               </strong>
@@ -16,8 +20,10 @@ const ClubHolder = () => {
           </div>
           <div className="col-md-3">
             <div className="ClubName">
+            <div className="clubholdertopicon">
+               <SiGoogletagmanager></SiGoogletagmanager>
+               </div>
               <strong>
-                {" "}
                 Club Name <br />
                 <b className="ClubNames">Vorer Dak Club</b>{" "}
               </strong>
@@ -25,6 +31,9 @@ const ClubHolder = () => {
           </div>
           <div className="col-md-3">
             <div className="TotalClubMembers">
+               <div className="clubholdertopicon">
+               <FaUserFriends></FaUserFriends>
+               </div>
               <strong>
                 Total Club Member <br />
                 <b className="TotalClubMembersCount">350</b>{" "}
@@ -33,6 +42,9 @@ const ClubHolder = () => {
           </div>
           <div className="col-md-3">
             <div className="TotalWithdraws">
+            <div className="clubholdertopicon">
+               <SiSymantec></SiSymantec>
+               </div>
               <strong>
                 Total Withdraws <br />
                 <b className="TotalWithdrawsBl">250</b>{" "}
