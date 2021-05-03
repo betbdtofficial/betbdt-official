@@ -47,7 +47,7 @@ const PlaceBetFrom = ({ modalIsOpen, closeModal }) => {
               <Form.Group as={Col}>
                 <Button
                   className="form-control"
-                  variant="primary"
+                  style={{backgroundColor: "#ff3d71", border:"none"}}
                   type="submit"
                 >
                   Submit
