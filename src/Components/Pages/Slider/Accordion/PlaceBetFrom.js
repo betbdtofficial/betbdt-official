@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Col, Form } from "react-bootstrap";
 import Modal from "react-modal";
+import Login from "../../Login/Login";
 import "./PlaceBetFrom.css";
 const customStyles = {
   content: {
@@ -13,7 +14,33 @@ const customStyles = {
   },
 };
 Modal.setAppElement("#root");
-const PlaceBetFrom = ({ modalIsOpen, closeModal }) => {
+const PlaceBetFrom = ({
+  modalIsOpen,
+  closeModal,
+  passMatch,
+  passId,
+  passAmount,
+}) => {
+  const storage = sessionStorage.getItem("user");
+  const getUser = JSON.parse(storage);
+  const [dbData, setDbData] = useState([]);
+  useEffect(() => {
+    fetch(`http://localhost:5000/user/getUpcomingMatch`)
+      .then((res) => res.json())
+      .then((data) => setDbData(data));
+  });
+  const findEl = dbData.find((data) => data._id === passId);
+  const [value, setValue] = useState({
+    amount: "",
+  });
+  const handleChange = (e) => {
+    const values = { ...value };
+    values[e.target.name] = e.target.value;
+    setValue(values);
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
   return (
     <div>
       <Modal
@@ -22,40 +49,51 @@ const PlaceBetFrom = ({ modalIsOpen, closeModal }) => {
         style={customStyles}
         contentLabel="Example Modal"
       >
-        <div>
-          <h1 className="text-center">Place Bet Option</h1> <hr /> <br />
-          <Form>
-            <Form.Label>
-              Punjab Kings VS Delhi Capitals || Indian Premier League ||
-              02-05-2021 , 08-00-PM
-            </Form.Label>{" "}
-            <hr/>
-            <br />
-            <div className="Form Row">
-              <Form.Group as={Col}>
-                <span>Punjab Kings 1.6</span>
+        {getUser?.user ? (
+          <div>
+            <h1 className="text-center">Place Bet Option</h1> <hr /> <br />
+            <Form onSubmit={handleSubmit}>
+              <Form.Label>
+                {findEl?.match1} VS {findEl?.match2} || {findEl?.event} ||
+                {findEl?.startdate} , {findEl?.starttime}
+              </Form.Label>{" "}
+              <div className="Form Row">
+                <Form.Group as={Col}>
+                  <span>
+                    {passMatch} {passAmount}{" "}
+                  </span>
+                </Form.Group>
+                <Form.Group as={Col}>
+                  <h2 className="wintaka">
+                    Deposit {value.amount} TK Return 950 TK
+                  </h2>
+                </Form.Group>
+              </div>
+              <Form.Group>
+                <Form.Label>Amount</Form.Label>
+                <Form.Control
+                  onChange={handleChange}
+                  type="number"
+                  placeholder="Enter Your Amount"
+                  name="amount"
+                />
               </Form.Group>
-              <Form.Group as={Col}>
-                <h2 className="wintaka">Deposit 250 TK Return 950 TK</h2>
-              </Form.Group>
-            </div>
-            <Form.Group>
-              <Form.Label>Amount</Form.Label>
-              <Form.Control type="text" placeholder="Enter Your Amount" />
-            </Form.Group>
-            <Form.Row>
-              <Form.Group as={Col}>
-                <Button
-                  className="form-control"
-                  style={{backgroundColor: "#ff3d71", border:"none"}}
-                  type="submit"
-                >
-                  Submit
-                </Button>
-              </Form.Group>
-            </Form.Row>
-          </Form>
-        </div>
+              <Form.Row>
+                <Form.Group as={Col}>
+                  <Button
+                    className="form-control"
+                    style={{ backgroundColor: "#ff3d71", border: "none" }}
+                    type="submit"
+                  >
+                    Place Bet
+                  </Button>
+                </Form.Group>
+              </Form.Row>
+            </Form>
+          </div>
+        ) : (
+          <Login />
+        )}
       </Modal>
     </div>
   );

@@ -7,7 +7,7 @@ import LiveMatch from "./LiveMatch";
 import LiveModals from "./LiveModals";
 import "./Match.css";
 import UpcommingMatch from "./UpcomingMatch";
-import UpcommingModals from './UpcommingModals';
+import UpcommingModals from "./UpcommingModals";
 
 const UserList = () => {
   const [show, setShow] = useState(false);
@@ -15,7 +15,7 @@ const UserList = () => {
   const handleShowLive = () => setShow(true);
   const handleShowUpcome = () => setShow(true);
   const [modal, setModal] = useState(false);
-  const showModal = () => setModal(!modal);
+  const showModal = () => setModal(modal);
   const hideModal = () => setModal(modal);
   return (
     <>
@@ -33,21 +33,22 @@ const UserList = () => {
               >
                 <span>Manage Match</span>
                 <span>
-                  {modal ? (
-                    <Button
-                      onClick={handleShowLive}
-                      variant="contained"
-                      color="primary"
-                    >
-                      <IoIosAdd className="viewIcon" /> Add Live Match
-                    </Button>
-                  ) : (
+                  {modal && (
                     <Button
                       onClick={handleShowUpcome}
                       variant="contained"
                       color="primary"
                     >
                       <IoIosAdd className="viewIcon" /> Add Upcomming Match
+                    </Button>
+                  )}
+                  {modal && (
+                    <Button
+                      onClick={handleShowLive}
+                      variant="contained"
+                      color="primary"
+                    >
+                      <IoIosAdd className="viewIcon" /> Add Live Match
                     </Button>
                   )}
                 </span>
@@ -64,7 +65,7 @@ const UserList = () => {
                         className="button"
                         color="primary"
                         variant="contained"
-                        onClick={!modal ? showModal : hideModal}
+                        onClick={modal ? showModal : hideModal}
                       >
                         Live Match
                       </Button>

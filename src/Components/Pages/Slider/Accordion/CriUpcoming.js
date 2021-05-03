@@ -1,17 +1,32 @@
 import React, { useEffect, useState } from "react";
-import { Accordion, Card } from "react-bootstrap";
+import { Accordion, Card, Col, Form } from "react-bootstrap";
 import { BiLoaderCircle } from "react-icons/bi";
 import cricket from "../../../image/SliderImg/cricket.png";
 import "../Slider.css";
-function FballUpcomingAccordion() {
-  const KEY = "DwEVqiCx7bN4oWeZK6xWkwiHLlz1";
-  const [upcomingMatch, setUpcomingMatch] = useState([0]);
-  const first5 = upcomingMatch.slice(0, 5);
+import PlaceBetFrom from "./PlaceBetFrom";
+function CriUpcomingAccordion() {
+  const [dbData, setDbData] = useState([]);
   useEffect(() => {
-    fetch(`https://cricapi.com/api/matchCalendar?apikey=${KEY}`)
+    fetch(`http://localhost:5000/user/getUpcomingMatch`)
       .then((res) => res.json())
-      .then((data) => setUpcomingMatch(data.data));
-  }, []);
+      .then((data) => setDbData(data));
+  });
+  const [modalIsOpen, setIsOpen] = useState(false);
+  const openModal = (match) => {
+    setIsOpen(true);
+    setIsOpen(match);
+  };
+  const closeModal = () => {
+    setIsOpen(false);
+  };
+  const [passMatch, setPassMatch] = useState([]);
+  const [passId, setPassId] = useState([]);
+  const [passAmount, setPassAmount] = useState([]);
+  const handlePleceFormPassData = (match, id, amount) => {
+    setPassMatch(match);
+    setPassId(id);
+    setPassAmount(amount);
+  };
   return (
     <div>
       <div className="liveMatch">
@@ -20,21 +35,66 @@ function FballUpcomingAccordion() {
           <BiLoaderCircle className="icon" /> Upcoming Match{" "}
         </span>
       </div>
-      {first5.map((result) => (
-        <Accordion defaultActiveKey="0">
-          <Card>
-            <Accordion.Toggle as={Card.Header} eventKey="1">
-              <img src={cricket} className="img-fluid" alt="" /> {result.name}{" "}
-              <span class="badge badge-danger"> Upcoming</span>
+        <PlaceBetFrom
+          passMatch={passMatch}
+          passId={passId}
+          passAmount={passAmount}
+          modalIsOpen={modalIsOpen}
+          closeModal={closeModal}
+        ></PlaceBetFrom>
+      {dbData.map((data) => (
+        <Accordion key={data._id} defaultActiveKey="0">
+          <div>
+            <Accordion.Toggle as={Card.Header} eventKey="0">
+              <img src={cricket} className="img-fluid" alt="" />
+              {data.match1} VS {data.match2}, {data.event} || {data.startdate},{" "}
+              {data.starttime} <span class="badge badge-danger">Upcoming</span>
             </Accordion.Toggle>
-            <Accordion.Collapse eventKey="1">
-              <Card.Body>{result.date}</Card.Body>
+            <Accordion.Collapse eventKey="0">
+              <div className="container">
+                <div className="row">
+                  <div className="col-md-12">
+                    <div>
+                      <Form.Row>
+                        <Form.Group onClick={openModal} as={Col}>
+                          <Form.Control
+                            type="button"
+                            value={`${data.match1} ${data.m1Amount}`}
+                            className="teambtn"
+                            onClick={() =>
+                              handlePleceFormPassData(
+                                data.match1,
+                                data._id,
+                                data.m1Amount
+                              )
+                            }
+                          />
+                        </Form.Group>
+                        <Form.Group onClick={openModal} as={Col}>
+                          <Form.Control
+                            type="button"
+                            value={`${data.match2} ${data.m2Amount}`}
+                            className="teambtn"
+                            onClick={() =>
+                              handlePleceFormPassData(
+                                data.match2,
+                                data._id,
+                                data.m2Amount
+                              )
+                            }
+                          />
+                        </Form.Group>
+                      </Form.Row>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </Accordion.Collapse>
-          </Card>
+          </div>
         </Accordion>
       ))}
     </div>
   );
 }
 
-export default FballUpcomingAccordion;
+export default CriUpcomingAccordion;

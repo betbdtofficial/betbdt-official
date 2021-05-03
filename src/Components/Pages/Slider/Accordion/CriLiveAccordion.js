@@ -10,14 +10,9 @@ function CriLiveAccordion() {
       .then((res) => res.json())
       .then((data) => setDbData(data));
   });
-  var subtitle;
   const [modalIsOpen, setIsOpen] = useState(false);
   function openModal() {
     setIsOpen(true);
-  }
-
-  function afterOpenModal() {
-    subtitle.style.color = "#f00";
   }
 
   function closeModal() {
@@ -30,7 +25,7 @@ function CriLiveAccordion() {
         closeModal={closeModal}
       ></PlaceBetFrom>
       {dbData.map((data) => (
-        <Accordion defaultActiveKey="0">
+        <Accordion key={data._id} defaultActiveKey="0">
           <div>
             <Accordion.Toggle as={Card.Header} eventKey="0">
               <img src={cricket} className="img-fluid" alt="" />

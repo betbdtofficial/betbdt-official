@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import { Button, Col, Row } from "react-bootstrap";
 import { Redirect } from "react-router";
 import { Context } from "../../../App";
-import Topnotice from "../Topnotice/Topnotice";
 import Validation from "./Validation";
 const Login = () => {
   const storage = sessionStorage.getItem("user");
@@ -50,7 +49,7 @@ const Login = () => {
   };
   return (
     <div className="mainSignup">
-      <Topnotice></Topnotice>
+      {/* <Topnotice></Topnotice> */}
       <div className="container">
         <div className="row">
           <div className="col-md-7 m-auto">

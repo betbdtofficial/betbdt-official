@@ -6,15 +6,15 @@ const UpcommingMatch = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [dbData, setDbData] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/getMatch`)
+    fetch(`http://localhost:5000/user/getUpcomingMatch`)
       .then((res) => res.json())
       .then((data) => setDbData(data));
   });
   const handleDelete = (id) => {
-    fetch(`http://localhost:5000/user/deleteMatch/${id}`, {
+    fetch(`http://localhost:5000/user/deleteUpcomingMatch/${id}`, {
       method: "DELETE",
     }).then(() => {
-      fetch(`http://localhost:5000/user/getMatch`)
+      fetch(`http://localhost:5000/user/getUpcomingMatch`)
         .then((res) => res.json())
         .then((data) => setDbData(data));
     });

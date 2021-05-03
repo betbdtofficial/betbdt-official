@@ -1,8 +1,10 @@
 .ReactModal__Content.ReactModal__Content--after-open {
-  background: #222b45 !important;
+  background: rgb(34 43 69) !important;
   padding: 20px !important;
   color: white;
+  width: 500px;
 }
 .ReactModal__Overlay.ReactModal__Overlay--after-open {
   z-index: 999;
+  background: rgb(34 43 69 / 67%) !important;
 }

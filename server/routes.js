@@ -8,7 +8,16 @@ const {
   createDepoMethod,
   deleteDepoMethod,
 } = require("./Back-end-code/DepositMethodController");
-const { getMatch, createMatch, deleteMatch } = require("./Back-end-code/MatchControllar");
+const {
+  getMatch,
+  createMatch,
+  deleteMatch,
+} = require("./Back-end-code/MatchControllar");
+const {
+  getUpcomingMatch,
+  createUpcomingMatch,
+  deleteUpcomingMatch,
+} = require("./Back-end-code/UpcomingMatchControllar");
 const {
   createWithdrawHistory,
   getWithdrawHistory,
@@ -72,9 +81,14 @@ router.get("/getDepoMethod", getDepoMethod);
 router.post("/createDepoMethod", createDepoMethod);
 router.delete("/deposit/delete/:id", deleteDepoMethod);
 
-// get match and create match and delete match
+// get Live match and create Live match and delete Live match
 router.get("/getMatch", getMatch);
 router.post("/createMatch", createMatch);
 router.delete("/deleteMatch/:id", deleteMatch);
+
+// get upcoming match and create upcoming match and delete upcoming match
+router.get("/getUpcomingMatch", getUpcomingMatch);
+router.post("/createUpcomingMatch", createUpcomingMatch);
+router.delete("/deleteUpcomingMatch/:id", deleteUpcomingMatch);
 
 module.exports = router;

@@ -20,7 +20,7 @@ const UpcommingModals = (props) => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch(`http://localhost:5000/user/createMatch`, {
+    fetch(`http://localhost:5000/user/createUpcomingMatch`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
