@@ -31,8 +31,9 @@ const PlaceBetFrom = ({
   });
   const findEl = dbData.find((data) => data._id === passId);
   const [value, setValue] = useState({
-    amount: "",
+    amount: 0,
   });
+
   const handleChange = (e) => {
     const values = { ...value };
     values[e.target.name] = e.target.value;
@@ -40,6 +41,7 @@ const PlaceBetFrom = ({
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(value.amount, (value.amount * passAmount).toFixed(2))
   };
   return (
     <div>
@@ -64,9 +66,16 @@ const PlaceBetFrom = ({
                   </span>
                 </Form.Group>
                 <Form.Group as={Col}>
-                  <h2 className="wintaka">
-                    Deposit {value.amount} TK Return 950 TK
-                  </h2>
+                  <h4 className="wintaka">
+                    <div className="d-flex align-items-center justify-content-between">
+                      <span>Deposit Amount</span>
+                      <span>{value.amount} TK</span>
+                    </div>
+                    <div className="d-flex align-items-center justify-content-between">
+                      <span>Winning Amount</span>
+                      <span>{(value.amount * passAmount).toFixed(2)} TK</span>
+                    </div>
+                  </h4>
                 </Form.Group>
               </div>
               <Form.Group>

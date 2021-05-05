@@ -15,7 +15,7 @@ const UserList = () => {
   const handleShowLive = () => setShow(true);
   const handleShowUpcome = () => setShow(true);
   const [modal, setModal] = useState(false);
-  const showModal = () => setModal(modal);
+  const showModal = () => setModal(!modal);
   const hideModal = () => setModal(modal);
   return (
     <>
@@ -33,7 +33,7 @@ const UserList = () => {
               >
                 <span>Manage Match</span>
                 <span>
-                  {modal && (
+                  {modal ? (
                     <Button
                       onClick={handleShowUpcome}
                       variant="contained"
@@ -41,8 +41,7 @@ const UserList = () => {
                     >
                       <IoIosAdd className="viewIcon" /> Add Upcomming Match
                     </Button>
-                  )}
-                  {modal && (
+                  ) : (
                     <Button
                       onClick={handleShowLive}
                       variant="contained"
@@ -75,7 +74,7 @@ const UserList = () => {
                         className="button"
                         color="secondary"
                         variant="contained"
-                        onClick={modal ? showModal : hideModal}
+                        onClick={modal ? hideModal : showModal}
                       >
                         Upcomming Match
                       </Button>
