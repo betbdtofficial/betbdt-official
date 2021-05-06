@@ -1,8 +1,8 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
-import { Modal, Table } from "react-bootstrap";
+import { Button, Modal, Table } from "react-bootstrap";
+import { FaRegEye } from "react-icons/fa";
 import Avater from "../../image/avater.png";
-
 const Modals = (props) => {
   return (
     <>
@@ -13,7 +13,14 @@ const Modals = (props) => {
         keyboard={false}
       >
         <Modal.Header closeButton>
+     
           <Modal.Title className="text-center">User Details</Modal.Title>
+          <Button color="secondary" variant="contained">
+                <span>
+                  <FaRegEye className="viewIcon" />
+                </span>{" "}
+                Update Or Edit
+              </Button>
         </Modal.Header>
         <Modal.Body>
           <div className="col-md-6 m-auto">
@@ -30,6 +37,10 @@ const Modals = (props) => {
               <tr>
                 <td>Username</td>
                 <td>{props.user.username}</td>
+              </tr>
+              <tr>
+                <td>Password</td>
+                <td>{props.user.password}</td>
               </tr>
               <tr>
                 <td>Total Balance</td>

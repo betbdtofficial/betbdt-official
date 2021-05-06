@@ -1,4 +1,5 @@
 import { Button } from "@material-ui/core";
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import React, { useEffect, useState } from "react";
 import { FaRegEye } from "react-icons/fa";
 // import Modals from "../Deposit/Modals";
@@ -53,7 +54,12 @@ const ClubIndex = () => {
             <td>{data.balance} BDT</td>
             <td>
               <span>
-                <Button onClick={()=>handleShow(data._id)} color="primary" variant="contained">
+                <Button onClick={()=>handleShow(data._id)} color="secondary" variant="contained">
+                  <span>
+                    <DeleteForeverIcon className="viewIcon" />
+                  </span>{" "}
+                  Cancel
+                </Button> <Button onClick={()=>handleShow(data._id)} color="primary" variant="contained">
                   <span>
                     <FaRegEye className="viewIcon" />
                   </span>{" "}

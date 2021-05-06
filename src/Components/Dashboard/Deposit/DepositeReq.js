@@ -93,6 +93,14 @@ const DepositReq = () => {
                   color="secondary"
                   variant="contained"
                 >
+                  Cancel
+                </Button>
+              </span> <span>
+                <Button
+                  onClick={()=>handleDeposit(data._id, data)}
+                  color="secondary"
+                  variant="contained"
+                >
                   Pending
                 </Button>
               </span>

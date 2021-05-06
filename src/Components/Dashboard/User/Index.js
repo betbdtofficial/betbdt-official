@@ -1,8 +1,8 @@
 import { Button } from "@material-ui/core";
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import React, { useEffect, useState } from "react";
 import { FaRegEye } from "react-icons/fa";
 import Modals from "./Modals";
-
 const Index = () => {
   const [dbUser, setDbUser] = useState([]);
   useEffect(() => {
@@ -63,6 +63,15 @@ const Index = () => {
               <td>
                 <span>
                   <Button
+                    onClick={() => handleShow(data._id)}
+                    color="secondary"
+                    variant="contained"
+                  >
+                    <span>
+                      <DeleteForeverIcon className="viewIcon" />
+                    </span>{" "}
+                    Banned
+                  </Button> <Button
                     onClick={() => handleShow(data._id)}
                     color="primary"
                     variant="contained"
