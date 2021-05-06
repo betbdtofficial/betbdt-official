@@ -14,35 +14,47 @@ const customStyles = {
   },
 };
 Modal.setAppElement("#root");
-const PlaceBetFrom = ({
+const LiveBetPlace = ({
   modalIsOpen,
   closeModal,
-  passMatch,
-  passId,
-  passAmount,
+  passUniqueId,
+  passValue,
+  passValueAmount,
 }) => {
   const storage = sessionStorage.getItem("user");
   const getUser = JSON.parse(storage);
-  // upcoming match
-  const [dbData, setDbData] = useState([]);
+//   // upcoming match
+//   const [dbData, setDbData] = useState([]);
+//   useEffect(() => {
+//     fetch(`http://localhost:5000/user/getUpcomingMatch`)
+//       .then((res) => res.json())
+//       .then((data) => setDbData(data));
+//   });
+//   const findEl = dbData.find((data) => data._id === passId);
+//   const [value, setValue] = useState({
+//     amount: 0,
+//   });
+  // live match
+  const [live, setLive] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/getUpcomingMatch`)
+    fetch(`http://localhost:5000/user/getMatch`)
       .then((res) => res.json())
-      .then((data) => setDbData(data));
+      .then((data) => setLive(data));
   });
-  const findEl = dbData.find((data) => data._id === passId);
-  const [value, setValue] = useState({
+  const findElement = live.find((data) => data._id === passUniqueId);
+  const [liveValue, setLiveValue] = useState({
     amount: 0,
   });
 
   const handleChange = (e) => {
-    const values = { ...value};
+    const values = {...liveValue };
     values[e.target.name] = e.target.value;
-    setValue(values);
+    setLiveValue(values);
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(value.amount, (value.amount * passAmount).toFixed(2));
+    // console.log("Upcoming"+value.amount, (value.amount * passAmount).toFixed(2));
+    console.log("Live"+liveValue.amount, (liveValue.amount * passValueAmount).toFixed(2));
   };
   return (
     <div>
@@ -57,27 +69,27 @@ const PlaceBetFrom = ({
             <h1 className="text-center">Place Bet Option</h1> <hr /> <br />
             <Form onSubmit={handleSubmit}>
               <Form.Label>
-                {findEl?.match1} VS{" "}
-                {findEl?.match2} ||{" "}
-                {findEl?.event} ||
-                {findEl?.startdate} ,{" "}
-                {findEl?.starttime}
+                {findElement?.match1} VS{" "}
+                {findElement?.match2} ||{" "}
+                {findElement?.event} ||
+                {findElement?.startdate} ,{" "}
+                {findElement?.starttime}
               </Form.Label>{" "}
               <div className="Form Row">
                 <Form.Group as={Col}>
                   <span>
-                    {passMatch} <span className="badge badge-danger">{passAmount}</span>{" "}
+                    {passValue} <span className="badge badge-danger">{passValueAmount}</span>{" "}
                   </span>
                 </Form.Group>
                 <Form.Group as={Col}>
                   <h4 className="wintaka">
                     <div className="d-flex align-items-center justify-content-between">
                       <span>Deposit Amount</span>
-                      <span>{value.amount} TK</span>
+                      <span>{liveValue.amount} TK</span>
                     </div>
                     <div className="d-flex align-items-center justify-content-between">
                       <span>Winning Amount</span>
-                      <span>{(value.amount * passAmount ).toFixed(2)} TK</span>
+                      <span>{(liveValue.amount * passValueAmount).toFixed(2)} TK</span>
                     </div>
                   </h4>
                 </Form.Group>
@@ -112,4 +124,4 @@ const PlaceBetFrom = ({
   );
 };
 
-export default PlaceBetFrom;
+export default LiveBetPlace;

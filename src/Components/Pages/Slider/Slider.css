@@ -6,11 +6,14 @@
   padding-top: 50px;
   padding-bottom: 50px;
 }
-input.teambtn {
+button.teambtn {
   background: #2ab046;
   color: white;
   font-size: 19px;
   border: none;
+}
+button.teambtn:hover {
+  background: #088d25 !important;
 }
 /* .collapse.show {
   background: #14192a;

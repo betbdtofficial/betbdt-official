@@ -11,8 +11,10 @@ import UpcommingModals from "./UpcommingModals";
 
 const UserList = () => {
   const [show, setShow] = useState(false);
+  const [showLive, setShowLive] = useState(false);
   const handleClose = () => setShow(false);
-  const handleShowLive = () => setShow(true);
+  const handleCloseLive = () => setShowLive(false);
+  const handleShowLive = () => setShowLive(true);
   const handleShowUpcome = () => setShow(true);
   const [modal, setModal] = useState(false);
   const showModal = () => setModal(!modal);
@@ -20,8 +22,8 @@ const UserList = () => {
   return (
     <>
       {/* modal */}
-      <LiveModals show={show} handleClose={handleClose} />
       <UpcommingModals show={show} handleClose={handleClose} />
+      <LiveModals show={showLive} handleClose={handleCloseLive} />
       {/* modal */}
       <div className="matchWrapped">
         <div className="container">
