@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Context } from "../../../App";
 import ClubHolder from "../../ClubHolder/ClubHolder";
+import MyStatement from "../../MyStatement/MyStatement";
 import Error from "../Error/Error";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
@@ -29,6 +30,9 @@ const FrontEnd = () => {
           </Route>
           <Route path="/signup">
             <SignUp />
+          </Route>
+          <Route path="/myStatement">
+            <MyStatement />
           </Route>
           <Route path="/myprofile">
             <Profile />

@@ -39,6 +39,9 @@ const Header = () => {
             <Nav.Link as={NavLink} exact activeStyle={activeMenu} to="/clubholderDeshboard">
             Dashboard
             </Nav.Link>
+            <Nav.Link as={NavLink} exact activeStyle={activeMenu} to="/myStatement">
+            My Statement
+            </Nav.Link>
             {!getUser?.user ? (
               <Nav.Link
                 as={NavLink}
