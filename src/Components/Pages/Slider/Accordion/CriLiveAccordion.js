@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Accordion, Card, Col, Form } from "react-bootstrap";
+import { Accordion, Button, Card, Col, Form } from "react-bootstrap";
 import cricket from "../../../image/SliderImg/cricket.png";
 import "../Slider.css";
-import PlaceBetFrom from "./PlaceBetFrom";
+import LiveBetPlace from './LiveBetPlace';
 function CriLiveAccordion() {
   const [dbData, setDbData] = useState([]);
   useEffect(() => {
@@ -18,43 +18,267 @@ function CriLiveAccordion() {
   function closeModal() {
     setIsOpen(false);
   }
+  const [passUniqueId, setUniquePassId] = useState([]);
+  const [passValue, setPassValue] = useState([]);
+  const [passValueAmount, setPassValueAmount] = useState([]);
+  const handlePleceFormPassData = (id, match, amount) => {
+    setUniquePassId(id);
+    setPassValue(match);
+    setPassValueAmount(amount);
+  };
   return (
     <div>
-      <PlaceBetFrom
+      <LiveBetPlace
+        passUniqueId={passUniqueId}
+        passValue={passValue}
+        passValueAmount={passValueAmount}
         modalIsOpen={modalIsOpen}
         closeModal={closeModal}
-      ></PlaceBetFrom>
+      ></LiveBetPlace>
       {dbData.map((data) => (
         <Accordion key={data._id} defaultActiveKey="0">
           <div>
             <Accordion.Toggle as={Card.Header} eventKey="0">
               <img src={cricket} className="img-fluid" alt="" />
               {data.match1} VS {data.match2}, {data.event} || {data.startdate},{" "}
-              {data.starttime} <span class="badge badge-danger">Live</span>
+              {data.starttime}{" "}
+              <span class="badge badge-danger">Live Score</span>
             </Accordion.Toggle>
             <Accordion.Collapse eventKey="0">
               <div className="container">
                 <div className="row">
-                  <div className="col-md-12">
+                  <div className="col-md-12 p-0">
                     <div>
-                      <Form.Row>
-                        <Form.Group as={Col}>
-                          <Form.Control
-                            type="submit"
-                            value={`${data.match1} ${data.m1Amount}`}
-                            className="teambtn"
-                            onClick={openModal}
-                          />
-                        </Form.Group>
-                        <Form.Group as={Col}>
-                          <Form.Control
-                            type="submit"
-                            value={`${data.match2} ${data.m2Amount}`}
-                            className="teambtn"
-                            onClick={openModal}
-                          />
-                        </Form.Group>
-                      </Form.Row>
+                      <Accordion defaultActiveKey="0">
+                        <Accordion.Toggle as={Card.Header} eventKey="0">
+                          {data.title1}{" "}
+                          <span class="badge badge-danger">Live</span>
+                        </Accordion.Toggle>
+                        <Accordion.Collapse eventKey="0">
+                          <Form.Row>
+                            <Form.Group onClick={openModal} as={Col}>
+                              <Button
+                                type="submit"
+                                className="teambtn form-control bg-sucess"
+                                onClick={() =>
+                                  handlePleceFormPassData(
+                                    data._id,
+                                    data.value1,
+                                    data.v1Amount
+                                  )
+                                }
+                              >
+                                {data.value1}{" "}
+                                <span className="badge badge-danger">
+                                  {data.v1Amount}
+                                </span>
+                              </Button>
+                            </Form.Group>
+                            <Form.Group onClick={openModal} as={Col}>
+                              <Button
+                                type="submit"
+                                className="teambtn form-control bg-sucess"
+                                onClick={() =>
+                                  handlePleceFormPassData(
+                                    data._id,
+                                    data.value2,
+                                    data.v2Amount
+                                  )
+                                }
+                              >
+                                {data.value2}{" "}
+                                <span class="badge badge-danger">
+                                  {data.v2Amount}
+                                </span>
+                              </Button>
+                            </Form.Group>
+                          </Form.Row>
+                        </Accordion.Collapse>
+                      </Accordion>
+                      <Accordion defaultActiveKey="0">
+                        <Accordion.Toggle as={Card.Header} eventKey="0">
+                          {data.title2}{" "}
+                          <span class="badge badge-danger">Live</span>
+                        </Accordion.Toggle>
+                        <Accordion.Collapse eventKey="0">
+                          <Form.Row>
+                            <Form.Group onClick={openModal} as={Col}>
+                              <Button
+                                type="submit"
+                                className="teambtn form-control bg-sucess"
+                                onClick={() =>
+                                  handlePleceFormPassData(
+                                    data._id,
+                                    data.value3,
+                                    data.v3Amount
+                                  )
+                                }
+                              >
+                                {data.value3}{" "}
+                                <span class="badge badge-danger">
+                                  {data.v3Amount}
+                                </span>
+                              </Button>
+                            </Form.Group>
+                            <Form.Group onClick={openModal} as={Col}>
+                              <Button
+                                type="submit"
+                                className="teambtn form-control bg-sucess"
+                                onClick={() =>
+                                  handlePleceFormPassData(
+                                    data._id,
+                                    data.value4,
+                                    data.v4Amount
+                                  )
+                                }
+                              >
+                                {data.value4}{" "}
+                                <span class="badge badge-danger">
+                                  {data.v4Amount}
+                                </span>
+                              </Button>
+                            </Form.Group>
+                          </Form.Row>
+                        </Accordion.Collapse>
+                      </Accordion>
+                      <Accordion defaultActiveKey="0">
+                        <Accordion.Toggle as={Card.Header} eventKey="0">
+                          {data.title3}{" "}
+                          <span class="badge badge-danger">Live</span>
+                        </Accordion.Toggle>
+                        <Accordion.Collapse eventKey="0">
+                          <Form.Row>
+                            <Form.Group onClick={openModal} as={Col}>
+                              <Button
+                                type="submit"
+                                className="teambtn form-control bg-sucess"
+                                onClick={() =>
+                                  handlePleceFormPassData(
+                                    data._id,
+                                    data.value5,
+                                    data.v5Amount
+                                  )
+                                }
+                              >
+                                {data.value5}{" "}
+                                <span class="badge badge-danger">
+                                  {data.v5Amount}
+                                </span>
+                              </Button>
+                            </Form.Group>
+                            <Form.Group onClick={openModal} as={Col}>
+                              <Button
+                                type="submit"
+                                className="teambtn form-control bg-sucess"
+                                onClick={() =>
+                                  handlePleceFormPassData(
+                                    data._id,
+                                    data.value6,
+                                    data.v6Amount
+                                  )
+                                }
+                              >
+                                {data.value6}{" "}
+                                <span class="badge badge-danger">
+                                  {data.v6Amount}
+                                </span>
+                              </Button>
+                            </Form.Group>
+                          </Form.Row>
+                        </Accordion.Collapse>
+                      </Accordion>
+                      <Accordion defaultActiveKey="0">
+                        <Accordion.Toggle as={Card.Header} eventKey="0">
+                          {data.title4}{" "}
+                          <span class="badge badge-danger">Live</span>
+                        </Accordion.Toggle>
+                        <Accordion.Collapse eventKey="0">
+                          <Form.Row>
+                            <Form.Group onClick={openModal} as={Col}>
+                              <Button
+                                type="submit"
+                                className="teambtn form-control bg-sucess"
+                                onClick={() =>
+                                  handlePleceFormPassData(
+                                    data._id,
+                                    data.value7,
+                                    data.v7Amount
+                                  )
+                                }
+                              >
+                                {data.value7}{" "}
+                                <span class="badge badge-danger">
+                                  {data.v7Amount}
+                                </span>
+                              </Button>
+                            </Form.Group>
+                            <Form.Group onClick={openModal} as={Col}>
+                              <Button
+                                type="submit"
+                                className="teambtn form-control bg-sucess"
+                                onClick={() =>
+                                  handlePleceFormPassData(
+                                    data._id,
+                                    data.value8,
+                                    data.v8Amount
+                                  )
+                                }
+                              >
+                                {data.value8}{" "}
+                                <span class="badge badge-danger">
+                                  {data.v8Amount}
+                                </span>
+                              </Button>
+                            </Form.Group>
+                          </Form.Row>
+                        </Accordion.Collapse>
+                      </Accordion>
+                      <Accordion defaultActiveKey="0">
+                        <Accordion.Toggle as={Card.Header} eventKey="0">
+                          {data.title5}{" "}
+                          <span class="badge badge-danger">Live</span>
+                        </Accordion.Toggle>
+                        <Accordion.Collapse eventKey="0">
+                          <Form.Row>
+                            <Form.Group onClick={openModal} as={Col}>
+                              <Button
+                                type="submit"
+                                className="teambtn form-control bg-sucess"
+                                onClick={() =>
+                                  handlePleceFormPassData(
+                                    data._id,
+                                    data.value9,
+                                    data.v9Amount
+                                  )
+                                }
+                              >
+                                {data.value9}{" "}
+                                <span class="badge badge-danger">
+                                  {data.v9Amount}
+                                </span>
+                              </Button>
+                            </Form.Group>
+                            <Form.Group onClick={openModal} as={Col}>
+                              <Button
+                                type="submit"
+                                className="teambtn form-control bg-sucess"
+                                onClick={() =>
+                                  handlePleceFormPassData(
+                                    data._id,
+                                    data.value10,
+                                    data.v10Amount
+                                  )
+                                }
+                              >
+                                {data.value10}{" "}
+                                <span class="badge badge-danger">
+                                  {data.v10Amount}
+                                </span>
+                              </Button>
+                            </Form.Group>
+                          </Form.Row>
+                        </Accordion.Collapse>
+                      </Accordion>
                     </div>
                   </div>
                 </div>

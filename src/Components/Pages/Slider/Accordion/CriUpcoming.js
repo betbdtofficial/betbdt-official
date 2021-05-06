@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Accordion, Card, Col, Form } from "react-bootstrap";
+import { Accordion, Button, Card, Col, Form } from "react-bootstrap";
 import { BiLoaderCircle } from "react-icons/bi";
 import cricket from "../../../image/SliderImg/cricket.png";
 import "../Slider.css";
@@ -35,13 +35,13 @@ function CriUpcomingAccordion() {
           <BiLoaderCircle className="icon" /> Upcoming Match{" "}
         </span>
       </div>
-        <PlaceBetFrom
-          passMatch={passMatch}
-          passId={passId}
-          passAmount={passAmount}
-          modalIsOpen={modalIsOpen}
-          closeModal={closeModal}
-        ></PlaceBetFrom>
+      <PlaceBetFrom
+        passMatch={passMatch}
+        passId={passId}
+        passAmount={passAmount}
+        modalIsOpen={modalIsOpen}
+        closeModal={closeModal}
+      ></PlaceBetFrom>
       {dbData.map((data) => (
         <Accordion key={data._id} defaultActiveKey="0">
           <div>
@@ -57,10 +57,10 @@ function CriUpcomingAccordion() {
                     <div>
                       <Form.Row>
                         <Form.Group onClick={openModal} as={Col}>
-                          <Form.Control
+                          <Button
                             type="button"
                             value={`${data.match1} ${data.m1Amount}`}
-                            className="teambtn"
+                            className="teambtn form-control"
                             onClick={() =>
                               handlePleceFormPassData(
                                 data.match1,
@@ -68,13 +68,18 @@ function CriUpcomingAccordion() {
                                 data.m1Amount
                               )
                             }
-                          />
+                          >
+                            {data.match1}{" "}
+                            <span class="badge badge-danger">
+                              {data.m1Amount}
+                            </span>
+                          </Button>
                         </Form.Group>
                         <Form.Group onClick={openModal} as={Col}>
-                          <Form.Control
+                        <Button
                             type="button"
-                            value={`${data.match2} ${data.m2Amount}`}
-                            className="teambtn"
+                            value={`${data.match1} ${data.m1Amount}`}
+                            className="teambtn form-control"
                             onClick={() =>
                               handlePleceFormPassData(
                                 data.match2,
@@ -82,7 +87,12 @@ function CriUpcomingAccordion() {
                                 data.m2Amount
                               )
                             }
-                          />
+                          >
+                            {data.match2}{" "}
+                            <span class="badge badge-danger">
+                              {data.m2Amount}
+                            </span>
+                          </Button>
                         </Form.Group>
                       </Form.Row>
                     </div>

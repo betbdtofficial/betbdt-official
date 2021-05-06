@@ -1,6 +1,7 @@
 import { Button } from "@material-ui/core";
-import { Delete, Edit } from "@material-ui/icons";
+import { Delete, Edit, Visibility } from "@material-ui/icons";
 import React, { useEffect, useState } from "react";
+import LiveViewModals from './LiveView';
 
 const LiveMatch = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -19,8 +20,19 @@ const LiveMatch = () => {
         .then((data) => setDbData(data));
     });
   };
+  const [uniqueMatch, setUniqueMatch] = useState([]);
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = (id) => {
+    setShow(true);
+    const findEl = dbData.find((data) => data._id === id);
+    setUniqueMatch(findEl);
+  };
   return (
     <>
+    {/* modal */}
+    <LiveViewModals show={show} match={uniqueMatch} handleClose={handleClose} />
+      {/* modal */}
       <div className="matchHeading d-flex align-items-center justify-content-between">
         <span className="head">
           Live Match List <span class="badge badge-danger">Live</span>
@@ -83,6 +95,17 @@ const LiveMatch = () => {
                   >
                     {" "}
                     <Delete />{" "}
+                  </Button>{" "}
+                </span>
+                <span>
+                  {" "}
+                  <Button
+                    onClick={() => handleShow(data._id)}
+                    color="primary"
+                    variant="contained"
+                  >
+                    {" "}
+                    <Visibility />{" "}
                   </Button>{" "}
                 </span>
               </td>
