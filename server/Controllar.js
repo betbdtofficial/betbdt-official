@@ -60,11 +60,31 @@ exports.registraionUser = (req, res) => {
     });
 };
 
+// user password update
+exports.changePassword = (req, res) => {
+  const { id } = req.params;
+  const { changePass } = req.body;
+  UserInfo.findByIdAndUpdate(
+    { _id: id },
+    { $set: { password: changePass, password2: changePass } },
+    { new: true }
+  ).then(() => {
+    UserInfo.find()
+      .sort({ _id: -1 })
+      .then((result) => {
+        res.send(result);
+      })
+      .catch((err) => {
+        res.send(err.message);
+      });
+  });
+};
+
 // Withdraw update
 exports.withdrawUpdate = (req, res) => {
   UserInfo.findOneAndUpdate(
     { username: req.params.user },
-    { $set: { balance: req.body.balance - req.body.amount} },
+    { $set: { balance: req.body.balance - req.body.amount } },
     { new: true }
   ).then(() => {
     UserInfo.find()
@@ -81,13 +101,15 @@ exports.withdrawUpdate = (req, res) => {
 // Withdraw Post request
 const Widthraw = require("./WithdrawSchema");
 exports.withdrawReq = (req, res) => {
-  const { method, type, amount, to, user } = req.body;
+  const { method, type, amount, to, username, date, button } = req.body;
   const WidthrawRequest = new Widthraw({
     method: method,
     type: type,
     amount: amount,
     to: to,
-    user: user,
+    username: username,
+    date: date,
+    button: button,
   });
   WidthrawRequest.save().then((result) => {
     UserInfo.find()

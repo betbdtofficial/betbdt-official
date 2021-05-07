@@ -31,7 +31,7 @@ const WithdrawLog = () => {
           <th>Username</th>
           <th>Recived Num</th>
           <th>Account Type</th>
-          <th>Gateway</th>
+          <th>Pay Method</th>
           <th>Request Amount</th>
           <th>Date</th>
           <th>Status</th>
@@ -50,7 +50,7 @@ const WithdrawLog = () => {
             <td>
               <span>
                 <Button color="primary" variant="contained">
-                  completed
+                  {data.button}
                 </Button>
               </span>
             </td>

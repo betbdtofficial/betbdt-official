@@ -8,13 +8,14 @@ exports.getDepoHistory = (req, res) => {
     });
 };
 exports.createDepoHistory = (req, res) => {
-  const { username, from, method, amount, date } = req.body;
+  const { username, from, method, amount, date, button } = req.body;
   const Deposit = new depoHistory({
     username,
     from,
     method,
     amount,
     date,
+    button,
   });
   Deposit.save().then(() => {
     depoHistory

@@ -8,10 +8,41 @@ const UpcommingModals = (props) => {
     match2: "",
     m1Amount: "",
     m2Amount: "",
+
+    title1: "",
+    value1: "",
+    v1Amount: "",
+    value2: "",
+    v2Amount: "",
+    
+    title2: "",
+    value3: "",
+    v3Amount: "",
+    value4: "",
+    v4Amount: "",
+
+    title3: "",
+    value5: "",
+    v5Amount: "",
+    value6: "",
+    v6Amount: "",
+
+    title4: "",
+    value7: "",
+    v7Amount: "",
+    value8: "",
+    v8Amount: "",
+
+    title5: "",
+    value9: "",
+    v9Amount: "",
+    value10: "",
+    v10Amount: "",
+
     event: "",
     startdate: "",
     starttime: "",
-    success: ""
+    success: "",
   });
   const handleChange = (e) => {
     const inputValue = { ...value };
@@ -42,13 +73,13 @@ const UpcommingModals = (props) => {
       >
         <form onSubmit={handleSubmit}>
           <Modal.Header closeButton>
-            <Modal.Title className="text-center">ADD UPCOMING MATCH</Modal.Title>
+            <Modal.Title className="text-center">ADD LIVE MATCH</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <div>
-              {
-                value.success && <p className="alert alert-success">{value.success}</p>
-              }
+              {value.success && (
+                <p className="alert alert-success">{value.success}</p>
+              )}
               <Row>
                 <Col>
                   <label htmlFor="match1">Match 1</label>
@@ -111,6 +142,311 @@ const UpcommingModals = (props) => {
                     onChange={handleChange}
                     autoComplete="off"
                     placeholder="Event"
+                    required
+                  />
+                </Col>
+              </Row>
+              {/* title 1 */}
+              <Row style={{marginBottom: "10px"}}>
+                <Col>
+                  <label htmlFor="title">Title 1</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="title1"
+                    onChange={handleChange}
+                    autoComplete="off"
+                    placeholder="Title 1"
+                    required
+                  />
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="value1"
+                    onChange={handleChange}
+                    autoComplete="off"
+                    placeholder="Value 1"
+                    required
+                  />
+                </Col>
+                <Col>
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="v1Amount"
+                    onChange={handleChange}
+                    autoComplete="off"
+                    placeholder="Amount"
+                    required
+                  />
+                </Col>
+                <Col>
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="value2"
+                    onChange={handleChange}
+                    autoComplete="off"
+                    placeholder="Value 2"
+                    required
+                  />
+                </Col>
+                <Col>
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="v2Amount"
+                    onChange={handleChange}
+                    autoComplete="off"
+                    placeholder="Amount"
+                    required
+                  />
+                </Col>
+              </Row>
+              {/* title 2 */}
+              <Row style={{marginBottom: "10px"}}>
+                <Col>
+                  <label htmlFor="title">Title 2</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="title2"
+                    onChange={handleChange}
+                    autoComplete="off"
+                    placeholder="Title 2"
+                    required
+                  />
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="value3"
+                    onChange={handleChange}
+                    autoComplete="off"
+                    placeholder="Value 1"
+                    required
+                  />
+                </Col>
+                <Col>
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="v3Amount"
+                    onChange={handleChange}
+                    autoComplete="off"
+                    placeholder="Amount"
+                    required
+                  />
+                </Col>
+                <Col>
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="value4"
+                    onChange={handleChange}
+                    autoComplete="off"
+                    placeholder="Value 2"
+                    required
+                  />
+                </Col>
+                <Col>
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="v4Amount"
+                    onChange={handleChange}
+                    autoComplete="off"
+                    placeholder="Amount"
+                    required
+                  />
+                </Col>
+              </Row>
+              {/* title 3 */}
+              <Row style={{marginBottom: "10px"}}>
+                <Col>
+                  <label htmlFor="title">Title 3</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="title3"
+                    onChange={handleChange}
+                    autoComplete="off"
+                    placeholder="Title 3"
+                    required
+                  />
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="value5"
+                    onChange={handleChange}
+                    autoComplete="off"
+                    placeholder="Value 1"
+                    required
+                  />
+                </Col>
+                <Col>
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="v5Amount"
+                    onChange={handleChange}
+                    autoComplete="off"
+                    placeholder="Amount"
+                    required
+                  />
+                </Col>
+                <Col>
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="value6"
+                    onChange={handleChange}
+                    autoComplete="off"
+                    placeholder="Value 2"
+                    required
+                  />
+                </Col>
+                <Col>
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="v6Amount"
+                    onChange={handleChange}
+                    autoComplete="off"
+                    placeholder="Amount"
+                    required
+                  />
+                </Col>
+              </Row>
+              {/* title 4 */}
+              <Row style={{marginBottom: "10px"}}>
+                <Col>
+                  <label htmlFor="title">Title 4</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="title4"
+                    onChange={handleChange}
+                    autoComplete="off"
+                    placeholder="Title 4"
+                    required
+                  />
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="value7"
+                    onChange={handleChange}
+                    autoComplete="off"
+                    placeholder="Value 1"
+                    required
+                  />
+                </Col>
+                <Col>
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="v7Amount"
+                    onChange={handleChange}
+                    autoComplete="off"
+                    placeholder="Amount"
+                    required
+                  />
+                </Col>
+                <Col>
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="value8"
+                    onChange={handleChange}
+                    autoComplete="off"
+                    placeholder="Value 2"
+                    required
+                  />
+                </Col>
+                <Col>
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="v8Amount"
+                    onChange={handleChange}
+                    autoComplete="off"
+                    placeholder="Amount"
+                    required
+                  />
+                </Col>
+              </Row>
+              {/* TITLE 5 */}
+              <Row style={{marginBottom: "10px"}}>
+                <Col>
+                  <label htmlFor="title">Title 5</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="title5"
+                    onChange={handleChange}
+                    autoComplete="off"
+                    placeholder="Title 5"
+                    required
+                  />
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="value9"
+                    onChange={handleChange}
+                    autoComplete="off"
+                    placeholder="Value 1"
+                    required
+                  />
+                </Col>
+                <Col>
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="v9Amount"
+                    onChange={handleChange}
+                    autoComplete="off"
+                    placeholder="Amount"
+                    required
+                  />
+                </Col>
+                <Col>
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="value10"
+                    onChange={handleChange}
+                    autoComplete="off"
+                    placeholder="Value 2"
+                    required
+                  />
+                </Col>
+                <Col>
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="v10Amount"
+                    onChange={handleChange}
+                    autoComplete="off"
+                    placeholder="Amount"
                     required
                   />
                 </Col>

@@ -17,8 +17,9 @@ const DepositReq = () => {
     method: "",
     amount: "",
     from: "",
-    user: "",
-    date: ""
+    username: "",
+    date: "",
+    button: ""
   });
   const handleChange = (e) => {
     const values = { ...value };
@@ -35,8 +36,9 @@ const DepositReq = () => {
       return;
     }
     const deposit = { ...value };
-    deposit.user = getUser.user;
+    deposit.username = getUser.user;
     deposit.date = time;
+    deposit.button = "Pending"
     // send deposit request
     fetch(`http://localhost:5000/user/createDeposit`, {
       method: "POST",

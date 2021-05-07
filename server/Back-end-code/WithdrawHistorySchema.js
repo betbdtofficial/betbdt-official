@@ -23,6 +23,10 @@ const WithdrawHistorySchema = new Schema({
     date: {
         type: String,
         required: true
+    },
+    button: {
+        type: String,
+        required: true
     }
 })
 const WithdrawHistory = model("withdrawHistory", WithdrawHistorySchema)

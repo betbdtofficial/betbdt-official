@@ -7,12 +7,13 @@ exports.getDeposit = (req, res) => {
     });
 };
 exports.createDeposit = (req, res) => {
-  const { method, amount, from, user, date } = req.body;
+  const { method, amount, from, username,button, date } = req.body;
   const deposit = new Deposit({
     method,
     amount,
     from,
-    user,
+    username,
+    button,
     date
   });
   deposit.save().then(() => {

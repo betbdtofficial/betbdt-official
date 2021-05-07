@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Context } from "../../../App";
-import ClubHolder from "../../ClubHolder/ClubHolder";
 import MyStatement from "../../MyStatement/MyStatement";
 import Error from "../Error/Error";
 import Footer from "../Footer/Footer";
@@ -25,9 +24,9 @@ const FrontEnd = () => {
           <Route path="/login">
             <Login />
           </Route>
-          <Route path="/clubholderDeshboard">
+          {/* <Route path="/clubholderDeshboard">
             <ClubHolder />
-          </Route>
+          </Route> */}
           <Route path="/signup">
             <SignUp />
           </Route>

@@ -43,7 +43,7 @@ const DepoHistory = () => {
             <td>
               <span>
                 <Button color="primary" variant="contained">
-                  Completed
+                  {data.button}
                 </Button>
               </span>
             </td>

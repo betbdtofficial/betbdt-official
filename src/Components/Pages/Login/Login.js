@@ -17,7 +17,6 @@ const Login = () => {
     username: "",
     password: "",
   });
-  const pass = dbData.find((pass) => pass.password === value.password); // Number already exist check
   const username = dbData.find(
     (username) => username.username === value.username
   ); // Username already exist check
@@ -30,16 +29,20 @@ const Login = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    
-    setErrors(Validation(value, username, pass));
+
+    setErrors(Validation(value, username?.username, username?.password));
     if (
       value.username !== username?.username &&
-      value.password !== pass?.password
+      value.password !== username?.password
     ) {
+      return;
+    } else if (value.username !== username?.username) {
+      return;
+    } else if (value.password !== username?.password) {
       return;
     } else if (
       value.username === username?.username &&
-      value.password === pass?.password
+      value.password === username?.password
     ) {
       const user = { user: username?.username };
       sessionStorage.setItem("user", JSON.stringify(user));
@@ -105,8 +108,8 @@ const Login = () => {
                   </Col>
                 </Row>
                 <br />
-                <Button className="form-control signupBtn"  type="submit">
-                  Log In   {getUser?.user && <Redirect to="/" />}
+                <Button className="form-control signupBtn" type="submit">
+                  Log In {getUser?.user && <Redirect to="/" />}
                 </Button>
               </form>
             </div>

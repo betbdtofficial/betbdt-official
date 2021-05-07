@@ -20,6 +20,10 @@ const depoHisSchema = new Schema({
     type: String,
     required: true,
   },
+  button: {
+    type: String,
+    required: true
+  }
 });
 const depoHistory = model("depoHistory", depoHisSchema);
 module.exports = depoHistory;

@@ -35,6 +35,7 @@ const {
   withdrawGet,
   withdrawDelete,
   withdrawUpdate,
+  changePassword,
 } = require("./Controllar");
 const {
   getDeposit,
@@ -46,6 +47,7 @@ const router = require("express").Router();
 router.get("/", getUser); //Get User Info
 router.get("/specificUser", specificUser); // Get Specific User
 router.post("/", registraionUser); //User Registration
+router.put("/passChange/:id", changePassword)// user Password update
 
 // withdraw request
 router.post("/withdrawReq", withdrawReq);

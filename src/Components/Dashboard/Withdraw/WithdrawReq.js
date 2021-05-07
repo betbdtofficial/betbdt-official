@@ -23,12 +23,13 @@ const WithdrawReq = () => {
     });
     // Withdraw History Create
     const WithHistory = {
-      username: data.user,
+      username: data.username,
       number: data.to,
       type: data.type,
       method: data.method,
       amount: data.amount,
-      date: time
+      date: time,
+      button: "Completed"
     }
     fetch(`http://localhost:5000/user/createWithdrawHistory`, {
       method: "POST",
@@ -61,8 +62,9 @@ const WithdrawReq = () => {
           <th>Username</th>
           <th>Recived Num</th>
           <th>Account Type</th>
-          <th>Gateway</th>
+          <th>Pay Method</th>
           <th>Request Amount</th>
+          <th>Date</th>
           <th>Status</th>
         </tr>
         {withdraw.filter((value)=>{
@@ -70,11 +72,12 @@ const WithdrawReq = () => {
           else if(value.user.toLowerCase().includes(searchTerm.toLowerCase())) return value
         }).map((data) => (
           <tr>
-            <td>{data.user}</td>
+            <td>{data.username}</td>
             <td>{data.to}</td>
             <td>{data.type}</td>
             <td>{data.method}</td>
             <td>{data.amount} BDT</td>
+            <td>{data.date}</td>
             <td>
               <span>
                 <Button
@@ -82,7 +85,7 @@ const WithdrawReq = () => {
                   color="secondary"
                   variant="contained"
                 >
-                  Pending
+                  {data.button}
                 </Button>
               </span>
             </td>

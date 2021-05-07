@@ -3,6 +3,9 @@ import { Button, Col, Form } from "react-bootstrap";
 import payment from "../../image/payment-method.png";
 import { Validation } from "./Validation";
 const WithdrawReq = () => {
+  const today = Date.now();
+  const time = new Intl.DateTimeFormat('en-US', {year: 'numeric', month: '2-digit',day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}).format(today)
+
   const storage = sessionStorage.getItem("user");
   const getUser = JSON.parse(storage);
   const [values, setValues] = useState({
@@ -10,7 +13,9 @@ const WithdrawReq = () => {
     type: "",
     amount: "",
     to: "",
-    user: "",
+    username: "",
+    date: "",
+    button: ""
   });
   const handleChange = (e) => {
     const copyValue = { ...values };
@@ -46,7 +51,9 @@ const WithdrawReq = () => {
       return;
     }
     const withdraw = { ...values };
-    withdraw.user = getUser.user;
+    withdraw.username = getUser.user;
+    withdraw.date = time;
+    withdraw.button = "Pending"
     // send withdraw request
     fetch(`http://localhost:5000/user/withdrawReq`, {
       method: "POST",

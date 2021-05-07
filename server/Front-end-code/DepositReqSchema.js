@@ -13,11 +13,15 @@ const DepositSchema = new Schema({
         type: String,
         required: true
     },
-    user: {
+    username: {
         type: String,
         required: true
     },
     date: {
+        type: String,
+        required: true
+    },
+    button:{
         type: String,
         required: true
     }
