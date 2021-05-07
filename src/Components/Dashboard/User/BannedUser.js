@@ -1,7 +1,7 @@
 import { Button } from "@material-ui/core";
+import BathtubIcon from "@material-ui/icons/Bathtub";
 import React from "react";
 import { FaRegEye } from "react-icons/fa";
-
 const BannedUser = () => {
   return (
     <>
@@ -35,6 +35,12 @@ const BannedUser = () => {
           <td>4890 BDT</td>
           <td>
             <span>
+              <Button color="primary" variant="contained">
+                <span>
+                  <BathtubIcon className="viewIcon" />
+                </span>{" "}
+                Active
+              </Button>{" "}
               <Button color="secondary" variant="contained">
                 <span>
                   <FaRegEye className="viewIcon" />
