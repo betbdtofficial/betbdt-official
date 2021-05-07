@@ -84,7 +84,6 @@ const DepositReq = () => {
           <th>Date</th>
           <th>Status</th>
         </tr>
-<<<<<<< HEAD
         {depo
           .filter((value) => {
             if (searchTerm == "") return value;
@@ -113,7 +112,6 @@ const DepositReq = () => {
               </td>
             </tr>
           ))}
-=======
         {depo.filter((value)=>{
           if(searchTerm == "") return value
           else if(value.user.toLowerCase().includes(searchTerm.toLowerCase())) return value
@@ -145,7 +143,6 @@ const DepositReq = () => {
             </td>
           </tr>
         ))}
->>>>>>> 857571ddfd1de6e7847521aa904ca687e2a3d95f
       </table>
     </>
   );
