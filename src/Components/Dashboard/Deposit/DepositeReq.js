@@ -84,42 +84,12 @@ const DepositReq = () => {
           <th>Date</th>
           <th>Status</th>
         </tr>
-<<<<<<< HEAD
-        {depo
-          .filter((value) => {
-            if (searchTerm == "") return value;
-            else if (
-              value.user.toLowerCase().includes(searchTerm.toLowerCase())
-            )
-              return value;
-          })
-          .map((data) => (
-            <tr>
-              <td>{data.username}</td>
-              <td>{data.from}</td>
-              <td>{data.method}</td>
-              <td>{data.amount} BDT</td>
-              <td>{data.date}</td>
-              <td>
-                <span>
-                  <Button
-                    onClick={() => handleDeposit(data._id, data)}
-                    color="secondary"
-                    variant="contained"
-                  >
-                    {data.button}
-                  </Button>
-                </span>
-              </td>
-            </tr>
-          ))}
-=======
         {depo.filter((value)=>{
           if(searchTerm == "") return value
-          else if(value.user.toLowerCase().includes(searchTerm.toLowerCase())) return value
+          else if(value.username.toLowerCase().includes(searchTerm.toLowerCase())) return value
         }).map((data) => (
           <tr>
-            <td>{data.user}</td>
+            <td>{data.username}</td>
             <td>{data.from}</td>
             <td>{data.method}</td>
             <td>{data.amount} BDT</td>
@@ -139,13 +109,12 @@ const DepositReq = () => {
                   color="secondary"
                   variant="contained"
                 >
-                  Pending
+                  {data.button}
                 </Button>
               </span>
             </td>
           </tr>
         ))}
->>>>>>> 857571ddfd1de6e7847521aa904ca687e2a3d95f
       </table>
     </>
   );

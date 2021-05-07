@@ -1,12 +1,5 @@
-const UpcomingMatch = require("./UpcomingMatchScema");
-exports.getUpcomingMatch = (req, res) => {
-  UpcomingMatch.find()
-    .sort({ _id: -1 })
-    .then((result) => {
-      res.send(result);
-    });
-};
-exports.createUpcomingMatch = (req, res) => {
+const draftSchema = require("./DraftSchema");
+exports.createDraftMatch = (req, res) => {
   const {
     match1,
     match2,
@@ -40,8 +33,9 @@ exports.createUpcomingMatch = (req, res) => {
     v10Amount,
     starttime,
     startdate,
+    matchStatus,
   } = req.body;
-  const match = new UpcomingMatch({
+  const draftMatch = new draftSchema({
     match1,
     match2,
     m1Amount,
@@ -74,19 +68,31 @@ exports.createUpcomingMatch = (req, res) => {
     v10Amount,
     starttime,
     startdate,
+    matchStatus,
   });
-  match.save().then(() => {
-    UpcomingMatch.find()
+  draftMatch.save().then(() => {
+    draftSchema
+      .find()
       .sort({ _id: -1 })
       .then((result) => {
         res.send(result);
       });
   });
 };
-exports.deleteUpcomingMatch = (req, res) => {
+
+exports.getDraftMatch = (req, res) => {
+  draftSchema
+    .find()
+    .sort({ _id: -1 })
+    .then((result) => {
+      res.send(result);
+    });
+};
+exports.draftDelete = (req, res) => {
   const { id } = req.params;
-  UpcomingMatch.findByIdAndDelete({ _id: id }).then(() => {
-    UpcomingMatch.find()
+  draftSchema.findByIdAndDelete({ _id: id }).then(() => {
+    draftSchema
+      .find()
       .sort({ _id: -1 })
       .then((result) => {
         res.send(result);

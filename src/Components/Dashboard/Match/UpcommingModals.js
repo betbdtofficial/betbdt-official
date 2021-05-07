@@ -14,7 +14,7 @@ const UpcommingModals = (props) => {
     v1Amount: "",
     value2: "",
     v2Amount: "",
-    
+
     title2: "",
     value3: "",
     v3Amount: "",
@@ -43,6 +43,8 @@ const UpcommingModals = (props) => {
     startdate: "",
     starttime: "",
     success: "",
+    status: "",
+    matchStatus: ""
   });
   const handleChange = (e) => {
     const inputValue = { ...value };
@@ -51,17 +53,33 @@ const UpcommingModals = (props) => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch(`http://localhost:5000/user/createUpcomingMatch`, {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(value)
-    }).then(()=>{
-      const values = {...value}
-      values.success = "Match Added !"
-      setValue(values)
-    })
+    if (value.status === "Publish") {
+      fetch(`http://localhost:5000/user/createUpcomingMatch`, {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(value),
+      }).then(() => {
+        const values = { ...value };
+        values.success = "Match Added !";
+        setValue(values);
+      });
+    } else if (value.status === "Draft") {
+      const values = {...value};
+      values.matchStatus = "upco"
+      fetch(`http://localhost:5000/user/createDraftMatch`, {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(values),
+      }).then(() => {
+        const values = { ...value };
+        values.success = "Match Added !";
+        setValue(values);
+      });
+    }
   };
   return (
     <>
@@ -73,7 +91,7 @@ const UpcommingModals = (props) => {
       >
         <form onSubmit={handleSubmit}>
           <Modal.Header closeButton>
-            <Modal.Title className="text-center">ADD LIVE MATCH</Modal.Title>
+            <Modal.Title className="text-center">ADD UPCOMING MATCH</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <div>
@@ -147,7 +165,7 @@ const UpcommingModals = (props) => {
                 </Col>
               </Row>
               {/* title 1 */}
-              <Row style={{marginBottom: "10px"}}>
+              <Row style={{ marginBottom: "10px" }}>
                 <Col>
                   <label htmlFor="title">Title 1</label>
                   <input
@@ -208,7 +226,7 @@ const UpcommingModals = (props) => {
                 </Col>
               </Row>
               {/* title 2 */}
-              <Row style={{marginBottom: "10px"}}>
+              <Row style={{ marginBottom: "10px" }}>
                 <Col>
                   <label htmlFor="title">Title 2</label>
                   <input
@@ -269,7 +287,7 @@ const UpcommingModals = (props) => {
                 </Col>
               </Row>
               {/* title 3 */}
-              <Row style={{marginBottom: "10px"}}>
+              <Row style={{ marginBottom: "10px" }}>
                 <Col>
                   <label htmlFor="title">Title 3</label>
                   <input
@@ -330,7 +348,7 @@ const UpcommingModals = (props) => {
                 </Col>
               </Row>
               {/* title 4 */}
-              <Row style={{marginBottom: "10px"}}>
+              <Row style={{ marginBottom: "10px" }}>
                 <Col>
                   <label htmlFor="title">Title 4</label>
                   <input
@@ -391,7 +409,7 @@ const UpcommingModals = (props) => {
                 </Col>
               </Row>
               {/* TITLE 5 */}
-              <Row style={{marginBottom: "10px"}}>
+              <Row style={{ marginBottom: "10px" }}>
                 <Col>
                   <label htmlFor="title">Title 5</label>
                   <input
@@ -475,6 +493,20 @@ const UpcommingModals = (props) => {
                     placeholder="Start Time"
                     required
                   />
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <label htmlFor="status">Status</label>
+                  <select
+                    className="form-control"
+                    name="status"
+                    onChange={handleChange}
+                  >
+                    <option value="Choose">Choose...</option>
+                    <option value="Publish">Publish</option>
+                    <option value="Draft">Draft</option>
+                  </select>
                 </Col>
               </Row>
               <Row>
