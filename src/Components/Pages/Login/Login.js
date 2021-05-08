@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Button, Col, Row } from "react-bootstrap";
-import { Redirect } from "react-router";
+import { Redirect, useHistory, useLocation } from "react-router-dom";
 import { Context } from "../../../App";
 import Validation from "./Validation";
 const Login = () => {
@@ -13,6 +13,12 @@ const Login = () => {
       .then((res) => res.json())
       .then((data) => setDbData(data));
   }, [dbData._id]);
+  const [club, setClub] = useState([]);
+  useEffect(() => {
+    fetch(`http://localhost:5000/user/getClubHolder`)
+      .then((res) => res.json())
+      .then((data) => setClub(data));
+  }, [dbData._id]);
   const [value, setValue] = useState({
     username: "",
     password: "",
@@ -20,6 +26,7 @@ const Login = () => {
   const username = dbData.find(
     (username) => username.username === value.username
   ); // Username already exist check
+  const clubHolder = club.find((data) => data.username === value.username); //club holder finding
   const [errors, setErrors] = useState({});
   const handleChange = (e) => {
     const copyValue = { ...value };
@@ -27,9 +34,11 @@ const Login = () => {
     setValue(copyValue);
     setErrors("");
   };
+  let history = useHistory();
+  let location = useLocation();
+  const { from } = location.state || { from: { pathname: "/" } };
   const handleSubmit = (e) => {
     e.preventDefault();
-
     setErrors(Validation(value, username?.username, username?.password));
     if (
       value.username !== username?.username &&
@@ -47,6 +56,13 @@ const Login = () => {
       const user = { user: username?.username };
       sessionStorage.setItem("user", JSON.stringify(user));
       setLoginUser(user);
+      history.replace(from);
+      return;
+    } else if (
+      value.username === clubHolder?.username &&
+      value.password === clubHolder?.password
+    ) {
+      history.replace(from);
       return;
     }
   };

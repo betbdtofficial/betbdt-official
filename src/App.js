@@ -13,9 +13,9 @@ function App() {
     <Context.Provider value={[loginUser, setLoginUser]}>
       <Router>
         <Switch>
-          <PrivateRoute path="/admin">
+          <Route path="/admin">
             <Dashboard />
-          </PrivateRoute>
+          </Route>
           <PrivateRoute path="/clubholderDeshboard">
             <ClubHolder />
           </PrivateRoute>
