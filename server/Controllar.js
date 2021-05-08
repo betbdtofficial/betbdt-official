@@ -60,6 +60,63 @@ exports.registraionUser = (req, res) => {
     });
 };
 
+// user details update
+exports.userUpdate = (req, res) => {
+  const { id } = req.params;
+  const {
+    name,
+    country,
+    club,
+    number,
+    sponsor,
+    username,
+    password,
+    password2,
+    balance,
+  } = req.body;
+  UserInfo.findByIdAndUpdate(
+    { _id: id },
+    {
+      $set: {
+        name,
+        country,
+        club,
+        number,
+        sponsor,
+        username,
+        password,
+        password2,
+        balance,
+      },
+    },
+    { new: true }
+  ).then(() => {
+    UserInfo.find()
+      .sort({ _id: -1 })
+      .then((result) => {
+        res.send(result);
+      })
+      .catch((err) => {
+        res.send(err.message);
+      });
+  });
+};
+
+// hey user you will go to banned user list
+exports.bannedActiveUser = (req, res) => {
+  const { id } = req.params;
+  UserInfo.findByIdAndDelete({ _id: id }).then(() => {
+    UserInfo.find()
+      .sort({ _id: -1 })
+      .then((result) => {
+        res.send(result);
+      })
+      .catch((err) => {
+        res.send(err.message);
+      });
+  });
+};
+
 // user password update
 exports.changePassword = (req, res) => {
   const { id } = req.params;

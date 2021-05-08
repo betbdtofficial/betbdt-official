@@ -13,9 +13,9 @@ import UpcommingModals from "./UpcommingModals";
 const UserList = () => {
   const [show, setShow] = useState(false);
   const [showLive, setShowLive] = useState(false);
+  const handleShowLive = () => setShowLive(true);
   const handleClose = () => setShow(false);
   const handleCloseLive = () => setShowLive(false);
-  const handleShowLive = () => setShowLive(true);
   const handleShowUpcome = () => setShow(true);
   const [modal, setModal] = useState(false);
   const showModal = () => setModal(!modal);
@@ -79,7 +79,7 @@ const UserList = () => {
                         variant="contained"
                         onClick={modal ? hideModal : showModal}
                       >
-                        Upcomming Match
+                        Upcoming Match
                       </Button>
                     </Tab>
                     <Tab>
@@ -88,7 +88,7 @@ const UserList = () => {
                         color="primary"
                         variant="contained"
                       >
-                        Draft Box
+                        Draft Match
                       </Button>
                     </Tab>
                   </TabList>
