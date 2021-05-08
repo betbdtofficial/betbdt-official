@@ -61,7 +61,7 @@ const router = require("express").Router();
 
 router.get("/", getUser); //Get User Info
 router.get("/specificUser", specificUser); // Get Specific User
-router.post("/", registraionUser); //User Registration
+router.post("/signup", registraionUser); //User Registration
 router.put("/passChange/:id", changePassword); // user Password update
 router.put("/userUpdate/:id", userUpdate); // user details update
 router.delete("/bannedActiveUser/:id", bannedActiveUser); // banned Active User

@@ -20,7 +20,7 @@ const BannedUser = () => {
       password2: data.password2,
       balance: data.balance,
     };
-    fetch(`http://localhost:5000/user`, {
+    fetch(`http://localhost:5000/user/signup`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

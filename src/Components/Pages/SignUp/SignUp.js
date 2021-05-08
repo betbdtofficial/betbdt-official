@@ -60,7 +60,7 @@ const SignUp = () => {
     } else if (num?.number) {
       // Number hard validation
       return;
-    } else if (sponsor?.sponsor) {
+    } else if (value.sponsor !== sponsor?.sponsor) {
       return; // sponsor hard validation
     } else if (
       value.name &&
@@ -73,7 +73,7 @@ const SignUp = () => {
     ) {
       const values = { ...value };
       values.balance = "00.00";
-      fetch(`http://localhost:5000/user`, {
+      fetch(`http://localhost:5000/user/signup`, {
         method: "POST",
         headers: {
           "content-type": "application/json",
