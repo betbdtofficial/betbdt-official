@@ -12,7 +12,9 @@ const Modals = (props) => {
         keyboard={false}
       >
         <Modal.Header closeButton>
-          <Modal.Title className="text-center">User Details</Modal.Title>
+          <Modal.Title className="text-center">
+            {!props.user.profit ? "User Details" : "Club Holder"}
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <div className="col-md-6 m-auto">
@@ -34,10 +36,14 @@ const Modals = (props) => {
                 <td>Password</td>
                 <td>{props.user.password}</td>
               </tr>
-              <tr>
-                <td>Total Balance</td>
-                <td>{props.user.balance} BDT</td>
-              </tr>
+              {!props.user.profit || 0 ? (
+                <tr>
+                  <td>Total Balance</td>
+                  <td>{props.user.balance} BDT</td>
+                </tr>
+              ) : (
+                ""
+              )}
               <tr>
                 <td>Mobile Number</td>
                 <td>{props.user.number}</td>

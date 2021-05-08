@@ -1,7 +1,6 @@
 import { Button } from "@material-ui/core";
 import React from "react";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
-import BannedClub from "./BannedClub";
 import ClubIndex from "./ClubIndex";
 const ManageClubHolder = () => {
   return (
@@ -27,21 +26,9 @@ const ManageClubHolder = () => {
                         Active Club
                       </Button>
                     </Tab>
-                    <Tab>
-                      <Button
-                        className="button"
-                        color="secondary"
-                        variant="contained"
-                      >
-                        Banned Club
-                      </Button>
-                    </Tab>
                   </TabList>
                   <TabPanel>
                     <ClubIndex />
-                  </TabPanel>
-                  <TabPanel>
-                    <BannedClub />
                   </TabPanel>
                 </Tabs>
               </div>

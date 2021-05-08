@@ -3,6 +3,7 @@ const {
   createBannedUser,
   bannedUserDelete,
 } = require("./Back-end-code/BannedControllar");
+const { getClubHolder, createClubHolder } = require("./Back-end-code/ClubHolderControllar");
 const {
   getDepoHistory,
   createDepoHistory,
@@ -69,6 +70,10 @@ router.delete("/bannedActiveUser/:id", bannedActiveUser); // banned Active User
 router.get("/getBannedUser", getBannedUser);
 router.post("/createBannedUser", createBannedUser);
 router.delete("/deleteBannedUser/:id", bannedUserDelete);
+
+// club holder
+router.get("/getClubHolder", getClubHolder);
+router.post("/createClubHolder", createClubHolder);
 
 // Draft box match
 router.post("/createDraftMatch", createDraftMatch);

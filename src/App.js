@@ -5,6 +5,7 @@ import "./App.css";
 import ClubHolder from "./Components/ClubHolder/ClubHolder";
 import Dashboard from "./Components/Dashboard/Dashboard";
 import FrontEnd from "./Components/Pages/Front-end/FrontEnd";
+import PrivateRoute from "./Components/Pages/PrivateRoute/PrivateRoute";
 export const Context = createContext();
 function App() {
   const [loginUser, setLoginUser] = useState([]);
@@ -15,9 +16,9 @@ function App() {
           <Route path="/admin">
             <Dashboard />
           </Route>
-          <Route path="/clubholderDeshboard">
+          <PrivateRoute path="/clubholderDeshboard">
             <ClubHolder />
-          </Route>
+          </PrivateRoute>
           <Route path="/">
             <FrontEnd />
           </Route>

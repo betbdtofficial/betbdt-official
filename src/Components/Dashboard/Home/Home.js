@@ -37,6 +37,19 @@ const Home = () => {
     const element = withdraw[w];
     pendingAmount = parseInt(pendingAmount) + parseInt(element.amount);
   }
+  const [clubHolder, setClubHolder] = useState([]);
+  useEffect(() => {
+    fetch(`http://localhost:5000/user/getClubHolder`)
+      .then((res) => res.json())
+      .then((data) => setClubHolder(data));
+  }, [clubHolder._id]);
+  let club = [];
+  let sponsor = [];
+  for(let c = 0; c < clubHolder.length; c++){
+    const el = clubHolder[c];
+    club.push(el)
+    sponsor.push(el.sponsor)
+  }
   const [depoHis, setDepoHis] = useState([]);
   useEffect(() => {
     fetch(`http://localhost:5000/user/getDepositHistory`)
@@ -79,7 +92,7 @@ const Home = () => {
           </div>
           <div className="col-md-4">
             <div className="box bg-primary">
-              <h4>45</h4>
+              <h4>{sponsor.length}</h4>
               <h5>Total Sponsor</h5>
               <div className="userIcon">
                 <GamesIcon />
@@ -88,7 +101,7 @@ const Home = () => {
           </div>
           <div className="col-md-4">
             <div className="box bg-success">
-              <h4>15</h4>
+              <h4>{club.length}</h4>
               <h5>Club Holder</h5>
               <div className="userIcon">
                 <GroupWorkIcon />
