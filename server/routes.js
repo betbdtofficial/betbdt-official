@@ -1,4 +1,9 @@
 const {
+  getBannedUser,
+  createBannedUser,
+  bannedUserDelete,
+} = require("./Back-end-code/BannedControllar");
+const {
   getDepoHistory,
   createDepoHistory,
   addDeposit,
@@ -8,16 +13,22 @@ const {
   createDepoMethod,
   deleteDepoMethod,
 } = require("./Back-end-code/DepositMethodController");
-const { createDraftMatch, getDraftMatch, draftDelete } = require("./Back-end-code/DraftControllar");
+const {
+  createDraftMatch,
+  getDraftMatch,
+  draftDelete,
+} = require("./Back-end-code/DraftControllar");
 const {
   getMatch,
   createMatch,
   deleteMatch,
+  updateMatch,
 } = require("./Back-end-code/MatchControllar");
 const {
   getUpcomingMatch,
   createUpcomingMatch,
   deleteUpcomingMatch,
+  updateUpcomMatch,
 } = require("./Back-end-code/UpcomingMatchControllar");
 const {
   createWithdrawHistory,
@@ -37,6 +48,8 @@ const {
   withdrawDelete,
   withdrawUpdate,
   changePassword,
+  userUpdate,
+  bannedActiveUser,
 } = require("./Controllar");
 const {
   getDeposit,
@@ -48,12 +61,19 @@ const router = require("express").Router();
 router.get("/", getUser); //Get User Info
 router.get("/specificUser", specificUser); // Get Specific User
 router.post("/", registraionUser); //User Registration
-router.put("/passChange/:id", changePassword)// user Password update
+router.put("/passChange/:id", changePassword); // user Password update
+router.put("/userUpdate/:id", userUpdate); // user details update
+router.delete("/bannedActiveUser/:id", bannedActiveUser); // banned Active User
+
+// Banned user handle
+router.get("/getBannedUser", getBannedUser);
+router.post("/createBannedUser", createBannedUser);
+router.delete("/deleteBannedUser/:id", bannedUserDelete);
 
 // Draft box match
 router.post("/createDraftMatch", createDraftMatch);
 router.get("/getdraftMatch", getDraftMatch);
-router.delete("/draftDelete/:id", draftDelete)
+router.delete("/draftDelete/:id", draftDelete);
 
 // withdraw request
 router.post("/withdrawReq", withdrawReq);
@@ -93,10 +113,12 @@ router.delete("/deposit/delete/:id", deleteDepoMethod);
 router.get("/getMatch", getMatch);
 router.post("/createMatch", createMatch);
 router.delete("/deleteMatch/:id", deleteMatch);
+router.put("/updateMatch/:id", updateMatch);
 
 // get upcoming match and create upcoming match and delete upcoming match
 router.get("/getUpcomingMatch", getUpcomingMatch);
 router.post("/createUpcomingMatch", createUpcomingMatch);
 router.delete("/deleteUpcomingMatch/:id", deleteUpcomingMatch);
+router.put("/updateUpcomMatch/:id", updateUpcomMatch);
 
 module.exports = router;

@@ -1,7 +1,9 @@
 import { Button } from "@material-ui/core";
-import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
+import { Edit } from "@material-ui/icons";
+import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import React, { useEffect, useState } from "react";
 import { FaRegEye } from "react-icons/fa";
+import EditModal from "./EditModal";
 import Modals from "./Modals";
 const Index = () => {
   const [dbUser, setDbUser] = useState([]);
@@ -10,19 +12,55 @@ const Index = () => {
       .then((res) => res.json())
       .then((data) => setDbUser(data));
   }, []);
+  const [searchTerm, setSearchTerm] = useState("");
   const [uniqueUser, setUniqueUser] = useState([]);
   const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
+  const [showEdit, setShowEdit] = useState(false);
+  const handleClose = () => {
+    setShow(false);
+    setShowEdit(false);
+  };
   const handleShow = (id) => {
     setShow(true);
     const findEl = dbUser.find((data) => data._id === id);
     setUniqueUser(findEl);
   };
-  const [searchTerm, setSearchTerm] = useState("")
+  const handleShowEdit = (data) => {
+    setShowEdit(true);
+    setUniqueUser(data);
+  };
+  const handleBanned = (id, data) => {
+    const userData = {
+      name: data.name,
+      country: data.country,
+      club: data.club,
+      number: data.number,
+      sponsor: data.sponsor,
+      username: data.username,
+      password: data.password,
+      password2: data.password2,
+      balance: data.balance,
+    };
+    fetch(`http://localhost:5000/user/createBannedUser`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(userData),
+    });
+    fetch(`http://localhost:5000/user/bannedActiveUser/${id}`, {
+      method: "DELETE",
+    }).then(() => {
+      fetch(`http://localhost:5000/user`)
+        .then((res) => res.json())
+        .then((data) => setDbUser(data));
+    });
+  };
   return (
     <>
       {/* modal */}
       <Modals show={show} user={uniqueUser} handleClose={handleClose} />
+      <EditModal show={showEdit} user={uniqueUser} handleClose={handleClose} />
       {/* modal */}
       <div className="winnerHeading d-flex align-items-center justify-content-between">
         <span className="head">Active User</span>
@@ -31,7 +69,7 @@ const Index = () => {
             type="text"
             className="form-control"
             name="search"
-            onChange={(e)=>setSearchTerm(e.target.value)}
+            onChange={(e) => setSearchTerm(e.target.value)}
             autoComplete="off"
             placeholder="Type Username..."
             required
@@ -63,7 +101,16 @@ const Index = () => {
               <td>
                 <span>
                   <Button
-                    onClick={() => handleShow(data._id)}
+                    onClick={() => handleShowEdit(data)}
+                    color="primary"
+                    variant="contained"
+                  >
+                    <span>
+                      <Edit className="viewIcon" />
+                    </span>{" "}
+                  </Button>{" "}
+                  <Button
+                    onClick={() => handleBanned(data._id, data)}
                     color="secondary"
                     variant="contained"
                   >
@@ -71,7 +118,8 @@ const Index = () => {
                       <DeleteForeverIcon className="viewIcon" />
                     </span>{" "}
                     Banned
-                  </Button> <Button
+                  </Button>{" "}
+                  <Button
                     onClick={() => handleShow(data._id)}
                     color="primary"
                     variant="contained"

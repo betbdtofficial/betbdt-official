@@ -1,5 +1,5 @@
 import { Button } from "@material-ui/core";
-import { Edit, Public, Visibility } from "@material-ui/icons";
+import { Public, Visibility } from "@material-ui/icons";
 import React, { useEffect, useState } from "react";
 import "./Draft.css";
 import LiveViewModals from "./LiveView";
@@ -161,13 +161,6 @@ const Draft = () => {
                 {data.startdate}, {data.starttime}
               </td>
               <td>
-                <span>
-                  {" "}
-                  <Button color="primary" variant="contained">
-                    {" "}
-                    <Edit />{" "}
-                  </Button>{" "}
-                </span>
                 <span>
                   {" "}
                   <Button

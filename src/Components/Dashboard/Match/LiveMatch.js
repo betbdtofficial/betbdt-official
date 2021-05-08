@@ -1,6 +1,7 @@
 import { Button } from "@material-ui/core";
 import { Delete, Edit, Visibility } from "@material-ui/icons";
 import React, { useEffect, useState } from "react";
+import LiveModals from "./LiveModals";
 import LiveViewModals from './LiveView';
 
 const LiveMatch = () => {
@@ -20,7 +21,14 @@ const LiveMatch = () => {
         .then((data) => setDbData(data));
     });
   };
+  const [data, setData] = useState({})
+  const handleEdit = (datas) =>{
+    setShowLive(true);
+    setData(datas)
+  }
   const [uniqueMatch, setUniqueMatch] = useState([]);
+  const [showLive, setShowLive] = useState(false);
+  const handleCloseLive = () => setShowLive(false);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = (id) => {
@@ -32,6 +40,7 @@ const LiveMatch = () => {
     <>
     {/* modal */}
     <LiveViewModals show={show} match={uniqueMatch} handleClose={handleClose} />
+    <LiveModals data={data} show={showLive} handleClose={handleCloseLive} />
       {/* modal */}
       <div className="matchHeading d-flex align-items-center justify-content-between">
         <span className="head">
@@ -81,7 +90,7 @@ const LiveMatch = () => {
               <td>
                 <span>
                   {" "}
-                  <Button color="primary" variant="contained">
+                  <Button onClick={()=>handleEdit(data)} color="primary" variant="contained">
                     {" "}
                     <Edit />{" "}
                   </Button>{" "}
