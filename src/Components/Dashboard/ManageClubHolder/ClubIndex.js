@@ -1,5 +1,5 @@
 import { Button } from "@material-ui/core";
-import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
+import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import React, { useEffect, useState } from "react";
 import { FaRegEye } from "react-icons/fa";
 // import Modals from "../Deposit/Modals";
@@ -12,18 +12,18 @@ const ClubIndex = () => {
       .then((res) => res.json())
       .then((data) => setDbUser(data));
   }, []);
-  const [uniqueUser, setUniqueUser] = useState([])
+  const [uniqueUser, setUniqueUser] = useState([]);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = (id) => {
-    setShow(true)
-    const findEl = dbUser.find(data=>data._id === id)
-    setUniqueUser(findEl)
+    setShow(true);
+    const findEl = dbUser.find((data) => data._id === id);
+    setUniqueUser(findEl);
   };
   return (
     <>
-     {/* modal */}
-     <Modals show={show} user={uniqueUser} handleClose={handleClose} />
+      {/* modal */}
+      <Modals show={show} user={uniqueUser} handleClose={handleClose} />
       {/* modal */}
       <div className="winnerHeading d-flex align-items-center justify-content-between">
         <span className="head">Active User</span>
@@ -54,12 +54,21 @@ const ClubIndex = () => {
             <td>{data.balance} BDT</td>
             <td>
               <span>
-                <Button onClick={()=>handleShow(data._id)} color="secondary" variant="contained">
+                <Button
+                  onClick={() => handleShow(data._id)}
+                  color="secondary"
+                  variant="contained"
+                >
                   <span>
                     <DeleteForeverIcon className="viewIcon" />
                   </span>{" "}
                   Cancel
-                </Button> <Button onClick={()=>handleShow(data._id)} color="primary" variant="contained">
+                </Button>{" "}
+                <Button
+                  onClick={() => handleShow(data._id)}
+                  color="primary"
+                  variant="contained"
+                >
                   <span>
                     <FaRegEye className="viewIcon" />
                   </span>{" "}

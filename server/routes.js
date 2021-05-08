@@ -8,6 +8,7 @@ const {
   createDepoMethod,
   deleteDepoMethod,
 } = require("./Back-end-code/DepositMethodController");
+const { createDraftMatch, getDraftMatch, draftDelete } = require("./Back-end-code/DraftControllar");
 const {
   getMatch,
   createMatch,
@@ -48,6 +49,11 @@ router.get("/", getUser); //Get User Info
 router.get("/specificUser", specificUser); // Get Specific User
 router.post("/", registraionUser); //User Registration
 router.put("/passChange/:id", changePassword)// user Password update
+
+// Draft box match
+router.post("/createDraftMatch", createDraftMatch);
+router.get("/getdraftMatch", getDraftMatch);
+router.delete("/draftDelete/:id", draftDelete)
 
 // withdraw request
 router.post("/withdrawReq", withdrawReq);

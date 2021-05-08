@@ -23,7 +23,7 @@ const UpcommingMatch = () => {
     <>
       <div className="matchHeading d-flex align-items-center justify-content-between">
         <span className="head">
-          Upcomming Match List <span class="badge badge-danger">Upcomming</span>
+          Upcomming Match List <span class="badge badge-danger">Upcoming</span>
         </span>
         <span>
           <input

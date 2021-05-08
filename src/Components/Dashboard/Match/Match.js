@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import React, { useState } from "react";
 import { IoIosAdd } from "react-icons/io";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
+import Draft from "./Draft";
 import LiveMatch from "./LiveMatch";
 import LiveModals from "./LiveModals";
 import "./Match.css";
@@ -81,12 +82,24 @@ const UserList = () => {
                         Upcomming Match
                       </Button>
                     </Tab>
+                    <Tab>
+                      <Button
+                        className="button"
+                        color="primary"
+                        variant="contained"
+                      >
+                        Draft Box
+                      </Button>
+                    </Tab>
                   </TabList>
                   <TabPanel>
                     <LiveMatch />
                   </TabPanel>
                   <TabPanel>
                     <UpcommingMatch />
+                  </TabPanel>
+                  <TabPanel>
+                    <Draft/>
                   </TabPanel>
                 </Tabs>
               </div>
