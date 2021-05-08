@@ -44,6 +44,12 @@ const Modals = (props) => {
               ) : (
                 ""
               )}
+              {
+                props.user.profit && <tr>
+                  <td>Profit</td>
+                  <td>{props.user.profit} %</td>
+                </tr>
+              }
               <tr>
                 <td>Mobile Number</td>
                 <td>{props.user.number}</td>
