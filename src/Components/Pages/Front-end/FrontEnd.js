@@ -7,7 +7,7 @@ import Header from "../Header/Header";
 import Home from "../Home/Home";
 import Login from "../Login/Login";
 import Profile from "../MyProfile/Index";
-import PrivateRoute from '../PrivateRoute/PrivateRoute';
+// import PrivateRoute from '../PrivateRoute/PrivateRoute';
 import SignUp from "../SignUp/SignUp";
 const FrontEnd = () => {
   const storage = sessionStorage.getItem("user");
@@ -26,12 +26,12 @@ const FrontEnd = () => {
           <Route path="/signup">
             <SignUp />
           </Route>
-          <PrivateRoute path="/myStatement">
+          <Route path="/myStatement">
             <MyStatement />
-          </PrivateRoute>
-          <PrivateRoute path="/myprofile">
+          </Route>
+          <Route path="/myprofile">
             <Profile />
-          </PrivateRoute>
+          </Route>
           <Route path="*">
             <Error />
           </Route>
