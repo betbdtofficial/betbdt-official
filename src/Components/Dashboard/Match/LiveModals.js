@@ -267,7 +267,6 @@ const LiveModals = (props) => {
                     onChange={handleChange}
                     autoComplete="off"
                     placeholder="Value 2"
-                    required
                   />
                 </Col>
                 <Col>
@@ -279,7 +278,6 @@ const LiveModals = (props) => {
                     onChange={handleChange}
                     autoComplete="off"
                     placeholder="Amount"
-                    required
                   />
                 </Col>
               </Row>
@@ -295,7 +293,6 @@ const LiveModals = (props) => {
                     onChange={handleChange}
                     autoComplete="off"
                     placeholder="Title 2"
-                    required
                   />
                 </Col>
               </Row>
@@ -309,7 +306,6 @@ const LiveModals = (props) => {
                     onChange={handleChange}
                     autoComplete="off"
                     placeholder="Value 1"
-                    required
                   />
                 </Col>
                 <Col>
@@ -321,7 +317,6 @@ const LiveModals = (props) => {
                     onChange={handleChange}
                     autoComplete="off"
                     placeholder="Amount"
-                    required
                   />
                 </Col>
                 <Col>
@@ -333,7 +328,6 @@ const LiveModals = (props) => {
                     onChange={handleChange}
                     autoComplete="off"
                     placeholder="Value 2"
-                    required
                   />
                 </Col>
                 <Col>
@@ -345,7 +339,6 @@ const LiveModals = (props) => {
                     onChange={handleChange}
                     autoComplete="off"
                     placeholder="Amount"
-                    required
                   />
                 </Col>
               </Row>
@@ -361,7 +354,6 @@ const LiveModals = (props) => {
                     onChange={handleChange}
                     autoComplete="off"
                     placeholder="Title 3"
-                    required
                   />
                 </Col>
               </Row>
@@ -375,7 +367,6 @@ const LiveModals = (props) => {
                     onChange={handleChange}
                     autoComplete="off"
                     placeholder="Value 1"
-                    required
                   />
                 </Col>
                 <Col>
@@ -387,7 +378,6 @@ const LiveModals = (props) => {
                     onChange={handleChange}
                     autoComplete="off"
                     placeholder="Amount"
-                    required
                   />
                 </Col>
                 <Col>
@@ -399,7 +389,6 @@ const LiveModals = (props) => {
                     onChange={handleChange}
                     autoComplete="off"
                     placeholder="Value 2"
-                    required
                   />
                 </Col>
                 <Col>
@@ -411,7 +400,6 @@ const LiveModals = (props) => {
                     onChange={handleChange}
                     autoComplete="off"
                     placeholder="Amount"
-                    required
                   />
                 </Col>
               </Row>
@@ -427,7 +415,6 @@ const LiveModals = (props) => {
                     onChange={handleChange}
                     autoComplete="off"
                     placeholder="Title 4"
-                    required
                   />
                 </Col>
               </Row>
@@ -441,7 +428,6 @@ const LiveModals = (props) => {
                     onChange={handleChange}
                     autoComplete="off"
                     placeholder="Value 1"
-                    required
                   />
                 </Col>
                 <Col>
@@ -453,7 +439,6 @@ const LiveModals = (props) => {
                     onChange={handleChange}
                     autoComplete="off"
                     placeholder="Amount"
-                    required
                   />
                 </Col>
                 <Col>
@@ -465,7 +450,6 @@ const LiveModals = (props) => {
                     onChange={handleChange}
                     autoComplete="off"
                     placeholder="Value 2"
-                    required
                   />
                 </Col>
                 <Col>
@@ -477,7 +461,6 @@ const LiveModals = (props) => {
                     onChange={handleChange}
                     autoComplete="off"
                     placeholder="Amount"
-                    required
                   />
                 </Col>
               </Row>
@@ -493,7 +476,6 @@ const LiveModals = (props) => {
                     onChange={handleChange}
                     autoComplete="off"
                     placeholder="Title 5"
-                    required
                   />
                 </Col>
               </Row>
@@ -507,7 +489,6 @@ const LiveModals = (props) => {
                     onChange={handleChange}
                     autoComplete="off"
                     placeholder="Value 1"
-                    required
                   />
                 </Col>
                 <Col>
@@ -519,7 +500,6 @@ const LiveModals = (props) => {
                     onChange={handleChange}
                     autoComplete="off"
                     placeholder="Amount"
-                    required
                   />
                 </Col>
                 <Col>
@@ -531,7 +511,6 @@ const LiveModals = (props) => {
                     onChange={handleChange}
                     autoComplete="off"
                     placeholder="Value 2"
-                    required
                   />
                 </Col>
                 <Col>
@@ -543,7 +522,6 @@ const LiveModals = (props) => {
                     onChange={handleChange}
                     autoComplete="off"
                     placeholder="Amount"
-                    required
                   />
                 </Col>
               </Row>
@@ -558,7 +536,6 @@ const LiveModals = (props) => {
                     onChange={handleChange}
                     autoComplete="off"
                     placeholder="Start Date"
-                    required
                   />
                 </Col>
                 <Col>
@@ -571,7 +548,6 @@ const LiveModals = (props) => {
                     onChange={handleChange}
                     autoComplete="off"
                     placeholder="Start Time"
-                    required
                   />
                 </Col>
               </Row>
