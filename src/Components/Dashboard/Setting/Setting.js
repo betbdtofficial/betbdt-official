@@ -24,36 +24,12 @@ const Setting = () => {
                   <form>
                     <Row>
                       <Col>
-                        <label htmlFor="title">Website Title:</label>
-                        <input
-                          type="text"
-                          className="form-control"
-                          value="betBdt | Top Betting Website Of Bangladesh"
-                        />
-                      </Col>
-                      <Col>
                         <label htmlFor="notice">Notice Title:</label>
                         <input
                           type="text"
                           className="form-control"
                           value="ঈদ ঊপলক্ষে ১০% ডিপোজিট ছাড় | পেমেন্ট মেথড যে কোনো সিস্টেমে দেয়া হবে"
                         />
-                      </Col>
-                    </Row>
-                    <Row>
-                      <Col>
-                        <label htmlFor="pColor">Primary Color:</label>
-                        <input type="color" className="form-control" />
-                      </Col>
-                      <Col>
-                        <label htmlFor="sColor">Secondary Color:</label>
-                        <input type="color" className="form-control" />
-                      </Col>
-                    </Row>
-                    <Row>
-                      <Col>
-                        <label htmlFor="logo">Upload Logo:</label>
-                        <input type="file" className="form-control" />
                       </Col>
                     </Row>
                     <br/>
