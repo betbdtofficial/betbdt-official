@@ -19,9 +19,6 @@ const WithdrawHistory = () => {
   }, [clubHolder._id]);
   const findClubHolder = clubHolder.find((u) => u.username === club?.club); //find Club holder
   const findUser = history.filter((u) => u.club === findClubHolder?.club); // find user
-  console.log(findUser)
-  console.log(findClubHolder)
-  console.log(history)
   const [searchTerm, setSearchTerm] = useState("")
   return (
     <>
