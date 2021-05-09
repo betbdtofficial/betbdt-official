@@ -4,8 +4,9 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
 import ClubHolder from "./Components/ClubHolder/ClubHolder";
 import Dashboard from "./Components/Dashboard/Dashboard";
+import Login from "./Components/Dashboard/Login/Login";
+import PrivateRoute from "./Components/Dashboard/Login/PrivateRoute";
 import FrontEnd from "./Components/Pages/Front-end/FrontEnd";
-import PrivateRoute from "./Components/Pages/PrivateRoute/PrivateRoute";
 export const Context = createContext();
 function App() {
   const [loginUser, setLoginUser] = useState([]);
@@ -19,6 +20,9 @@ function App() {
           <PrivateRoute path="/clubholderDeshboard">
             <ClubHolder />
           </PrivateRoute>
+          <Route path="/login">
+            <Login />
+          </Route>
           <Route path="/">
             <FrontEnd />
           </Route>

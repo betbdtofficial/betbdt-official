@@ -1,7 +1,7 @@
 const ClubHolder = require("./ClubHolderSchema");
 exports.getClubHolder = (req, res) => {
   ClubHolder.find()
-    .sort({_id: -1})
+    .sort({ _id: -1 })
     .then((result) => {
       res.send(result);
     });
@@ -17,6 +17,7 @@ exports.createClubHolder = (req, res) => {
     password,
     password2,
     profit,
+    balance,
   } = req.body;
   const AddClubHolder = new ClubHolder({
     name,
@@ -28,10 +29,11 @@ exports.createClubHolder = (req, res) => {
     password,
     password2,
     profit,
+    balance,
   });
   AddClubHolder.save().then(() => {
     ClubHolder.find()
-      .sort({_id: -1})
+      .sort({ _id: -1 })
       .then((result) => {
         res.send(result);
       });

@@ -51,7 +51,7 @@ const SignUp = () => {
     setErrors(
       Validation(value, num?.number, username?.username, sponsor?.sponsor)
     );
-    if (username?.username) {
+    if (value.username === username?.username) {
       // Username hard validation
       return;
     } else if (value.password !== value.password2) {

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Button, Col, Row } from "react-bootstrap";
-// import Topnotice from "../";
 import "../../Pages/SignUp/SignUp.css";
 import Validation from "./Validation";
 
@@ -21,6 +20,7 @@ const SignUp = () => {
     password: "",
     password2: "",
     profit: "",
+    balance: "",
     notMatch: "",
     success: "",
     wrong: "",
@@ -89,7 +89,6 @@ const SignUp = () => {
   };
   return (
     <div className="mainSignup">
-      {/* <Topnotice></Topnotice> */}
       <div className="container">
         <div className="row">
           <div className="col-md-7 m-auto">
