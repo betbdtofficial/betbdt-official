@@ -24,6 +24,7 @@ const WithdrawReq = () => {
     // Withdraw History Create
     const WithHistory = {
       username: data.username,
+      club: data.club,
       number: data.to,
       type: data.type,
       method: data.method,

@@ -8,9 +8,10 @@ exports.getWithdrawHistory = (req, res) => {
     });
 };
 exports.createWithdrawHistory = (req, res) => {
-  const { username, number, type, method, amount, date, button } = req.body;
+  const { username, club, number, type, method, amount, date, button } = req.body;
   const withdraw = new WithdrawHistory({
     username,
+    club,
     number,
     type,
     method,
