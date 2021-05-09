@@ -22,7 +22,7 @@ const Header = () => {
   const findUser = balance.find((u) => u.username === getUser?.user);
   const handleLogout = () => {
     sessionStorage.removeItem("user");
-    window.location.href = "/login";
+    window.location.href = "/";
   };
   return (
     <Navbar className="navbar-bg" expand="lg">

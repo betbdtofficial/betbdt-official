@@ -1,12 +1,31 @@
-import React from "react";
-import { Button } from "react-bootstrap";
-import { FaRegEye, FaUserFriends } from "react-icons/fa";
+import { Button } from '@material-ui/core';
+import React, { useEffect, useState } from "react";
+import { FaUserFriends } from "react-icons/fa";
 import { SiDolby, SiGoogletagmanager, SiSymantec } from "react-icons/si";
+import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import "./ClubHolder.css";
+import Member from "./Member";
+import Withdraw from "./Withdraw";
+import WithdrawHistory from "./WithdrawHistory";
 const ClubHolder = () => {
+  const storage = sessionStorage.getItem("club");
+  const club = JSON.parse(storage);
+  const [clubHolder, setClubHolder] = useState([]);
+  useEffect(() => {
+    fetch(`http://localhost:5000/user/getClubHolder`)
+      .then((res) => res.json())
+      .then((data) => setClubHolder(data));
+  }, [clubHolder._id]);
+  const [dbData, setDbData] = useState([]);
+  useEffect(() => {
+    fetch(`http://localhost:5000/user`)
+      .then((res) => res.json())
+      .then((data) => setDbData(data));
+  }, [dbData._id]);
+  const uHolder = clubHolder.find(u=>u.username === club?.club)
+  const findUser = dbData.filter((u) => u.club === uHolder?.club);
   return (
     <div>
-
       <div className="container text-center mt-5 mb-5">
         <h1 className="clubpanal">Club Panel</h1> <hr /> <br />
         <div className="row">
@@ -16,7 +35,7 @@ const ClubHolder = () => {
                 <SiDolby></SiDolby>
               </div>
               <strong>
-                Balance <br /> <b className="balanceText">580 TK</b>{" "}
+                Balance <br /> <b className="balanceText">{uHolder?.balance} TK</b>{" "}
               </strong>
             </div>
           </div>
@@ -27,7 +46,7 @@ const ClubHolder = () => {
               </div>
               <strong>
                 Club Name <br />
-                <b className="ClubNames">Vorer Dak Club</b>{" "}
+                <b className="ClubNames">{uHolder?.club}</b>{" "}
               </strong>
             </div>
           </div>
@@ -38,7 +57,7 @@ const ClubHolder = () => {
               </div>
               <strong>
                 Total Club Member <br />
-                <b className="TotalClubMembersCount">350</b>{" "}
+                <b className="TotalClubMembersCount">{findUser.length}</b>{" "}
               </strong>
             </div>
           </div>
@@ -56,71 +75,52 @@ const ClubHolder = () => {
         </div>
         <br />
       </div>
-
       <hr />
       <div className="container-fluid text-center">
         <div className="row">
-          <div className="col-md-6">
-            <div className="memberList">
-              <h1>Member List & Deteails</h1>
-            </div>
-          </div>
-          <div className="col-md-6">
-            <div className="memberList">
-              <h1>Withdraws History</h1>
-            </div>
+          <div className="col-md-12">
+            <Tabs>
+              <TabList>
+                <Tab>
+                  <Button
+                    className="button"
+                    color="primary"
+                    variant="contained"
+                  >
+                    Member List & Deteails
+                  </Button>
+                </Tab>
+                <Tab>
+                  <Button
+                    className="button"
+                    color="secondary"
+                    variant="contained"
+                  >
+                    Withdraws
+                  </Button>
+                </Tab>
+                <Tab>
+                  <Button
+                    className="button"
+                    color="primary"
+                    variant="contained"
+                  >
+                    Withdraws History
+                  </Button>
+                </Tab>
+              </TabList>
+              <TabPanel>
+                <Member />
+              </TabPanel>
+              <TabPanel>
+                <Withdraw />
+              </TabPanel>
+              <TabPanel>
+                <WithdrawHistory />
+              </TabPanel>
+            </Tabs>
           </div>
         </div>
-        <hr />
-
-        <>
-          <div className="container-fluid">
-            <div className="row">
-              <div className="col-md-6">
-                <div className="winnerHeading d-flex align-items-center justify-content-between">
-                  <span className="head">Banned User</span>
-                  <span>
-                    <input
-                      type="text"
-                      className="form-control"
-                      name="search"
-                      autoComplete="off"
-                      placeholder="Search Banned User..."
-                      required
-                    />
-                  </span>
-                </div>
-                <table>
-                  <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Username</th>
-                    <th>Mobile</th>
-                    <th>Balance</th>
-                    <th>Details</th>
-                  </tr>
-                  <tr>
-                    <td>MD Hasan Mia</td>
-                    <td>juihasan@gmail.com</td>
-                    <td>jui_hasan</td>
-                    <td>01711122233</td>
-                    <td>4890 BDT</td>
-                    <td>
-                      <span>
-                        <Button color="secondary" variant="contained">
-                          <span>
-                            <FaRegEye className="viewIcon" />
-                          </span>{" "}
-                          View
-                        </Button>
-                      </span>
-                    </td>
-                  </tr>
-                </table>
-              </div>
-            </div>
-          </div>
-        </>
       </div>
     </div>
   );

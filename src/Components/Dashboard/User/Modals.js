@@ -36,20 +36,16 @@ const Modals = (props) => {
                 <td>Password</td>
                 <td>{props.user.password}</td>
               </tr>
-              {!props.user.profit || 0 ? (
+              <tr>
+                <td>Total Balance</td>
+                <td>{props.user.balance} BDT</td>
+              </tr>
+              {props.user.profit && (
                 <tr>
-                  <td>Total Balance</td>
-                  <td>{props.user.balance} BDT</td>
-                </tr>
-              ) : (
-                ""
-              )}
-              {
-                props.user.profit && <tr>
                   <td>Profit</td>
                   <td>{props.user.profit} %</td>
                 </tr>
-              }
+              )}
               <tr>
                 <td>Mobile Number</td>
                 <td>{props.user.number}</td>

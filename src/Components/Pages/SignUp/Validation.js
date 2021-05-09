@@ -27,7 +27,7 @@ const Validation = (values, numberCheck, usernameCheck, sponsor) => {
     errors.username = "Username is Required";
   } else if (values.username.length < 3) {
     errors.username = "Username more than 3 charectars";
-  } else if (usernameCheck) {
+  } else if (values.username === usernameCheck) {
     errors.username = "Username Already Exist";
   } else if (!values.password) {
     errors.password = "Password is Required";

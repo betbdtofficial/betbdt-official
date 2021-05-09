@@ -36,6 +36,10 @@ const clubHolderSchema = new Schema({
     profit: {
         type: String,
         required: true
+    },
+    balance: {
+        type: String,
+        required: true
     }
 })
 
