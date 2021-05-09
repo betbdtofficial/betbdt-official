@@ -41,7 +41,8 @@ const WithdrawReq = () => {
   const findUser = balance.find((u) => u.username === getUser.user);
   const [errors, setErrors] = useState({});
   const handleSubmit = (e) => {
-    // e.preventDefault();
+    console.log(values)
+    e.preventDefault();
     setErrors(Validation(values, findUser?.balance));
     if (values.to.length < 11) {
       return;

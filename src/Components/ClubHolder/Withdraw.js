@@ -1,6 +1,6 @@
-import { Button } from '@material-ui/core';
+// import { Button } from '@material-ui/core';
 import React, { useEffect, useState } from "react";
-import { Col, Form } from "react-bootstrap";
+import { Button, Col, Form } from "react-bootstrap";
 import payment from "../image/payment-method.png";
 import { Validation } from "../Pages/MyProfile/Validation";
 const Withdraw = () => {
@@ -8,13 +8,14 @@ const Withdraw = () => {
   const time = new Intl.DateTimeFormat('en-US', {year: 'numeric', month: '2-digit',day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}).format(today)
 
   const storage = sessionStorage.getItem("club");
-  const getUser = JSON.parse(storage);
+  const clubUser = JSON.parse(storage);
   const [values, setValues] = useState({
     method: "",
     type: "",
     amount: "",
     to: "",
     username: "",
+    club: "",
     date: "",
     button: ""
   });
@@ -35,14 +36,15 @@ const Withdraw = () => {
   // get user data
   const [balance, setBalance] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user`)
+    fetch(`http://localhost:5000/user/getClubHolder`)
       .then((res) => res.json())
       .then((data) => setBalance(data));
   }, []);
-  const findUser = balance.find((u) => u.username === getUser.user);
+  const findUser = balance.find((u) => u.username === clubUser.club);
+  console.log(findUser)
   const [errors, setErrors] = useState({});
   const handleSubmit = (e) => {
-    // e.preventDefault();
+    e.preventDefault();
     setErrors(Validation(values, findUser?.balance));
     if (values.to.length < 11) {
       return;
@@ -52,7 +54,8 @@ const Withdraw = () => {
       return;
     }
     const withdraw = { ...values };
-    withdraw.username = getUser.user;
+    withdraw.username = clubUser.club;
+    withdraw.club = findUser?.club;
     withdraw.date = time;
     withdraw.button = "Pending"
     // send withdraw request
@@ -70,10 +73,10 @@ const Withdraw = () => {
         console.log(err.message);
       });
     // Withdraw balance update
-    const user = getUser.user;
+    const club = clubUser?.club;
     const withdrawUser = { ...values };
     withdrawUser.balance = findUser?.balance;
-    fetch(`http://localhost:5000/user/${user}`, {
+    fetch(`http://localhost:5000/user/club/${club}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
@@ -173,9 +176,18 @@ const Withdraw = () => {
                 </Form.Row>
                 <br />
                 <Button
-                  className="form-control signupBtn"
-                  variant="primary"
+                  variant="contained"
                   type="submit"
+                  color="primary"
+                  style={{
+                    backgroundColor: "rgb(18 110 81)",
+                    color: "white",
+                    marginTop: "10px",
+                    textAlign: 'center',
+                    width: "100%",
+                    padding: "4px",
+                    border: "none",
+                  }}
                 >
                   Submit
                 </Button>

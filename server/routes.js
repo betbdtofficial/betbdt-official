@@ -3,7 +3,11 @@ const {
   createBannedUser,
   bannedUserDelete,
 } = require("./Back-end-code/BannedControllar");
-const { getClubHolder, createClubHolder } = require("./Back-end-code/ClubHolderControllar");
+const {
+  getClubHolder,
+  createClubHolder,
+  clubWithdrawUpdate,
+} = require("./Back-end-code/ClubHolderControllar");
 const {
   getDepoHistory,
   createDepoHistory,
@@ -87,6 +91,7 @@ router.delete("/delete/:id", withdrawDelete);
 
 // withdraw update
 router.put("/:user", withdrawUpdate);
+router.put("/club/:club", clubWithdrawUpdate);
 
 // withdraw history
 router.get("/getWithdrawHistory", getWithdrawHistory);

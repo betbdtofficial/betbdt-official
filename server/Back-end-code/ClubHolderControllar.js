@@ -39,3 +39,21 @@ exports.createClubHolder = (req, res) => {
       });
   });
 };
+
+// Withdraw update
+exports.clubWithdrawUpdate = (req, res) => {
+  ClubHolder.findOneAndUpdate(
+    { username: req.params.club },
+    { $set: { balance: parseInt(req.body.balance) - parseInt(req.body.amount) } },
+    { new: true }
+  ).then(() => {
+    ClubHolder.find()
+      .sort({ _id: -1 })
+      .then((result) => {
+        res.send(result);
+      })
+      .catch((err) => {
+        res.send(err.message);
+      });
+  });
+};

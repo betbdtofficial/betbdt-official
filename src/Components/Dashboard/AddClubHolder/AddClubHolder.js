@@ -27,6 +27,8 @@ const SignUp = () => {
     numExist: "",
   });
   const num = dbData.find((num) => num.number === value.number); // Number already exist check
+  const club = dbData.find((num) => num.club === value.club); // club already exist check
+  const sponsor = dbData.find((sponsor) => sponsor.sponsor === value.sponsor); // club already exist check
   const username = dbData.find(
     (username) => username.username === value.username
   ); // Username already exist check
@@ -40,21 +42,27 @@ const SignUp = () => {
   // send data from regi form
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(value)
-    setErrors(Validation(value, num?.number, username?.username, username));
+    console.log(value);
+    setErrors(
+      Validation(
+        value,
+        num?.number,
+        username?.username,
+        club?.club,
+        sponsor?.sponsor
+      )
+    );
     if (username?.username) {
       // Username hard validation
       return;
-    }else if(value.club === username?.club){
+    } else if (club?.club) {
       return;
-    }
-     else if (value.password !== value.password2) {
+    } else if (value.password !== value.password2) {
       // Password hard validation
       return;
-    }else if(value.sponsor === username?.sponsor){
+    } else if (sponsor?.sponsor) {
       return;
-    }
-     else if (num?.number) {
+    } else if (num?.number) {
       // Number hard validation
       return;
     } else if (
@@ -261,7 +269,9 @@ const SignUp = () => {
                   onChange={handleChange}
                   placeholder="Profit Amount Only Amount Not Allow Text"
                 />
-                {errors.profit && <p className="text-danger">{errors.profit}</p> }
+                {errors.profit && (
+                  <p className="text-danger">{errors.profit}</p>
+                )}
                 <br />
                 <Button className="form-control signupBtn" type="submit">
                   Add Club Holder Now

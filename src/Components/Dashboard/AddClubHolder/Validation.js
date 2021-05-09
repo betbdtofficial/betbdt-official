@@ -1,4 +1,4 @@
-const Validation = (values, numberCheck, usernameCheck, user) => {
+const Validation = (values, numberCheck, usernameCheck, club, sponsor) => {
   // const re = /\S+@\S+\.\S+/;
   let errors = {};
   if (!values.name) {
@@ -11,7 +11,7 @@ const Validation = (values, numberCheck, usernameCheck, user) => {
     errors.club = "Club is Required";
   } else if (values.club.length < 2) {
     errors.club = "Club name more than 2 charectars";
-  } else if (values.club === user?.club) {
+  } else if (club) {
     errors.club = "Club Already Exist";
   } else if (!values.number) {
     errors.number = "Phone Number is Required";
@@ -24,7 +24,7 @@ const Validation = (values, numberCheck, usernameCheck, user) => {
     errors.sponsor = "Sponsor is Required";
   } else if (values.sponsor.length < 3) {
     errors.sponsor = "Sponsor Name more than 3 charectars";
-  } else if (values.sponsor === user?.sponsor) {
+  } else if (sponsor) {
     errors.sponsor = "Sponsor Already Exist";
   } else if (!values.username) {
     errors.username = "Username is Required";
