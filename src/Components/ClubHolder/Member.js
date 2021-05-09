@@ -25,7 +25,7 @@ const Member = () => {
   const [uniqueUser, setUniqueUser] = useState([]);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
-  const handleShow = (id, data) => {
+  const handleShow = (data) => {
     setShow(true);
     setUniqueUser(data);
   };
@@ -78,7 +78,7 @@ const Member = () => {
                     <td>
                       <span>
                         <Button
-                          onClick={() => handleShow(data._id, data)}
+                          onClick={() => handleShow(data)}
                           color="secondary"
                           variant="contained"
                         >

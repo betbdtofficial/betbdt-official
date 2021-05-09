@@ -21,6 +21,9 @@ const WidthrawSchema = new Schema({
         type: String,
         required: true
     },
+    club: {
+        type: String
+    },
     date:{
         type: String,
         required: true

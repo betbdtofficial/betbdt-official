@@ -141,7 +141,7 @@ exports.changePassword = (req, res) => {
 exports.withdrawUpdate = (req, res) => {
   UserInfo.findOneAndUpdate(
     { username: req.params.user },
-    { $set: { balance: req.body.balance - req.body.amount } },
+    { $set: { balance: parseInt(req.body.balance) - parseInt(req.body.amount) } },
     { new: true }
   ).then(() => {
     UserInfo.find()
@@ -158,13 +158,14 @@ exports.withdrawUpdate = (req, res) => {
 // Withdraw Post request
 const Widthraw = require("./WithdrawSchema");
 exports.withdrawReq = (req, res) => {
-  const { method, type, amount, to, username, date, button } = req.body;
+  const { method, type, amount, to, username,club, date, button } = req.body;
   const WidthrawRequest = new Widthraw({
     method: method,
     type: type,
     amount: amount,
     to: to,
     username: username,
+    club: club,
     date: date,
     button: button,
   });
