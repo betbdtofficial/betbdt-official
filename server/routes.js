@@ -42,6 +42,7 @@ const {
   deleteMatch,
   updateMatch,
 } = require("./Back-end-code/MatchControllar");
+const { getNotice, createNotice, noticeUpdate } = require("./Back-end-code/NoticeControllar");
 const {
   getUpcomingMatch,
   createUpcomingMatch,
@@ -86,6 +87,11 @@ router.delete("/bannedActiveUser/:id", bannedActiveUser); // banned Active User
 // admin login
 router.get("/getAdmin", getAdminLogin);
 router.post("/createAdmin", addAdminLogin);
+
+// website setting
+router.get("/getNotice", getNotice);
+router.post("/createNotice", createNotice);
+router.put("/noticeUpdate/:id", noticeUpdate);
 
 // Bet system
 router.get("/getBet", getBet);

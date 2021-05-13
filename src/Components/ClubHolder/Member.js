@@ -48,7 +48,7 @@ const Member = () => {
               </tr>
               {findUser
                 .filter((value) => {
-                  if (searchTerm == "") return value;
+                  if (searchTerm === "") return value;
                   else if (
                     value.username
                       .toLowerCase()
@@ -57,7 +57,7 @@ const Member = () => {
                     return value;
                 })
                 .map((data) => (
-                  <tr>
+                  <tr key={data._id}>
                     <td>{data.name}</td>
                     <td>{data.number}</td>
                     <td>{data.sponsor}</td>

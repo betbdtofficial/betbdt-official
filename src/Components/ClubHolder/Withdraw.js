@@ -1,4 +1,3 @@
-// import { Button } from '@material-ui/core';
 import React, { useEffect, useState } from "react";
 import { Button, Col, Form } from "react-bootstrap";
 import payment from "../image/payment-method.png";
@@ -32,14 +31,12 @@ const Withdraw = () => {
     setValues(copyValue);
     setErrors("");
   };
-
   const [method, setMethod] = useState([]);
   useEffect(() => {
     fetch(`http://localhost:5000/user/getMethod`)
       .then((res) => res.json())
       .then((data) => setMethod(data));
   }, []);
-
   // get user data
   const [balance, setBalance] = useState([]);
   useEffect(() => {
@@ -48,15 +45,17 @@ const Withdraw = () => {
       .then((data) => setBalance(data));
   }, []);
   const findUser = balance.find((u) => u.username === clubUser.club);
-  console.log(findUser);
   const [errors, setErrors] = useState({});
   const handleSubmit = (e) => {
     setErrors(Validation(values, findUser?.balance));
     if (values.to.length < 11) {
+      e.preventDefault()
       return;
     } else if (values.amount > findUser?.balance) {
+      e.preventDefault()
       return;
     } else if (values.amount < 50) {
+      e.preventDefault()
       return;
     }
     const withdraw = { ...values };
