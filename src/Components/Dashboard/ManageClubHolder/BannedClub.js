@@ -1,25 +1,15 @@
 import { Button } from "@material-ui/core";
-import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
+import BathtubIcon from "@material-ui/icons/Bathtub";
 import React, { useEffect, useState } from "react";
-import { FaRegEye } from "react-icons/fa";
-import Modals from "../User/Modals";
 
-const ClubIndex = () => {
-  const [clubHolder, setClubHolder] = useState([]);
+const BannedClub = () => {
+  const [bannedClub, setBannedClub] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/getClubHolder`)
+    fetch(`http://localhost:5000/user/getBannedClub`)
       .then((res) => res.json())
-      .then((data) => setClubHolder(data));
-  }, [clubHolder._id]);
+      .then((data) => setBannedClub(data));
+  }, [bannedClub._id]);
   const [searchTerm, setSearchTerm] = useState("");
-  const [uniqueUser, setUniqueUser] = useState([]);
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = (id) => {
-    setShow(true);
-    const findEl = clubHolder.find((data) => data._id === id);
-    setUniqueUser(findEl);
-  };
   const handleBanned = (data, id) => {
     const clubData = {
       name: data?.name,
@@ -33,31 +23,35 @@ const ClubIndex = () => {
       profit: data?.profit,
       balance: data.balance,
     };
-    fetch(`http://localhost:5000/user/bannedClub`, {
+    fetch(`http://localhost:5000/user/createClubHolder`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
       },
       body: JSON.stringify(clubData),
-    }).then((result) => {
-      console.log(result);
-    });
-    // club delete
-    fetch(`http://localhost:5000/user/deleteClub/${id}`, {
+    })
+      .then(() => {
+        fetch(`http://localhost:5000/user/getBannedClub`)
+          .then((res) => res.json())
+          .then((data) => setBannedClub(data));
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+
+    // delete banned club
+    fetch(`http://localhost:5000/user/deleteBannedClub/${id}`, {
       method: "DELETE",
     }).then(() => {
-      fetch(`http://localhost:5000/user/getClubHolder`)
+      fetch(`http://localhost:5000/user/getBannedClub`)
         .then((res) => res.json())
-        .then((data) => setClubHolder(data));
+        .then((data) => setBannedClub(data));
     });
   };
   return (
     <>
-      {/* modal */}
-      <Modals show={show} user={uniqueUser} handleClose={handleClose} />
-      {/* modal */}
       <div className="winnerHeading d-flex align-items-center justify-content-between">
-        <span className="head">Active Club Holder</span>
+        <span className="head">Banned Club Holder</span>
         <span>
           <input
             type="text"
@@ -78,7 +72,7 @@ const ClubIndex = () => {
           <th>Profit</th>
           <th>Details</th>
         </tr>
-        {clubHolder
+        {bannedClub
           .filter((value) => {
             if (searchTerm == "") return value;
             else if (
@@ -95,25 +89,15 @@ const ClubIndex = () => {
               <td>
                 <span>
                   <Button
-                    onClick={() => handleShow(data._id)}
+                    onClick={() => handleBanned(data, data._id)}
                     color="primary"
                     variant="contained"
                   >
                     <span>
-                      <FaRegEye className="viewIcon" />
+                      <BathtubIcon className="viewIcon" />
                     </span>{" "}
-                    View
+                    Re-Active
                   </Button>{" "}
-                  <Button
-                    onClick={() => handleBanned(data, data._id)}
-                    color="secondary"
-                    variant="contained"
-                  >
-                    <span>
-                      <DeleteForeverIcon className="viewIcon" />
-                    </span>{" "}
-                    banned
-                  </Button>
                 </span>
               </td>
             </tr>
@@ -123,4 +107,4 @@ const ClubIndex = () => {
   );
 };
 
-export default ClubIndex;
+export default BannedClub;

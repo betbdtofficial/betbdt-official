@@ -10,7 +10,7 @@ const UpcommingMatch = () => {
     fetch(`http://localhost:5000/user/getUpcomingMatch`)
       .then((res) => res.json())
       .then((data) => setDbData(data));
-  });
+  },[dbData]);
   const handleDelete = (id) => {
     fetch(`http://localhost:5000/user/deleteUpcomingMatch/${id}`, {
       method: "DELETE",

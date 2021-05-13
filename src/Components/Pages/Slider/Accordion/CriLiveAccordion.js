@@ -9,7 +9,7 @@ function CriLiveAccordion() {
     fetch(`http://localhost:5000/user/getMatch`)
       .then((res) => res.json())
       .then((data) => setDbData(data));
-  });
+  },[]);
   const [modalIsOpen, setIsOpen] = useState(false);
   function openModal() {
     setIsOpen(true);

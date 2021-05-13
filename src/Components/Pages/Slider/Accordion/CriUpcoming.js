@@ -10,7 +10,7 @@ function CriUpcomingAccordion() {
     fetch(`http://localhost:5000/user/getUpcomingMatch`)
       .then((res) => res.json())
       .then((data) => setDbData(data));
-  });
+  },[]);
   const [modalIsOpen, setIsOpen] = useState(false);
   const openModal = (match) => {
     setIsOpen(true);
@@ -19,14 +19,16 @@ function CriUpcomingAccordion() {
   const closeModal = () => {
     setIsOpen(false);
   };
-  const [passMatch, setPassMatch] = useState([]);
   const [passId, setPassId] = useState([]);
+  const [passMatch, setPassMatch] = useState([]);
   const [passAmount, setPassAmount] = useState([]);
-  const handlePleceFormPassData = (match, id, amount) => {
-    setPassMatch(match);
+  const handlePleceFormPassData = (id, match, amount) => {
     setPassId(id);
+    setPassMatch(match);
     setPassAmount(amount);
+    console.log(id, match, amount)
   };
+  // console.log(passMatch, passId, passAmount)
   return (
     <div>
       <div className="liveMatch">
@@ -36,8 +38,8 @@ function CriUpcomingAccordion() {
         </span>
       </div>
       <PlaceBetFrom
-        passMatch={passMatch}
         passId={passId}
+        passMatch={passMatch}
         passAmount={passAmount}
         modalIsOpen={modalIsOpen}
         closeModal={closeModal}

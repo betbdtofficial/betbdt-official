@@ -10,15 +10,20 @@ const WithdrawHistory = () => {
       .then((res) => res.json())
       .then((data) => setHistory(data));
   }, []);
-
   const [clubHolder, setClubHolder] = useState([]);
   useEffect(() => {
     fetch(`http://localhost:5000/user/getClubHolder`)
       .then((res) => res.json())
       .then((data) => setClubHolder(data));
   }, [clubHolder._id]);
-  const findClubHolder = clubHolder.find((u) => u.username === club?.club); //find Club holder
-  const findUser = history.filter((u) => u.club === findClubHolder?.club); // find user
+  const [withdraw, setWithdraw] = useState([]);
+  useEffect(() => {
+    fetch(`http://localhost:5000/user/withdrawGet`)
+      .then((res) => res.json())
+      .then((data) => setWithdraw(data));
+  }, []);
+  const findClubHolder = clubHolder.find((u) => u?.username === club?.club); //find Club holder
+  const findUser = [...withdraw, ...history].filter((u) => u?.club === findClubHolder?.club); // find user
   const [searchTerm, setSearchTerm] = useState("")
   return (
     <>
@@ -47,21 +52,21 @@ const WithdrawHistory = () => {
           <th>Date</th>
           <th>Status</th>
         </tr>
-        {findUser.filter((value)=>{
+        {findUser?.filter((value)=>{
           if(searchTerm == "") return value
           else if(value.username.toLowerCase().includes(searchTerm.toLowerCase())) return value
         }).map((data) => (
           <tr>
-            <td>{data.username}</td>
-            <td>{data.number}</td>
-            <td>{data.type}</td>
-            <td>{data.method}</td>
-            <td>{data.amount} BDT</td>
-            <td>{data.date}</td>
+            <td>{data?.username}</td>
+            <td>{data?.number || data?.to}</td>
+            <td>{data?.type}</td>
+            <td>{data?.method}</td>
+            <td>{data?.amount} BDT</td>
+            <td>{data?.date}</td>
             <td>
               <span>
                 <Button color="primary" variant="contained">
-                  {data.button}
+                  {data?.button}
                 </Button>
               </span>
             </td>

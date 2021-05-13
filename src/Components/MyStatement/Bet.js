@@ -1,7 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { Table } from "react-bootstrap";
 
 const Bet = () => {
+  const storage = sessionStorage.getItem("user");
+  const getUser = JSON.parse(storage);
+  const [bet, setBet] = useState([]);
+  fetch(`http://localhost:5000/user/getBet`)
+    .then((res) => res.json())
+    .then((data) => setBet(data));
+
+  const findEl = bet.filter(data=>data.username === getUser?.user)
   return (
     <div>
       <div className="container mt-5 mb-5">
@@ -23,26 +31,20 @@ const Bet = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>10/05/2021, 10:10:10 PM</td>
-                    <td>Australia VS India</td>
-                    <td>Autralia</td>
-                    <td>250 TK</td>
-                    <td>1.6</td>
-                    <td>360 TK</td>
-                    <td>Panding</td>
-                  </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>10/05/2021, 10:10:10 PM</td>
-                    <td>Australia VS India</td>
-                    <td>India</td>
-                    <td>350 TK</td>
-                    <td>1.5</td>
-                    <td>350 TK</td>
-                    <td>Panding</td>
-                  </tr>
+                  {findEl?.map((data, index) => (
+                    <tr>
+                      <td>{index + 1}</td>
+                      <td>{data.date}</td>
+                      <td>
+                        {data.match1} vs {data.match2}
+                      </td>
+                      <td>{data.betTitle}</td>
+                      <td>{data.betAmount} TK</td>
+                      <td>{data.betRate}</td>
+                      <td>{data.winingAmount} TK</td>
+                      <td>{data.status}</td>
+                    </tr>
+                  ))}
                 </tbody>
               </Table>
             </div>

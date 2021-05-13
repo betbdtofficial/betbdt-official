@@ -1,6 +1,8 @@
 const UserInfo = require("./Schema");
 
 exports.getUser = (req, res) => {
+  // res.redirect("http://localhost:3000");
+  // console.log(req.url)
   UserInfo.find()
     .sort({ _id: -1 })
     .then((result) => {
@@ -104,6 +106,7 @@ exports.userUpdate = (req, res) => {
 
 // hey user you will go to banned user list
 exports.bannedActiveUser = (req, res) => {
+  // res.redirect("http://localhost:3000");
   const { id } = req.params;
   UserInfo.findByIdAndDelete({ _id: id }).then(() => {
     UserInfo.find()
@@ -141,7 +144,9 @@ exports.changePassword = (req, res) => {
 exports.withdrawUpdate = (req, res) => {
   UserInfo.findOneAndUpdate(
     { username: req.params.user },
-    { $set: { balance: parseInt(req.body.balance) - parseInt(req.body.amount) } },
+    {
+      $set: { balance: parseInt(req.body.balance) - parseInt(req.body.amount) },
+    },
     { new: true }
   ).then(() => {
     UserInfo.find()
@@ -158,7 +163,7 @@ exports.withdrawUpdate = (req, res) => {
 // Withdraw Post request
 const Widthraw = require("./WithdrawSchema");
 exports.withdrawReq = (req, res) => {
-  const { method, type, amount, to, username,club, date, button } = req.body;
+  const { method, type, amount, to, username, club, date, button } = req.body;
   const WidthrawRequest = new Widthraw({
     method: method,
     type: type,
@@ -183,8 +188,11 @@ exports.withdrawReq = (req, res) => {
 // Withdraw Get request
 exports.withdrawGet = (req, res) => {
   Widthraw.find()
-    .sort({ _id: -1 })
-    .then((result) => res.json(result));
+  .sort({ _id: -1 })
+  .then((result) => {
+    res.json(result);
+  });
+
 };
 // Withdraw delete
 exports.withdrawDelete = (req, res) => {

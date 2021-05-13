@@ -20,7 +20,6 @@ const DepositReq = () => {
   }, []);
   const [searchTerm, setSearchTerm] = useState("");
   const handleDeposit = (id, data) => {
-    console.log(id);
     // Deposit Request Delete
     fetch(`http://localhost:5000/user/deposit/delete/${id}`, {
       method: "DELETE",
@@ -59,6 +58,33 @@ const DepositReq = () => {
       console.log(result);
     });
   };
+  const handleCancel = (id, data)=>{
+    fetch(`http://localhost:5000/user/deposit/delete/${id}`, {
+      method: "DELETE",
+    }).then(() => {
+      fetch(`http://localhost:5000/user/getDeposit`)
+        .then((res) => res.json())
+        .then((data) => setDepo(data));
+    });
+    // Deposit History Create
+    const depoHistory = {
+      username: data.username,
+      from: data.from,
+      method: data.method,
+      amount: data.amount,
+      date: time,
+      button: "Canceled",
+    };
+    fetch(`http://localhost:5000/user/createDepositHistory`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(depoHistory),
+    }).then((result) => {
+      console.log(result);
+    });
+  }
   return (
     <>
       <div className="winnerHeading d-flex align-items-center justify-content-between">
@@ -97,8 +123,8 @@ const DepositReq = () => {
             <td>
               <span>
                 <Button
-                  onClick={()=>handleDeposit(data._id, data)}
-                  color="secondary"
+                  onClick={()=>handleCancel(data._id, data)}
+                  color="primary"
                   variant="contained"
                 >
                   Cancel

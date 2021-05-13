@@ -21,11 +21,11 @@ export const Validation = (values, balance) => {
   return errors;
 };
 
-export const DepoValidation = (value) =>{
+export const DepoValidation = (value) => {
   let errors = {};
   if (!value.method) {
     errors.method = "Method is Required";
-  }else if (!value.amount) {
+  } else if (!value.amount) {
     errors.amount = "Amount is Required";
   } else if (value.amount < 200) {
     errors.amount = "Minimum deposit 200 BDT";
@@ -37,4 +37,17 @@ export const DepoValidation = (value) =>{
     errors.success = "Deposit Request Sumitted !";
   }
   return errors;
-}
+};
+export const BetValidation = (value, balance) => {
+  let errors = {};
+  if (!value.amount) {
+    errors.amount = "Amount is Required";
+  } else if (value.amount < 50) {
+    errors.amount = "Minimum Bet 50 BDT";
+  } else if(value.amount > balance){
+    errors.amount = "Insufficient balance !";
+  } else {
+    errors.success = "Bet Sumitted !";
+  }
+  return errors;
+};

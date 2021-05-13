@@ -30,7 +30,7 @@ const ClubHolder = () => {
   }, []);
   const uHolder = clubHolder.find(u=>u.username === club?.club)// specific club holder
   const findUser = dbData.filter((u) => u.club === uHolder?.club);// specific club holder member
-  const findBalance = history.filter(bal => bal.club === uHolder.club);// club holder balance find
+  const findBalance = history.filter(bal => bal.club === uHolder?.club);// club holder balance find
   let balance = 0;
   for (let b = 0; b < findBalance.length; b++) {
     const element = findBalance[b];

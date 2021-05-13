@@ -77,6 +77,7 @@ const SignUp = () => {
         method: "POST",
         headers: {
           "content-type": "application/json",
+          "X-API-KEY":"12345"
         },
         body: JSON.stringify(values),
       })
