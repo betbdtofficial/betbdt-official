@@ -20,6 +20,7 @@ const {
   bannedClubHolder,
   getBannedClub,
   deleteBannedClub,
+  clubHolderbalanceUpdate,
 } = require("./Back-end-code/ClubHolderControllar");
 const {
   getDepoHistory,
@@ -110,6 +111,7 @@ router.delete("/deleteClub/:id", deleteClub);
 router.post("/bannedClub", bannedClubHolder);
 router.get("/getBannedClub", getBannedClub);
 router.delete("/deleteBannedClub/:id", deleteBannedClub);
+router.put("/clubBalanceUpdate/:username", clubHolderbalanceUpdate);
 
 // Draft box match
 router.post("/createDraftMatch", createDraftMatch);
@@ -146,10 +148,10 @@ router.patch("/:username", addDeposit);
 router.get("/getDepositHistory", getDepoHistory);
 router.post("/createDepositHistory", createDepoHistory);
 
-// withdraw method
+// deposit method
 router.get("/getDepoMethod", getDepoMethod);
 router.post("/createDepoMethod", createDepoMethod);
-router.delete("/deposit/delete/:id", deleteDepoMethod);
+router.delete("/deleteDepoMethod/:id", deleteDepoMethod);
 
 // get Live match and create Live match and delete Live match
 router.get("/getMatch", getMatch);

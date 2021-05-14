@@ -33,6 +33,14 @@ const PlaceBetFrom = ({
   }).format(today);
   const storage = sessionStorage.getItem("user");
   const getUser = JSON.parse(storage);
+  // bet info
+  const [bet, setBet] = useState([]);
+  useEffect(() => {
+    fetch(`http://localhost:5000/user/getBet`)
+      .then((res) => res.json())
+      .then((data) => setBet(data));
+  }, []);
+  const findUsers = bet.find((data) => data.username === getUser?.user);
   // upcoming match
   const [dbData, setDbData] = useState([]);
   useEffect(() => {
@@ -52,6 +60,14 @@ const PlaceBetFrom = ({
       .then((data) => setBalance(data));
   }, []);
   const findUser = balance.find((u) => u.username === getUser?.user);
+  // get club holder
+  const [club, setClub] = useState([]);
+  useEffect(() => {
+    fetch(`http://localhost:5000/user/getClubHolder`)
+      .then((res) => res.json())
+      .then((data) => setClub(data));
+  }, []);
+  const findClub = club.find((u) => u.club === findUser?.club);
   const handleChange = (e) => {
     const values = { ...value };
     values[e.target.name] = e.target.value;
@@ -100,6 +116,24 @@ const PlaceBetFrom = ({
     }).then((result) => {
       console.log(result);
     });
+    // club holder profit add
+    const username = findClub?.username;
+    const profit = findClub?.profit;
+    const amount = value.amount;
+    if (!findUsers) {
+      const clubBalance = {
+        balance: amount * (profit / 100).toFixed(2),
+      };
+      fetch(`http://localhost:5000/user/clubBalanceUpdate/${username}`, {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(clubBalance),
+      }).then((result) => {
+        console.log(result);
+      });
+    }
   };
   return (
     <div>

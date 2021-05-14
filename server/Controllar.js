@@ -1,8 +1,6 @@
 const UserInfo = require("./Schema");
 
 exports.getUser = (req, res) => {
-  // res.redirect("http://localhost:3000");
-  // console.log(req.url)
   UserInfo.find()
     .sort({ _id: -1 })
     .then((result) => {
@@ -106,7 +104,6 @@ exports.userUpdate = (req, res) => {
 
 // hey user you will go to banned user list
 exports.bannedActiveUser = (req, res) => {
-  // res.redirect("http://localhost:3000");
   const { id } = req.params;
   UserInfo.findByIdAndDelete({ _id: id }).then(() => {
     UserInfo.find()

@@ -8,7 +8,6 @@ const Bet = () => {
   fetch(`http://localhost:5000/user/getBet`)
     .then((res) => res.json())
     .then((data) => setBet(data));
-
   const findEl = bet.filter(data=>data.username === getUser?.user)
   return (
     <div>

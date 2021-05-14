@@ -9,6 +9,15 @@ const DepositMethod = () => {
       .then((res) => res.json())
       .then((data) => setDepoMethod(data));
   }, []);
+  const handleDelete = (id) => {
+    fetch(`http://localhost:5000/user/deleteDepoMethod/${id}`, {
+      method: "DELETE",
+    }).then(() => {
+      fetch(`http://localhost:5000/user/getDepoMethod`)
+        .then((res) => res.json())
+        .then((data) => setDepoMethod(data));
+    });
+  };
   return (
     <>
       <div className="winnerHeading d-flex align-items-center justify-content-between">
@@ -38,7 +47,11 @@ const DepositMethod = () => {
             <td>{data.number}</td>
             <td>
               <span>
-                <Button color="secondary" variant="contained">
+                <Button
+                  onClick={() => handleDelete(data._id)}
+                  color="secondary"
+                  variant="contained"
+                >
                   <Delete className="viewIcon" />
                 </Button>
               </span>
