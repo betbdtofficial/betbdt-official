@@ -16,6 +16,7 @@ exports.createBet = (req, res) => {
     betAmount,
     betRate,
     winingAmount,
+    question,
     status,
   } = req.body;
   const bets = new Bets({
@@ -27,6 +28,7 @@ exports.createBet = (req, res) => {
     betAmount,
     betRate,
     winingAmount,
+    question,
     status,
   });
   bets.save().then(() => {
@@ -37,8 +39,18 @@ exports.createBet = (req, res) => {
       });
   });
 };
+
+
+// bet delete
+exports.betDelete = (req, res) => {
+  const { id } = req.params;
+  Bets.findByIdAndDelete({ _id: id }).then((result) => {
+    res.send(result);
+  });
+};
+
 // Withdraw update
-const UserInfo = require('../Schema')
+const UserInfo = require("../Schema");
 exports.betBalUpdate = (req, res) => {
   UserInfo.findOneAndUpdate(
     { username: req.params.user },
@@ -55,5 +67,22 @@ exports.betBalUpdate = (req, res) => {
       .catch((err) => {
         res.send(err.message);
       });
+  });
+};
+
+// bet user amount add
+exports.betUserBalUpdate = (req, res) => {
+  UserInfo.findOne({ username: req.params.username }).then((result) => {
+    UserInfo.findOneAndUpdate(
+      { username: req.params.username },
+      {
+        $set: {
+          balance: parseInt(result.balance) + parseInt(req.body.balance),
+        },
+      },
+      { new: true }
+    ).then((result) => {
+      res.send(result);
+    });
   });
 };

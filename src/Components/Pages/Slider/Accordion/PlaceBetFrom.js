@@ -21,6 +21,7 @@ const PlaceBetFrom = ({
   passId,
   passMatch,
   passAmount,
+  passTitle,
 }) => {
   const today = Date.now();
   const time = new Intl.DateTimeFormat("en-US", {
@@ -92,6 +93,7 @@ const PlaceBetFrom = ({
       betAmount: value.amount,
       winingAmount: (value.amount * passAmount).toFixed(2),
       betRate: passAmount,
+      question: passTitle,
       status: "Pending",
     };
     fetch(`http://localhost:5000/user/createBet`, {

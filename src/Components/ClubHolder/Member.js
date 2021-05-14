@@ -40,6 +40,7 @@ const Member = () => {
             </div>
             <table>
               <tr>
+                <th>SN.</th>
                 <th>Name</th>
                 <th>Mobile</th>
                 <th>Sponsor</th>
@@ -56,8 +57,9 @@ const Member = () => {
                   )
                     return value;
                 })
-                .map((data) => (
+                .map((data, index) => (
                   <tr key={data._id}>
+                    <td>{index + 1}</td>
                     <td>{data.name}</td>
                     <td>{data.number}</td>
                     <td>{data.sponsor}</td>

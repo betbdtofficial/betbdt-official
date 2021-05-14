@@ -1,14 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
 
 const Bet = () => {
   const storage = sessionStorage.getItem("user");
   const getUser = JSON.parse(storage);
+  // bets
   const [bet, setBet] = useState([]);
-  fetch(`http://localhost:5000/user/getBet`)
-    .then((res) => res.json())
-    .then((data) => setBet(data));
-  const findEl = bet.filter(data=>data.username === getUser?.user)
+  useEffect(() => {
+    fetch(`http://localhost:5000/user/getBet`)
+      .then((res) => res.json())
+      .then((data) => setBet(data));
+  }, []);
+  const findEl = bet.filter((data) => data.username === getUser?.user);
+  // bet history
+  const [betHistory, setBetHistory] = useState([]);
+  useEffect(() => {
+    fetch(`http://localhost:5000/user/getBetHistory`)
+      .then((res) => res.json())
+      .then((data) => setBetHistory(data));
+  }, []);
+  const findBetHistory = betHistory.filter((data) => data.username === getUser?.user);
   return (
     <div>
       <div className="container mt-5 mb-5">
@@ -22,6 +33,7 @@ const Bet = () => {
                     <th>SN.</th>
                     <th>Date</th>
                     <th>Match</th>
+                    <th>Question</th>
                     <th>Bet Title</th>
                     <th>Bet Amount</th>
                     <th>Bet Rate</th>
@@ -37,6 +49,22 @@ const Bet = () => {
                       <td>
                         {data.match1} vs {data.match2}
                       </td>
+                      <td>{data.question}?</td>
+                      <td>{data.betTitle}</td>
+                      <td>{data.betAmount} TK</td>
+                      <td>{data.betRate}</td>
+                      <td>{data.winingAmount} TK</td>
+                      <td>{data.status}</td>
+                    </tr>
+                  ))}
+                  {findBetHistory?.map((data, index) => (
+                    <tr>
+                      <td>{index + 1}</td>
+                      <td>{data.date}</td>
+                      <td>
+                        {data.match1} vs {data.match2}
+                      </td>
+                      <td>{data.question}?</td>
                       <td>{data.betTitle}</td>
                       <td>{data.betAmount} TK</td>
                       <td>{data.betRate}</td>

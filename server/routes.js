@@ -11,7 +11,10 @@ const {
   getBet,
   createBet,
   betBalUpdate,
+  betUserBalUpdate,
+  betDelete,
 } = require("./Back-end-code/BetControllar");
+const { getBetHistory, createBetHistory } = require("./Back-end-code/BetHistoryControllar");
 const {
   getClubHolder,
   createClubHolder,
@@ -98,6 +101,10 @@ router.put("/noticeUpdate/:id", noticeUpdate);
 router.get("/getBet", getBet);
 router.post("/createBet", createBet);
 router.put("/bet/:user", betBalUpdate);
+router.put("/betUserBalUpdate/:username", betUserBalUpdate);
+router.get("/getBetHistory", getBetHistory);
+router.post("/createBetHistory", createBetHistory);
+router.delete("/betDelete/:id", betDelete);
 
 // Banned user handle
 router.get("/getBannedUser", getBannedUser);

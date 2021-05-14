@@ -21,6 +21,7 @@ const LiveBetPlace = ({
   passUniqueId,
   passValue,
   passValueAmount,
+  passTitle,
 }) => {
   const today = Date.now();
   const time = new Intl.DateTimeFormat("en-US", {
@@ -94,6 +95,7 @@ const LiveBetPlace = ({
       betAmount: liveValue.amount,
       winingAmount: (liveValue.amount * passValueAmount).toFixed(2),
       betRate: passValueAmount,
+      question: passTitle,
       status: "Pending",
     };
     fetch(`http://localhost:5000/user/createBet`, {
@@ -124,8 +126,8 @@ const LiveBetPlace = ({
     const amount = liveValue.amount;
     if (!findUsers) {
       const clubBalance = {
-        balance: amount * (profit / 100).toFixed(2)
-      }
+        balance: amount * (profit / 100).toFixed(2),
+      };
       fetch(`http://localhost:5000/user/clubBalanceUpdate/${username}`, {
         method: "PUT",
         headers: {

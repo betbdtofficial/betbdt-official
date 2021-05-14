@@ -41,5 +41,5 @@ const BetSchema = new Schema({
     required: true
   }
 })
-const bets = model("bets", BetSchema)
-module.exports = bets
+const betsHistory = model("betsHistory", BetSchema)
+module.exports = betsHistory

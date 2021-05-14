@@ -1,4 +1,4 @@
-import { Button } from '@material-ui/core';
+import { Button } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { FaUserFriends } from "react-icons/fa";
 import { SiDolby, SiGoogletagmanager, SiSymantec } from "react-icons/si";
@@ -28,9 +28,9 @@ const ClubHolder = () => {
       .then((res) => res.json())
       .then((data) => setHistory(data));
   }, []);
-  const uHolder = clubHolder.find(u=>u.username === club?.club)// specific club holder
-  const findUser = dbData.filter((u) => u.club === uHolder?.club);// specific club holder member
-  const findBalance = history.filter(bal => bal.club === uHolder?.club);// club holder balance find
+  const uHolder = clubHolder.find((u) => u.username === club?.club); // specific club holder
+  const findUser = dbData.filter((u) => u.club === uHolder?.club); // specific club holder member
+  const findBalance = history.filter((bal) => bal.club === uHolder?.club); // club holder balance find
   let balance = 0;
   for (let b = 0; b < findBalance.length; b++) {
     const element = findBalance[b];
@@ -39,7 +39,16 @@ const ClubHolder = () => {
   return (
     <div>
       <div className="container text-center mt-5 mb-5">
-        <h1 className="clubpanal">Club Panel</h1> <hr /> <br />
+        <div className="club-details text-right d-flex align-items-center justify-content-between">
+          <div>
+            <h1 className="clubpanal d-5">Club Panel</h1>
+          </div>
+          <div>
+            <h2>{uHolder?.name}</h2>
+            <h4>Your Profit: {uHolder?.profit}%</h4>
+          </div>
+        </div>
+        <hr /> <br />
         <div className="row">
           <div className="col-md-3">
             <div className="ClubHolderBlance">
@@ -47,7 +56,8 @@ const ClubHolder = () => {
                 <SiDolby></SiDolby>
               </div>
               <strong>
-                Balance <br /> <b className="balanceText">{uHolder?.balance} TK</b>{" "}
+                Balance <br />{" "}
+                <b className="balanceText">{uHolder?.balance} TK</b>{" "}
               </strong>
             </div>
           </div>
@@ -86,8 +96,8 @@ const ClubHolder = () => {
           </div>
         </div>
         <br />
-      </div>
       <hr />
+      </div>
       <div className="container-fluid text-center">
         <div className="row">
           <div className="col-md-12">
