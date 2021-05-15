@@ -17,8 +17,6 @@ import vball from "../../image/SliderImg/vball.png";
 import virtual from "../../image/SliderImg/virtual_game.png";
 import CriLiveAccordion from "./Accordion/CriLiveAccordion";
 import CriUpcoming from "./Accordion/CriUpcoming";
-import FballLiveAccordion from "./Accordion/FballLiveAccordion";
-import FballUpcomingAccordion from "./Accordion/FballUpcomingAccordion";
 import "./Slider.css";
 
 function Sliders() {
@@ -130,10 +128,6 @@ function Sliders() {
           <TabPanel>
             <CriLiveAccordion />
             <CriUpcoming />
-          </TabPanel>
-          <TabPanel>
-            <FballLiveAccordion />
-            <FballUpcomingAccordion />
           </TabPanel>
         </Tabs>
       </div>

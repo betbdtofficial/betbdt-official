@@ -14,6 +14,7 @@ const ChangePass = () => {
   console.log(findEl?._id)
   const [value, setValue] = useState({
     changePass: "",
+    success: ""
   });
   const handleChange = (e) => {
     const values = { ...value };
@@ -29,7 +30,11 @@ const ChangePass = () => {
         "content-type": "application/json",
       },
       body: JSON.stringify(value)
-    });
+    }).then(()=>{
+      const values = {...value};
+      values.success = "Password Change Successfully !"
+      setValue(values)
+    })
   };
   return (
     <>
@@ -42,6 +47,9 @@ const ChangePass = () => {
           </div>
           <div className="row">
             <div className="col-md-12">
+              {
+                value.success && <p className="alert alert-success">{value.success}</p>
+              }
               <Form onSubmit={handleSubmit}>
                 <Form.Row>
                   <Form.Group as={Col}>

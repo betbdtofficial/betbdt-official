@@ -4,7 +4,14 @@ import payment from "../../image/payment-method.png";
 import { Validation } from "./Validation";
 const WithdrawReq = () => {
   const today = Date.now();
-  const time = new Intl.DateTimeFormat('en-US', {year: 'numeric', month: '2-digit',day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}).format(today)
+  const time = new Intl.DateTimeFormat("en-US", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+  }).format(today);
 
   const storage = sessionStorage.getItem("user");
   const getUser = JSON.parse(storage);
@@ -15,7 +22,7 @@ const WithdrawReq = () => {
     to: "",
     username: "",
     date: "",
-    button: ""
+    button: "",
   });
   const handleChange = (e) => {
     const copyValue = { ...values };
@@ -41,20 +48,21 @@ const WithdrawReq = () => {
   const findUser = balance.find((u) => u.username === getUser.user);
   const [errors, setErrors] = useState({});
   const handleSubmit = (e) => {
-    console.log(values)
-    e.preventDefault();
     setErrors(Validation(values, findUser?.balance));
     if (values.to.length < 11) {
+      e.preventDefault();
       return;
     } else if (values.amount > findUser?.balance) {
+      e.preventDefault();
       return;
     } else if (values.amount < 50) {
+      e.preventDefault();
       return;
     }
     const withdraw = { ...values };
     withdraw.username = getUser.user;
     withdraw.date = time;
-    withdraw.button = "Pending"
+    withdraw.button = "Pending";
     // send withdraw request
     fetch(`http://localhost:5000/user/withdrawReq`, {
       method: "POST",

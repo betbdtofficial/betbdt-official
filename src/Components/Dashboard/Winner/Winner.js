@@ -1,10 +1,91 @@
 import { Button } from "@material-ui/core";
-import { Edit } from '@material-ui/icons';
 import "bootstrap/dist/css/bootstrap.min.css";
-import React from "react";
-import './Winner.css';
+import React, { useEffect, useState } from "react";
+import "./Winner.css";
 
 const Winner = () => {
+  const [bet, setBet] = useState([]);
+  useEffect(() => {
+    fetch(`http://localhost:5000/user/getBet`)
+      .then((res) => res.json())
+      .then((data) => setBet(data));
+  }, []);
+  // Win function
+  const handleWin = (data) => {
+    const username = data?.username;
+    const id = data?._id;
+    const balance = {
+      balance: data?.winingAmount,
+    };
+    // bet user balance update
+    fetch(`http://localhost:5000/user/betUserBalUpdate/${username}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(balance),
+    });
+    // bet button status update
+    const bets = {
+      username: data?.username,
+      date: data?.date,
+      match1: data?.match1,
+      match2: data?.match2,
+      betTitle: data?.betTitle,
+      betAmount: data?.betAmount,
+      winingAmount: data?.winingAmount,
+      betRate: data?.betRate,
+      question: data?.question,
+      status: "Win",
+    };
+    fetch(`http://localhost:5000/user/createBetHistory`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(bets),
+    });
+    // bet delete from wining list
+    fetch(`http://localhost:5000/user/betDelete/${id}`, {
+      method: "DELETE",
+    }).then(() => {
+      fetch(`http://localhost:5000/user/getBet`)
+        .then((res) => res.json())
+        .then((data) => setBet(data));
+    });
+  };
+  // Lose function
+  const handleLose = (data) => {
+    const id = data?._id;
+    // bet button status update
+    const bets = {
+      username: data?.username,
+      date: data?.date,
+      match1: data?.match1,
+      match2: data?.match2,
+      betTitle: data?.betTitle,
+      betAmount: data?.betAmount,
+      winingAmount: data?.winingAmount,
+      betRate: data?.betRate,
+      question: data?.question,
+      status: "Loss",
+    };
+    fetch(`http://localhost:5000/user/createBetHistory`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(bets),
+    });
+    // bet delete from wining list
+    fetch(`http://localhost:5000/user/betDelete/${id}`, {
+      method: "DELETE",
+    }).then(() => {
+      fetch(`http://localhost:5000/user/getBet`)
+        .then((res) => res.json())
+        .then((data) => setBet(data));
+    });
+  };
   return (
     <>
       <div className="winnerWrapped">
@@ -18,9 +99,10 @@ const Winner = () => {
             <div className="col-md-12">
               <div className="winnerData">
                 <div className="winnerHeading d-flex align-items-center justify-content-between">
-                  <span className="head">Winner Match Check {" "} 
-                  <span class="badge badge-danger">After Finished</span>
-                   </span>
+                  <span className="head">
+                    Winner Match Check{" "}
+                    <span class="badge badge-danger">After Finished</span>
+                  </span>
                   <span>
                     <input
                       type="text"
@@ -35,32 +117,44 @@ const Winner = () => {
                 <table>
                   <tr>
                     <th>#No</th>
-                    <th>Question</th>
                     <th>Match Name</th>
-                    <th>End Time</th>
+                    <th>Question</th>
+                    <th>Bet Name</th>
                     <th>Action</th>
                   </tr>
-                  <tr>
-                    <td>01</td>
-                    <td>Who Will Be Won?</td>
-                    <td>Australia VS Pakistan</td>
-                    <td>2020-06-20 20:31:55</td>
-                    <td>
-                      <span>
-                        {" "}
-                        <Button color="primary" variant="contained">
+                  {bet.map((data, index) => (
+                    <tr>
+                      <td>{index + 1}</td>
+                      <td>
+                        {data.match1} VS {data.match2}
+                      </td>
+                      <td>{data.question}?</td>
+                      <td>{data.betTitle}</td>
+                      <td>
+                        <span>
                           {" "}
-                          <Edit />{" "}
-                        </Button>{" "}
-                      </span>
-                      <span>
-                        {" "}
-                        <Button color="secondary" variant="contained">
-                          Select Winner
-                        </Button>{" "}
-                      </span>
-                    </td>
-                  </tr>
+                          <Button
+                            onClick={() => handleLose(data)}
+                            color="secondary"
+                            variant="contained"
+                          >
+                            {" "}
+                            Lose
+                          </Button>{" "}
+                        </span>
+                        <span>
+                          {" "}
+                          <Button
+                            onClick={() => handleWin(data)}
+                            color="primary"
+                            variant="contained"
+                          >
+                            Win
+                          </Button>{" "}
+                        </span>
+                      </td>
+                    </tr>
+                  ))}
                 </table>
               </div>
             </div>

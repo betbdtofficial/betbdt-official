@@ -1,8 +1,43 @@
 import { Button } from "@material-ui/core";
-import React from "react";
+import { Editor } from "@tinymce/tinymce-react";
+import React, { useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import "./Setting.css";
 const Setting = () => {
+  const [value, setValue] = useState({
+    notice: "",
+    success: "",
+  });
+  const [dbData, setDbData] = useState([]);
+  useEffect(() => {
+    fetch(`http://localhost:5000/user/getNotice`)
+      .then((res) => res.json())
+      .then((data) => setDbData(data));
+  }, []);
+
+  const dbText = dbData.find((data) => data._id > "0");
+  const id = dbText?._id;
+  const handleChange = (e) => {
+    const text = e.target.getContent();
+    setValue({
+      notice: text,
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    fetch(`http://localhost:5000/user/noticeUpdate/${id}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(value),
+    }).then(() => {
+      const msg = { ...value };
+      msg.success = "Notice Updated !";
+      setValue(msg);
+    });
+  };
   return (
     <>
       <div className="settingWrapped">
@@ -21,21 +56,35 @@ const Setting = () => {
                   </h4>
                 </div>
                 <div className="option">
-                  <form>
+                  <form onSubmit={handleSubmit}>
+                    {value.success && (
+                      <p className="alert alert-success">{value.success}</p>
+                    )}
                     <Row>
                       <Col>
                         <label htmlFor="notice">Notice Title:</label>
-                        <input
-                          type="text"
-                          className="form-control"
-                          value="ঈদ ঊপলক্ষে ১০% ডিপোজিট ছাড় | পেমেন্ট মেথড যে কোনো সিস্টেমে দেয়া হবে"
+                        <Editor
+                          initialValue={dbText?.notice}
+                          init={{
+                            plugins: "link image code emoticons",
+                            menubar: false,
+                            toolbar:
+                              "undo redo | fontsizeselect | fontselect | bold italic| alignleft aligncenter alignright | code emoticons",
+                          }}
+                          onChange={handleChange}
                         />
                       </Col>
                     </Row>
-                    <br/>
+                    <br />
                     <Row>
                       <Col>
-                        <Button color="primary" type="submit" variant="contained">Update</Button>
+                        <Button
+                          color="primary"
+                          type="submit"
+                          variant="contained"
+                        >
+                          Update
+                        </Button>
                       </Col>
                     </Row>
                   </form>

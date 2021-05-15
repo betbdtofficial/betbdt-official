@@ -1,12 +1,29 @@
 const {
+  getAdminLogin,
+  addAdminLogin,
+} = require("./Back-end-code/AdminControllar");
+const {
   getBannedUser,
   createBannedUser,
   bannedUserDelete,
 } = require("./Back-end-code/BannedControllar");
 const {
+  getBet,
+  createBet,
+  betBalUpdate,
+  betUserBalUpdate,
+  betDelete,
+} = require("./Back-end-code/BetControllar");
+const { getBetHistory, createBetHistory } = require("./Back-end-code/BetHistoryControllar");
+const {
   getClubHolder,
   createClubHolder,
   clubWithdrawUpdate,
+  deleteClub,
+  bannedClubHolder,
+  getBannedClub,
+  deleteBannedClub,
+  clubHolderbalanceUpdate,
 } = require("./Back-end-code/ClubHolderControllar");
 const {
   getDepoHistory,
@@ -29,6 +46,7 @@ const {
   deleteMatch,
   updateMatch,
 } = require("./Back-end-code/MatchControllar");
+const { getNotice, createNotice, noticeUpdate } = require("./Back-end-code/NoticeControllar");
 const {
   getUpcomingMatch,
   createUpcomingMatch,
@@ -70,6 +88,24 @@ router.put("/passChange/:id", changePassword); // user Password update
 router.put("/userUpdate/:id", userUpdate); // user details update
 router.delete("/bannedActiveUser/:id", bannedActiveUser); // banned Active User
 
+// admin login
+router.get("/getAdmin", getAdminLogin);
+router.post("/createAdmin", addAdminLogin);
+
+// website setting
+router.get("/getNotice", getNotice);
+router.post("/createNotice", createNotice);
+router.put("/noticeUpdate/:id", noticeUpdate);
+
+// Bet system
+router.get("/getBet", getBet);
+router.post("/createBet", createBet);
+router.put("/bet/:user", betBalUpdate);
+router.put("/betUserBalUpdate/:username", betUserBalUpdate);
+router.get("/getBetHistory", getBetHistory);
+router.post("/createBetHistory", createBetHistory);
+router.delete("/betDelete/:id", betDelete);
+
 // Banned user handle
 router.get("/getBannedUser", getBannedUser);
 router.post("/createBannedUser", createBannedUser);
@@ -78,6 +114,11 @@ router.delete("/deleteBannedUser/:id", bannedUserDelete);
 // club holder
 router.get("/getClubHolder", getClubHolder);
 router.post("/createClubHolder", createClubHolder);
+router.delete("/deleteClub/:id", deleteClub);
+router.post("/bannedClub", bannedClubHolder);
+router.get("/getBannedClub", getBannedClub);
+router.delete("/deleteBannedClub/:id", deleteBannedClub);
+router.put("/clubBalanceUpdate/:username", clubHolderbalanceUpdate);
 
 // Draft box match
 router.post("/createDraftMatch", createDraftMatch);
@@ -114,10 +155,10 @@ router.patch("/:username", addDeposit);
 router.get("/getDepositHistory", getDepoHistory);
 router.post("/createDepositHistory", createDepoHistory);
 
-// withdraw method
+// deposit method
 router.get("/getDepoMethod", getDepoMethod);
 router.post("/createDepoMethod", createDepoMethod);
-router.delete("/deposit/delete/:id", deleteDepoMethod);
+router.delete("/deleteDepoMethod/:id", deleteDepoMethod);
 
 // get Live match and create Live match and delete Live match
 router.get("/getMatch", getMatch);

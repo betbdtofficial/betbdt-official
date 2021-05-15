@@ -10,7 +10,7 @@ function CriUpcomingAccordion() {
     fetch(`http://localhost:5000/user/getUpcomingMatch`)
       .then((res) => res.json())
       .then((data) => setDbData(data));
-  });
+  }, []);
   const [modalIsOpen, setIsOpen] = useState(false);
   const openModal = (match) => {
     setIsOpen(true);
@@ -19,13 +19,15 @@ function CriUpcomingAccordion() {
   const closeModal = () => {
     setIsOpen(false);
   };
-  const [passMatch, setPassMatch] = useState([]);
   const [passId, setPassId] = useState([]);
+  const [passMatch, setPassMatch] = useState([]);
   const [passAmount, setPassAmount] = useState([]);
-  const handlePleceFormPassData = (match, id, amount) => {
-    setPassMatch(match);
+  const [passTitle, setPassTitle] = useState([]);
+  const handlePleceFormPassData = (id, match, amount, title) => {
     setPassId(id);
+    setPassMatch(match);
     setPassAmount(amount);
+    setPassTitle(title);
   };
   return (
     <div>
@@ -36,9 +38,10 @@ function CriUpcomingAccordion() {
         </span>
       </div>
       <PlaceBetFrom
-        passMatch={passMatch}
         passId={passId}
+        passMatch={passMatch}
         passAmount={passAmount}
+        passTitle={passTitle}
         modalIsOpen={modalIsOpen}
         closeModal={closeModal}
       ></PlaceBetFrom>
@@ -70,7 +73,8 @@ function CriUpcomingAccordion() {
                                   handlePleceFormPassData(
                                     data._id,
                                     data.value1,
-                                    data.v1Amount
+                                    data.v1Amount,
+                                    data.title1
                                   )
                                 }
                               >
@@ -88,7 +92,8 @@ function CriUpcomingAccordion() {
                                   handlePleceFormPassData(
                                     data._id,
                                     data.value2,
-                                    data.v2Amount
+                                    data.v2Amount,
+                                    data.title1
                                   )
                                 }
                               >
@@ -116,7 +121,8 @@ function CriUpcomingAccordion() {
                                   handlePleceFormPassData(
                                     data._id,
                                     data.value3,
-                                    data.v3Amount
+                                    data.v3Amount,
+                                    data.title2
                                   )
                                 }
                               >
@@ -134,7 +140,8 @@ function CriUpcomingAccordion() {
                                   handlePleceFormPassData(
                                     data._id,
                                     data.value4,
-                                    data.v4Amount
+                                    data.v4Amount,
+                                    data.title2
                                   )
                                 }
                               >
@@ -162,7 +169,8 @@ function CriUpcomingAccordion() {
                                   handlePleceFormPassData(
                                     data._id,
                                     data.value5,
-                                    data.v5Amount
+                                    data.v5Amount,
+                                    data.title3
                                   )
                                 }
                               >
@@ -180,7 +188,8 @@ function CriUpcomingAccordion() {
                                   handlePleceFormPassData(
                                     data._id,
                                     data.value6,
-                                    data.v6Amount
+                                    data.v6Amount,
+                                    data.title3
                                   )
                                 }
                               >
@@ -208,7 +217,8 @@ function CriUpcomingAccordion() {
                                   handlePleceFormPassData(
                                     data._id,
                                     data.value7,
-                                    data.v7Amount
+                                    data.v7Amount,
+                                    data.title4
                                   )
                                 }
                               >
@@ -226,7 +236,8 @@ function CriUpcomingAccordion() {
                                   handlePleceFormPassData(
                                     data._id,
                                     data.value8,
-                                    data.v8Amount
+                                    data.v8Amount,
+                                    data.title4
                                   )
                                 }
                               >
@@ -254,7 +265,8 @@ function CriUpcomingAccordion() {
                                   handlePleceFormPassData(
                                     data._id,
                                     data.value9,
-                                    data.v9Amount
+                                    data.v9Amount,
+                                    data.title5
                                   )
                                 }
                               >
@@ -272,7 +284,8 @@ function CriUpcomingAccordion() {
                                   handlePleceFormPassData(
                                     data._id,
                                     data.value10,
-                                    data.v10Amount
+                                    data.v10Amount,
+                                    data.title5
                                   )
                                 }
                               >

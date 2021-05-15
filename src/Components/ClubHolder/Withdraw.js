@@ -1,11 +1,17 @@
-// import { Button } from '@material-ui/core';
 import React, { useEffect, useState } from "react";
 import { Button, Col, Form } from "react-bootstrap";
 import payment from "../image/payment-method.png";
 import { Validation } from "../Pages/MyProfile/Validation";
 const Withdraw = () => {
   const today = Date.now();
-  const time = new Intl.DateTimeFormat('en-US', {year: 'numeric', month: '2-digit',day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}).format(today)
+  const time = new Intl.DateTimeFormat("en-US", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+  }).format(today);
 
   const storage = sessionStorage.getItem("club");
   const clubUser = JSON.parse(storage);
@@ -17,7 +23,7 @@ const Withdraw = () => {
     username: "",
     club: "",
     date: "",
-    button: ""
+    button: "",
   });
   const handleChange = (e) => {
     const copyValue = { ...values };
@@ -25,14 +31,12 @@ const Withdraw = () => {
     setValues(copyValue);
     setErrors("");
   };
-
   const [method, setMethod] = useState([]);
   useEffect(() => {
     fetch(`http://localhost:5000/user/getMethod`)
       .then((res) => res.json())
       .then((data) => setMethod(data));
   }, []);
-
   // get user data
   const [balance, setBalance] = useState([]);
   useEffect(() => {
@@ -41,23 +45,24 @@ const Withdraw = () => {
       .then((data) => setBalance(data));
   }, []);
   const findUser = balance.find((u) => u.username === clubUser.club);
-  console.log(findUser)
   const [errors, setErrors] = useState({});
   const handleSubmit = (e) => {
-    e.preventDefault();
     setErrors(Validation(values, findUser?.balance));
     if (values.to.length < 11) {
+      e.preventDefault()
       return;
     } else if (values.amount > findUser?.balance) {
+      e.preventDefault()
       return;
     } else if (values.amount < 50) {
+      e.preventDefault()
       return;
     }
     const withdraw = { ...values };
     withdraw.username = clubUser.club;
     withdraw.club = findUser?.club;
     withdraw.date = time;
-    withdraw.button = "Pending"
+    withdraw.button = "Pending";
     // send withdraw request
     fetch(`http://localhost:5000/user/withdrawReq`, {
       method: "POST",
@@ -183,7 +188,7 @@ const Withdraw = () => {
                     backgroundColor: "rgb(18 110 81)",
                     color: "white",
                     marginTop: "10px",
-                    textAlign: 'center',
+                    textAlign: "center",
                     width: "100%",
                     padding: "4px",
                     border: "none",
