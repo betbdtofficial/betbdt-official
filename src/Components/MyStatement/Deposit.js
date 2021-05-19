@@ -8,7 +8,7 @@ const Deposit = () => {
   const getUser = JSON.parse(storage);
   const [depoHis, setDepoHis] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/getDepositHistory`,
+    fetch(`http://localhost:5000/user/specificDepoHistory?user=${getUser?.username}`,
     {
       method: "GET",
       headers: {
@@ -21,7 +21,7 @@ const Deposit = () => {
   }, []);
   const [depo, setDepo] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/getDeposit`,
+    fetch(`http://localhost:5000/user/specificDepoGet?user=${getUser?.username}`,
     {
       method: "GET",
       headers: {

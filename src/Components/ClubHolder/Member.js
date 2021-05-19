@@ -29,7 +29,9 @@ const Member = () => {
       .then((data) => setClubHolder(data));
   }, [clubHolder._id]);
   const findClubHolder = clubHolder.find((u) => u.username === club?.club); //find Club holder
+  // console.log(findClubHolder);
   const findUser = dbData.filter((u) => u.club === findClubHolder?.club); // find user
+  // console.log(findUser);
   const [searchTerm, setSearchTerm] = useState("");
   return (
     <>
@@ -63,7 +65,7 @@ const Member = () => {
                 .filter((value) => {
                   if (searchTerm === "") return value;
                   else if (
-                    value.username
+                    value.name
                       .toLowerCase()
                       .includes(searchTerm.toLowerCase())
                   )

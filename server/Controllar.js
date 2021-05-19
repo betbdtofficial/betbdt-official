@@ -1,5 +1,5 @@
 const UserInfo = require("./Schema");
-const Bets = require("./Back-end-code/BetSchema");
+const ClubHolder = require("./Back-end-code/ClubHolderSchema");
 exports.getUser = (req, res) => {
   UserInfo.find()
     .sort({ _id: -1 })
@@ -16,10 +16,12 @@ exports.login = async (req, res) => {
   const user = await UserInfo.findOne({
     username: users,
   });
-  const bets = await Bets.find({
-    username: users
-  })
-  if (user && bets) {
+
+  const club = await ClubHolder.findOne({
+    club: user.club,
+  });
+
+  if (user && club) {
     return res.json({
       id: user._id,
       name: user.name,
@@ -27,14 +29,13 @@ exports.login = async (req, res) => {
       club: user.club,
       country: user.country,
       number: user.number,
-      password: user.password,
-      sponsor: user.sponsor,
-      balance: user.balance,
-      bets: bets
+      clubHolder: {
+        username: club.username,
+        profit: club.profit,
+      },
     });
   } else {
-    res.status(401);
-    throw new Error("Invalid username");
+    res.json({ message: "Invalid Username" });
   }
 };
 
@@ -184,7 +185,8 @@ exports.withdrawUpdate = (req, res) => {
 // Withdraw Post request
 const Widthraw = require("./WithdrawSchema");
 exports.withdrawReq = (req, res) => {
-  const { method, type, amount, number, username, club, date, button } = req.body;
+  const { method, type, amount, number, username, club, date, button } =
+    req.body;
   const WidthrawRequest = new Widthraw({
     method: method,
     type: type,
@@ -213,11 +215,21 @@ exports.withdrawGet = (req, res) => {
       res.json(user);
     });
 };
+
+// specific withdraw get request
+exports.specificWithdrawGet = (req, res) => {
+  const { user } = req.query;
+  Widthraw.find({ username: user })
+    .sort({ _id: -1 })
+    .then((result) => {
+      res.send(result);
+    });
+};
+
 // Withdraw delete
 exports.withdrawDelete = (req, res) => {
   const { id } = req.params;
   Widthraw.findByIdAndDelete({ _id: id }).then(() => {
-    Widthraw.find()
-      .then((user) => res.json(user));
+    Widthraw.find().then((user) => res.json(user));
   });
 };

@@ -1,13 +1,11 @@
 import dotenv from "dotenv";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Nav, Navbar } from "react-bootstrap";
 import { Link, NavLink } from "react-router-dom";
-import { Context } from "../../../App";
 import logo from "../../image/Untitled-1.png";
 import "./Header.css";
 dotenv.config();
 const Header = () => {
-  const [loginUser, setLoginUser] = useContext(Context);
   const storage = sessionStorage.getItem("userInfo");
   const getUser = JSON.parse(storage);
   const activeMenu = {

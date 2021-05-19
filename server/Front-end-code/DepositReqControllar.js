@@ -6,15 +6,26 @@ exports.getDeposit = (req, res) => {
       res.json(result);
     });
 };
+
+// specific deposit get
+exports.specificDepoGet = (req, res) => {
+  const { user } = req.query;
+  Deposit.find({ username: user })
+    .sort({ _id: -1 })
+    .then((result) => {
+      res.send(result);
+    });
+};
+
 exports.createDeposit = (req, res) => {
-  const { method, amount, from, username,button, date } = req.body;
+  const { method, amount, from, username, button, date } = req.body;
   const deposit = new Deposit({
     method,
     amount,
     from,
     username,
     button,
-    date
+    date,
   });
   deposit.save().then(() => {
     Deposit.find()

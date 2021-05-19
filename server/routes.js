@@ -1,4 +1,4 @@
-const { Authenticated } = require("./Authenticate");
+const { Authenticated } = require("./Authenticate")
 const {
   getAdminLogin,
   addAdminLogin,
@@ -16,7 +16,11 @@ const {
   betDelete,
   specificUserBets,
 } = require("./Back-end-code/BetControllar");
-const { getBetHistory, createBetHistory, specificUserBetsHistory } = require("./Back-end-code/BetHistoryControllar");
+const {
+  getBetHistory,
+  createBetHistory,
+  specificUserBetsHistory,
+} = require("./Back-end-code/BetHistoryControllar");
 const {
   getClubHolder,
   createClubHolder,
@@ -26,11 +30,13 @@ const {
   getBannedClub,
   deleteBannedClub,
   clubHolderbalanceUpdate,
+  specificClubHolder
 } = require("./Back-end-code/ClubHolderControllar");
 const {
   getDepoHistory,
   createDepoHistory,
   addDeposit,
+  specificDepoHistory,
 } = require("./Back-end-code/DepositControllar");
 const {
   getDepoMethod,
@@ -48,7 +54,11 @@ const {
   deleteMatch,
   updateMatch,
 } = require("./Back-end-code/MatchControllar");
-const { getNotice, createNotice, noticeUpdate } = require("./Back-end-code/NoticeControllar");
+const {
+  getNotice,
+  createNotice,
+  noticeUpdate,
+} = require("./Back-end-code/NoticeControllar");
 const {
   getUpcomingMatch,
   createUpcomingMatch,
@@ -58,6 +68,7 @@ const {
 const {
   createWithdrawHistory,
   getWithdrawHistory,
+  specificWithHistory,
 } = require("./Back-end-code/WithdrawHistoryController");
 const {
   getMethod,
@@ -75,66 +86,69 @@ const {
   changePassword,
   userUpdate,
   bannedActiveUser,
-  login
+  login,
+  specificWithdrawGet,
 } = require("./Controllar");
 const {
   getDeposit,
   createDeposit,
   depoDelete,
+  specificDepoGet,
 } = require("./Front-end-code/DepositReqControllar");
 const router = require("express").Router();
 
-router.get("/",Authenticated, getUser); //Get User Info
-router.post("/login", login)
-router.get("/me",Authenticated, specificUser); // Get Specific User
-// router.post("/specificUser", specificUser); // Get Specific User
+router.get("/", Authenticated, getUser); //Get User Info
+router.post("/login", login);
+router.get("/me", Authenticated, specificUser); // Get Specific User
 router.post("/signup", registraionUser); //User Registration
 router.put("/passChange/:id", changePassword); // user Password update
 router.put("/userUpdate/:id", userUpdate); // user details update
 router.delete("/bannedActiveUser/:id", bannedActiveUser); // banned Active User
 
 // admin login
-router.get("/getAdmin",Authenticated, getAdminLogin);
+router.get("/getAdmin", Authenticated, getAdminLogin);
 router.post("/createAdmin", addAdminLogin);
 
 // website setting
-router.get("/getNotice",Authenticated, getNotice);
+router.get("/getNotice", Authenticated, getNotice);
 router.post("/createNotice", createNotice);
 router.put("/noticeUpdate/:id", noticeUpdate);
 
 // Bet system
 router.get("/getBet", Authenticated, getBet);
-router.get("/specificBets/me",Authenticated, specificUserBets)
+router.get("/specificBets/me", Authenticated, specificUserBets);
 router.post("/createBet", createBet);
 router.put("/bet/:user", betBalUpdate);
 router.put("/betUserBalUpdate/:username", betUserBalUpdate);
 router.get("/getBetHistory", getBetHistory);
-router.get("/specificBetHistory/me",Authenticated, specificUserBetsHistory);
+router.get("/specificBetHistory/me", Authenticated, specificUserBetsHistory);
 router.post("/createBetHistory", createBetHistory);
 router.delete("/betDelete/:id", betDelete);
 
 // Banned user handle
-router.get("/getBannedUser",Authenticated, getBannedUser);
+router.get("/getBannedUser", Authenticated, getBannedUser);
 router.post("/createBannedUser", createBannedUser);
 router.delete("/deleteBannedUser/:id", bannedUserDelete);
 
 // club holder
-router.get("/getClubHolder",Authenticated, getClubHolder);
+router.get("/getClubHolder", Authenticated, getClubHolder);
+router.get("/specificClubHolder", specificClubHolder);
 router.post("/createClubHolder", createClubHolder);
 router.delete("/deleteClub/:id", deleteClub);
 router.post("/bannedClub", bannedClubHolder);
-router.get("/getBannedClub",Authenticated, getBannedClub);
+router.get("/getBannedClub", Authenticated, getBannedClub);
 router.delete("/deleteBannedClub/:id", deleteBannedClub);
 router.put("/clubBalanceUpdate/:username", clubHolderbalanceUpdate);
 
 // Draft box match
 router.post("/createDraftMatch", createDraftMatch);
-router.get("/getdraftMatch",Authenticated, getDraftMatch);
+router.get("/getdraftMatch", Authenticated, getDraftMatch);
 router.delete("/draftDelete/:id", draftDelete);
 
 // withdraw request
 router.post("/withdrawReq", withdrawReq);
-router.get("/withdrawGet", withdrawGet);
+router.get("/withdrawGet",Authenticated, withdrawGet);
+router.get("/specificWithdraw",Authenticated, specificWithdrawGet);
 router.delete("/delete/:id", withdrawDelete);
 
 // withdraw update
@@ -142,16 +156,18 @@ router.put("/:user", withdrawUpdate);
 router.put("/club/:club", clubWithdrawUpdate);
 
 // withdraw history
-router.get("/getWithdrawHistory", getWithdrawHistory);
+router.get("/getWithdrawHistory",Authenticated, getWithdrawHistory);
+router.get("/specificWithHistory",Authenticated, specificWithHistory);
 router.post("/createWithdrawHistory", createWithdrawHistory);
 
 // withdraw method
-router.get("/getMethod",Authenticated, getMethod);
+router.get("/getMethod", Authenticated, getMethod);
 router.post("/createMethod", createMethod);
 router.delete("/:id", deleteMethod);
 
 //deposit request
-router.get("/getDeposit",Authenticated, getDeposit);
+router.get("/getDeposit", Authenticated, getDeposit);
+router.get("/specificDepoGet", Authenticated, specificDepoGet);
 router.post("/createDeposit", createDeposit);
 router.delete("/deposit/delete/:id", depoDelete);
 
@@ -159,11 +175,12 @@ router.delete("/deposit/delete/:id", depoDelete);
 router.patch("/:username", addDeposit);
 
 //deposit history
-router.get("/getDepositHistory",Authenticated, getDepoHistory);
+router.get("/getDepositHistory", Authenticated, getDepoHistory);
+router.get("/specificDepoHistory", Authenticated, specificDepoHistory);
 router.post("/createDepositHistory", createDepoHistory);
 
 // deposit method
-router.get("/getDepoMethod",Authenticated, getDepoMethod);
+router.get("/getDepoMethod", Authenticated, getDepoMethod);
 router.post("/createDepoMethod", createDepoMethod);
 router.delete("/deleteDepoMethod/:id", deleteDepoMethod);
 

@@ -8,9 +8,9 @@ exports.getClubHolder = (req, res) => {
 };
 
 // specific club holder
-exports.specififClubHodler = (req, res) => {
-  const { club } = req.query;
-  ClubHolder.find({ club }).then((result) => {
+exports.specificClubHolder = (req, res) => {
+  const { user } = req.query;
+  ClubHolder.find({ username: user }).then((result) => {
     res.send(result);
   });
 };

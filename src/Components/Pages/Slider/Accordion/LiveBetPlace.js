@@ -51,6 +51,7 @@ const LiveBetPlace = ({
       .then((res) => res.json())
       .then((data) => setDbData(data));
   }, []);
+  // hard identity
   const findUser = dbData.find(data=>data.username === getUser?.username)
 
   const [bet, setBet] = useState([]);
@@ -65,20 +66,7 @@ const LiveBetPlace = ({
       .then((res) => res.json())
       .then((data) => setBet(data));
   }, []);
-  // // bet info
-  // const [bet, setBet] = useState([]);
-  // useEffect(() => {
-  //   fetch(`http://localhost:5000/user/getBet`,{
-  //     method: "GET",
-  //     headers: {
-  //       'content-type':"application/json",
-  //       Authorization: `Bearer ${process.env.REACT_APP_SECRET_KEY}`
-  //     }
-  //   })
-  //     .then((res) => res.json())
-  //     .then((data) => setBet(data));
-  // }, []);
-  // const findUsers = bet.find((data) => data.username === getUser?.username);
+  const findUsers = bet.find((data) => data.username === getUser?.username);
   // live match
   const [live, setLive] = useState([]);
   useEffect(() => {
@@ -96,22 +84,6 @@ const LiveBetPlace = ({
   const [liveValue, setLiveValue] = useState({
     amount: 0,
   });
-
-  // get club holder
-  const [club, setClub] = useState([]);
-  useEffect(() => {
-    fetch(`http://localhost:5000/user/getClubHolder`,{
-      method: "GET",
-      headers: {
-        'content-type':"application/json",
-        Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imphbm5hdCIsImlhdCI6MTYyMTI0MTQ5OH0.7p6GB_frCQhfejz4AN01Mfx7qe7uR1WH4KgpJ35zS2s`
-      }
-    })
-    .then((res) => res.json())
-    .then((data) => setClub(data));
-  }, []);
-  const findClub = club.find((u) => u.club === findUser?.club);
-  console.log(findClub)
   const handleChange = (e) => {
     const values = { ...liveValue };
     values[e.target.name] = e.target.value;
@@ -162,10 +134,10 @@ const LiveBetPlace = ({
       console.log(result);
     });
     // club holder profit add
-    const username = findClub?.username;
-    const profit = findClub?.profit;
+    const username = getUser?.clubHolder?.username;
+    const profit = getUser?.clubHolder?.profit;
     const amount = liveValue.amount;
-    if (!bet) {
+    if (!findUsers) {
       const clubBalance = {
         balance: amount * (profit / 100).toFixed(2),
       };

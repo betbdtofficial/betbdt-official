@@ -7,6 +7,18 @@ exports.getDepoHistory = (req, res) => {
       res.json(result);
     });
 };
+
+// specific deposit history
+exports.specificDepoHistory = (req, res) => {
+  const { user } = req.query;
+  depoHistory
+    .find({ username: user })
+    .sort({ _id: -1 })
+    .then((result) => {
+      res.send(result);
+    });
+};
+
 exports.createDepoHistory = (req, res) => {
   const { username, from, method, amount, date, button } = req.body;
   const Deposit = new depoHistory({

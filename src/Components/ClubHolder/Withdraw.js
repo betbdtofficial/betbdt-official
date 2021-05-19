@@ -19,7 +19,7 @@ const Withdraw = () => {
     method: "",
     type: "",
     amount: "",
-    to: "",
+    number: "",
     username: "",
     club: "",
     date: "",
@@ -43,27 +43,30 @@ const Withdraw = () => {
       .then((res) => res.json())
       .then((data) => setMethod(data));
   }, []);
-  // get user data
-  const [balance, setBalance] = useState([]);
-  useEffect(() => {
-    fetch(`http://localhost:5000/user/getClubHolder`, {
-      method: "GET",
-      headers: {
-        "content-type": "application/json",
-        Authorization: `Bearer ${process.env.REACT_APP_SECRET_KEY}`,
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => setBalance(data));
-  }, []);
-  const findUser = balance.find((u) => u.username === clubUser.club);
+    // get club holder
+    const [specificClubHolder, setSpecificClubHolder] = useState([]);
+    useEffect(() => {
+      fetch(
+        `http://localhost:5000/user/specificClubHolder?user=${clubUser?.club}`,
+        {
+          method: "GET",
+          headers: {
+            "content-type": "application/json",
+            Authorization: `Bearer ${process.env.REACT_APP_SECRET_KEY}`,
+          },
+        }
+      )
+        .then((res) => res.json())
+        .then((data) => setSpecificClubHolder(data));
+    }, []);
+  const findUser = specificClubHolder.find((u) => u.username === clubUser.club);
   const [errors, setErrors] = useState({});
   const handleSubmit = (e) => {
     setErrors(Validation(values, findUser?.balance));
-    if (values.to.length < 11) {
+    if (values.number.length < 11) {
       e.preventDefault()
       return;
-    } else if (values.amount > findUser?.balance) {
+    } else if (values.amount < findUser?.balance) {
       e.preventDefault()
       return;
     } else if (values.amount < 50) {
@@ -182,7 +185,7 @@ const Withdraw = () => {
                       To <span style={{ color: "red" }}>*</span>{" "}
                     </Form.Label>
                     <Form.Control
-                      name="to"
+                      name="number"
                       value={values.to}
                       onChange={handleChange}
                       type="number"

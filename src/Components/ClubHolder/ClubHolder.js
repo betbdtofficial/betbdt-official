@@ -10,18 +10,24 @@ import WithdrawHistory from "./WithdrawHistory";
 const ClubHolder = () => {
   const storage = sessionStorage.getItem("club");
   const club = JSON.parse(storage);
-  const [clubHolder, setClubHolder] = useState([]);
+    // get club holder
+  const [specificClubHolder, setSpecificClubHolder] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/getClubHolder`, {
-      method: "GET",
-      headers: {
-        "content-type": "application/json",
-        Authorization: `Bearer ${process.env.REACT_APP_SECRET_KEY}`,
-      },
-    })
+    fetch(
+      `http://localhost:5000/user/specificClubHolder?user=${club?.club}`,
+      {
+        method: "GET",
+        headers: {
+          "content-type": "application/json",
+          Authorization: `Bearer ${process.env.REACT_APP_SECRET_KEY}`,
+        },
+      }
+    )
       .then((res) => res.json())
-      .then((data) => setClubHolder(data));
-  }, [clubHolder._id]);
+      .then((data) => setSpecificClubHolder(data));
+  }, []);
+  // hard check specific club holder
+  const specificClub = specificClubHolder.find((u) => u.username === club?.club);
   const [dbData, setDbData] = useState([]);
   useEffect(() => {
     fetch(`http://localhost:5000/user`, {
@@ -34,24 +40,25 @@ const ClubHolder = () => {
       .then((res) => res.json())
       .then((data) => setDbData(data));
   }, [dbData._id]);
-  const [history, setHistory] = useState([]);
+
+  const [withHis, setWithHis] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/getWithdrawHistory`, {
+    fetch(`http://localhost:5000/user/specificWithHistory?user=${club?.club}`,
+    {
       method: "GET",
       headers: {
         "content-type": "application/json",
-        Authorization: `Bearer ${process.env.REACT_APP_SECRET_KEY}`,
+        Authorization: `Bearer ${process.env.REACT_APP_SECRET_KEY}`
       },
     })
       .then((res) => res.json())
-      .then((data) => setHistory(data));
+      .then((data) => setWithHis(data));
   }, []);
-  const uHolder = clubHolder.find((u) => u.username === club?.club); // specific club holder
-  const findUser = dbData.filter((u) => u.club === uHolder?.club); // specific club holder member
-  const findBalance = history.filter((bal) => bal.club === uHolder?.club); // club holder balance find
+
+  const findUser = dbData.filter((u) => u.club === specificClub?.club); // specific club holder member
   let balance = 0;
-  for (let b = 0; b < findBalance.length; b++) {
-    const element = findBalance[b];
+  for (let b = 0; b < withHis.length; b++) {
+    const element = withHis[b];
     balance = parseInt(balance) + parseInt(element.amount);
   }
   return (
@@ -62,8 +69,8 @@ const ClubHolder = () => {
             <h1 className="clubpanal d-5">Club Panel</h1>
           </div>
           <div>
-            <h2>{uHolder?.name}</h2>
-            <h4>Your Profit: {uHolder?.profit}%</h4>
+            <h2>{specificClub?.name}</h2>
+            <h4>Your Profit: {specificClub?.profit}%</h4>
           </div>
         </div>
         <hr /> <br />
@@ -75,7 +82,7 @@ const ClubHolder = () => {
               </div>
               <strong>
                 Balance <br />{" "}
-                <b className="balanceText">{uHolder?.balance} TK</b>{" "}
+                <b className="balanceText">{specificClub?.balance} TK</b>{" "}
               </strong>
             </div>
           </div>
@@ -86,7 +93,7 @@ const ClubHolder = () => {
               </div>
               <strong>
                 Club Name <br />
-                <b className="ClubNames">{uHolder?.club}</b>{" "}
+                <b className="ClubNames">{specificClub?.club}</b>{" "}
               </strong>
             </div>
           </div>

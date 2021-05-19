@@ -8,7 +8,7 @@ const Withdraw = () => {
   const getUser = JSON.parse(storage);
   const [history, setHistory] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/getWithdrawHistory`,
+    fetch(`http://localhost:5000/user/specificWithHistory?user=${getUser?.username}`,
     {
       method: "GET",
       headers: {
@@ -21,7 +21,7 @@ const Withdraw = () => {
   }, []);
   const [withdraw, setWithdraw] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/withdrawGet`,
+    fetch(`http://localhost:5000/user/specificWithdraw?user=${getUser?.username}`,
     {
       method: "GET",
       headers: {
@@ -33,8 +33,8 @@ const Withdraw = () => {
       .then((data) => setWithdraw(data));
   }, []);
 
-  const historyFilter = history.filter(data=>data.username === getUser?.username)
-  const withdrawFilter = withdraw.filter(data=>data.username === getUser?.username)
+  const withdrawHis = history.filter(data=>data.username === getUser?.username)
+  const withdrawGet = withdraw.filter(data=>data.username === getUser?.username)
   return (
     <div>
       <div className="container mt-5 mb-5">
@@ -55,7 +55,7 @@ const Withdraw = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {[...historyFilter, ...withdrawFilter].map((data, index) => (
+                  {[...withdrawHis, ...withdrawGet].map((data, index) => (
                     <tr>
                       <td>{index + 1}</td>
                       <td>{data.date}</td>
