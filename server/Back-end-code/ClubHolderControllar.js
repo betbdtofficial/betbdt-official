@@ -6,6 +6,15 @@ exports.getClubHolder = (req, res) => {
       res.send(result);
     });
 };
+
+// specific club holder
+exports.specififClubHodler = (req, res) => {
+  const { club } = req.query;
+  ClubHolder.find({ club }).then((result) => {
+    res.send(result);
+  });
+};
+
 exports.createClubHolder = (req, res) => {
   const {
     name,
@@ -128,7 +137,11 @@ exports.clubHolderbalanceUpdate = (req, res) => {
   ClubHolder.findOne({ username: req.params.username }).then((result) => {
     ClubHolder.findOneAndUpdate(
       { username: req.params.username },
-      { $set: { balance: parseInt(result.balance) + parseInt(req.body.balance) } },
+      {
+        $set: {
+          balance: parseInt(result.balance) + parseInt(req.body.balance),
+        },
+      },
       { new: true }
     ).then((result) => {
       res.send(result);

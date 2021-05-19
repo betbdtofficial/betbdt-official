@@ -1,17 +1,10 @@
-import React, { useEffect, useState } from "react";
+import dotenv from "dotenv";
+import React, { useState } from "react";
 import { Button, Col, Form } from "react-bootstrap";
-
+dotenv.config();
 const ChangePass = () => {
-  const storage = sessionStorage.getItem("user");
+  const storage = sessionStorage.getItem("userInfo");
   const getUser = JSON.parse(storage);
-  const [dbData, setDbData] = useState([]);
-  useEffect(() => {
-    fetch(`http://localhost:5000/user`)
-      .then((res) => res.json())
-      .then((data) => setDbData(data));
-  }, []);
-  const findEl = dbData.find((data) => data.username === getUser.user);
-  console.log(findEl?._id)
   const [value, setValue] = useState({
     changePass: "",
     success: ""
@@ -23,7 +16,7 @@ const ChangePass = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    const id = findEl?._id;
+    const id = getUser?.id;
     fetch(`http://localhost:5000/user/passChange/${id}`, {
       method: "PUT",
       headers: {

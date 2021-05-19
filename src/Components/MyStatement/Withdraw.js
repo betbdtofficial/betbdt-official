@@ -1,24 +1,40 @@
+import dotenv from "dotenv";
 import React, { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
-
+import './index.css';
+dotenv.config();
 const Withdraw = () => {
-  const storage = sessionStorage.getItem("user");
+  const storage = sessionStorage.getItem("userInfo");
   const getUser = JSON.parse(storage);
   const [history, setHistory] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/getWithdrawHistory`)
+    fetch(`http://localhost:5000/user/getWithdrawHistory`,
+    {
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+        Authorization: `Bearer ${process.env.REACT_APP_SECRET_KEY}`
+      },
+    })
       .then((res) => res.json())
       .then((data) => setHistory(data));
   }, []);
   const [withdraw, setWithdraw] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/withdrawGet`)
+    fetch(`http://localhost:5000/user/withdrawGet`,
+    {
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+        Authorization: `Bearer ${process.env.REACT_APP_SECRET_KEY}`
+      },
+    })
       .then((res) => res.json())
       .then((data) => setWithdraw(data));
   }, []);
 
-  const historyFilter = history.filter(data=>data.username == getUser.user)
-  const withdrawFilter = withdraw.filter(data=>data.username == getUser.user)
+  const historyFilter = history.filter(data=>data.username === getUser?.username)
+  const withdrawFilter = withdraw.filter(data=>data.username === getUser?.username)
   return (
     <div>
       <div className="container mt-5 mb-5">
@@ -39,24 +55,13 @@ const Withdraw = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {historyFilter.map((data, index) => (
+                  {[...historyFilter, ...withdrawFilter].map((data, index) => (
                     <tr>
                       <td>{index + 1}</td>
                       <td>{data.date}</td>
                       <td>{data.method}</td>
                       <td>{data.type}</td>
                       <td>{data.number}</td>
-                      <td>{data.amount} TK</td>
-                      <td>{data.button}</td>
-                    </tr>
-                  ))}
-                  {withdrawFilter.map((data, index) => (
-                    <tr>
-                      <td>{index + 1}</td>
-                      <td>{data.date}</td>
-                      <td>{data.method}</td>
-                      <td>{data.type}</td>
-                      <td>{data.to}</td>
                       <td>{data.amount} TK</td>
                       <td>{data.button}</td>
                     </tr>

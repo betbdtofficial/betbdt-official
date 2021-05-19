@@ -1,11 +1,19 @@
 import { Button } from "@material-ui/core";
 import { Delete } from "@material-ui/icons";
+import dotenv from "dotenv";
 import React, { useEffect, useState } from "react";
-
+dotenv.config();
 const WithdrawMethod = () => {
   const [dbData, setDbData] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/getMethod`)
+    fetch(`http://localhost:5000/user/getMethod`,
+    {
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+        Authorization: `Bearer ${process.env.REACT_APP_SECRET_KEY}`
+      },
+    })
       .then((res) => res.json())
       .then((data) => setDbData(data));
   }, []);
@@ -14,7 +22,14 @@ const WithdrawMethod = () => {
     fetch(`http://localhost:5000/user/${id}`, {
       method: "DELETE",
     }).then(() => {
-      fetch(`http://localhost:5000/user/getMethod`)
+      fetch(`http://localhost:5000/user/getMethod`,
+      {
+        method: "GET",
+        headers: {
+          "content-type": "application/json",
+          Authorization: `Bearer ${process.env.REACT_APP_SECRET_KEY}`
+        },
+      })
         .then((res) => res.json())
         .then((data) => setDbData(data));
     });

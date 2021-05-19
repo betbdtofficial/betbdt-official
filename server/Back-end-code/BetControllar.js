@@ -6,6 +6,19 @@ exports.getBet = (req, res) => {
       res.send(result);
     });
 };
+
+exports.specificUserBets = (req, res) => {
+  const { bets } = req.query;
+  Bets.find({ username: bets })
+    .sort({ _id: -1 })
+    .then((result) => {
+      res.send(result);
+    })
+    .catch((error) => {
+      res.send(error);
+    });
+};
+
 exports.createBet = (req, res) => {
   const {
     username,
@@ -39,7 +52,6 @@ exports.createBet = (req, res) => {
       });
   });
 };
-
 
 // bet delete
 exports.betDelete = (req, res) => {

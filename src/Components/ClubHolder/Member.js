@@ -5,14 +5,26 @@ const Member = () => {
   const club = JSON.parse(storage);
   const [dbData, setDbData] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user`)
+    fetch(`http://localhost:5000/user`, {
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+        Authorization: `Bearer ${process.env.REACT_APP_SECRET_KEY}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => setDbData(data));
   }, [dbData._id]);
 
   const [clubHolder, setClubHolder] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/getClubHolder`)
+    fetch(`http://localhost:5000/user/getClubHolder`, {
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+        Authorization: `Bearer ${process.env.REACT_APP_SECRET_KEY}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => setClubHolder(data));
   }, [clubHolder._id]);

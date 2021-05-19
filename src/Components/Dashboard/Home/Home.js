@@ -1,73 +1,112 @@
-import CreditCardIcon from '@material-ui/icons/CreditCard';
-import GamesIcon from '@material-ui/icons/Games';
-import GroupWorkIcon from '@material-ui/icons/GroupWork';
-import LocalAtmIcon from '@material-ui/icons/LocalAtm';
-import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
-import PersonAddIcon from '@material-ui/icons/PersonAdd';
+import CreditCardIcon from "@material-ui/icons/CreditCard";
+import GamesIcon from "@material-ui/icons/Games";
+import GroupWorkIcon from "@material-ui/icons/GroupWork";
+import LocalAtmIcon from "@material-ui/icons/LocalAtm";
+import MonetizationOnIcon from "@material-ui/icons/MonetizationOn";
+import PersonAddIcon from "@material-ui/icons/PersonAdd";
 import "bootstrap/dist/css/bootstrap.min.css";
+import dotenv from "dotenv";
 import React, { useEffect, useState } from "react";
-import { Chart } from './Chart/Chart';
+import { Chart } from "./Chart/Chart";
 import "./Home.css";
+dotenv.config();
 const Home = () => {
   const [user, getUser] = useState([]);
-  useEffect(()=>{ //get Withdraw Info
-    fetch(`http://localhost:5000/user`)
-      .then(res=>res.json())
-      .then(data=>getUser(data))
-  },[])
+  useEffect(() => {
+    //get Withdraw Info
+    fetch(`http://localhost:5000/user`, {
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+        Authorization: `Bearer ${process.env.REACT_APP_SECRET_KEY}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => getUser(data));
+  }, []);
   const [withdrawHistory, setWithdrawHistory] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/getWithdrawHistory`)
+    fetch(`http://localhost:5000/user/getWithdrawHistory`, {
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+        Authorization: `Bearer ${process.env.REACT_APP_SECRET_KEY}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => setWithdrawHistory(data));
   }, []);
-  let amount=0;
+  let amount = 0;
   for (let w = 0; w < withdrawHistory.length; w++) {
     const element = withdrawHistory[w];
     amount = amount + element.amount;
   }
   const [withdraw, setWithdraw] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/withdrawGet`)
+    fetch(`http://localhost:5000/user/withdrawGet`, {
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+        Authorization: `Bearer ${process.env.REACT_APP_SECRET_KEY}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => setWithdraw(data));
   }, []);
-  let pendingAmount=0;
+  let pendingAmount = 0;
   for (let w = 0; w < withdraw.length; w++) {
     const element = withdraw[w];
     pendingAmount = parseInt(pendingAmount) + parseInt(element.amount);
   }
   const [clubHolder, setClubHolder] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/getClubHolder`)
+    fetch(`http://localhost:5000/user/getClubHolder`, {
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+        Authorization: `Bearer ${process.env.REACT_APP_SECRET_KEY}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => setClubHolder(data));
   }, [clubHolder._id]);
   let club = [];
   let sponsor = [];
-  for(let c = 0; c < clubHolder.length; c++){
+  for (let c = 0; c < clubHolder.length; c++) {
     const el = clubHolder[c];
-    club.push(el)
-    sponsor.push(el.sponsor)
+    club.push(el);
+    sponsor.push(el.sponsor);
   }
   const [depoHis, setDepoHis] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/getDepositHistory`)
+    fetch(`http://localhost:5000/user/getDepositHistory`, {
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+        Authorization: `Bearer ${process.env.REACT_APP_SECRET_KEY}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => setDepoHis(data));
   }, []);
-  let depoAmount=0;
+  let depoAmount = 0;
   for (let w = 0; w < depoHis.length; w++) {
     const element = depoHis[w];
     depoAmount = parseInt(depoAmount) + parseInt(element.amount);
   }
   const [depo, setDepo] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/getDeposit`)
+    fetch(`http://localhost:5000/user/getDeposit`, {
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+        Authorization: `Bearer ${process.env.REACT_APP_SECRET_KEY}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => setDepo(data));
   }, []);
-  let depoPending=0;
+  let depoPending = 0;
   for (let w = 0; w < depo.length; w++) {
     const element = depo[w];
     depoPending = parseInt(depoPending) + parseInt(element.amount);
@@ -124,7 +163,7 @@ const Home = () => {
               <h4>${pendingAmount}</h4>
               <h5>Pending Withdraw</h5>
               <div className="userIcon">
-              <LocalAtmIcon />
+                <LocalAtmIcon />
               </div>
             </div>
           </div>

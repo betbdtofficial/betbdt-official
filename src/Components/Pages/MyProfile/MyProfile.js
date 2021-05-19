@@ -1,20 +1,26 @@
+import dotenv from "dotenv";
 import React, { useContext, useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
 import { Context } from "../../../App";
-
+dotenv.config();
 const MyProfile = () => {
   const [loginUser, setLoginUser] = useContext(Context);
-  const storage = sessionStorage.getItem("user");
+  const storage = sessionStorage.getItem("userInfo");
   const getUser = JSON.parse(storage);
   const [dbData, setDbData] = useState([]);
   useEffect(() => {
     fetch(
-      `http://localhost:5000/user/specificUser?u=${
-        getUser.user || loginUser.user
-      }`
+      `http://localhost:5000/user/me?u=${getUser.username || loginUser.user}`,
+      {
+        method: "GET",
+        headers: {
+          "content-type": "application/json",
+          Authorization: `Bearer ${process.env.REACT_APP_SECRET_KEY}`,
+        },
+      }
     )
-      .then((res) => res.json())
-      .then((data) => setDbData(data));
+    .then((res) => res.json())
+    .then((data) => setDbData(data));
   }, []);
   return (
     <div className="row">

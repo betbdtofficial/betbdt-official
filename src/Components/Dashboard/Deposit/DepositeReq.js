@@ -1,6 +1,7 @@
 import { Button } from "@material-ui/core";
+import dotenv from "dotenv";
 import React, { useEffect, useState } from "react";
-
+dotenv.config();
 const DepositReq = () => {
   const today = Date.now();
   const time = new Intl.DateTimeFormat("en-US", {
@@ -14,7 +15,14 @@ const DepositReq = () => {
 
   const [depo, setDepo] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/getDeposit`)
+    fetch(`http://localhost:5000/user/getDeposit`,
+    {
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+        Authorization: `Bearer ${process.env.REACT_APP_SECRET_KEY}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => setDepo(data));
   }, []);
@@ -24,7 +32,14 @@ const DepositReq = () => {
     fetch(`http://localhost:5000/user/deposit/delete/${id}`, {
       method: "DELETE",
     }).then(() => {
-      fetch(`http://localhost:5000/user/getDeposit`)
+      fetch(`http://localhost:5000/user/getDeposit`,
+      {
+        method: "GET",
+        headers: {
+          "content-type": "application/json",
+          Authorization: `Bearer ${process.env.REACT_APP_SECRET_KEY}`,
+        },
+      })
         .then((res) => res.json())
         .then((data) => setDepo(data));
     });
@@ -62,7 +77,13 @@ const DepositReq = () => {
     fetch(`http://localhost:5000/user/deposit/delete/${id}`, {
       method: "DELETE",
     }).then(() => {
-      fetch(`http://localhost:5000/user/getDeposit`)
+      fetch(`http://localhost:5000/user/getDeposit`,{
+        method: 'GET',
+        headers: {
+          'content-type':"application/json",
+          Authorization: `Bearer ${process.env.REACT_APP_SECRET_KEY}`,
+        }
+      })
         .then((res) => res.json())
         .then((data) => setDepo(data));
     });

@@ -1,8 +1,10 @@
 import { Button } from "@material-ui/core";
 import { Editor } from "@tinymce/tinymce-react";
+import dotenv from "dotenv";
 import React, { useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import "./Setting.css";
+dotenv.config();
 const Setting = () => {
   const [value, setValue] = useState({
     notice: "",
@@ -10,7 +12,13 @@ const Setting = () => {
   });
   const [dbData, setDbData] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/getNotice`)
+    fetch(`http://localhost:5000/user/getNotice`,{
+      method: "GET",
+      headers:{
+        'content-type':"application/json",
+        Authorization: `Bearer ${process.env.REACT_APP_SECRET_KEY}`
+      }
+    })
       .then((res) => res.json())
       .then((data) => setDbData(data));
   }, []);

@@ -11,10 +11,10 @@ export const Validation = (values, balance) => {
     errors.amount = "Amount more than 50 BDT";
   } else if (values.amount > balance) {
     errors.amount = "Insufficient Balance";
-  } else if (!values.to) {
-    errors.to = "Phone Number is Required";
-  } else if (values.to.length < 11) {
-    errors.to = "Phone Number would be 11 Digits";
+  } else if (!values.number) {
+    errors.number = "Phone Number is Required";
+  } else if (values.number.length < 11) {
+    errors.number = "Phone Number would be 11 Digits";
   } else {
     errors.success = "Withdraw Request Sumitted !";
   }

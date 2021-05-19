@@ -1,15 +1,23 @@
+import dotenv from "dotenv";
 import React, { useEffect, useState } from "react";
 import { Accordion, Button, Card, Col, Form } from "react-bootstrap";
 import cricket from "../../../image/SliderImg/cricket.png";
 import "../Slider.css";
 import LiveBetPlace from "./LiveBetPlace";
+dotenv.config();
 function CriLiveAccordion() {
   const [dbData, setDbData] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/getMatch`)
+    fetch(`http://localhost:5000/user/getMatch`, {
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+        Authorization: `Bearer ${process.env.REACT_APP_SECRET_KEY}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => setDbData(data));
-  },[]);
+  }, []);
   const [modalIsOpen, setIsOpen] = useState(false);
   function openModal() {
     setIsOpen(true);
@@ -26,7 +34,7 @@ function CriLiveAccordion() {
     setUniquePassId(id);
     setPassValue(match);
     setPassValueAmount(amount);
-    setPassTitle(title)
+    setPassTitle(title);
   };
   return (
     <div>

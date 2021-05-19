@@ -1,10 +1,19 @@
 import { Button } from "@material-ui/core";
 import BathtubIcon from "@material-ui/icons/Bathtub";
+import dotenv from "dotenv";
 import React, { useEffect, useState } from "react";
+dotenv.config();
 const BannedUser = () => {
   const [dbData, setDbData] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/getBannedUser`)
+    fetch(`http://localhost:5000/user/getBannedUser`,
+    {
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+        Authorization: `Bearer ${process.env.REACT_APP_SECRET_KEY}`
+      },
+    })
       .then((res) => res.json())
       .then((data) => setDbData(data));
   }, []);
@@ -30,7 +39,14 @@ const BannedUser = () => {
     fetch(`http://localhost:5000/user/deleteBannedUser/${id}`, {
       method: "DELETE",
     }).then(() => {
-      fetch(`http://localhost:5000/user/getBannedUser`)
+      fetch(`http://localhost:5000/user/getBannedUser`,
+      {
+        method: "GET",
+        headers: {
+          "content-type": "application/json",
+          Authorization: `Bearer ${process.env.REACT_APP_SECRET_KEY}`
+        },
+      })
         .then((res) => res.json())
         .then((data) => setDbData(data));
     });

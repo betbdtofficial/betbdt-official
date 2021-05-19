@@ -1,23 +1,39 @@
+import dotenv from "dotenv";
 import React, { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
-
+import './index.css';
+dotenv.config();
 const Deposit = () => {
-  const storage = sessionStorage.getItem("user");
+  const storage = sessionStorage.getItem("userInfo");
   const getUser = JSON.parse(storage);
   const [depoHis, setDepoHis] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/getDepositHistory`)
+    fetch(`http://localhost:5000/user/getDepositHistory`,
+    {
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+        Authorization: `Bearer ${process.env.REACT_APP_SECRET_KEY}`
+      },
+    })
       .then((res) => res.json())
       .then((data) => setDepoHis(data));
   }, []);
   const [depo, setDepo] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/getDeposit`)
+    fetch(`http://localhost:5000/user/getDeposit`,
+    {
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+        Authorization: `Bearer ${process.env.REACT_APP_SECRET_KEY}`
+      },
+    })
       .then((res) => res.json())
       .then((data) => setDepo(data));
   }, []);
   const filter = [...depoHis, ...depo].filter(
-    (data) => data.username === getUser.user
+    (data) => data.username === getUser?.username
   );
   return (
     <div>

@@ -1,21 +1,36 @@
+import axios from "axios";
+import dotenv from "dotenv";
 import React, { useContext, useEffect, useState } from "react";
 import { Button, Col, Row } from "react-bootstrap";
 import { Redirect, useHistory, useLocation } from "react-router-dom";
 import { Context } from "../../../App";
 import Validation from "./Validation";
+dotenv.config();
 const Login = () => {
-  const storage = sessionStorage.getItem("user");
+  const storage = sessionStorage.getItem("userInfo");
   const getUser = JSON.parse(storage);
   const [loginUser, setLoginUser] = useContext(Context);
   const [dbData, setDbData] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user`)
+    fetch(`http://localhost:5000/user`, {
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+        Authorization: `Bearer ${process.env.REACT_APP_SECRET_KEY}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => setDbData(data));
   }, [dbData._id]);
   const [club, setClub] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/getClubHolder`)
+    fetch(`http://localhost:5000/user/getClubHolder`, {
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+        Authorization: `Bearer ${process.env.REACT_APP_SECRET_KEY}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => setClub(data));
   }, [dbData._id]);
@@ -53,9 +68,17 @@ const Login = () => {
       value.username === username?.username &&
       value.password === username?.password
     ) {
-      const user = { user: username?.username };
-      sessionStorage.setItem("user", JSON.stringify(user));
-      setLoginUser(user);
+      // sessionStorage set login user
+      const users = value.username
+      axios
+      .post(
+        `http://localhost:5000/user/login`,{ users })
+        .then((res) => {
+          const userInfo = res.data
+          sessionStorage.setItem('userInfo', JSON.stringify(userInfo))
+          setLoginUser(userInfo);
+          // setDbData(res.data)
+        });
       history.replace(from);
       return;
     } else if (

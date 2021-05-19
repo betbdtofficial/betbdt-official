@@ -1,10 +1,18 @@
 import { Button } from "@material-ui/core";
+import dotenv from "dotenv";
 import React, { useEffect, useState } from "react";
-
+dotenv.config();
 const WithdrawLog = () => {
   const [history, setHistory] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/getWithdrawHistory`)
+    fetch(`http://localhost:5000/user/getWithdrawHistory`,
+    {
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+        Authorization: `Bearer ${process.env.REACT_APP_SECRET_KEY}`
+      },
+    })
       .then((res) => res.json())
       .then((data) => setHistory(data));
   }, []);

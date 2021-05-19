@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from "react";
+import dotenv from "dotenv";
+import React, { useContext, useEffect, useState } from "react";
 import { Button, Col, Form } from "react-bootstrap";
 import Modal from "react-modal";
+import { Context } from '../../../../App';
 import Login from "../../Login/Login";
 import { BetValidation } from "../../MyProfile/Validation";
 import "./PlaceBetFrom.css";
+dotenv.config();
 const customStyles = {
   content: {
     top: "50%",
@@ -32,43 +35,72 @@ const PlaceBetFrom = ({
     minute: "2-digit",
     second: "2-digit",
   }).format(today);
-  const storage = sessionStorage.getItem("user");
+  const storage = sessionStorage.getItem("userInfo");
   const getUser = JSON.parse(storage);
+  const [loginUser, setLoginUser] = useContext(Context);
+  const [user, setUser] = useState([]);
+  useEffect(() => {
+    fetch(
+      `http://localhost:5000/user/me?u=${getUser?.username || loginUser.user}`,
+      {
+        method: "GET",
+        headers: {
+          "content-type": "application/json",
+          Authorization: `Bearer ${process.env.REACT_APP_SECRET_KEY}`,
+        },
+      }
+    )
+      .then((res) => res.json())
+      .then((data) => setUser(data));
+  }, []);
+  const uUser = user.find(data=>data.username === getUser?.username)
   // bet info
   const [bet, setBet] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/getBet`)
+    fetch(`http://localhost:5000/user/getBet`, {
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+        Authorization: `Bearer ${process.env.REACT_APP_SECRET_KEY}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => setBet(data));
   }, []);
-  const findUsers = bet.find((data) => data.username === getUser?.user);
+  const findUsers = bet.find((data) => data.username === uUser?.username);
   // upcoming match
   const [dbData, setDbData] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/getUpcomingMatch`)
-      .then((res) => res.json())
-      .then((data) => setDbData(data));
+    fetch(`http://localhost:5000/user/getUpcomingMatch`, {
+      method: "GET",
+      headers: {
+        "content-type":"application/json",
+        Authorization: `Bearer ${process.env.REACT_APP_SECRET_KEY}`,
+      },
+    })
+    .then((res) => res.json())
+    .then((data) => setDbData(data));
   }, []);
   const findEl = dbData.find((data) => data._id === passId);
   const [value, setValue] = useState({
     amount: 0,
   });
-  // get user data
-  const [balance, setBalance] = useState([]);
-  useEffect(() => {
-    fetch(`http://localhost:5000/user`)
-      .then((res) => res.json())
-      .then((data) => setBalance(data));
-  }, []);
-  const findUser = balance.find((u) => u.username === getUser?.user);
   // get club holder
   const [club, setClub] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/getClubHolder`)
+    fetch(`http://localhost:5000/user/getClubHolder`, {
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+        Authorization: `Bearer ${process.env.REACT_APP_SECRET_KEY}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => setClub(data));
   }, []);
-  const findClub = club.find((u) => u.club === findUser?.club);
+  const findClub = club.find((u) => u.club === uUser?.club);
+  console.log(findClub)
+  console.log(club)
   const handleChange = (e) => {
     const values = { ...value };
     values[e.target.name] = e.target.value;
@@ -76,8 +108,8 @@ const PlaceBetFrom = ({
   };
   const [errors, setErrors] = useState({});
   const handleSubmit = (e) => {
-    setErrors(BetValidation(value, findUser?.balance));
-    if (value.amount > findUser?.balance) {
+    setErrors(BetValidation(value, uUser?.balance));
+    if (value.amount > uUser?.balance) {
       e.preventDefault();
       return;
     } else if (value.amount < 50) {
@@ -85,7 +117,7 @@ const PlaceBetFrom = ({
       return;
     }
     const bets = {
-      username: getUser?.user,
+      username: uUser?.username,
       date: time,
       match1: findEl?.match1,
       match2: findEl?.match2,
@@ -106,9 +138,9 @@ const PlaceBetFrom = ({
       console.log("Submit");
     });
     // Bet balance update
-    const user = getUser.user;
+    const user = uUser?.username;
     const BetUser = { ...value };
-    BetUser.balance = findUser?.balance;
+    BetUser.balance = uUser?.balance;
     fetch(`http://localhost:5000/user/bet/${user}`, {
       method: "PUT",
       headers: {
@@ -145,7 +177,7 @@ const PlaceBetFrom = ({
         style={customStyles}
         contentLabel="Example Modal"
       >
-        {getUser?.user ? (
+        {getUser?.username ? (
           <div>
             {errors.success && (
               <p className="alert alert-success">{errors.success}</p>

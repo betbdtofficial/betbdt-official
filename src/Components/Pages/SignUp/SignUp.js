@@ -1,13 +1,20 @@
+import dotenv from "dotenv";
 import React, { useEffect, useState } from "react";
 import { Button, Col, Row } from "react-bootstrap";
 import Topnotice from "../Topnotice/Topnotice";
 import "./SignUp.css";
 import Validation from "./Validation";
-
+dotenv.config();
 const SignUp = () => {
   const [dbData, setDbData] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user`)
+    fetch(`http://localhost:5000/user`, {
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+        Authorization: `Bearer ${process.env.REACT_APP_SECRET_KEY}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => setDbData(data));
   }, [dbData._id]);
@@ -29,7 +36,13 @@ const SignUp = () => {
   });
   const [club, setClub] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/getClubHolder`)
+    fetch(`http://localhost:5000/user/getClubHolder`, {
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+        Authorization: `Bearer ${process.env.REACT_APP_SECRET_KEY}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => setClub(data));
   }, [dbData._id]);
@@ -77,12 +90,17 @@ const SignUp = () => {
         method: "POST",
         headers: {
           "content-type": "application/json",
-          "X-API-KEY":"12345"
         },
         body: JSON.stringify(values),
       })
         .then(() => {
-          fetch(`http://localhost:5000/user`)
+          fetch(`http://localhost:5000/user`, {
+            method: "GET",
+            headers: {
+              "content-type": "application/json",
+              Authorization: `Bearer ${process.env.REACT_APP_SECRET_KEY}`,
+            },
+          })
             .then((res) => res.json())
             .then((data) => setDbData(data));
         })

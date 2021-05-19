@@ -1,12 +1,20 @@
 import { Button } from "@material-ui/core";
 import "bootstrap/dist/css/bootstrap.min.css";
+import dotenv from "dotenv";
 import React, { useEffect, useState } from "react";
 import "./Winner.css";
-
+dotenv.config();
 const Winner = () => {
   const [bet, setBet] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/getBet`)
+    fetch(`http://localhost:5000/user/getBet`,
+    {
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+        Authorization: `Bearer ${process.env.REACT_APP_SECRET_KEY}`
+      },
+    })
       .then((res) => res.json())
       .then((data) => setBet(data));
   }, []);
@@ -49,7 +57,14 @@ const Winner = () => {
     fetch(`http://localhost:5000/user/betDelete/${id}`, {
       method: "DELETE",
     }).then(() => {
-      fetch(`http://localhost:5000/user/getBet`)
+      fetch(`http://localhost:5000/user/getBet`,
+      {
+        method: "GET",
+        headers: {
+          "content-type": "application/json",
+          Authorization: `Bearer ${process.env.REACT_APP_SECRET_KEY}`
+        },
+      })
         .then((res) => res.json())
         .then((data) => setBet(data));
     });

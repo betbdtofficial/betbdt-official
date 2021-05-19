@@ -13,7 +13,7 @@ const WidthrawSchema = new Schema({
         type: String,
         required: true
     },
-    to:{
+    number:{
         type: String,
         required: true
     },

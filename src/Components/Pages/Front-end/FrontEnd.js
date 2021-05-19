@@ -7,11 +7,8 @@ import Header from "../Header/Header";
 import Home from "../Home/Home";
 import Login from "../Login/Login";
 import Profile from "../MyProfile/Index";
-// import PrivateRoute from '../PrivateRoute/PrivateRoute';
 import SignUp from "../SignUp/SignUp";
 const FrontEnd = () => {
-  const storage = sessionStorage.getItem("user");
-  const getUser = JSON.parse(storage);
   return (
     <div>
       <Router>

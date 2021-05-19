@@ -1,13 +1,21 @@
+import dotenv from "dotenv";
 import React, { useEffect, useState } from "react";
 import { Accordion, Button, Card, Col, Form } from "react-bootstrap";
 import { BiLoaderCircle } from "react-icons/bi";
 import cricket from "../../../image/SliderImg/cricket.png";
 import "../Slider.css";
 import PlaceBetFrom from "./PlaceBetFrom";
+dotenv.config();
 function CriUpcomingAccordion() {
   const [dbData, setDbData] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/getUpcomingMatch`)
+    fetch(`http://localhost:5000/user/getUpcomingMatch`,{
+      method: "GET",
+      headers: {
+        'content-type':"application/json",
+        Authorization: `Bearer ${process.env.REACT_APP_SECRET_KEY}`
+      }
+    })
       .then((res) => res.json())
       .then((data) => setDbData(data));
   }, []);

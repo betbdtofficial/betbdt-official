@@ -1,11 +1,23 @@
 const BetHistory = require("./BetHistorySchema");
 exports.getBetHistory = (req, res) => {
-    BetHistory.find()
-      .sort({ _id: -1 })
-      .then((result) => {
-        res.send(result);
-      });
-  };
+  BetHistory.find()
+    .sort({ _id: -1 })
+    .then((result) => {
+      res.send(result);
+    });
+};
+
+exports.specificUserBetsHistory = (req, res) => {
+  const { betHis } = req.query;
+  BetHistory.find({ username: betHis })
+    .then((result) => {
+      res.send(result);
+    })
+    .catch((error) => {
+      res.send(error);
+    });
+};
+
 exports.createBetHistory = (req, res) => {
   const {
     username,

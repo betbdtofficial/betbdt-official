@@ -1,9 +1,10 @@
 import { Button } from "@material-ui/core";
 import { Public, Visibility } from "@material-ui/icons";
+import dotenv from "dotenv";
 import React, { useEffect, useState } from "react";
 import "./Draft.css";
 import LiveViewModals from "./LiveView";
-
+dotenv.config();
 const Draft = () => {
   const [value, setValue] = useState({
     success: "",
@@ -11,7 +12,14 @@ const Draft = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [dbData, setDbData] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/getdraftMatch`)
+    fetch(`http://localhost:5000/user/getdraftMatch`,
+    {
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+        Authorization: `Bearer ${process.env.REACT_APP_SECRET_KEY}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => setDbData(data));
   });
@@ -60,7 +68,14 @@ const Draft = () => {
       // draft delete from draft
       method: "DELETE",
     }).then(() => {
-      fetch(`http://localhost:5000/user/getdraftMatch`)
+      fetch(`http://localhost:5000/user/getdraftMatch`,
+      {
+        method: "GET",
+        headers: {
+          "content-type": "application/json",
+          Authorization: `Bearer ${process.env.REACT_APP_SECRET_KEY}`,
+        },
+      })
         .then((res) => res.json())
         .then((data) => setDbData(data));
     });

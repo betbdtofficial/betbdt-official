@@ -1,11 +1,19 @@
 import { Button } from "@material-ui/core";
 import BathtubIcon from "@material-ui/icons/Bathtub";
+import dotenv from "dotenv";
 import React, { useEffect, useState } from "react";
-
+dotenv.config();
 const BannedClub = () => {
   const [bannedClub, setBannedClub] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/getBannedClub`)
+    fetch(`http://localhost:5000/user/getBannedClub`,
+    {
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+        Authorization: `Bearer ${process.env.REACT_APP_SECRET_KEY}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => setBannedClub(data));
   }, [bannedClub._id]);
@@ -31,7 +39,14 @@ const BannedClub = () => {
       body: JSON.stringify(clubData),
     })
       .then(() => {
-        fetch(`http://localhost:5000/user/getBannedClub`)
+        fetch(`http://localhost:5000/user/getBannedClub`,
+        {
+          method: "GET",
+          headers: {
+            "content-type": "application/json",
+            Authorization: `Bearer ${process.env.REACT_APP_SECRET_KEY}`,
+          },
+        })
           .then((res) => res.json())
           .then((data) => setBannedClub(data));
       })
@@ -43,7 +58,14 @@ const BannedClub = () => {
     fetch(`http://localhost:5000/user/deleteBannedClub/${id}`, {
       method: "DELETE",
     }).then(() => {
-      fetch(`http://localhost:5000/user/getBannedClub`)
+      fetch(`http://localhost:5000/user/getBannedClub`,
+      {
+        method: "GET",
+        headers: {
+          "content-type": "application/json",
+          Authorization: `Bearer ${process.env.REACT_APP_SECRET_KEY}`,
+        },
+      })
         .then((res) => res.json())
         .then((data) => setBannedClub(data));
     });

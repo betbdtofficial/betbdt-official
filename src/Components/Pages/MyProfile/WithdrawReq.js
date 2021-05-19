@@ -1,7 +1,9 @@
+import dotenv from "dotenv";
 import React, { useEffect, useState } from "react";
 import { Button, Col, Form } from "react-bootstrap";
 import payment from "../../image/payment-method.png";
 import { Validation } from "./Validation";
+dotenv.config();
 const WithdrawReq = () => {
   const today = Date.now();
   const time = new Intl.DateTimeFormat("en-US", {
@@ -13,13 +15,13 @@ const WithdrawReq = () => {
     second: "2-digit",
   }).format(today);
 
-  const storage = sessionStorage.getItem("user");
+  const storage = sessionStorage.getItem("userInfo");
   const getUser = JSON.parse(storage);
   const [values, setValues] = useState({
     method: "",
     type: "",
     amount: "",
-    to: "",
+    number: "",
     username: "",
     date: "",
     button: "",
@@ -31,25 +33,36 @@ const WithdrawReq = () => {
     setErrors("");
   };
 
+  const [dbData, setDbData] = useState([]);
+  useEffect(() => {
+    fetch(`http://localhost:5000/user/me?u=${getUser?.username}`, {
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+        Authorization: `Bearer ${process.env.REACT_APP_SECRET_KEY}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => setDbData(data));
+  }, []);
+  const findUser = dbData.find((data) => data.username === getUser?.username);
+
   const [method, setMethod] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/getMethod`)
+    fetch(`http://localhost:5000/user/getMethod`, {
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+        Authorization: `Bearer ${process.env.REACT_APP_SECRET_KEY}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => setMethod(data));
   }, []);
-
-  // get user data
-  const [balance, setBalance] = useState([]);
-  useEffect(() => {
-    fetch(`http://localhost:5000/user`)
-      .then((res) => res.json())
-      .then((data) => setBalance(data));
-  }, []);
-  const findUser = balance.find((u) => u.username === getUser.user);
   const [errors, setErrors] = useState({});
   const handleSubmit = (e) => {
     setErrors(Validation(values, findUser?.balance));
-    if (values.to.length < 11) {
+    if (values.number.length < 11) {
       e.preventDefault();
       return;
     } else if (values.amount > findUser?.balance) {
@@ -60,7 +73,7 @@ const WithdrawReq = () => {
       return;
     }
     const withdraw = { ...values };
-    withdraw.username = getUser.user;
+    withdraw.username = findUser?.username;
     withdraw.date = time;
     withdraw.button = "Pending";
     // send withdraw request
@@ -78,7 +91,7 @@ const WithdrawReq = () => {
         console.log(err.message);
       });
     // Withdraw balance update
-    const user = getUser.user;
+    const user = findUser?.username;
     const withdrawUser = { ...values };
     withdrawUser.balance = findUser?.balance;
     fetch(`http://localhost:5000/user/${user}`, {
@@ -170,13 +183,15 @@ const WithdrawReq = () => {
                       To <span style={{ color: "red" }}>*</span>{" "}
                     </Form.Label>
                     <Form.Control
-                      name="to"
-                      value={values.to}
+                      name="number"
+                      value={values.number}
                       onChange={handleChange}
                       type="number"
                       placeholder="To "
                     />
-                    {errors.to && <p style={{ color: "red" }}>{errors.to}</p>}
+                    {errors.number && (
+                      <p style={{ color: "red" }}>{errors.number}</p>
+                    )}
                   </Form.Group>
                 </Form.Row>
                 <br />

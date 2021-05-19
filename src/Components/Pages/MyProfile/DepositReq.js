@@ -1,17 +1,32 @@
+import dotenv from "dotenv";
 import React, { useEffect, useState } from "react";
 import { Button, Col, Form } from "react-bootstrap";
 import payment from "../../image/payment-method.png";
 import { DepoValidation } from "./Validation";
+dotenv.config();
 const DepositReq = () => {
   const today = Date.now();
-  const time = new Intl.DateTimeFormat('en-US', {year: 'numeric', month: '2-digit',day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}).format(today)
+  const time = new Intl.DateTimeFormat("en-US", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+  }).format(today);
   const [depoMethod, setDepoMethod] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/getDepoMethod`)
+    fetch(`http://localhost:5000/user/getDepoMethod`, {
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+        Authorization: `Bearer ${process.env.REACT_APP_SECRET_KEY}`
+      },
+    })
       .then((res) => res.json())
       .then((data) => setDepoMethod(data));
   }, []);
-  const storage = sessionStorage.getItem("user");
+  const storage = sessionStorage.getItem("userInfo");
   const getUser = JSON.parse(storage);
   const [value, setValue] = useState({
     method: "",
@@ -19,7 +34,7 @@ const DepositReq = () => {
     from: "",
     username: "",
     date: "",
-    button: ""
+    button: "",
   });
   const handleChange = (e) => {
     const values = { ...value };
@@ -36,14 +51,15 @@ const DepositReq = () => {
       return;
     }
     const deposit = { ...value };
-    deposit.username = getUser.user;
+    deposit.username = getUser.username;
     deposit.date = time;
-    deposit.button = "Pending"
+    deposit.button = "Pending";
     // send deposit request
     fetch(`http://localhost:5000/user/createDeposit`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
       },
       body: JSON.stringify(deposit),
     })

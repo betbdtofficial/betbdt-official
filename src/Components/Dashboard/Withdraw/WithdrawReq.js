@@ -1,13 +1,21 @@
 import { Button } from "@material-ui/core";
+import dotenv from "dotenv";
 import React, { useEffect, useState } from "react";
-
+dotenv.config();
 const WithdrawReq = () => {
   const today = Date.now();
   const time = new Intl.DateTimeFormat('en-US', {year: 'numeric', month: '2-digit',day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}).format(today)
 
   const [withdraw, setWithdraw] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/withdrawGet`)
+    fetch(`http://localhost:5000/user/withdrawGet`,
+    {
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+        Authorization: `Bearer ${process.env.REACT_APP_SECRET_KEY}`
+      },
+    })
       .then((res) => res.json())
       .then((data) => setWithdraw(data));
   }, []);
@@ -17,7 +25,14 @@ const WithdrawReq = () => {
     fetch(`http://localhost:5000/user/delete/${id}`, {
       method: "DELETE",
     }).then(() => {
-      fetch(`http://localhost:5000/user/withdrawGet`)
+      fetch(`http://localhost:5000/user/withdrawGet`,
+      {
+        method: "GET",
+        headers: {
+          "content-type": "application/json",
+          Authorization: `Bearer ${process.env.REACT_APP_SECRET_KEY}`
+        },
+      })
         .then((res) => res.json())
         .then((data) => setWithdraw(data));
     });
@@ -25,7 +40,7 @@ const WithdrawReq = () => {
     const WithHistory = {
       username: data.username,
       club: data.club,
-      number: data.to,
+      number: data.number,
       type: data.type,
       method: data.method,
       amount: data.amount,
@@ -74,7 +89,7 @@ const WithdrawReq = () => {
         }).map((data) => (
           <tr>
             <td>{data.username}</td>
-            <td>{data.to}</td>
+            <td>{data.number}</td>
             <td>{data.type}</td>
             <td>{data.method}</td>
             <td>{data.amount} BDT</td>

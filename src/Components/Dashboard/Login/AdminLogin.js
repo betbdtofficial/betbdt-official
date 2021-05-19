@@ -1,11 +1,20 @@
+import dotenv from "dotenv";
 import React, { useEffect, useState } from "react";
 import { Button, Col, Row } from "react-bootstrap";
 import { useHistory, useLocation } from "react-router-dom";
 import Validation from "./Validation";
+dotenv.config();
 const AdminLogin = () => {
   const [admin, setAdmin] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/getAdmin`)
+    fetch(`http://localhost:5000/user/getAdmin`,
+    {
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+        Authorization: `Bearer ${process.env.REACT_APP_SECRET_KEY}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => setAdmin(data));
   }, [admin._id]);

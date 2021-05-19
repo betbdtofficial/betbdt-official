@@ -1,13 +1,21 @@
 import { Button } from "@material-ui/core";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
+import dotenv from "dotenv";
 import React, { useEffect, useState } from "react";
 import { FaRegEye } from "react-icons/fa";
 import Modals from "../User/Modals";
-
+dotenv.config();
 const ClubIndex = () => {
   const [clubHolder, setClubHolder] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/getClubHolder`)
+    fetch(`http://localhost:5000/user/getClubHolder`,
+    {
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+        Authorization: `Bearer ${process.env.REACT_APP_SECRET_KEY}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => setClubHolder(data));
   }, [clubHolder._id]);
@@ -46,7 +54,14 @@ const ClubIndex = () => {
     fetch(`http://localhost:5000/user/deleteClub/${id}`, {
       method: "DELETE",
     }).then(() => {
-      fetch(`http://localhost:5000/user/getClubHolder`)
+      fetch(`http://localhost:5000/user/getClubHolder`,
+      {
+        method: "GET",
+        headers: {
+          "content-type": "application/json",
+          Authorization: `Bearer ${process.env.REACT_APP_SECRET_KEY}`,
+        },
+      })
         .then((res) => res.json())
         .then((data) => setClubHolder(data));
     });

@@ -12,6 +12,9 @@ import FrontEnd from "./Components/Pages/Front-end/FrontEnd";
 export const Context = createContext();
 function App() {
   const [loginUser, setLoginUser] = useState([]);
+  if(window.console){
+    console.clear()
+  }
   return (
     <Context.Provider value={[loginUser, setLoginUser]}>
       <Router>

@@ -1,14 +1,22 @@
 import { Button } from "@material-ui/core";
 import { Edit } from "@material-ui/icons";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
+import dotenv from "dotenv";
 import React, { useEffect, useState } from "react";
 import { FaRegEye } from "react-icons/fa";
 import EditModal from "./EditModal";
 import Modals from "./Modals";
+dotenv.config();
 const Index = () => {
   const [dbUser, setDbUser] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user`)
+    fetch(`http://localhost:5000/user`, {
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+        Authorization: `Bearer ${process.env.REACT_APP_SECRET_KEY}`
+      },
+    })
       .then((res) => res.json())
       .then((data) => setDbUser(data));
   }, []);
@@ -51,7 +59,13 @@ const Index = () => {
     fetch(`http://localhost:5000/user/bannedActiveUser/${id}`, {
       method: "DELETE",
     }).then(() => {
-      fetch(`http://localhost:5000/user`)
+      fetch(`http://localhost:5000/user`, {
+        method: "GET",
+        headers: {
+          "content-type": "application/json",
+          Authorization: `Bearer ${process.env.REACT_APP_SECRET_KEY}`
+        },
+      })
         .then((res) => res.json())
         .then((data) => setDbUser(data));
     });

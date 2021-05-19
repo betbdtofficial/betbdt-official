@@ -1,23 +1,37 @@
 import { Button } from "@material-ui/core";
 import { Delete, Edit } from "@material-ui/icons";
+import dotenv from "dotenv";
 import React, { useEffect, useState } from "react";
 import UpcommingModals from "./UpcommingModals";
-
+dotenv.config();
 const UpcommingMatch = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [dbData, setDbData] = useState([]);
+
   useEffect(() => {
-    fetch(`http://localhost:5000/user/getUpcomingMatch`)
+    fetch(`http://localhost:5000/user/getUpcomingMatch`, {
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+        Authorization: `Bearer ${process.env.REACT_APP_SECRET_KEY}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => setDbData(data));
-  },[dbData]);
+  }, [dbData]);
   const handleDelete = (id) => {
     fetch(`http://localhost:5000/user/deleteUpcomingMatch/${id}`, {
       method: "DELETE",
     }).then(() => {
-      fetch(`http://localhost:5000/user/getUpcomingMatch`)
-        .then((res) => res.json())
-        .then((data) => setDbData(data));
+      fetch(`http://localhost:5000/user/getUpcomingMatch`, {
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+        Authorization: `Bearer ${process.env.REACT_APP_SECRET_KEY}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => setDbData(data));
     });
   };
   const [msg, setMsg] = useState({
@@ -80,9 +94,15 @@ const UpcommingMatch = () => {
     fetch(`http://localhost:5000/user/deleteUpcomingMatch/${id}`, {
       method: "DELETE",
     }).then(() => {
-      fetch(`http://localhost:5000/user/getUpcomingMatch`)
-        .then((res) => res.json())
-        .then((data) => setDbData(data));
+      fetch(`http://localhost:5000/user/getUpcomingMatch`, {
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+        Authorization: `Bearer ${process.env.REACT_APP_SECRET_KEY}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => setDbData(data));
     });
   };
   const [data, setData] = useState({});

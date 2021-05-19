@@ -6,7 +6,13 @@ import Validation from "./Validation";
 const SignUp = () => {
   const [dbData, setDbData] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/getClubHolder`)
+    fetch(`http://localhost:5000/user/getClubHolder`, {
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+        Authorization: `Bearer ${process.env.REACT_APP_SECRET_KEY}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => setDbData(data));
   }, [dbData._id]);
@@ -86,7 +92,13 @@ const SignUp = () => {
         body: JSON.stringify(values),
       })
         .then(() => {
-          fetch(`http://localhost:5000/user/getClubHolder`)
+          fetch(`http://localhost:5000/user/getClubHolder`, {
+            method: "GET",
+            headers: {
+              "content-type": "application/json",
+              Authorization: `Bearer ${process.env.REACT_APP_SECRET_KEY}`,
+            },
+          })
             .then((res) => res.json())
             .then((data) => setDbData(data));
         })
