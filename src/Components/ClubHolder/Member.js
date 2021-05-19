@@ -16,9 +16,10 @@ const Member = () => {
       .then((data) => setDbData(data));
   }, [dbData._id]);
 
-  const [clubHolder, setClubHolder] = useState([]);
+  // get club holder
+  const [specificClubHolder, setSpecificClubHolder] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/getClubHolder`, {
+    fetch(`http://localhost:5000/user/specificClubHolder?user=${club?.club}`, {
       method: "GET",
       headers: {
         "content-type": "application/json",
@@ -26,9 +27,9 @@ const Member = () => {
       },
     })
       .then((res) => res.json())
-      .then((data) => setClubHolder(data));
-  }, [clubHolder._id]);
-  const findClubHolder = clubHolder.find((u) => u.username === club?.club); //find Club holder
+      .then((data) => setSpecificClubHolder(data));
+  }, []);
+  const findClubHolder = specificClubHolder.find((u) => u.username === club?.club); //find Club holder
   // console.log(findClubHolder);
   const findUser = dbData.filter((u) => u.club === findClubHolder?.club); // find user
   // console.log(findUser);
@@ -65,9 +66,7 @@ const Member = () => {
                 .filter((value) => {
                   if (searchTerm === "") return value;
                   else if (
-                    value.name
-                      .toLowerCase()
-                      .includes(searchTerm.toLowerCase())
+                    value.name.toLowerCase().includes(searchTerm.toLowerCase())
                   )
                     return value;
                 })

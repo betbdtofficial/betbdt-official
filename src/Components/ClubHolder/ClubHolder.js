@@ -28,9 +28,9 @@ const ClubHolder = () => {
   }, []);
   // hard check specific club holder
   const specificClub = specificClubHolder.find((u) => u.username === club?.club);
-  const [dbData, setDbData] = useState([]);
+  const [clubs, setClubs] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user`, {
+    fetch(`http://localhost:5000/user/clubHolderMembers?user=${club?.club}`, {
       method: "GET",
       headers: {
         "content-type": "application/json",
@@ -38,9 +38,8 @@ const ClubHolder = () => {
       },
     })
       .then((res) => res.json())
-      .then((data) => setDbData(data));
-  }, [dbData._id]);
-
+      .then((data) => setClubs(data));
+  }, [clubs._id]);
   const [withHis, setWithHis] = useState([]);
   useEffect(() => {
     fetch(`http://localhost:5000/user/specificWithHistory?user=${club?.club}`,
@@ -54,8 +53,6 @@ const ClubHolder = () => {
       .then((res) => res.json())
       .then((data) => setWithHis(data));
   }, []);
-
-  const findUser = dbData.filter((u) => u.club === specificClub?.club); // specific club holder member
   let balance = 0;
   for (let b = 0; b < withHis.length; b++) {
     const element = withHis[b];
@@ -104,7 +101,7 @@ const ClubHolder = () => {
               </div>
               <strong>
                 Total Club Member <br />
-                <b className="TotalClubMembersCount">{findUser.length}</b>{" "}
+                <b className="TotalClubMembersCount">{clubs.length}</b>{" "}
               </strong>
             </div>
           </div>

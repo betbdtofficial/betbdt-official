@@ -88,6 +88,7 @@ const {
   bannedActiveUser,
   login,
   specificWithdrawGet,
+  clubHolderMembers,
 } = require("./Controllar");
 const {
   getDeposit,
@@ -133,6 +134,7 @@ router.delete("/deleteBannedUser/:id", bannedUserDelete);
 // club holder
 router.get("/getClubHolder", Authenticated, getClubHolder);
 router.get("/specificClubHolder", specificClubHolder);
+router.get("/clubHolderMembers", clubHolderMembers);
 router.post("/createClubHolder", createClubHolder);
 router.delete("/deleteClub/:id", deleteClub);
 router.post("/bannedClub", bannedClubHolder);

@@ -11,6 +11,16 @@ exports.getUser = (req, res) => {
     });
 };
 
+// club holder members
+exports.clubHolderMembers = async (req, res) => {
+  const { user } = req.query;
+  const club = await ClubHolder.findOne({ username: user });
+  const users = await UserInfo.find({
+    club: club.club,
+  })
+  res.send(users)
+};
+
 exports.login = async (req, res) => {
   const { users } = req.body;
   const user = await UserInfo.findOne({
