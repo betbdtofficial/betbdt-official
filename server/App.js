@@ -4,11 +4,7 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const mongoose = require("mongoose");
-const dbName = "BetBDT";
-const username = "betbdtofficial";
-const password = "npyBRXPOfIsFw1Pf";
-
-
+require('dotenv').config()
 var corsOptions = {
   origin: "http://localhost:3000",
   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
@@ -20,7 +16,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use("/user" , router);
 
-const uri = `mongodb+srv://${username}:${password}@cluster0.lrtdf.mongodb.net/${dbName}?retryWrites=true&w=majority`;
+const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.lrtdf.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
 
 app.get("/", (req, res) => {
   res.send("<h1>Welcome To Database</h1>");

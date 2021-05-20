@@ -1,5 +1,6 @@
 const UserInfo = require("./Schema");
 const ClubHolder = require("./Back-end-code/ClubHolderSchema");
+const jwt = require('jsonwebtoken')
 exports.getUser = (req, res) => {
   UserInfo.find()
     .sort({ _id: -1 })
@@ -30,8 +31,8 @@ exports.login = async (req, res) => {
   const club = await ClubHolder.findOne({
     club: user.club,
   });
-
   if (user && club) {
+    let token = jwt.sign({id: user._id}, 'secret')
     return res.json({
       id: user._id,
       name: user.name,
@@ -43,6 +44,7 @@ exports.login = async (req, res) => {
         username: club.username,
         profit: club.profit,
       },
+      token,
     });
   } else {
     res.json({ message: "Invalid Username" });

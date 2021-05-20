@@ -18,6 +18,35 @@ const Winner = () => {
       .then((res) => res.json())
       .then((data) => setBet(data));
   }, []);
+  // refund function
+  const handleReFund = (data)=>{
+    const username = data?.username;
+    const id = data?._id;
+    const balance = {
+      balance: data?.betAmount,
+    };
+    fetch(`http://localhost:5000/user/betUserBalUpdate/${username}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(balance),
+    });
+    fetch(`http://localhost:5000/user/betDelete/${id}`, {
+      method: "DELETE",
+    }).then(() => {
+      fetch(`http://localhost:5000/user/getBet`,
+      {
+        method: "GET",
+        headers: {
+          "content-type": "application/json",
+          Authorization: `Bearer ${process.env.REACT_APP_SECRET_KEY}`
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => setBet(data));
+    });
+  }
   // Win function
   const handleWin = (data) => {
     const username = data?.username;
@@ -146,6 +175,17 @@ const Winner = () => {
                       <td>{data.question}?</td>
                       <td>{data.betTitle}</td>
                       <td>
+                        <span>
+                          {" "}
+                          <Button
+                            onClick={() => handleReFund(data)}
+                            color="primary"
+                            variant="contained"
+                          >
+                            {" "}
+                            Refund
+                          </Button>{" "}
+                        </span>
                         <span>
                           {" "}
                           <Button
