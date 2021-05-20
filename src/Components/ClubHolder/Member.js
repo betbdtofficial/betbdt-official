@@ -3,9 +3,9 @@ import React, { useEffect, useState } from "react";
 const Member = () => {
   const storage = sessionStorage.getItem("club");
   const club = JSON.parse(storage);
-  const [dbData, setDbData] = useState([]);
+  const [clubs, setClubs] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user`, {
+    fetch(`http://localhost:5000/user/clubHolderMembers?user=${club?.club}`, {
       method: "GET",
       headers: {
         "content-type": "application/json",
@@ -13,26 +13,9 @@ const Member = () => {
       },
     })
       .then((res) => res.json())
-      .then((data) => setDbData(data));
-  }, [dbData._id]);
+      .then((data) => setClubs(data));
+  }, [clubs._id]);
 
-  // get club holder
-  const [specificClubHolder, setSpecificClubHolder] = useState([]);
-  useEffect(() => {
-    fetch(`http://localhost:5000/user/specificClubHolder?user=${club?.club}`, {
-      method: "GET",
-      headers: {
-        "content-type": "application/json",
-        Authorization: `Bearer ${process.env.REACT_APP_SECRET_KEY}`,
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => setSpecificClubHolder(data));
-  }, []);
-  const findClubHolder = specificClubHolder.find((u) => u.username === club?.club); //find Club holder
-  // console.log(findClubHolder);
-  const findUser = dbData.filter((u) => u.club === findClubHolder?.club); // find user
-  // console.log(findUser);
   const [searchTerm, setSearchTerm] = useState("");
   return (
     <>
@@ -62,7 +45,7 @@ const Member = () => {
                 <th>Club</th>
                 <th>Country</th>
               </tr>
-              {findUser
+              {clubs
                 .filter((value) => {
                   if (searchTerm === "") return value;
                   else if (
