@@ -1,0 +1,23 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400&display=swap");
+body {
+  font-family: "Roboto Condensed", sans-serif;
+}
+.allWrapp {
+  display: flex;
+  justify-content: space-between;
+}
+.sidebarMenu {
+  width: 25%;
+  background: #383838;
+  color: white;
+  position: -webkit-sticky;
+  height: 100%;
+  padding: 10px;
+}
+.content {
+  width: 75%;
+  margin-left: auto;
+  background: #f1f1f1;
+  border-radius: 5px;
+  box-shadow: 25px -1px 11px #b1a8a8;
+}

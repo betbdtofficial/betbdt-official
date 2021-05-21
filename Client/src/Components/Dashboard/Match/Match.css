@@ -1,0 +1,34 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400&display=swap");
+body {
+  font-family: "Roboto Condensed", sans-serif;
+}
+/******Modal css*****/
+input[type="submit"]:focus {
+  outline: none;
+}
+/*** Match table css **********/
+.matchData {
+  margin: 15px 0;
+  padding: 40px 10px;
+  border-radius: 2px;
+  border: 1px solid #80808066;
+}
+.matchHeading {
+  margin-top: 0px;
+  margin-bottom: 15px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #80808066;
+}
+.head {
+  font-size: 20px;
+}
+table {
+  border-collapse: collapse;
+  width: 100% !important;
+  text-align: none !important;
+}
+td,
+th {
+  padding: 8px;
+  border: 1px solid #80808066 !important;
+}

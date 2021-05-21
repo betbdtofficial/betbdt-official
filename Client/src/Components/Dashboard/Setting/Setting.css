@@ -1,0 +1,23 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400&display=swap");
+body {
+  font-family: "Roboto Condensed", sans-serif;
+}
+.generalSetting {
+  margin-top: 20px;
+  border: 1px solid #126e51;
+  border-radius: 2px;
+}
+
+.head h4 span {
+  background: #126e51;
+  padding: 5px;
+  color: white;
+}
+
+.option {
+  padding: 10px;
+}
+
+.head h4 {
+  padding: 5px 0;
+}

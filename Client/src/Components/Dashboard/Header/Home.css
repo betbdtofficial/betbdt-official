@@ -1,0 +1,10 @@
+.MuiAppBar-colorPrimary {
+  color: #fff;
+  background-color: rgb(18 110 81) !important;
+}
+svg.MuiSvgIcon-root {
+  color: white;
+}
+.signUpF.mt-5 {
+  color: black;
+}
