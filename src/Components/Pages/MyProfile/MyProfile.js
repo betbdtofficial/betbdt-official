@@ -1,16 +1,14 @@
 import dotenv from "dotenv";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
-import { Context } from "../../../App";
 dotenv.config();
 const MyProfile = () => {
-  const [loginUser, setLoginUser] = useContext(Context);
   const storage = sessionStorage.getItem("userInfo");
   const getUser = JSON.parse(storage);
   const [dbData, setDbData] = useState([]);
   useEffect(() => {
     fetch(
-      `http://localhost:5000/user/me?u=${getUser.username || loginUser.user}`,
+      `http://localhost:5000/user/me?u=${getUser.username}`,
       {
         method: "GET",
         headers: {
