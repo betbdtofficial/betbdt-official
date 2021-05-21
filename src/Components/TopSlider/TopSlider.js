@@ -1,6 +1,6 @@
 import React from "react";
 import { Carousel } from "react-bootstrap";
-import slider1 from "../image/Sliderbannar/1.png";
+import slider1 from "../image/Sliderbannar/1.jpg";
 import slider2 from "../image/Sliderbannar/2.jpg";
 import slider3 from "../image/Sliderbannar/3.jpg";
 import "./TopSlider.css";
