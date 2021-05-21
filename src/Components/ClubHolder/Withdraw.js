@@ -33,7 +33,7 @@ const Withdraw = () => {
   };
   const [method, setMethod] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/getMethod`, {
+    fetch(`https://betbdt.herokuapp.com/user/getMethod`, {
       method: "GET",
       headers: {
         "content-type": "application/json",
@@ -47,7 +47,7 @@ const Withdraw = () => {
     const [specificClubHolder, setSpecificClubHolder] = useState([]);
     useEffect(() => {
       fetch(
-        `http://localhost:5000/user/specificClubHolder?user=${clubUser?.club}`,
+        `https://betbdt.herokuapp.com/user/specificClubHolder?user=${clubUser?.club}`,
         {
           method: "GET",
           headers: {
@@ -79,7 +79,7 @@ const Withdraw = () => {
     withdraw.date = time;
     withdraw.button = "Pending";
     // send withdraw request
-    fetch(`http://localhost:5000/user/withdrawReq`, {
+    fetch(`https://betbdt.herokuapp.com/user/withdrawReq`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -96,7 +96,7 @@ const Withdraw = () => {
     const club = clubUser?.club;
     const withdrawUser = { ...values };
     withdrawUser.balance = findUser?.balance;
-    fetch(`http://localhost:5000/user/club/${club}`, {
+    fetch(`https://betbdt.herokuapp.com/user/club/${club}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

@@ -38,7 +38,7 @@ const PlaceBetFrom = ({
   const getUser = JSON.parse(storage);
   const [user, setUser] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/me?u=${getUser?.username}`, {
+    fetch(`https://betbdt.herokuapp.com/user/me?u=${getUser?.username}`, {
       method: "GET",
       headers: {
         "content-type": "application/json",
@@ -53,7 +53,7 @@ const PlaceBetFrom = ({
   const [bet, setBet] = useState([]);
   useEffect(() => {
     fetch(
-      `http://localhost:5000/user/specificBets/me?bets=${getUser?.username}`,
+      `https://betbdt.herokuapp.com/user/specificBets/me?bets=${getUser?.username}`,
       {
         method: "GET",
         headers: {
@@ -70,7 +70,7 @@ const PlaceBetFrom = ({
   // upcoming match
   const [dbData, setDbData] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/getUpcomingMatch`, {
+    fetch(`https://betbdt.herokuapp.com/user/getUpcomingMatch`, {
       method: "GET",
       headers: {
         "content-type": "application/json",
@@ -111,7 +111,7 @@ const PlaceBetFrom = ({
       question: passTitle,
       status: "Pending",
     };
-    fetch(`http://localhost:5000/user/createBet`, {
+    fetch(`https://betbdt.herokuapp.com/user/createBet`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -124,7 +124,7 @@ const PlaceBetFrom = ({
     const user = uUser?.username;
     const BetUser = { ...value };
     BetUser.balance = uUser?.balance;
-    fetch(`http://localhost:5000/user/bet/${user}`, {
+    fetch(`https://betbdt.herokuapp.com/user/bet/${user}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
@@ -141,7 +141,7 @@ const PlaceBetFrom = ({
       const clubBalance = {
         balance: amount * (profit / 100).toFixed(2),
       };
-      fetch(`http://localhost:5000/user/clubBalanceUpdate/${username}`, {
+      fetch(`https://betbdt.herokuapp.com/user/clubBalanceUpdate/${username}`, {
         method: "PUT",
         headers: {
           "content-type": "application/json",

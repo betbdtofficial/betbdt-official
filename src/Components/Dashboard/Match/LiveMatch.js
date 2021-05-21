@@ -9,7 +9,7 @@ const LiveMatch = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [dbData, setDbData] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/getMatch`,
+    fetch(`https://betbdt.herokuapp.com/user/getMatch`,
     {
       method: "GET",
       headers: {
@@ -21,10 +21,10 @@ const LiveMatch = () => {
       .then((data) => setDbData(data));
   });
   const handleDelete = (id) => {
-    fetch(`http://localhost:5000/user/deleteMatch/${id}`, {
+    fetch(`https://betbdt.herokuapp.com/user/deleteMatch/${id}`, {
       method: "DELETE",
     }).then(() => {
-      fetch(`http://localhost:5000/user/getMatch`,
+      fetch(`https://betbdt.herokuapp.com/user/getMatch`,
       {
         method: "GET",
         headers: {

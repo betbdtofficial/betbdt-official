@@ -97,7 +97,7 @@ const LiveModals = (props) => {
     e.preventDefault();
 
     if (value.status === "Publish") {
-      fetch(`http://localhost:5000/user/createMatch`, {
+      fetch(`https://betbdt.herokuapp.com/user/createMatch`, {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -111,7 +111,7 @@ const LiveModals = (props) => {
     } else if (value.status === "Draft") {
       const values = { ...value };
       values.matchStatus = "live";
-      fetch(`http://localhost:5000/user/createDraftMatch`, {
+      fetch(`https://betbdt.herokuapp.com/user/createDraftMatch`, {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -125,7 +125,7 @@ const LiveModals = (props) => {
     }
     // update
     const id = props.data?._id;
-    fetch(`http://localhost:5000/user/updateMatch/${id}`, {
+    fetch(`https://betbdt.herokuapp.com/user/updateMatch/${id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

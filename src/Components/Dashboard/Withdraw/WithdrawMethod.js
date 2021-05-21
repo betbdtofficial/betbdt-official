@@ -6,7 +6,7 @@ dotenv.config();
 const WithdrawMethod = () => {
   const [dbData, setDbData] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/getMethod`,
+    fetch(`https://betbdt.herokuapp.com/user/getMethod`,
     {
       method: "GET",
       headers: {
@@ -19,10 +19,10 @@ const WithdrawMethod = () => {
   }, []);
   const handleDelete = (id) => {
     console.log(id)
-    fetch(`http://localhost:5000/user/${id}`, {
+    fetch(`https://betbdt.herokuapp.com/user/${id}`, {
       method: "DELETE",
     }).then(() => {
-      fetch(`http://localhost:5000/user/getMethod`,
+      fetch(`https://betbdt.herokuapp.com/user/getMethod`,
       {
         method: "GET",
         headers: {

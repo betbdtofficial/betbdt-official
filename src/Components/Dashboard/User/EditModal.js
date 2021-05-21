@@ -36,7 +36,7 @@ const EditModal = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const id = props.user._id;
-    fetch(`http://localhost:5000/user/userUpdate/${id}`, {
+    fetch(`https://betbdt.herokuapp.com/user/userUpdate/${id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

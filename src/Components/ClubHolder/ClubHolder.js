@@ -14,7 +14,7 @@ const ClubHolder = () => {
   const [specificClubHolder, setSpecificClubHolder] = useState([]);
   useEffect(() => {
     fetch(
-      `http://localhost:5000/user/specificClubHolder?user=${club?.club}`,
+      `https://betbdt.herokuapp.com/user/specificClubHolder?user=${club?.club}`,
       {
         method: "GET",
         headers: {
@@ -30,7 +30,7 @@ const ClubHolder = () => {
   const specificClub = specificClubHolder.find((u) => u.username === club?.club);
   const [clubs, setClubs] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/clubHolderMembers?user=${club?.club}`, {
+    fetch(`https://betbdt.herokuapp.com/user/clubHolderMembers?user=${club?.club}`, {
       method: "GET",
       headers: {
         "content-type": "application/json",
@@ -42,7 +42,7 @@ const ClubHolder = () => {
   }, [clubs._id]);
   const [withHis, setWithHis] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/specificWithHistory?user=${club?.club}`,
+    fetch(`https://betbdt.herokuapp.com/user/specificWithHistory?user=${club?.club}`,
     {
       method: "GET",
       headers: {

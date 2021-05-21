@@ -39,7 +39,7 @@ const LiveBetPlace = ({
   const [dbData, setDbData] = useState([]);
   useEffect(() => {
     fetch(
-      `http://localhost:5000/user/me?u=${getUser?.username}`,
+      `https://betbdt.herokuapp.com/user/me?u=${getUser?.username}`,
       {
         method: "GET",
         headers: {
@@ -56,7 +56,7 @@ const LiveBetPlace = ({
 
   const [bet, setBet] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/specificBets/me?bets=${getUser?.username}`, {
+    fetch(`https://betbdt.herokuapp.com/user/specificBets/me?bets=${getUser?.username}`, {
       method: "GET",
       headers: {
         "content-type": "application/json",
@@ -70,7 +70,7 @@ const LiveBetPlace = ({
   // live match
   const [live, setLive] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/getMatch`,{
+    fetch(`https://betbdt.herokuapp.com/user/getMatch`,{
       method: "GET",
       headers: {
         'content-type':"application/json",
@@ -111,7 +111,7 @@ const LiveBetPlace = ({
       question: passTitle,
       status: "Pending",
     };
-    fetch(`http://localhost:5000/user/createBet`, {
+    fetch(`https://betbdt.herokuapp.com/user/createBet`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -124,7 +124,7 @@ const LiveBetPlace = ({
     const user = findUser?.username;
     const BetUser = { ...liveValue };
     BetUser.balance = findUser?.balance;
-    fetch(`http://localhost:5000/user/bet/${user}`, {
+    fetch(`https://betbdt.herokuapp.com/user/bet/${user}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
@@ -141,7 +141,7 @@ const LiveBetPlace = ({
       const clubBalance = {
         balance: amount * (profit / 100).toFixed(2),
       };
-      fetch(`http://localhost:5000/user/clubBalanceUpdate/${username}`, {
+      fetch(`https://betbdt.herokuapp.com/user/clubBalanceUpdate/${username}`, {
         method: "PUT",
         headers: {
           "content-type": "application/json",

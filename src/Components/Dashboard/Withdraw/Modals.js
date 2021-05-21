@@ -22,7 +22,7 @@ const Modals = (props) => {
     if (value.number.length < 11) {
       return;
     }
-    fetch(`http://localhost:5000/user/createMethod`, {
+    fetch(`https://betbdt.herokuapp.com/user/createMethod`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

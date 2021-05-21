@@ -35,7 +35,7 @@ const WithdrawReq = () => {
 
   const [dbData, setDbData] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/me?u=${getUser?.username}`, {
+    fetch(`https://betbdt.herokuapp.com/user/me?u=${getUser?.username}`, {
       method: "GET",
       headers: {
         "content-type": "application/json",
@@ -49,7 +49,7 @@ const WithdrawReq = () => {
 
   const [method, setMethod] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/getMethod`, {
+    fetch(`https://betbdt.herokuapp.com/user/getMethod`, {
       method: "GET",
       headers: {
         "content-type": "application/json",
@@ -77,7 +77,7 @@ const WithdrawReq = () => {
     withdraw.date = time;
     withdraw.button = "Pending";
     // send withdraw request
-    fetch(`http://localhost:5000/user/withdrawReq`, {
+    fetch(`https://betbdt.herokuapp.com/user/withdrawReq`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -94,7 +94,7 @@ const WithdrawReq = () => {
     const user = findUser?.username;
     const withdrawUser = { ...values };
     withdrawUser.balance = findUser?.balance;
-    fetch(`http://localhost:5000/user/${user}`, {
+    fetch(`https://betbdt.herokuapp.com/user/${user}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

@@ -15,7 +15,7 @@ const Header = () => {
 
   const [dbData, setDbData] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/me?u=${getUser?.username}`, {
+    fetch(`https://betbdt.herokuapp.com/user/me?u=${getUser?.username}`, {
       method: "GET",
       headers: {
         "content-type": "application/json",

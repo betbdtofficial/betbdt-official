@@ -5,7 +5,7 @@ dotenv.config();
 const DepoHistory = () => {
   const [depoHis, setDepoHis] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/getDepositHistory`,
+    fetch(`https://betbdt.herokuapp.com/user/getDepositHistory`,
     {
       method: "GET",
       headers: {

@@ -14,7 +14,7 @@ const Home = () => {
   const [user, getUser] = useState([]);
   useEffect(() => {
     //get Withdraw Info
-    fetch(`http://localhost:5000/user`, {
+    fetch(`https://betbdt.herokuapp.com/user`, {
       method: "GET",
       headers: {
         "content-type": "application/json",
@@ -26,7 +26,7 @@ const Home = () => {
   }, []);
   const [withdrawHistory, setWithdrawHistory] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/getWithdrawHistory`, {
+    fetch(`https://betbdt.herokuapp.com/user/getWithdrawHistory`, {
       method: "GET",
       headers: {
         "content-type": "application/json",
@@ -43,7 +43,7 @@ const Home = () => {
   }
   const [withdraw, setWithdraw] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/withdrawGet`, {
+    fetch(`https://betbdt.herokuapp.com/user/withdrawGet`, {
       method: "GET",
       headers: {
         "content-type": "application/json",
@@ -60,7 +60,7 @@ const Home = () => {
   }
   const [clubHolder, setClubHolder] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/getClubHolder`, {
+    fetch(`https://betbdt.herokuapp.com/user/getClubHolder`, {
       method: "GET",
       headers: {
         "content-type": "application/json",
@@ -79,7 +79,7 @@ const Home = () => {
   }
   const [depoHis, setDepoHis] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/getDepositHistory`, {
+    fetch(`https://betbdt.herokuapp.com/user/getDepositHistory`, {
       method: "GET",
       headers: {
         "content-type": "application/json",
@@ -96,7 +96,7 @@ const Home = () => {
   }
   const [depo, setDepo] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/getDeposit`, {
+    fetch(`https://betbdt.herokuapp.com/user/getDeposit`, {
       method: "GET",
       headers: {
         "content-type": "application/json",

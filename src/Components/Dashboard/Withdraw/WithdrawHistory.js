@@ -5,7 +5,7 @@ dotenv.config();
 const WithdrawLog = () => {
   const [history, setHistory] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/getWithdrawHistory`,
+    fetch(`https://betbdt.herokuapp.com/user/getWithdrawHistory`,
     {
       method: "GET",
       headers: {

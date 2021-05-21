@@ -6,7 +6,7 @@ dotenv.config();
 const DepositMethod = () => {
   const [depoMethod, setDepoMethod] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/getDepoMethod`,
+    fetch(`https://betbdt.herokuapp.com/user/getDepoMethod`,
     {
       method: "GET",
       headers: {
@@ -18,10 +18,10 @@ const DepositMethod = () => {
       .then((data) => setDepoMethod(data));
   }, []);
   const handleDelete = (id) => {
-    fetch(`http://localhost:5000/user/deleteDepoMethod/${id}`, {
+    fetch(`https://betbdt.herokuapp.com/user/deleteDepoMethod/${id}`, {
       method: "DELETE",
     }).then(() => {
-      fetch(`http://localhost:5000/user/getDepoMethod`,
+      fetch(`https://betbdt.herokuapp.com/user/getDepoMethod`,
       {
         method: "GET",
         headers: {

@@ -9,7 +9,7 @@ const Bet = () => {
   // bets
   const [bet, setBet] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/specificBets/me?bets=${getUser?.username}`, {
+    fetch(`https://betbdt.herokuapp.com/user/specificBets/me?bets=${getUser?.username}`, {
       method: "GET",
       headers: {
         "content-type": "application/json",
@@ -22,7 +22,7 @@ const Bet = () => {
   // bet history
   const [betHistory, setBetHistory] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/specificBetHistory/me?betHis=${getUser?.username}`, {
+    fetch(`https://betbdt.herokuapp.com/user/specificBetHistory/me?betHis=${getUser?.username}`, {
       method: "GET",
       headers: {
         "content-type": "application/json",

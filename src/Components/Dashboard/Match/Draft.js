@@ -12,7 +12,7 @@ const Draft = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [dbData, setDbData] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/getdraftMatch`,
+    fetch(`https://betbdt.herokuapp.com/user/getdraftMatch`,
     {
       method: "GET",
       headers: {
@@ -64,11 +64,11 @@ const Draft = () => {
       startdate: data.startdate,
       starttime: data.starttime,
     };
-    fetch(`http://localhost:5000/user/draftDelete/${id}`, {
+    fetch(`https://betbdt.herokuapp.com/user/draftDelete/${id}`, {
       // draft delete from draft
       method: "DELETE",
     }).then(() => {
-      fetch(`http://localhost:5000/user/getdraftMatch`,
+      fetch(`https://betbdt.herokuapp.com/user/getdraftMatch`,
       {
         method: "GET",
         headers: {
@@ -81,7 +81,7 @@ const Draft = () => {
     });
     if (data.matchStatus === "live") {
       // live match add from draft
-      fetch(`http://localhost:5000/user/createMatch`, {
+      fetch(`https://betbdt.herokuapp.com/user/createMatch`, {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -94,7 +94,7 @@ const Draft = () => {
       });
     } else if (data.matchStatus === "upco") {
       //upcoming match add from draft
-      fetch(`http://localhost:5000/user/createUpcomingMatch`, {
+      fetch(`https://betbdt.herokuapp.com/user/createUpcomingMatch`, {
         method: "POST",
         headers: {
           "content-type": "application/json",

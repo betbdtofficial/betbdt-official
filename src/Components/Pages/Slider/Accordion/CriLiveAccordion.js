@@ -8,7 +8,7 @@ dotenv.config();
 function CriLiveAccordion() {
   const [dbData, setDbData] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/getMatch`, {
+    fetch(`https://betbdt.herokuapp.com/user/getMatch`, {
       method: "GET",
       headers: {
         "content-type": "application/json",

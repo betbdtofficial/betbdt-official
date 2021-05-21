@@ -8,7 +8,7 @@ const WithdrawReq = () => {
 
   const [withdraw, setWithdraw] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/withdrawGet`,
+    fetch(`https://betbdt.herokuapp.com/user/withdrawGet`,
     {
       method: "GET",
       headers: {
@@ -22,10 +22,10 @@ const WithdrawReq = () => {
   const [searchTerm, setSearchTerm] = useState("")
   const handleClick = (id, data) => {
     // Withdraw Request Delete
-    fetch(`http://localhost:5000/user/delete/${id}`, {
+    fetch(`https://betbdt.herokuapp.com/user/delete/${id}`, {
       method: "DELETE",
     }).then(() => {
-      fetch(`http://localhost:5000/user/withdrawGet`,
+      fetch(`https://betbdt.herokuapp.com/user/withdrawGet`,
       {
         method: "GET",
         headers: {
@@ -47,7 +47,7 @@ const WithdrawReq = () => {
       date: time,
       button: "Completed"
     }
-    fetch(`http://localhost:5000/user/createWithdrawHistory`, {
+    fetch(`https://betbdt.herokuapp.com/user/createWithdrawHistory`, {
       method: "POST",
       headers: {
         "content-type" : "application/json",

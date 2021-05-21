@@ -17,7 +17,7 @@ const ChangePass = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const id = getUser?.id;
-    fetch(`http://localhost:5000/user/passChange/${id}`, {
+    fetch(`https://betbdt.herokuapp.com/user/passChange/${id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

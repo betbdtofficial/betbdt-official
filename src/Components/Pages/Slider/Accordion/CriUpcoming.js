@@ -9,7 +9,7 @@ dotenv.config();
 function CriUpcomingAccordion() {
   const [dbData, setDbData] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/getUpcomingMatch`,{
+    fetch(`https://betbdt.herokuapp.com/user/getUpcomingMatch`,{
       method: "GET",
       headers: {
         'content-type':"application/json",

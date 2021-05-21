@@ -6,7 +6,7 @@ dotenv.config();
 const BannedUser = () => {
   const [dbData, setDbData] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/getBannedUser`,
+    fetch(`https://betbdt.herokuapp.com/user/getBannedUser`,
     {
       method: "GET",
       headers: {
@@ -29,17 +29,17 @@ const BannedUser = () => {
       password2: data.password2,
       balance: data.balance,
     };
-    fetch(`http://localhost:5000/user/signup`, {
+    fetch(`https://betbdt.herokuapp.com/user/signup`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
       },
       body: JSON.stringify(userData),
     });
-    fetch(`http://localhost:5000/user/deleteBannedUser/${id}`, {
+    fetch(`https://betbdt.herokuapp.com/user/deleteBannedUser/${id}`, {
       method: "DELETE",
     }).then(() => {
-      fetch(`http://localhost:5000/user/getBannedUser`,
+      fetch(`https://betbdt.herokuapp.com/user/getBannedUser`,
       {
         method: "GET",
         headers: {

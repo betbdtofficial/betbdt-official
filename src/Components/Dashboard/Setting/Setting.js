@@ -12,7 +12,7 @@ const Setting = () => {
   });
   const [dbData, setDbData] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/getNotice`,{
+    fetch(`https://betbdt.herokuapp.com/user/getNotice`,{
       method: "GET",
       headers:{
         'content-type':"application/json",
@@ -34,7 +34,7 @@ const Setting = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch(`http://localhost:5000/user/noticeUpdate/${id}`, {
+    fetch(`https://betbdt.herokuapp.com/user/noticeUpdate/${id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

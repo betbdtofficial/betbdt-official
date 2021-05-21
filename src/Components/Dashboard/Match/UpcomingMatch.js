@@ -9,7 +9,7 @@ const UpcommingMatch = () => {
   const [dbData, setDbData] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/user/getUpcomingMatch`, {
+    fetch(`https://betbdt.herokuapp.com/user/getUpcomingMatch`, {
       method: "GET",
       headers: {
         "content-type": "application/json",
@@ -20,10 +20,10 @@ const UpcommingMatch = () => {
       .then((data) => setDbData(data));
   }, [dbData]);
   const handleDelete = (id) => {
-    fetch(`http://localhost:5000/user/deleteUpcomingMatch/${id}`, {
+    fetch(`https://betbdt.herokuapp.com/user/deleteUpcomingMatch/${id}`, {
       method: "DELETE",
     }).then(() => {
-      fetch(`http://localhost:5000/user/getUpcomingMatch`, {
+      fetch(`https://betbdt.herokuapp.com/user/getUpcomingMatch`, {
       method: "GET",
       headers: {
         "content-type": "application/json",
@@ -79,7 +79,7 @@ const UpcommingMatch = () => {
       starttime: data.starttime,
     };
     // live match add from draft
-    fetch(`http://localhost:5000/user/createMatch`, {
+    fetch(`https://betbdt.herokuapp.com/user/createMatch`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -91,10 +91,10 @@ const UpcommingMatch = () => {
       setMsg(values);
     });
     // then delete match from upcoming match list
-    fetch(`http://localhost:5000/user/deleteUpcomingMatch/${id}`, {
+    fetch(`https://betbdt.herokuapp.com/user/deleteUpcomingMatch/${id}`, {
       method: "DELETE",
     }).then(() => {
-      fetch(`http://localhost:5000/user/getUpcomingMatch`, {
+      fetch(`https://betbdt.herokuapp.com/user/getUpcomingMatch`, {
       method: "GET",
       headers: {
         "content-type": "application/json",

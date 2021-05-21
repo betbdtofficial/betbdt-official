@@ -12,7 +12,7 @@ const Login = () => {
   const [loginUser, setLoginUser] = useContext(Context);
   const [dbData, setDbData] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user`, {
+    fetch(`https://betbdt.herokuapp.com/user`, {
       method: "GET",
       headers: {
         "content-type": "application/json",
@@ -24,7 +24,7 @@ const Login = () => {
   }, [dbData._id]);
   const [club, setClub] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/getClubHolder`, {
+    fetch(`https://betbdt.herokuapp.com/user/getClubHolder`, {
       method: "GET",
       headers: {
         "content-type": "application/json",
@@ -72,7 +72,7 @@ const Login = () => {
       const users = value.username
       axios
       .post(
-        `http://localhost:5000/user/login`,{ users })
+        `https://betbdt.herokuapp.com/user/login`,{ users })
         .then((res) => {
           const userInfo = res.data
           sessionStorage.setItem('userInfo', JSON.stringify(userInfo))

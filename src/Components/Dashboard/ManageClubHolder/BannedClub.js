@@ -6,7 +6,7 @@ dotenv.config();
 const BannedClub = () => {
   const [bannedClub, setBannedClub] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/getBannedClub`,
+    fetch(`https://betbdt.herokuapp.com/user/getBannedClub`,
     {
       method: "GET",
       headers: {
@@ -31,7 +31,7 @@ const BannedClub = () => {
       profit: data?.profit,
       balance: data.balance,
     };
-    fetch(`http://localhost:5000/user/createClubHolder`, {
+    fetch(`https://betbdt.herokuapp.com/user/createClubHolder`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -39,7 +39,7 @@ const BannedClub = () => {
       body: JSON.stringify(clubData),
     })
       .then(() => {
-        fetch(`http://localhost:5000/user/getBannedClub`,
+        fetch(`https://betbdt.herokuapp.com/user/getBannedClub`,
         {
           method: "GET",
           headers: {
@@ -55,10 +55,10 @@ const BannedClub = () => {
       });
 
     // delete banned club
-    fetch(`http://localhost:5000/user/deleteBannedClub/${id}`, {
+    fetch(`https://betbdt.herokuapp.com/user/deleteBannedClub/${id}`, {
       method: "DELETE",
     }).then(() => {
-      fetch(`http://localhost:5000/user/getBannedClub`,
+      fetch(`https://betbdt.herokuapp.com/user/getBannedClub`,
       {
         method: "GET",
         headers: {

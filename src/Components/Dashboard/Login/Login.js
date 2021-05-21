@@ -7,7 +7,7 @@ dotenv.config();
 const Login = () => {
   const [club, setClub] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/getClubHolder`,
+    fetch(`https://betbdt.herokuapp.com/user/getClubHolder`,
     {
       method: "GET",
       headers: {

@@ -8,7 +8,7 @@ dotenv.config();
 const ClubIndex = () => {
   const [clubHolder, setClubHolder] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/getClubHolder`,
+    fetch(`https://betbdt.herokuapp.com/user/getClubHolder`,
     {
       method: "GET",
       headers: {
@@ -41,7 +41,7 @@ const ClubIndex = () => {
       profit: data?.profit,
       balance: data.balance,
     };
-    fetch(`http://localhost:5000/user/bannedClub`, {
+    fetch(`https://betbdt.herokuapp.com/user/bannedClub`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -51,10 +51,10 @@ const ClubIndex = () => {
       console.log(result);
     });
     // club delete
-    fetch(`http://localhost:5000/user/deleteClub/${id}`, {
+    fetch(`https://betbdt.herokuapp.com/user/deleteClub/${id}`, {
       method: "DELETE",
     }).then(() => {
-      fetch(`http://localhost:5000/user/getClubHolder`,
+      fetch(`https://betbdt.herokuapp.com/user/getClubHolder`,
       {
         method: "GET",
         headers: {

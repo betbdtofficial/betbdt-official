@@ -7,7 +7,7 @@ dotenv.config();
 const AdminLogin = () => {
   const [admin, setAdmin] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/getAdmin`,
+    fetch(`https://betbdt.herokuapp.com/user/getAdmin`,
     {
       method: "GET",
       headers: {

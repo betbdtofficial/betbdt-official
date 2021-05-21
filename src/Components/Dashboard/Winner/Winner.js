@@ -7,7 +7,7 @@ dotenv.config();
 const Winner = () => {
   const [bet, setBet] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/getBet`,
+    fetch(`https://betbdt.herokuapp.com/user/getBet`,
     {
       method: "GET",
       headers: {
@@ -25,17 +25,17 @@ const Winner = () => {
     const balance = {
       balance: data?.betAmount,
     };
-    fetch(`http://localhost:5000/user/betUserBalUpdate/${username}`, {
+    fetch(`https://betbdt.herokuapp.com/user/betUserBalUpdate/${username}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
       },
       body: JSON.stringify(balance),
     });
-    fetch(`http://localhost:5000/user/betDelete/${id}`, {
+    fetch(`https://betbdt.herokuapp.com/user/betDelete/${id}`, {
       method: "DELETE",
     }).then(() => {
-      fetch(`http://localhost:5000/user/getBet`,
+      fetch(`https://betbdt.herokuapp.com/user/getBet`,
       {
         method: "GET",
         headers: {
@@ -55,7 +55,7 @@ const Winner = () => {
       balance: data?.winingAmount,
     };
     // bet user balance update
-    fetch(`http://localhost:5000/user/betUserBalUpdate/${username}`, {
+    fetch(`https://betbdt.herokuapp.com/user/betUserBalUpdate/${username}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
@@ -75,7 +75,7 @@ const Winner = () => {
       question: data?.question,
       status: "Win",
     };
-    fetch(`http://localhost:5000/user/createBetHistory`, {
+    fetch(`https://betbdt.herokuapp.com/user/createBetHistory`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -83,10 +83,10 @@ const Winner = () => {
       body: JSON.stringify(bets),
     });
     // bet delete from wining list
-    fetch(`http://localhost:5000/user/betDelete/${id}`, {
+    fetch(`https://betbdt.herokuapp.com/user/betDelete/${id}`, {
       method: "DELETE",
     }).then(() => {
-      fetch(`http://localhost:5000/user/getBet`,
+      fetch(`https://betbdt.herokuapp.com/user/getBet`,
       {
         method: "GET",
         headers: {
@@ -114,7 +114,7 @@ const Winner = () => {
       question: data?.question,
       status: "Loss",
     };
-    fetch(`http://localhost:5000/user/createBetHistory`, {
+    fetch(`https://betbdt.herokuapp.com/user/createBetHistory`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -122,10 +122,10 @@ const Winner = () => {
       body: JSON.stringify(bets),
     });
     // bet delete from wining list
-    fetch(`http://localhost:5000/user/betDelete/${id}`, {
+    fetch(`https://betbdt.herokuapp.com/user/betDelete/${id}`, {
       method: "DELETE",
     }).then(() => {
-      fetch(`http://localhost:5000/user/getBet`)
+      fetch(`https://betbdt.herokuapp.com/user/getBet`)
         .then((res) => res.json())
         .then((data) => setBet(data));
     });

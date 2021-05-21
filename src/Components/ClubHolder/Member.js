@@ -5,7 +5,7 @@ const Member = () => {
   const club = JSON.parse(storage);
   const [clubs, setClubs] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/clubHolderMembers?user=${club?.club}`, {
+    fetch(`https://betbdt.herokuapp.com/user/clubHolderMembers?user=${club?.club}`, {
       method: "GET",
       headers: {
         "content-type": "application/json",

@@ -15,7 +15,7 @@ const DepositReq = () => {
 
   const [depo, setDepo] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/getDeposit`,
+    fetch(`https://betbdt.herokuapp.com/user/getDeposit`,
     {
       method: "GET",
       headers: {
@@ -29,10 +29,10 @@ const DepositReq = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const handleDeposit = (id, data) => {
     // Deposit Request Delete
-    fetch(`http://localhost:5000/user/deposit/delete/${id}`, {
+    fetch(`https://betbdt.herokuapp.com/user/deposit/delete/${id}`, {
       method: "DELETE",
     }).then(() => {
-      fetch(`http://localhost:5000/user/getDeposit`,
+      fetch(`https://betbdt.herokuapp.com/user/getDeposit`,
       {
         method: "GET",
         headers: {
@@ -52,7 +52,7 @@ const DepositReq = () => {
       date: time,
       button: "Completed",
     };
-    fetch(`http://localhost:5000/user/createDepositHistory`, {
+    fetch(`https://betbdt.herokuapp.com/user/createDepositHistory`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -63,7 +63,7 @@ const DepositReq = () => {
     });
     // deposite amount add
     const username = data.username;
-    fetch(`http://localhost:5000/user/${username}`, {
+    fetch(`https://betbdt.herokuapp.com/user/${username}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",
@@ -74,10 +74,10 @@ const DepositReq = () => {
     });
   };
   const handleCancel = (id, data)=>{
-    fetch(`http://localhost:5000/user/deposit/delete/${id}`, {
+    fetch(`https://betbdt.herokuapp.com/user/deposit/delete/${id}`, {
       method: "DELETE",
     }).then(() => {
-      fetch(`http://localhost:5000/user/getDeposit`,{
+      fetch(`https://betbdt.herokuapp.com/user/getDeposit`,{
         method: 'GET',
         headers: {
           'content-type':"application/json",
@@ -96,7 +96,7 @@ const DepositReq = () => {
       date: time,
       button: "Canceled",
     };
-    fetch(`http://localhost:5000/user/createDepositHistory`, {
+    fetch(`https://betbdt.herokuapp.com/user/createDepositHistory`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

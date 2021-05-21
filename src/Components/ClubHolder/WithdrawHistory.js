@@ -6,7 +6,7 @@ const WithdrawHistory = () => {
   const club = JSON.parse(storage);
   const [history, setHistory] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/specificWithHistory?user=${club?.club}`, {
+    fetch(`https://betbdt.herokuapp.com/user/specificWithHistory?user=${club?.club}`, {
       method: "GET",
       headers: {
         "content-type": "application/json",
@@ -18,7 +18,7 @@ const WithdrawHistory = () => {
   }, []);
   const [withdraw, setWithdraw] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/specificWithdraw?user=${club?.club}`, {
+    fetch(`https://betbdt.herokuapp.com/user/specificWithdraw?user=${club?.club}`, {
       method: "GET",
       headers: {
         "content-type": "application/json",

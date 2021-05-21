@@ -7,7 +7,7 @@ dotenv.config();
 const Topnotice = () => {
   const [dbData, setDbData] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/getNotice`,{
+    fetch(`https://betbdt.herokuapp.com/user/getNotice`,{
       method: "GET",
       headers: {
         'content-type':"application/json",

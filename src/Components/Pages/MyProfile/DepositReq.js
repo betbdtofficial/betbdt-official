@@ -16,7 +16,7 @@ const DepositReq = () => {
   }).format(today);
   const [depoMethod, setDepoMethod] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/getDepoMethod`, {
+    fetch(`https://betbdt.herokuapp.com/user/getDepoMethod`, {
       method: "GET",
       headers: {
         "content-type": "application/json",
@@ -55,7 +55,7 @@ const DepositReq = () => {
     deposit.date = time;
     deposit.button = "Pending";
     // send deposit request
-    fetch(`http://localhost:5000/user/createDeposit`, {
+    fetch(`https://betbdt.herokuapp.com/user/createDeposit`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

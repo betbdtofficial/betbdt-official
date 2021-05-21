@@ -6,7 +6,7 @@ import Validation from "./Validation";
 const SignUp = () => {
   const [dbData, setDbData] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/getClubHolder`, {
+    fetch(`https://betbdt.herokuapp.com/user/getClubHolder`, {
       method: "GET",
       headers: {
         "content-type": "application/json",
@@ -84,7 +84,7 @@ const SignUp = () => {
     ) {
       const values = { ...value };
       values.balance = "00.00";
-      fetch(`http://localhost:5000/user/createClubHolder`, {
+      fetch(`https://betbdt.herokuapp.com/user/createClubHolder`, {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -92,7 +92,7 @@ const SignUp = () => {
         body: JSON.stringify(values),
       })
         .then(() => {
-          fetch(`http://localhost:5000/user/getClubHolder`, {
+          fetch(`https://betbdt.herokuapp.com/user/getClubHolder`, {
             method: "GET",
             headers: {
               "content-type": "application/json",
