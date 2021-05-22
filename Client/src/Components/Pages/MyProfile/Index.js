@@ -3,6 +3,7 @@ import React from "react";
 import { Button } from "react-bootstrap";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import Avater from "../../image/avater.png";
+import ChangeClub from "./ChangeClub";
 import ChangePass from "./ChangePass";
 import DepositReq from "./DepositReq";
 import "./Index.css";
@@ -38,9 +39,11 @@ const Profile = () => {
                   <Tab>
                     <Button id="mypBtn">Change Password</Button>
                   </Tab>
+                  <Tab>
+                    <Button id="mypBtn">Change Club</Button>
+                  </Tab>
                 </TabList>
                 <br />
-
                 <TabPanel>
                   <MyProfile />
                 </TabPanel>
@@ -52,6 +55,9 @@ const Profile = () => {
                 </TabPanel>
                 <TabPanel>
                   <ChangePass />
+                </TabPanel>
+                <TabPanel>
+                  <ChangeClub/>
                 </TabPanel>
               </Tabs>
             </div>

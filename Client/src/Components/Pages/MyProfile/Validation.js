@@ -8,7 +8,7 @@ export const Validation = (values, balance) => {
   } else if (!values.amount) {
     errors.amount = "Amount is Required";
   } else if (values.amount < 50) {
-    errors.amount = "Amount more than 50 BDT";
+    errors.amount = "Minimum Withdraw 50 BDT";
   } else if (values.amount > balance) {
     errors.amount = "Insufficient Balance";
   } else if (!values.number) {

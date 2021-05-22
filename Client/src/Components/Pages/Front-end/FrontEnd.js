@@ -17,7 +17,7 @@ const FrontEnd = () => {
           <Route exact path="/">
             <Home />
           </Route>
-          <Route path="/login">
+          <Route exact path="/userLogin">
             <Login />
           </Route>
           <Route path="/signup">

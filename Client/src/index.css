@@ -10,3 +10,61 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+button.teambtn {
+  background: #2ab046;
+  color: white;
+  font-size: 14px;
+  border: none;
+}
+.mainSignup {
+  background: #f1f1f1;
+  padding-bottom: 18px;
+}
+
+.mobilebtn {
+  color: black;
+  padding: 7px;
+  background: #ffdf1b;
+  border-radius: 5px;
+  display: none;
+}
+
+.navbar-brand {
+  display: inline-block;
+  padding-top: .3125rem;
+  margin-right: 0px !important;
+  padding-bottom: .3125rem;
+  font-size: 1.25rem;
+  line-height: inherit;
+  white-space: nowrap;
+}
+
+@media only screen and (max-width: 600px) {
+  .ReactModal__Content.ReactModal__Content--after-open {
+    background: rgb(34 43 69) !important;
+    padding: 11px !important;
+    color: white;
+    width: auto !important;
+  }
+}
+@media only screen and (max-width: 425px) {
+  .mobilebtn {
+    color: black;
+    padding: 7px;
+    background: #ffdf1b;
+    border-radius: 5px;
+    display: block;
+  }
+  .navbar-brand {
+    display: inline-block;
+    padding-top: .3125rem;
+    margin-right: 0px !important;
+    padding-bottom: .3125rem;
+    font-size: 1.25rem;
+    line-height: inherit;
+    white-space: nowrap;
+  }
+  .MuiButton-root{
+    padding:6px 7px !important;
+  }
+}

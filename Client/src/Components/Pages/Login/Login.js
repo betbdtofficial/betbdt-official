@@ -52,9 +52,10 @@ const Login = () => {
   let history = useHistory();
   let location = useLocation();
   const { from } = location.state || { from: { pathname: "/" } };
+  const [user, setUser] = useState([])
   const handleSubmit = (e) => {
     e.preventDefault();
-    setErrors(Validation(value, username?.username, username?.password));
+    setErrors(Validation(value, getUser?.username, getUser?.password));
     if (
       value.username !== username?.username &&
       value.password !== username?.password
@@ -70,14 +71,15 @@ const Login = () => {
     ) {
       // sessionStorage set login user
       const users = value.username
+      const password= value.password
       axios
       .post(
-        `http://localhost:5000/user/login`,{ users })
+        `http://localhost:5000/user/login`,{ users, password })
         .then((res) => {
           const userInfo = res.data
           sessionStorage.setItem('userInfo', JSON.stringify(userInfo))
           setLoginUser(userInfo);
-          // setDbData(res.data)
+          setUser(userInfo)
         });
       history.replace(from);
       return;

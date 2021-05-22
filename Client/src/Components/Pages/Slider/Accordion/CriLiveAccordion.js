@@ -36,6 +36,7 @@ function CriLiveAccordion() {
     setPassValueAmount(amount);
     setPassTitle(title);
   };
+  const toggle = 'block'
   return (
     <div>
       <LiveBetPlace
@@ -111,7 +112,7 @@ function CriLiveAccordion() {
                         </Accordion>
                       )}
                       {data.title2 && (
-                        <Accordion defaultActiveKey="0">
+                        <Accordion style={{display: `${toggle}`}} defaultActiveKey="0">
                           <Accordion.Toggle as={Card.Header} eventKey="0">
                             {data.title2}{" "}
                             <span class="badge badge-danger">Live</span>

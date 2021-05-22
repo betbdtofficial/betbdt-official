@@ -1,23 +1,41 @@
-import dotenv from "dotenv";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Col, Form } from "react-bootstrap";
-dotenv.config();
 const ChangePass = () => {
-  const storage = sessionStorage.getItem("userInfo");
-  const getUser = JSON.parse(storage);
+    const storage = sessionStorage.getItem("club");
+    const club = JSON.parse(storage);
   const [value, setValue] = useState({
     changePass: "",
-    success: ""
+    success: "",
   });
   const handleChange = (e) => {
     const values = { ...value };
     values[e.target.name] = e.target.value;
     setValue(values);
   };
-  const handleSubmit = (e) => {
+
+    // get club holder
+  const [specificClubHolder, setSpecificClubHolder] = useState([]);
+  useEffect(() => {
+    fetch(
+      `http://localhost:5000/user/specificClubHolder?user=${club?.club}`,
+      {
+        method: "GET",
+        headers: {
+          "content-type": "application/json",
+          Authorization: `Bearer ${process.env.REACT_APP_SECRET_KEY}`,
+        },
+      }
+    )
+      .then((res) => res.json())
+      .then((data) => setSpecificClubHolder(data));
+  }, []);
+
+  const clubHolder = specificClubHolder.find(data=>data.username === club?.club)
+
+  const handleSubmit = (e)=>{
     e.preventDefault();
-    const id = getUser?.id;
-    fetch(`https://betbdt.herokuapp.com/user/passChange/${id}`, {
+    const id = clubHolder?._id;
+    fetch(`http://localhost:5000/user/club/passChange/${id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
@@ -28,21 +46,21 @@ const ChangePass = () => {
       values.success = "Password Change Successfully !"
       setValue(values)
     })
-  };
+  }
   return (
     <>
-      <div className="changePassword">
+      <div className="changePassword mt-4">
         <div className="container">
           <div className="row">
-            <div className="col-md-12">
+            <div className="col-md-6 m-auto">
               <h2 className="heading text-center">Change Password</h2>
             </div>
           </div>
           <div className="row">
-            <div className="col-md-12">
-              {
-                value.success && <p className="alert alert-success">{value.success}</p>
-              }
+            <div className="col-md-6 m-auto">
+              {value.success && (
+                <p className="alert alert-success">{value.success}</p>
+              )}
               <Form onSubmit={handleSubmit}>
                 <Form.Row>
                   <Form.Group as={Col}>

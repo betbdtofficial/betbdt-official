@@ -66,7 +66,7 @@ const Withdraw = () => {
     if (values.number.length < 11) {
       e.preventDefault()
       return;
-    } else if (values.amount < findUser?.balance) {
+    } else if (values.amount > findUser?.balance) {
       e.preventDefault()
       return;
     } else if (values.amount < 50) {
@@ -172,7 +172,6 @@ const Withdraw = () => {
                       value={values.amount}
                       onChange={handleChange}
                       type="number"
-                      min="50"
                       placeholder="Amount"
                     />
                     {errors.amount && (
@@ -191,7 +190,7 @@ const Withdraw = () => {
                       type="number"
                       placeholder="To "
                     />
-                    {errors.to && <p style={{ color: "red" }}>{errors.to}</p>}
+                    {errors.number && <p style={{ color: "red" }}>{errors.number}</p>}
                   </Form.Group>
                 </Form.Row>
                 <br />

@@ -136,7 +136,6 @@ const Draft = () => {
             onChange={(e) => setSearchTerm(e.target.value)}
             autoComplete="off"
             placeholder="Search Match..."
-            required
           />
         </span>
       </div>

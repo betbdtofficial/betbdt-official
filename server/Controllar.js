@@ -22,16 +22,34 @@ exports.clubHolderMembers = async (req, res) => {
   res.send(users)
 };
 
+// user club change
+exports.changeClub = (req, res) => {
+  const { id } = req.params;
+  const { changeClub } = req.body;
+  UserInfo.findByIdAndUpdate(
+    { _id: id },
+    { $set: { club: changeClub} },
+    { new: true }
+  ).then(() => {
+    UserInfo.find()
+      .then((user) => {
+        res.send(user);
+      })
+      .catch((err) => {
+        res.send(err.message);
+      });
+  });
+};
+
 exports.login = async (req, res) => {
   const { users } = req.body;
   const user = await UserInfo.findOne({
     username: users,
   });
-
   const club = await ClubHolder.findOne({
     club: user.club,
   });
-  if (user && club) {
+  if (user) {
     let token = jwt.sign({id: user._id}, 'secret')
     return res.json({
       id: user._id,
@@ -39,7 +57,6 @@ exports.login = async (req, res) => {
       username: user.username,
       club: user.club,
       country: user.country,
-      number: user.number,
       clubHolder: {
         username: club.username,
         profit: club.profit,

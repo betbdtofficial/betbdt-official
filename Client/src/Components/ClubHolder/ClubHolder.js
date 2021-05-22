@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { FaUserFriends } from "react-icons/fa";
 import { SiDolby, SiGoogletagmanager, SiSymantec } from "react-icons/si";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
+import ChangePass from "./ChangePass";
 import "./ClubHolder.css";
 import Member from "./Member";
 import Withdraw from "./Withdraw";
@@ -152,6 +153,15 @@ const ClubHolder = () => {
                     Withdraws History
                   </Button>
                 </Tab>
+                <Tab>
+                  <Button
+                    className="button"
+                    color="secondary"
+                    variant="contained"
+                  >
+                    change password
+                  </Button>
+                </Tab>
               </TabList>
               <TabPanel>
                 <Member />
@@ -161,6 +171,9 @@ const ClubHolder = () => {
               </TabPanel>
               <TabPanel>
                 <WithdrawHistory />
+              </TabPanel>
+              <TabPanel>
+                <ChangePass/>
               </TabPanel>
             </Tabs>
           </div>

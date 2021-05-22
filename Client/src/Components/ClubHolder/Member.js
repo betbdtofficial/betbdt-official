@@ -36,34 +36,38 @@ const Member = () => {
                 />
               </span>
             </div>
-            <table>
-              <tr>
-                <th>SN.</th>
-                <th>Name</th>
-                <th>Mobile</th>
-                <th>Sponsor</th>
-                <th>Club</th>
-                <th>Country</th>
-              </tr>
-              {clubs
-                .filter((value) => {
-                  if (searchTerm === "") return value;
-                  else if (
-                    value.name.toLowerCase().includes(searchTerm.toLowerCase())
-                  )
-                    return value;
-                })
-                .map((data, index) => (
-                  <tr key={data._id}>
-                    <td>{index + 1}</td>
-                    <td>{data.name}</td>
-                    <td>{data.number}</td>
-                    <td>{data.sponsor}</td>
-                    <td>{data.club}</td>
-                    <td>{data.country}</td>
-                  </tr>
-                ))}
-            </table>
+            <div style={{overflowX: 'auto'}}>
+              <table>
+                <tr>
+                  <th>SN.</th>
+                  <th>Name</th>
+                  <th>Mobile</th>
+                  <th>Sponsor</th>
+                  <th>Club</th>
+                  <th>Country</th>
+                </tr>
+                {clubs
+                  .filter((value) => {
+                    if (searchTerm === "") return value;
+                    else if (
+                      value.name
+                        .toLowerCase()
+                        .includes(searchTerm.toLowerCase())
+                    )
+                      return value;
+                  })
+                  .map((data, index) => (
+                    <tr key={data._id}>
+                      <td>{index + 1}</td>
+                      <td>{data.name}</td>
+                      <td>{data.number}</td>
+                      <td>{data.sponsor}</td>
+                      <td>{data.club}</td>
+                      <td>{data.country}</td>
+                    </tr>
+                  ))}
+              </table>
+            </div>
           </div>
         </div>
       </div>

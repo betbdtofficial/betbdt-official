@@ -49,6 +49,32 @@ exports.createClubHolder = (req, res) => {
   });
 };
 
+// club holder password change
+exports.changePass = (req, res) => {
+  const { id } = req.params;
+  const { changePass } = req.body;
+  ClubHolder.findByIdAndUpdate(
+    { _id: id },
+    { $set: { password: changePass, password2: changePass } },
+    { new: true }
+  ).then(() => {
+    ClubHolder.find()
+      .then((user) => {
+        res.send(user);
+      })
+      .catch((err) => {
+        res.send(err.message);
+      });
+  });
+};
+
+// get all club
+exports.allClub = async (req, res)=>{
+  const clubs = await ClubHolder.find()
+  const cls = clubs.map(data=>data.club)
+  res.send(cls)
+}
+
 // Withdraw update
 exports.clubWithdrawUpdate = (req, res) => {
   ClubHolder.findOneAndUpdate(

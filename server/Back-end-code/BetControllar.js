@@ -61,13 +61,13 @@ exports.betDelete = (req, res) => {
   });
 };
 
-// Withdraw update
+// bet update
 const UserInfo = require("../Schema");
 exports.betBalUpdate = (req, res) => {
   UserInfo.findOneAndUpdate(
     { username: req.params.user },
     {
-      $set: { balance: parseInt(req.body.balance) - parseInt(req.body.amount) },
+      $inc: { balance: req.body.balance },
     },
     { new: true }
   ).then(() => {

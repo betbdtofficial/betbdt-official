@@ -123,7 +123,7 @@ const PlaceBetFrom = ({
     // Bet balance update
     const user = uUser?.username;
     const BetUser = { ...value };
-    BetUser.balance = uUser?.balance;
+    BetUser.balance = `- ${uUser?.balance}`;
     fetch(`http://localhost:5000/user/bet/${user}`, {
       method: "PUT",
       headers: {

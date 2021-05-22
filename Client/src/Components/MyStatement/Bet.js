@@ -44,8 +44,8 @@ const Bet = () => {
                   <tr>
                     <th>SN.</th>
                     <th>Date</th>
-                    <th>Match</th>
                     <th>Question</th>
+                    <th>Match</th>
                     <th>Bet Title</th>
                     <th>Bet Amount</th>
                     <th>Bet Rate</th>
@@ -58,10 +58,10 @@ const Bet = () => {
                     <tr>
                       <td>{index + 1}</td>
                       <td>{data.date}</td>
+                      <td>{data.question}?</td>
                       <td>
                         {data.match1} vs {data.match2}
                       </td>
-                      <td>{data.question}?</td>
                       <td>{data.betTitle}</td>
                       <td>{data.betAmount} TK</td>
                       <td>{data.betRate}</td>

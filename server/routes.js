@@ -30,7 +30,9 @@ const {
   getBannedClub,
   deleteBannedClub,
   clubHolderbalanceUpdate,
-  specificClubHolder
+  specificClubHolder,
+  changePass,
+  allClub
 } = require("./Back-end-code/ClubHolderControllar");
 const {
   getDepoHistory,
@@ -89,6 +91,7 @@ const {
   login,
   specificWithdrawGet,
   clubHolderMembers,
+  changeClub,
 } = require("./Controllar");
 const {
   getDeposit,
@@ -104,6 +107,7 @@ router.get("/me", Authenticated, specificUser); // Get Specific User
 router.post("/signup", registraionUser); //User Registration
 router.put("/passChange/:id", changePassword); // user Password update
 router.put("/userUpdate/:id", userUpdate); // user details update
+router.put("/clubChange/:id", changeClub)// user club change
 router.delete("/bannedActiveUser/:id", bannedActiveUser); // banned Active User
 
 // admin login
@@ -135,10 +139,12 @@ router.delete("/deleteBannedUser/:id", bannedUserDelete);
 router.get("/getClubHolder", Authenticated, getClubHolder);
 router.get("/specificClubHolder", specificClubHolder);
 router.get("/clubHolderMembers", clubHolderMembers);
+router.put("/club/passChange/:id", changePass); // club Password update
 router.post("/createClubHolder", createClubHolder);
 router.delete("/deleteClub/:id", deleteClub);
 router.post("/bannedClub", bannedClubHolder);
 router.get("/getBannedClub", Authenticated, getBannedClub);
+router.get("/allClub", allClub) // get all club
 router.delete("/deleteBannedClub/:id", deleteBannedClub);
 router.put("/clubBalanceUpdate/:username", clubHolderbalanceUpdate);
 

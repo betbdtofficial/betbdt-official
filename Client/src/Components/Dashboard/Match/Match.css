@@ -2,6 +2,11 @@
 body {
   font-family: "Roboto Condensed", sans-serif;
 }
+
+/* background: #dabfbf;
+padding: 10px;
+border-radius: 5px; */
+
 /******Modal css*****/
 input[type="submit"]:focus {
   outline: none;

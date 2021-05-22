@@ -35,8 +35,30 @@ const Header = () => {
     <Navbar className="navbar-bg" expand="lg">
       <div className="container">
         <Navbar.Brand as={Link} to="/">
-          <img src={logo} alt="" className="img-fluid" width="150px" />
+          <img src={logo} alt="" className="img-fluid" width="100px" />
+
         </Navbar.Brand>
+        {!getUser?.username ? (
+            <Link
+              as={NavLink}
+              activeStyle={activeMenu}
+              className="mobilebtn"
+              to="/signup"
+            >
+              Sign Up
+            </Link>
+          ) : (
+            ""
+          )}
+          {getUser?.username ? (
+            <Link className="mobilebtn"  as={NavLink} to="/" onClick={handleLogout}>
+              Logout
+            </Link>
+          ) : (
+            <Nav.Link as={NavLink} className="mobilebtn" activeStyle={activeMenu} to="/userLogin">
+              Login
+            </Nav.Link>
+          )}
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto">
@@ -83,7 +105,7 @@ const Header = () => {
                 Logout
               </Nav.Link>
             ) : (
-              <Nav.Link as={NavLink} activeStyle={activeMenu} to="/login">
+              <Nav.Link as={NavLink} activeStyle={activeMenu} to="/userLogin">
                 Login
               </Nav.Link>
             )}

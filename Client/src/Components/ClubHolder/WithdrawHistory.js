@@ -34,34 +34,36 @@ const WithdrawHistory = () => {
       <div className="winnerHeading d-flex align-items-center justify-content-between">
         <span className="head">Withdraw History</span>
       </div>
-      <table className="mb-5">
-        <tr>
-          <th>Username</th>
-          <th>Recived Num</th>
-          <th>Account Type</th>
-          <th>Pay Method</th>
-          <th>Request Amount</th>
-          <th>Date</th>
-          <th>Status</th>
-        </tr>
-        {[...withdraw, ...history].map((data) => (
+      <div style={{ overflowX: "auto" }}>
+        <table className="mb-5">
           <tr>
-            <td>{data?.username}</td>
-            <td>{data?.number}</td>
-            <td>{data?.type}</td>
-            <td>{data?.method}</td>
-            <td>{data?.amount} BDT</td>
-            <td>{data?.date}</td>
-            <td>
-              <span>
-                <Button color="primary" variant="contained">
-                  {data?.button}
-                </Button>
-              </span>
-            </td>
+            <th>Username</th>
+            <th>Recived Num</th>
+            <th>Account Type</th>
+            <th>Pay Method</th>
+            <th>Request Amount</th>
+            <th>Date</th>
+            <th>Status</th>
           </tr>
-        ))}
-      </table>
+          {[...withdraw, ...history].map((data) => (
+            <tr>
+              <td>{data?.username}</td>
+              <td>{data?.number}</td>
+              <td>{data?.type}</td>
+              <td>{data?.method}</td>
+              <td>{data?.amount} BDT</td>
+              <td>{data?.date}</td>
+              <td>
+                <span>
+                  <Button color="primary" variant="contained">
+                    {data?.button}
+                  </Button>
+                </span>
+              </td>
+            </tr>
+          ))}
+        </table>
+      </div>
     </>
   );
 };

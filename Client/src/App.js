@@ -22,7 +22,7 @@ function App() {
           <PrivateRouteAdmin path="/admin">
             <Dashboard />
           </PrivateRouteAdmin>
-          <PrivateRoute path="/clubholderDeshboard">
+          <PrivateRoute path="/clubAdmin">
             <ClubHolder />
           </PrivateRoute>
           <Route path="/adminlogin">

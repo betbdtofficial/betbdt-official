@@ -152,7 +152,10 @@ const SignUp = () => {
                       onChange={handleChange}
                       className="form-control"
                     >
-                      <option selected value="Bangladesh(+880)">
+                      <option selected value="selectedcountry">
+                      Selected country
+                      </option>
+                      <option value="Bangladesh(+880)">
                         Bangladesh(+880)
                       </option>
                       <option value="Afghanistan(+93)">Afghanistan(+93)</option>

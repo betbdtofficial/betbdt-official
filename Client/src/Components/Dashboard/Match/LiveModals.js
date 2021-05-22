@@ -154,377 +154,399 @@ const LiveModals = (props) => {
               {value.success && (
                 <p className="alert alert-success">{value.success}</p>
               )}
-              <Row>
-                <Col>
-                  <label htmlFor="match1">Match 1</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="match1"
-                    value={value.match1}
-                    onChange={handleChange}
-                    autoComplete="off"
-                    placeholder="Match 1"
-                  />
-                </Col>
-                <Col>
-                  <label htmlFor="match2">Match 2</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="match2"
-                    value={value.match2}
-                    onChange={handleChange}
-                    autoComplete="off"
-                    placeholder="Match 2"
-                  />
-                </Col>
-              </Row>
-              <Row>
-                <Col>
-                  <label htmlFor="m1Amount">M1 Amount</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="m1Amount"
-                    value={value.m1Amount}
-                    onChange={handleChange}
-                    autoComplete="off"
-                    placeholder="M1 Amount"
-                  />
-                </Col>
-                <Col>
-                  <label htmlFor="m2Amount">M2 Amount</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="m2Amount"
-                    value={value.m2Amount}
-                    onChange={handleChange}
-                    autoComplete="off"
-                    placeholder="M2 Amount"
-                  />
-                </Col>
-              </Row>
-              <Row>
-                <Col>
-                  <label htmlFor="event">Event</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="event"
-                    value={value.event}
-                    onChange={handleChange}
-                    autoComplete="off"
-                    placeholder="Event"
-                  />
-                </Col>
-              </Row>
+              <div className="">
+                <Row>
+                  <Col>
+                    <label htmlFor="match1">Match 1</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      name="match1"
+                      value={value.match1}
+                      onChange={handleChange}
+                      autoComplete="off"
+                      placeholder="Match 1"
+                    />
+                  </Col>
+                  <Col>
+                    <label htmlFor="match2">Match 2</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      name="match2"
+                      value={value.match2}
+                      onChange={handleChange}
+                      autoComplete="off"
+                      placeholder="Match 2"
+                    />
+                  </Col>
+                </Row>
+                <Row>
+                  <Col>
+                    <label htmlFor="m1Amount">M1 Amount</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      name="m1Amount"
+                      value={value.m1Amount}
+                      onChange={handleChange}
+                      autoComplete="off"
+                      placeholder="M1 Amount"
+                    />
+                  </Col>
+                  <Col>
+                    <label htmlFor="m2Amount">M2 Amount</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      name="m2Amount"
+                      value={value.m2Amount}
+                      onChange={handleChange}
+                      autoComplete="off"
+                      placeholder="M2 Amount"
+                    />
+                  </Col>
+                </Row>
+                <Row>
+                  <Col>
+                    <label htmlFor="event">Event</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      name="event"
+                      value={value.event}
+                      onChange={handleChange}
+                      autoComplete="off"
+                      placeholder="Event"
+                    />
+                  </Col>
+                </Row>
+              </div>
               {/* title 1 */}
-              <Row style={{ marginBottom: "10px" }}>
-                <Col>
-                  <label htmlFor="title">Title 1</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="title1"
-                    value={value.title1}
-                    onChange={handleChange}
-                    autoComplete="off"
-                    placeholder="Title 1"
-                  />
-                </Col>
-              </Row>
-              <Row>
-                <Col>
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="value1"
-                    value={value.value1}
-                    onChange={handleChange}
-                    autoComplete="off"
-                    placeholder="Value 1"
-                  />
-                </Col>
-                <Col>
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="v1Amount"
-                    value={value.v1Amount}
-                    onChange={handleChange}
-                    autoComplete="off"
-                    placeholder="Amount"
-                  />
-                </Col>
-                <Col>
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="value2"
-                    value={value.value2}
-                    onChange={handleChange}
-                    autoComplete="off"
-                    placeholder="Value 2"
-                  />
-                </Col>
-                <Col>
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="v2Amount"
-                    value={value.v2Amount}
-                    onChange={handleChange}
-                    autoComplete="off"
-                    placeholder="Amount"
-                  />
-                </Col>
-              </Row>
+              <div className="">
+                <Row style={{ marginBottom: "10px" }}>
+                  <Col>
+                    <label htmlFor="title">Title 1</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      name="title1"
+                      value={value.title1}
+                      onChange={handleChange}
+                      autoComplete="off"
+                      placeholder="Title 1"
+                    />
+                  </Col>
+                </Row>
+                <Row>
+                  <Col>
+                    <input
+                      type="text"
+                      className="form-control"
+                      name="value1"
+                      value={value.value1}
+                      onChange={handleChange}
+                      autoComplete="off"
+                      placeholder="Value 1"
+                    />
+                  </Col>
+                  <Col>
+                    <input
+                      type="text"
+                      className="form-control"
+                      name="v1Amount"
+                      value={value.v1Amount}
+                      onChange={handleChange}
+                      autoComplete="off"
+                      placeholder="Amount"
+                    />
+                  </Col>
+                  <Col>
+                    <input
+                      type="text"
+                      className="form-control"
+                      name="value2"
+                      value={value.value2}
+                      onChange={handleChange}
+                      autoComplete="off"
+                      placeholder="Value 2"
+                    />
+                  </Col>
+                  <Col>
+                    <input
+                      type="text"
+                      className="form-control"
+                      name="v2Amount"
+                      value={value.v2Amount}
+                      onChange={handleChange}
+                      autoComplete="off"
+                      placeholder="Amount"
+                    />
+                  </Col>
+                </Row>
+              </div>
               {/* title 2 */}
-              <Row style={{ marginBottom: "10px" }}>
-                <Col>
-                  <label htmlFor="title">Title 2</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="title2"
-                    value={value.title2}
-                    onChange={handleChange}
-                    autoComplete="off"
-                    placeholder="Title 2"
-                  />
-                </Col>
-              </Row>
-              <Row>
-                <Col>
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="value3"
-                    value={value.value3}
-                    onChange={handleChange}
-                    autoComplete="off"
-                    placeholder="Value 1"
-                  />
-                </Col>
-                <Col>
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="v3Amount"
-                    value={value.v3Amount}
-                    onChange={handleChange}
-                    autoComplete="off"
-                    placeholder="Amount"
-                  />
-                </Col>
-                <Col>
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="value4"
-                    value={value.value4}
-                    onChange={handleChange}
-                    autoComplete="off"
-                    placeholder="Value 2"
-                  />
-                </Col>
-                <Col>
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="v4Amount"
-                    value={value.v4Amount}
-                    onChange={handleChange}
-                    autoComplete="off"
-                    placeholder="Amount"
-                  />
-                </Col>
-              </Row>
+              <div className="">
+                <Row style={{ marginBottom: "10px" }}>
+                  <Col>
+                    <label htmlFor="title">Title 2</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      name="title2"
+                      value={value.title2}
+                      onChange={handleChange}
+                      autoComplete="off"
+                      placeholder="Title 2"
+                    />
+                  </Col>
+                </Row>
+                <Row>
+                  <Col>
+                    <input
+                      type="text"
+                      className="form-control"
+                      name="value3"
+                      value={value.value3}
+                      onChange={handleChange}
+                      autoComplete="off"
+                      placeholder="Value 1"
+                    />
+                  </Col>
+                  <Col>
+                    <input
+                      type="text"
+                      className="form-control"
+                      name="v3Amount"
+                      value={value.v3Amount}
+                      onChange={handleChange}
+                      autoComplete="off"
+                      placeholder="Amount"
+                    />
+                  </Col>
+                  <Col>
+                    <input
+                      type="text"
+                      className="form-control"
+                      name="value4"
+                      value={value.value4}
+                      onChange={handleChange}
+                      autoComplete="off"
+                      placeholder="Value 2"
+                    />
+                  </Col>
+                  <Col>
+                    <input
+                      type="text"
+                      className="form-control"
+                      name="v4Amount"
+                      value={value.v4Amount}
+                      onChange={handleChange}
+                      autoComplete="off"
+                      placeholder="Amount"
+                    />
+                  </Col>
+                </Row>
+              </div>
               {/* title 3 */}
-              <Row style={{ marginBottom: "10px" }}>
-                <Col>
-                  <label htmlFor="title">Title 3</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="title3"
-                    value={value.title3}
-                    onChange={handleChange}
-                    autoComplete="off"
-                    placeholder="Title 3"
-                  />
-                </Col>
-              </Row>
-              <Row>
-                <Col>
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="value5"
-                    value={value.value5}
-                    onChange={handleChange}
-                    autoComplete="off"
-                    placeholder="Value 1"
-                  />
-                </Col>
-                <Col>
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="v5Amount"
-                    value={value.v5Amount}
-                    onChange={handleChange}
-                    autoComplete="off"
-                    placeholder="Amount"
-                  />
-                </Col>
-                <Col>
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="value6"
-                    value={value.value6}
-                    onChange={handleChange}
-                    autoComplete="off"
-                    placeholder="Value 2"
-                  />
-                </Col>
-                <Col>
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="v6Amount"
-                    value={value.v6Amount}
-                    onChange={handleChange}
-                    autoComplete="off"
-                    placeholder="Amount"
-                  />
-                </Col>
-              </Row>
+              <div className="">
+                <Row style={{ marginBottom: "10px" }}>
+                  <Col>
+                    <label htmlFor="title">Title 3</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      name="title3"
+                      value={value.title3}
+                      onChange={handleChange}
+                      autoComplete="off"
+                      placeholder="Title 3"
+                    />
+                  </Col>
+                </Row>
+                <Row>
+                  <Col>
+                    <input
+                      type="text"
+                      className="form-control"
+                      name="value5"
+                      value={value.value5}
+                      onChange={handleChange}
+                      autoComplete="off"
+                      placeholder="Value 1"
+                    />
+                  </Col>
+                  <Col>
+                    <input
+                      type="text"
+                      className="form-control"
+                      name="v5Amount"
+                      value={value.v5Amount}
+                      onChange={handleChange}
+                      autoComplete="off"
+                      placeholder="Amount"
+                    />
+                  </Col>
+                  <Col>
+                    <input
+                      type="text"
+                      className="form-control"
+                      name="value6"
+                      value={value.value6}
+                      onChange={handleChange}
+                      autoComplete="off"
+                      placeholder="Value 2"
+                    />
+                  </Col>
+                  <Col>
+                    <input
+                      type="text"
+                      className="form-control"
+                      name="v6Amount"
+                      value={value.v6Amount}
+                      onChange={handleChange}
+                      autoComplete="off"
+                      placeholder="Amount"
+                    />
+                  </Col>
+                </Row>
+              </div>
               {/* title 4 */}
-              <Row style={{ marginBottom: "10px" }}>
-                <Col>
-                  <label htmlFor="title">Title 4</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="title4"
-                    value={value.title4}
-                    onChange={handleChange}
-                    autoComplete="off"
-                    placeholder="Title 4"
-                  />
-                </Col>
-              </Row>
-              <Row>
-                <Col>
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="value7"
-                    value={value.value7}
-                    onChange={handleChange}
-                    autoComplete="off"
-                    placeholder="Value 1"
-                  />
-                </Col>
-                <Col>
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="v7Amount"
-                    value={value.v7Amount}
-                    onChange={handleChange}
-                    autoComplete="off"
-                    placeholder="Amount"
-                  />
-                </Col>
-                <Col>
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="value8"
-                    value={value.value8}
-                    onChange={handleChange}
-                    autoComplete="off"
-                    placeholder="Value 2"
-                  />
-                </Col>
-                <Col>
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="v8Amount"
-                    value={value.v8Amount}
-                    onChange={handleChange}
-                    autoComplete="off"
-                    placeholder="Amount"
-                  />
-                </Col>
-              </Row>
+              <div className="">
+                <Row style={{ marginBottom: "10px" }}>
+                  <Col>
+                    <label htmlFor="title">Title 4</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      name="title4"
+                      value={value.title4}
+                      onChange={handleChange}
+                      autoComplete="off"
+                      placeholder="Title 4"
+                    />
+                  </Col>
+                </Row>
+                <Row>
+                  <Col>
+                    <input
+                      type="text"
+                      className="form-control"
+                      name="value7"
+                      value={value.value7}
+                      onChange={handleChange}
+                      autoComplete="off"
+                      placeholder="Value 1"
+                    />
+                  </Col>
+                  <Col>
+                    <input
+                      type="text"
+                      className="form-control"
+                      name="v7Amount"
+                      value={value.v7Amount}
+                      onChange={handleChange}
+                      autoComplete="off"
+                      placeholder="Amount"
+                    />
+                  </Col>
+                  <Col>
+                    <input
+                      type="text"
+                      className="form-control"
+                      name="value8"
+                      value={value.value8}
+                      onChange={handleChange}
+                      autoComplete="off"
+                      placeholder="Value 2"
+                    />
+                  </Col>
+                  <Col>
+                    <input
+                      type="text"
+                      className="form-control"
+                      name="v8Amount"
+                      value={value.v8Amount}
+                      onChange={handleChange}
+                      autoComplete="off"
+                      placeholder="Amount"
+                    />
+                  </Col>
+                </Row>
+              </div>
               {/* TITLE 5 */}
-              <Row style={{ marginBottom: "10px" }}>
-                <Col>
-                  <label htmlFor="title">Title 5</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="title5"
-                    value={value.title5}
-                    onChange={handleChange}
-                    autoComplete="off"
-                    placeholder="Title 5"
-                  />
-                </Col>
-              </Row>
-              <Row>
-                <Col>
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="value9"
-                    value={value.value9}
-                    onChange={handleChange}
-                    autoComplete="off"
-                    placeholder="Value 1"
-                  />
-                </Col>
-                <Col>
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="v9Amount"
-                    value={value.v9Amount}
-                    onChange={handleChange}
-                    autoComplete="off"
-                    placeholder="Amount"
-                  />
-                </Col>
-                <Col>
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="value10"
-                    value={value.value10}
-                    onChange={handleChange}
-                    autoComplete="off"
-                    placeholder="Value 2"
-                  />
-                </Col>
-                <Col>
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="v10Amount"
-                    value={value.v10Amount}
-                    onChange={handleChange}
-                    autoComplete="off"
-                    placeholder="Amount"
-                  />
-                </Col>
-              </Row>
+              <div className="">
+                <Row style={{ marginBottom: "10px" }}>
+                  <Col>
+                    <div className="d-flex justify-content-between">
+                      <span>
+                        <label htmlFor="title">Title 5</label>
+                      </span>
+                      <span>
+                        <select name="" className="form-control">
+                          <option value="none">none</option>
+                          <option value="block">block</option>
+                        </select>
+                      </span>
+                    </div>
+                    <input
+                      type="text"
+                      className="form-control"
+                      name="title5"
+                      value={value.title5}
+                      onChange={handleChange}
+                      autoComplete="off"
+                      placeholder="Title 5"
+                    />
+                  </Col>
+                </Row>
+                <Row>
+                  <Col>
+                    <input
+                      type="text"
+                      className="form-control"
+                      name="value9"
+                      value={value.value9}
+                      onChange={handleChange}
+                      autoComplete="off"
+                      placeholder="Value 1"
+                    />
+                  </Col>
+                  <Col>
+                    <input
+                      type="text"
+                      className="form-control"
+                      name="v9Amount"
+                      value={value.v9Amount}
+                      onChange={handleChange}
+                      autoComplete="off"
+                      placeholder="Amount"
+                    />
+                  </Col>
+                  <Col>
+                    <input
+                      type="text"
+                      className="form-control"
+                      name="value10"
+                      value={value.value10}
+                      onChange={handleChange}
+                      autoComplete="off"
+                      placeholder="Value 2"
+                    />
+                  </Col>
+                  <Col>
+                    <input
+                      type="text"
+                      className="form-control"
+                      name="v10Amount"
+                      value={value.v10Amount}
+                      onChange={handleChange}
+                      autoComplete="off"
+                      placeholder="Amount"
+                    />
+                  </Col>
+                </Row>
+              </div>
               <Row>
                 <Col>
                   <label htmlFor="startdate">Start Date</label>
